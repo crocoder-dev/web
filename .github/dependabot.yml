@@ -23,3 +23,8 @@ updates:
     directory: /packages/tailwind
     schedule:
       interval: daily
+
+  - package-ecosystem: npm
+    directory: /apps/website
+    schedule:
+      interval: daily
