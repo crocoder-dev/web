@@ -3,8 +3,11 @@
   "module": "index.ts",
   "type": "module",
   "dependencies": {
+    "@astrojs/tailwind": "^5.1.0",
     "@crocoder-dev/tailwind": "*",
-    "astro": "4.11.5"
+    "astro": "4.11.5",
+    "astro-font": "^0.0.81",
+    "marked": "^13.0.2"
   },
   "scripts": {
     "dev": "astro dev",
