@@ -3,13 +3,10 @@
     {
       "source": "/blog/:path*",
       "destination": "https://crocoder-company-blog.vercel.app/:path*"
-    }
-  ],
-  "redirects": [
+    },
     {
-      "source": "/blog",
-      "destination": "https://crocoder-company-blog.vercel.app/:path*",
-      "permanent": true
+      "source": "/_astro/:path*",
+      "destination": "https://crocoder-company-blog.vercel.app/_astro/:path*"
     }
   ]
 }
