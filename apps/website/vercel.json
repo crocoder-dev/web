@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/blog/:path*",
+      "destination": "https://crocoder-company-blog.vercel.app//:path*"
+    }
+  ]
+}
