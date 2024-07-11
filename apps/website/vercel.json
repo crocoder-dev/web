@@ -4,5 +4,12 @@
       "source": "/blog/:path*",
       "destination": "https://crocoder-company-blog.vercel.app/:path*"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/blog",
+      "destination": "https://crocoder-company-blog.vercel.app/:path*",
+      "permanent": true
+    }
   ]
 }
