@@ -1,13 +1,12 @@
 const theme = require("./theme.json");
 
 const font_base = Number(theme.fonts.font_size.base.replace("px", ""));
-const font_scale = Number(theme.fonts.font_size.scale);
-const h6 = font_base / font_base;
-const h5 = h6 * font_scale;
-const h4 = h5 * font_scale;
-const h3 = h4 * font_scale;
-const h2 = h3 * font_scale;
-const h1 = h2 * font_scale;
+const h6 = 1
+const h5 = 1.2;
+const h4 = 1.4;
+const h3 = 1.6
+const h2 = 2
+const h1 = 2.5;
 
 let fontPrimary, fontPrimaryType, fontSecondary, fontSecondaryType;
 if (theme.fonts.font_family.primary) {
