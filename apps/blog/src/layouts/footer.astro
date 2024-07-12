@@ -1,10 +1,13 @@
 ---
-import config from "../config.json";
 import { markdownify } from "../ify";
+
+const copyright = `
+&copy; ${new Date().getFullYear()} CroCoder, Inc. All rights reserved.
+`;
 ---
 
 <footer class="bg-theme-dark">
   <div class="text-center">
-    <p set:html={markdownify(config.params.copyright)} class="text-white/75" />
+    <p set:html={markdownify(copyright)} class="text-white/75" />
   </div>
 </footer>
