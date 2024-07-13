@@ -3,10 +3,11 @@ import { Image } from "astro:assets";
 import { markdownify } from "../ify";
 import { format } from "date-fns";
 
-const { post } = Astro.props;
+const { post, author } = Astro.props;
+const { name: authorName, image: authorImage } = author.data;
 const { Content } = await post.render();
+const { Content: AuthorContent } = await author.render();
 const { title, image, date } = post.data;
-
 
 const dateFormat = (
   date: Date | string,
@@ -18,8 +19,8 @@ const dateFormat = (
 };
 
 const formattedDate = dateFormat(date);
-
 ---
+
 <section class="py-20">
   <div class="container max-w-[1000px] px-4 md:px-8">
     <article class="row justify-center">
@@ -27,7 +28,10 @@ const formattedDate = dateFormat(date);
         <h1 class="text-h1-sm md:text-h1" set:html={markdownify(title)} />
         <ul class="mt-4 flex flex-wrap items-center justify-center text-text">
           <li class="mx-3 flex items-center flex-wrap font-medium">
-            <>{formattedDate}</>
+            <span class="mr-2">By</span>
+            <span>{authorName}</span>
+          <li class="mx-3 flex items-center flex-wrap font-medium">
+            {formattedDate}
           </li>
         </ul>
       </div>
@@ -47,9 +51,13 @@ const formattedDate = dateFormat(date);
       </div>
 
       <div class="md:col-10">
-        <div class="mb-16 text-left prose max-w-none prose-headings:font-bold prose-h1:mb-4 prose-h1:text-h1-sm prose-h2:mb-4 prose-h2:mt-4 prose-h2:text-h2-sm prose-h3:mt-4 prose-h3:text-h3-sm prose-h4:mt-4 prose-h5:mb-4 prose-h6:mb-6 prose-blockquote:rounded-lg prose-blockquote:border-primary prose-blockquote:bg-theme-light prose-blockquote:px-7 prose-blockquote:py-3 prose-blockquote:text-lg prose-blockquote:leading-8 prose-pre:px-6 prose-pre:py-5 md:prose-h1:text-h1 md:prose-h2:text-h2 md:prose-h3:text-h3">
+        <div
+          class="mb-16 text-left prose max-w-none prose-headings:font-bold prose-h1:mb-4 prose-h1:text-h1-sm prose-h2:mb-4 prose-h2:mt-4 prose-h2:text-h2-sm prose-h3:mt-4 prose-h3:text-h3-sm prose-h4:mt-4 prose-h5:mb-4 prose-h6:mb-6 prose-blockquote:rounded-lg prose-blockquote:border-primary prose-blockquote:bg-theme-light prose-blockquote:px-7 prose-blockquote:py-3 prose-blockquote:text-lg prose-blockquote:leading-8 prose-pre:px-6 prose-pre:py-5 md:prose-h1:text-h1 md:prose-h2:text-h2 md:prose-h3:text-h3"
+        >
           <Content />
         </div>
+        {authorName}
+        <AuthorContent />
       </div>
     </article>
   </div>

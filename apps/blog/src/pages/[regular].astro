@@ -19,9 +19,9 @@ export async function getStaticPaths() {
 const authorCollection = await getCollection("authors");
 
 const { page } = Astro.props;
-const { title, description, image, authors: authorNames } = page.data;
+const { title, description, image, authors: authorIds } = page.data;
 
-
+const authors = authorCollection.filter((author) => authorIds.includes(author.slug));
 
 ---
 
@@ -29,6 +29,7 @@ const { title, description, image, authors: authorNames } = page.data;
   title={title}
   description={description}
   image={image}
+  author={authors[0].data.name}
 >
-  <Post post={page} />
+  <Post post={page} author={authors[0]} />
 </Base>
