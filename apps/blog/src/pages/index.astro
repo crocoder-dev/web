@@ -6,13 +6,15 @@ const posts = await getCollection("posts");
 
 const pages = await Astro.glob("../pages/**/*.astro");
 
+const prefix = import.meta.env.DEV ? "/" : "/blog";
+
 const urls = [
-  ...posts.map((post) => `/blog/${post.slug}`),
+  ...posts.map((post) => `${prefix}${prefix === "/" ? "" : "/"}${post.slug}`),
   ...pages
     .filter(
       (page) => !page.url?.includes("[") && !page.url?.includes("index.astro"),
     )
-    .map((page) => `/blog${page.url}`),
+    .map((page) => `${prefix === "/" ? "" : prefix}${page.url}`),
 ];
 ---
 
