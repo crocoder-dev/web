@@ -24,19 +24,19 @@ I will show you three ways to block traffic depending on how your CloudFront dis
 
 Open [CloudFront Distributions](https://console.aws.amazon.com/cloudfront/v3/home) and choose the distribution.
 
-![Cloudfront distributions page](/block-russia-using-cloudfront/step1.png)
+![Cloudfront distributions page](/images/block-russia-using-cloudfront/step1.png)
 
 Click on the `Geographic restrictions` tab. Click on edit button.
 
-![Geographic restrictions tab opened](/block-russia-using-cloudfront/step2.png)
+![Geographic restrictions tab opened](/images/block-russia-using-cloudfront/step2.png)
 
 Check `Restriction type` - `Block list` and select from the dropdown Russia and Belarus. Click Save changes.
 
-![Restriction type block list opened](/block-russia-using-cloudfront/step3.png)
+![Restriction type block list opened](/images/block-russia-using-cloudfront/step3.png)
 
 You have just blocked all traffic from Russia and Belarus. All visitors from those locations will get 403 (Forrbidden) status code.
 
-![Geographic restrictions page shows Russia and Belarus being blocked](/block-russia-using-cloudfront/step4.png)
+![Geographic restrictions page shows Russia and Belarus being blocked](/images/block-russia-using-cloudfront/step4.png)
 
 ## CloudFormation
 
