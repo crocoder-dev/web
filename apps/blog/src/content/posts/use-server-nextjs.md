@@ -1,5 +1,5 @@
 ---
-title: "Block traffic to your website from Russia and Belarus using CloudFront"
+title: "What's \"use server\" in Next.js?"
 description: ""
 date: 2024-07-01T05:00:00Z
 authors: ["CroCoder"]
