@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/images/:path*",
+      "destination": "https://crocoder-company-blog.vercel.app/images/:path*"
+    },
+    {
       "source": "/_astro/:path*",
       "destination": "https://crocoder-company-blog.vercel.app/_astro/:path*"
     },
