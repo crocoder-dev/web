@@ -8,7 +8,7 @@
     "astro": "4.11.5"
   },
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro dev --port 4321",
     "build": "astro build"
   }
 }
