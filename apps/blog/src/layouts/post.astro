@@ -1,10 +1,24 @@
 ---
 import { Image } from "astro:assets";
 import { markdownify } from "../ify";
+import { format } from "date-fns";
 
 const { post } = Astro.props;
 const { Content } = await post.render();
 const { title, image, date } = post.data;
+
+
+const dateFormat = (
+  date: Date | string,
+  pattern: string = "dd MMM, yyyy",
+): string => {
+  const dateObj = new Date(date);
+  const output = format(dateObj, pattern);
+  return output;
+};
+
+const formattedDate = dateFormat(date);
+
 ---
 <section class="py-20">
   <div class="container max-w-[1000px] px-4 md:px-8">
@@ -13,7 +27,7 @@ const { title, image, date } = post.data;
         <h1 class="text-h1-sm md:text-h1" set:html={markdownify(title)} />
         <ul class="mt-4 flex flex-wrap items-center justify-center text-text">
           <li class="mx-3 flex items-center flex-wrap font-medium">
-            <>{date}</>
+            <>{formattedDate}</>
           </li>
         </ul>
       </div>

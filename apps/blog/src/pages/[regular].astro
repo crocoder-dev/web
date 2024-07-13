@@ -16,13 +16,17 @@ export async function getStaticPaths() {
   return paths;
 }
 
+const authorCollection = await getCollection("authors");
+
 const { page } = Astro.props;
-const { title, meta_title, description, image } = page.data;
+const { title, description, image, authors: authorNames } = page.data;
+
+
+
 ---
 
 <Base
   title={title}
-  meta_title={meta_title}
   description={description}
   image={image}
 >

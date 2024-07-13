@@ -1,8 +1,13 @@
 ---
 title: "Internal component libraries - an overlooked part of your brand"
 description: ""
-date: 2024-07-01T05:00:00Z
-authors: ["CroCoder"]
+date: 1645837875000
+updatedAt: 1645837875000
+authors: ["david"]
+category: "AWS"
+editor: ["velimir"]
+abstract: ""
+image: ""
 draft: false
 ---
 

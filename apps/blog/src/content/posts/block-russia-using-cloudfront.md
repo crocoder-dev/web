@@ -1,9 +1,14 @@
 ---
 title: "Block traffic to your website from Russia and Belarus using CloudFront"
 description: ""
-date: 2024-07-01T05:00:00Z
-authors: ["CroCoder"]
+date: 1645837875000
+updatedAt: 1645837875000
+authors: ["david"]
+category: "AWS"
+editor: ["velimir"]
 draft: false
+abstract: ""
+image: ""
 ---
 
 Russia invaded Ukraine on the 24th of February 2022. Belarus offers logistic support to the Russian army.
