@@ -13,6 +13,8 @@ image: ""
 
 Let's dive into the world of TypeScript and acquaint ourselves with the clever tool known as Omit. This little rascal is your reliable ally when you're cooking up a fresh type and want to leave out a couple of properties from a preexisting type.
 
+## Contents
+
 ## How to use Omit
 
 Imagine you've got this type describing someone's particulars – you know, their name, age, and email:

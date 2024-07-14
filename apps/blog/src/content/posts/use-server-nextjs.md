@@ -15,6 +15,8 @@ Server actions are a feature introduced in [Next.js 13.4](https://nextjs.org/blo
 
 Server actions are created by defining an asynchronous function with the `"use server"` directive at the top of the function body. These functions should have serializable arguments and a serializable return value based on the [React Server Components](https://nextjs.org/docs/app/building-your-application/rendering/server-components) protocol.
 
+## Contents
+
 ## Enabling Server Actions
 
 To start using Server Actions, you need to enable the experimental `serverActions` flag in your `next.config.js` file. Here’s how you can do it:

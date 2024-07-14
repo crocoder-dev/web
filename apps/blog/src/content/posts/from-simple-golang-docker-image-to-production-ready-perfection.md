@@ -13,6 +13,8 @@ draft: false
 
 Ahoy there, fellow Gophers! Welcome to our exciting Dockerizing adventure, where we'll transform a simple Golang Docker image into a production-ready masterpiece. As aspiring Docker captains, we'll navigate through increasing complexity, optimizing our images step by step. So, tighten your ship's rigging, and let's set sail!
 
+## Contents
+
 ## A Humble Beginning
 
 Our journey commences with a basic Golang Dockerfile:

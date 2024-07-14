@@ -15,6 +15,8 @@ When working on internal component libraries, countless developers are reluctant
 
 As someone who’s been there, I know component libraries are not a one size fits all project. It takes time and effort to create a codebase that can be used by developers to build incredible products for their end users. While working with various teams I managed to gather important insight on building component libraries. Even though there might be numerous factors to account for, I wish to share some tips on how I approach this issue. Hopefully this will help you in deciding which components to include in your internal component library.
 
+## Contents
+
 ## Pay attention to your design (system)
 
 One of the first things I do when working on implementing an internal component library is reach out to the design team and ask them to see all of their designs. If a company already has a design system specification, I will have my work cut out for me, and even if there is no design system, I will take a detailed look at the product designs.

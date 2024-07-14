@@ -3,7 +3,7 @@ title: "Promises - Code Exercises"
 description: ""
 date: 1645837875000
 updatedAt: 1645837875000
-authors: ["danica"]
+authors: ["david"]
 category: "AWS"
 editor: ["velimir"]
 abstract: ""

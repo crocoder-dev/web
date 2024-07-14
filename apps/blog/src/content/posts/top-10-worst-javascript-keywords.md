@@ -24,6 +24,9 @@ I have encountered an uncountable amount of bugs written in the code because of 
 Back in 2007, we didn't know better. We have used the tools that were there. As JavaScript developers, we had a saying back in the time: *"At least our company doesn't use [Silverlight](https://en.wikipedia.org/wiki/Microsoft_Silverlight)."*
 
 
+## Contents
+
+
 ## instanceof
 
 The `instanceof` keyword doesn't really suck, but it does have its limitation and weird behaviors.  

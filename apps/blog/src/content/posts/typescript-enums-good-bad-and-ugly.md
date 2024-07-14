@@ -29,6 +29,8 @@ enum TypeScript {
 
 ```
 
+## Contents
+
 ## The Good
 
 In TypeScript, similarly to any other language, enum variants can be assigned to a number or a string value. These values can't be reassigned later in the code.

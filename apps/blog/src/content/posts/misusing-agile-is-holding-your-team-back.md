@@ -15,6 +15,8 @@ draft: false
 
 When teams focus solely on the superficial aspects of Agile, such as daily stand-up meetings and sprints, they miss the core principles that make Agile development effective.
 
+## Contents
+
 ## Agile is not a methodology
 
 One of the most common mistakes when implementing Agile is treating it as a set of rigid processes and procedures that must be followed to the letter. Agile is not a methodology in itself, but rather a mindset that emphasizes flexibility, adaptability, and continuous improvement. Agile values individuals and interactions over processes and tools, and working software over comprehensive documentation. Therefore, it's important to understand that Agile is not a silver bullet that will solve all your problems, but rather a philosophy that requires a change in mindset as well as culture.

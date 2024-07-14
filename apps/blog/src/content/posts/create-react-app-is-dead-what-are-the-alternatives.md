@@ -22,8 +22,7 @@ Allow me to show you some CRA alternatives that we personally use at CroCoder. A
 
 **UPDATE:** Dan Abramov (member of the React Core team) explained the future plans to turn Create React App into a launcher. Dan also shares the past and current vision for CRA. [Read the full explanation here](https://github.com/reactjs/reactjs.org/pull/5487#issuecomment-1409720741).
 
-<ContentTable tocData={props.toc} />
-
+## Contents
 
 ## Vite + React
 

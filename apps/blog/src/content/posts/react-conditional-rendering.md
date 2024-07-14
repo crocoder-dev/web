@@ -17,6 +17,8 @@ For example, let's say you're building a website that users can log in to and vi
 
 Let's take a look at an example of conditional rendering in React.
 
+## Contents
+
 ## The CrocDemo component
 
 ```tsx
@@ -53,13 +55,8 @@ So, the end result is that the CrocDemo component displays the names of the croc
 
 Well at least it should display nothing for the dodos array.
 
-<Demo>
-
-  <Island deferUntil="visible">
-    <CrocDemo />
-  </Island>
-
-</Demo>
+crocodiles: 🐊 🐊 🐊  
+0
 
 Hmmm... There seems to be a random zero where we expect nothing to be displayed. Why is that?
 
