@@ -1,8 +1,13 @@
 ---
 title: "GitOps: Is it the Right Choice for Your DevOps in 2023?"
-description: "GitOps role in modern DevOps, mechanisms like automated deployment, benefits such as version oversight, and key considerations. Determine if GitOps fits your DevOps strategy and stay ahead."
-date: 2024-07-01T05:00:00Z
-authors: ["CroCoder"]
+description: ""
+date: 1645837875000
+updatedAt: 1645837875000
+authors: ["david"]
+category: "AWS"
+editor: ["velimir"]
+abstract: ""
+image: ""
 draft: false
 ---
 GitOps, stemming from the words "Git" and "Operations", has become a staple in IT and software development. But as we navigate through 2023, it's crucial to evaluate whether this approach is worth adopting in modern DevOps practices.
