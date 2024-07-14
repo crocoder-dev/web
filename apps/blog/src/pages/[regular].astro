@@ -1,6 +1,6 @@
 ---
 import Base from "../layouts/base.astro";
-import Post from "../layouts/post.astro";
+import Post from "../layouts/post-markdown.astro";
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
@@ -19,17 +19,11 @@ export async function getStaticPaths() {
 const authorCollection = await getCollection("authors");
 
 const { page } = Astro.props;
-const { title, description, image, authors: authorIds } = page.data;
+const { authors: authorIds } = page.data;
 
 const authors = authorCollection.filter((author) => authorIds.includes(author.slug));
 
 ---
-
-<Base
-  title={title}
-  description={description}
-  image={image}
-  author={authors[0].data.name}
->
+<Base>
   <Post post={page} author={authors[0]} />
 </Base>
