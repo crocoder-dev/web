@@ -1,5 +1,4 @@
 ---
-import Base from "../layouts/base.astro";
 import Post from "../layouts/post-markdown.astro";
 import { getCollection } from "astro:content";
 
@@ -21,9 +20,9 @@ const authorCollection = await getCollection("authors");
 const { page } = Astro.props;
 const { authors: authorIds } = page.data;
 
-const authors = authorCollection.filter((author) => authorIds.includes(author.slug));
-
+const authors = authorCollection.filter((author) =>
+  authorIds.includes(author.slug),
+);
 ---
-<Base>
-  <Post post={page} author={authors[0]} />
-</Base>
+
+<Post post={page} author={authors[0]} />

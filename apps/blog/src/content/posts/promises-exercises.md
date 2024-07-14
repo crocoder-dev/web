@@ -22,6 +22,8 @@ Also take a look at these exercises:
 - [Map, Filter, Reduce](https://www.crocoder.dev/blog/map-filter-reduce-exercises/)
 - [React Hooks](https://www.crocoder.dev/blog/how-to-write-custom-react-hooks/)
 
+## Contents
+
 ## 50% of the time works 100% of the time
 
 Create a JavaScript Promise that, after a delay of 2 seconds, either resolves with the message "Hello World" or rejects with the error message "Error occurred". 
