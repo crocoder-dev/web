@@ -3,7 +3,7 @@ title: "Internal component libraries - an overlooked part of your brand"
 description: ""
 date: 1645837875000
 updatedAt: 1645837875000
-authors: ["david"]
+authors: ["danica"]
 category: "AWS"
 editor: ["velimir"]
 abstract: ""

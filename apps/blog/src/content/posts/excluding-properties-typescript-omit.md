@@ -1,9 +1,14 @@
 ---
 title: "Excluding Properties with TypeScript's Omit"
 description: ""
-date: 2024-07-01T05:00:00Z
-authors: ["CroCoder"]
+date: 1645837875000
+updatedAt: 1645837875000
+authors: ["david"]
+category: "AWS"
+editor: ["velimir"]
 draft: false
+abstract: ""
+image: ""
 ---
 
 Let's dive into the world of TypeScript and acquaint ourselves with the clever tool known as Omit. This little rascal is your reliable ally when you're cooking up a fresh type and want to leave out a couple of properties from a preexisting type.

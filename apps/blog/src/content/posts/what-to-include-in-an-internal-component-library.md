@@ -3,7 +3,7 @@ title: "What should be included in an internal component library"
 description: ""
 date: 1645837875000
 updatedAt: 1645837875000
-authors: ["david"]
+authors: ["danica"]
 category: "AWS"
 editor: ["velimir"]
 abstract: ""
