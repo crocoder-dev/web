@@ -4,7 +4,7 @@ import remarkToc from 'remark-toc';
 import react from '@astrojs/react';
 
 export default defineConfig({
-  integrations: [tailwind(), react()]
+  integrations: [tailwind(), react()],
   markdown: {
     remarkPlugins: [remarkToc],
   },
