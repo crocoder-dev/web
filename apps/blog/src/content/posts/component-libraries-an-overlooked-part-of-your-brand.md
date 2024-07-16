@@ -7,7 +7,7 @@ authors: ["danica"]
 category: "AWS"
 editor: ["velimir"]
 abstract: ""
-image: ""
+image: "/images/component-libraries-an-overlooked-part-of-your-brand.jpg"
 draft: false
 ---
 

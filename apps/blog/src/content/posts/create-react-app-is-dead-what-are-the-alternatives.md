@@ -7,7 +7,7 @@ authors: ["david"]
 category: "AWS"
 editor: ["velimir"]
 abstract: ""
-image: ""
+image: "/images/create-react-app-is-dead-what-are-the-alternatives.jpg"
 draft: false
 ---
 

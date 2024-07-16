@@ -12,7 +12,6 @@ export default defineConfig({
       sizes: [640, 768, 1024, 1280],
       domains: ['*'],
     },
-    devImageService: 'shrap',
   }),
   integrations: [tailwind(), react()],
   markdown: {

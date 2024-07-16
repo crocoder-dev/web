@@ -7,7 +7,7 @@ authors: ["david"]
 category: "AWS"
 editor: ["velimir"]
 abstract: ""
-image: ""
+image: "/images/callback-hell.jpg"
 draft: false
 ---
 

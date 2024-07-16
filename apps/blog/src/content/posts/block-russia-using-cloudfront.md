@@ -8,7 +8,7 @@ category: "AWS"
 editor: ["velimir"]
 draft: false
 abstract: ""
-image: ""
+image: "/images/block-russia-using-cloudfront.jpg"
 ---
 
 Russia invaded Ukraine on the 24th of February 2022. Belarus offers logistic support to the Russian army.
