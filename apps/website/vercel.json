@@ -5,6 +5,10 @@
       "destination": "https://crocoder-company-blog.vercel.app/images/:path*"
     },
     {
+      "source": "/_vercel/:path*",
+      "destination": "https://crocoder-company-blog.vercel.app/_vercel/:path*"
+    },
+    {
       "source": "/_astro/:path*",
       "destination": "https://crocoder-company-blog.vercel.app/_astro/:path*"
     },
