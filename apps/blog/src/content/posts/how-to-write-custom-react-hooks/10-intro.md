@@ -22,5 +22,3 @@ If you need some additional help, you can contact me directly.
 They let you encapsulate and share behavior between multiple components in a clean and reusable way. By using custom hooks, you can reduce the amount of code you write and make it easier to test as well as maintain your React applications.
 
 Custom hooks can also help improve performance by allowing you to share state updates across multiple components and avoid unnecessary re-renders.
-
-## Contents

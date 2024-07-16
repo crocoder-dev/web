@@ -1,4 +1,5 @@
 ---
+import { getEntryBySlug } from "astro:content";
 import Post from "../layouts/post.astro";
 import { getCollection } from "astro:content";
 
@@ -16,6 +17,18 @@ export const data = {
   date: 1675873546123,
   createdAt: 1675873546123,
 };
+
+const intro = await getEntryBySlug(
+  "posts",
+  "how-to-write-custom-react-hooks/10-intro",
+);
+const { Content: Intro } = await intro!.render();
+
+const useMousePosition = await getEntryBySlug(
+  "posts",
+  "how-to-write-custom-react-hooks/20-use-mouse-position",
+);
+const { Content: UseMousePosition } = await useMousePosition!.render();
 ---
 
 <Post
@@ -24,14 +37,8 @@ export const data = {
   date={data.date}
   author={authors[0]}
 >
-  <p>
-    Unlock the full potential of <strong>React</strong> with custom hooks! In this
-    blog post, we'll go through some exercises that can help you level up your react
-    skills by writing custom hooks in <strong>TypeScript</strong>. From state
-    management to performance optimization, you'll learn how to create reusable
-    logic for your React components and make your code more efficient and
-    scalable. Every exercise has a brief description of the problem, starting
-    code and relevant links. Try to solve the problems without taking a peek at
-    the solution.
-  </p>
+  <Intro />
+  {/* Contents */}
+  <UseMousePosition />
+  {/* Demo */}
 </Post>
