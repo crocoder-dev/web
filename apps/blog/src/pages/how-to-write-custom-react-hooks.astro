@@ -4,17 +4,26 @@ import { getCollection } from "astro:content";
 
 const authorCollection = await getCollection("authors");
 
-const title = "Hello World";
-const image = "";
-const date = 0;
 const authorIds = ["david"];
 
 const authors = authorCollection.filter((author) =>
   authorIds.includes(author.slug),
 );
+
+export const data = {
+  title: "How to write custom React hooks? - Code Exercises",
+  image: "/images/how-to-write-custom-react-hooks.png",
+  date: 1675873546123,
+  createdAt: 1675873546123,
+};
 ---
 
-<Post title={title} image={image} date={date} author={authors[0]}>
+<Post
+  title={data.title}
+  image={data.image}
+  date={data.date}
+  author={authors[0]}
+>
   <p>
     Unlock the full potential of <strong>React</strong> with custom hooks! In this
     blog post, we'll go through some exercises that can help you level up your react

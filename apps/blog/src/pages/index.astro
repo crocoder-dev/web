@@ -2,33 +2,39 @@
 import Base from "../layouts/base.astro";
 import { getCollection } from "astro:content";
 
-const posts = await getCollection("posts");
+const markdownPosts = await getCollection("posts");
 
-const pages = await Astro.glob("../pages/**/*.astro");
+const pages = (await Astro.glob("../pages/**/*.astro")).filter(
+  (page) => !page.url?.includes("[") && !page.url?.includes("index.astro"),
+);
 
 const prefix = import.meta.env.DEV ? "/" : "/blog";
 
-const urls = [
-  ...posts.map((post) => `${prefix}${prefix === "/" ? "" : "/"}${post.slug}`),
-  ...pages
-    .filter(
-      (page) => !page.url?.includes("[") && !page.url?.includes("index.astro"),
-    )
-    .map((page) => `${prefix === "/" ? "" : prefix}${page.url}`),
+const posts = [
+  ...markdownPosts.map((post) => ({
+    url: `${prefix}${prefix === "/" ? "" : "/"}${post.slug}`,
+    title: post.data.title,
+    date: new Date(post.data.date),
+    image: post.data.image,
+  })),
+  ...pages.map((page) => ({
+    url: `${prefix === "/" ? "" : prefix}${page.url}`,
+    title: (page as any).data.title,
+    date: new Date((page as any).data.date),
+    image: (page as any).data.image,
+  })),
 ];
+posts.sort((a, b) => b.date.getTime() - a.date.getTime());
 ---
 
 <Base>
   <ol>
-  {
-    urls.map((url) => (
-<li>
-      <a
-        href={url}
-      >
-        {url}
-      </a>
-    </li>
-    ))
-  }
+    {
+      posts.map(({ url, title }) => (
+        <li>
+          <a href={url}>{title}</a>
+        </li>
+      ))
+    }
+  </ol>
 </Base>
