@@ -1,6 +1,6 @@
 ---
 import Base from "../layouts/base.astro";
-import { Image } from "astro:assets";
+import { Picture } from "astro:assets";
 import { markdownify } from "../ify";
 import { format } from "date-fns";
 
@@ -42,12 +42,14 @@ const formattedDate = dateFormat(date);
         <div class="col-12 mt-8 mb-2">
           {
             image && (
-              <Image
+              <Picture
                 src={image}
                 height={500}
                 width={1000}
                 alt={title}
                 class="rounded-lg"
+                loading="eager"
+                decoding="auto"
               />
             )
           }
