@@ -7,7 +7,7 @@ authors: ["david"]
 category: "AWS"
 editor: ["velimir"]
 abstract: ""
-image: ""
+image: "/images/typescript-enums-good-bad-and-ugly.png"
 draft: false
 ---
 

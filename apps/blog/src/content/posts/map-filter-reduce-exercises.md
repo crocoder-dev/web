@@ -7,7 +7,7 @@ authors: ["david"]
 category: "AWS"
 editor: ["velimir"]
 abstract: ""
-image: ""
+image: "/images/map-filter-reduce-exercises.png"
 draft: false
 ---
 

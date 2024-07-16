@@ -7,7 +7,7 @@ authors: ["david"]
 category: "AWS"
 editor: ["velimir"]
 abstract: ""
-image: ""
+image: "/images/you-should-not-measure-developer-productivity-response-to-mckinsey.png"
 draft: false
 ---
 

@@ -7,7 +7,7 @@ authors: ["david"]
 category: "AWS"
 editor: ["velimir"]
 abstract: ""
-image: ""
+image: "/images/what-is-cycle-time-in-software-development.png"
 draft: false
 ---
 

@@ -7,7 +7,7 @@ authors: ["david"]
 category: "AWS"
 editor: ["velimir"]
 abstract: ""
-image: ""
+image: "/images/misusing-agile-is-holding-your-team-back.png"
 draft: false
 ---
 

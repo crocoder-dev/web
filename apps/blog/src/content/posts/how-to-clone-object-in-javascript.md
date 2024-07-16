@@ -7,7 +7,7 @@ authors: ["david"]
 category: "AWS"
 editor: ["velimir"]
 abstract: ""
-image: ""
+image: "/images/how-to-clone-object-in-javascript.png"
 draft: false
 ---
 

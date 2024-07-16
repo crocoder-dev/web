@@ -7,7 +7,7 @@ authors: ["david"]
 category: "AWS"
 editor: ["velimir"]
 abstract: ""
-image: ""
+image: "/images/how-to-properly-showcase-your-coding-projects.jpg"
 draft: false
 ---
 

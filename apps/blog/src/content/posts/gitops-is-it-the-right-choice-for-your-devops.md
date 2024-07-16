@@ -7,7 +7,7 @@ authors: ["david"]
 category: "AWS"
 editor: ["velimir"]
 abstract: ""
-image: ""
+image: "/images/gitops-is-it-the-right-choice-for-your-devops.png"
 draft: false
 ---
 GitOps, stemming from the words "Git" and "Operations", has become a staple in IT and software development. But as we navigate through 2023, it's crucial to evaluate whether this approach is worth adopting in modern DevOps practices.

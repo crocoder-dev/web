@@ -7,7 +7,7 @@ authors: ["danica"]
 category: "AWS"
 editor: ["velimir"]
 abstract: ""
-image: ""
+image: "/images/what-should-be-included-in-an-internal-component-library.jpg"
 draft: false
 ---
 

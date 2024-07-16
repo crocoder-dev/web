@@ -7,7 +7,7 @@ authors: ["david"]
 category: "AWS"
 editor: ["velimir"]
 abstract: ""
-image: ""
+image: "/images/how-to-perfect-your-cv-entry-level-developer.png"
 draft: false
 ---
 

@@ -8,7 +8,7 @@ category: "AWS"
 editor: ["velimir"]
 draft: false
 abstract: ""
-image: ""
+image: "/images/excluding-properties-typescript-omit.png"
 ---
 
 Let's dive into the world of TypeScript and acquaint ourselves with the clever tool known as Omit. This little rascal is your reliable ally when you're cooking up a fresh type and want to leave out a couple of properties from a preexisting type.

@@ -7,7 +7,7 @@ authors: ["david"]
 category: "AWS"
 editor: ["velimir"]
 abstract: ""
-image: ""
+image: "/images/no-deployments-on-friday-sucks.png"
 draft: false
 ---
 

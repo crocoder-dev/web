@@ -7,7 +7,7 @@ authors: ["david"]
 category: "AWS"
 editor: ["velimir"]
 abstract: ""
-image: ""
+image: "/images/top-10-worst-javascript-keywords.png"
 draft: false
 ---
 
