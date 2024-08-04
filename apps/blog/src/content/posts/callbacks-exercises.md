@@ -54,11 +54,15 @@ false;
 true;
 ```
 
+<details>
+<summary>
 Solution
+</summary>
 
 ```javascript
 const isOdd = (num) => num % 2 === 1;
 ```
+</details>
 
 ## Exclaim
 
@@ -100,6 +104,7 @@ Helpful links
 - [String.prototype.split()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split)
 - [String.prototype.join()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join)
 
+
 Function calls
 
 ```javascript
@@ -116,6 +121,7 @@ Result
 
 Solution
 
+
 ```javascript
 const doubleChars = (str) =>
   str
@@ -126,6 +132,7 @@ const doubleChars = (str) =>
 doubleChars("Adrian");
 doubleChars("ssssnake");
 ```
+
 
 ## At least two elements
 
