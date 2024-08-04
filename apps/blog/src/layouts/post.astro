@@ -1,7 +1,5 @@
 ---
-import Base from "../layouts/base.astro";
-import { Picture } from "astro:assets";
-import { markdownify } from "../ify";
+import PostBase from "./post-base.astro";
 import { format } from "date-fns";
 
 const { title, image, date, author } = Astro.props;
@@ -20,49 +18,13 @@ const dateFormat = (
 const formattedDate = dateFormat(date);
 ---
 
-<Base>
-  <section class="py-20">
-    <div class="container max-w-[1000px] px-4 md:px-8">
-      <article class="row justify-center">
-        <div class="md:col-10 text-center">
-          <h1 class="text-h1-sm md:text-h1" set:html={markdownify(title)} />
-          <ul class="mt-4 flex flex-wrap items-center justify-center text-text">
-            <li class="mx-3 flex items-center flex-wrap font-medium">
-              <span class="mr-2">By</span>
-              <span>{authorName}</span>
-              <li class="mx-3 flex items-center flex-wrap font-medium">
-                {formattedDate}
-              </li>
-            </li>
-          </ul>
-        </div>
-
-        <div class="col-12 mt-8 mb-8">
-          {
-            image && (
-              <Picture
-                src={image}
-                height={500}
-                width={1000}
-                alt={title}
-                class="rounded-lg"
-                loading="eager"
-                decoding="auto"
-              />
-            )
-          }
-        </div>
-
-        <div class="md:col-10">
-          <div
-            class="mb-16 text-left prose max-w-none prose-headings:font-bold prose-h1:mb-4 prose-h1:text-h1-sm prose-h2:mb-4 prose-h2:mt-4 prose-h2:text-h2-sm prose-h3:mt-4 prose-h3:text-h3-sm prose-h4:mt-4 prose-h5:mb-4 prose-h6:mb-6 prose-blockquote:rounded-lg prose-blockquote:border-primary prose-blockquote:bg-theme-light prose-blockquote:px-7 prose-blockquote:py-3 prose-blockquote:text-lg prose-blockquote:leading-8 prose-pre:px-6 prose-pre:py-5 md:prose-h1:text-h1 md:prose-h2:text-h2 md:prose-h3:text-h3"
-          >
-            <slot />
-          </div>
-          {authorName}
-          <AuthorContent />
-        </div>
-      </article>
-    </div>
-  </section>
-</Base>
+<PostBase
+  authorName={authorName}
+  authorImage={authorImage}
+  AuthorContent={AuthorContent}
+  formattedDate={formattedDate}
+  title={title}
+  image={image}
+>
+  <slot>
+</PostBase>
