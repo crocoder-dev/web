@@ -17,8 +17,8 @@ function remark({
         const textNode = node.children[0];
 
         // non h title rule
-        if (textNode.type === 'text' && textNode.value.startsWith('^ ')) {
-          const titleText = textNode.value.slice(2, -1);
+        if (textNode.type === 'text' && textNode.value.startsWith('::title ')) {
+          const titleText = textNode.value.substring('::title '.length);
           const titleNode = {
             type: 'html',
             value: `<p class="${titleClass}">${titleText}</p>`

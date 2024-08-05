@@ -35,19 +35,19 @@ The second parameter passed into addEventListener is a **callback**. I have comp
 
 Write a function that returns true or false for a given number. We will reuse this function, so make it reusable.
 
-^ Helpful links
+::title Helpful links
 
 - [Remainder (%)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Remainder)
 
 
-Function calls
+::title Function calls
 
 ```javascript
 isOdd(4);
 isOdd(5);
 ```
 
-Result
+::title Result
 
 ```javascript
 false;
