@@ -3,6 +3,13 @@ import tailwind from '@astrojs/tailwind';
 import remarkToc from 'remark-toc';
 import react from '@astrojs/react';
 import vercel from '@astrojs/vercel/static';
+import createRemarkPlugin from '@crocoder-dev/remark-plugin';
+
+const remarkPlugin = createRemarkPlugin({
+  titleClass: 'bg-red-500',
+  summaryClass: 'bg-green-500',
+  detailsClass: 'bg-blue-500',
+});
 
 export default defineConfig({
   output: 'static',
@@ -15,6 +22,6 @@ export default defineConfig({
   }),
   integrations: [tailwind(), react()],
   markdown: {
-    remarkPlugins: [remarkToc],
+    remarkPlugins: [remarkToc, remarkPlugin],
   },
 });

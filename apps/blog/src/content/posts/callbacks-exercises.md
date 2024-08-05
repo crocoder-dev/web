@@ -35,7 +35,7 @@ The second parameter passed into addEventListener is a **callback**. I have comp
 
 Write a function that returns true or false for a given number. We will reuse this function, so make it reusable.
 
-Helpful links
+^ Helpful links
 
 - [Remainder (%)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Remainder)
 
@@ -54,15 +54,14 @@ false;
 true;
 ```
 
-<details>
-<summary>
-Solution
-</summary>
+::details Show Solution
 
 ```javascript
 const isOdd = (num) => num % 2 === 1;
 ```
-</details>
+
+::enddetails
+
 
 ## Exclaim
 

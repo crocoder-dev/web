@@ -1,0 +1,11 @@
+{
+  "name": "@crocoder-dev/remark-plugin",
+  "module": "index.ts",
+  "type": "module",
+  "dependencies": {
+    "unist-util-visit": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/unist": "^3.0.2"
+  }
+}
