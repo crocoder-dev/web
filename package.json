@@ -8,7 +8,6 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.8.3",
     "tailwindcss": "3.4.4",
     "turbo": "2.0.6",
     "typescript": "5.5.3"
@@ -20,5 +19,9 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "prettier": "^3.3.3",
+    "prettier-plugin-astro": "^0.14.1"
+  }
 }
