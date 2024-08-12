@@ -6,9 +6,9 @@ import vercel from '@astrojs/vercel/static';
 import createRemarkPlugin from '@crocoder-dev/remark-plugin';
 
 const remarkPlugin = createRemarkPlugin({
-  titleClass: 'bg-red-500',
-  summaryClass: 'bg-green-500',
-  detailsClass: 'bg-blue-500',
+  titleClass: 'font-bold',
+  summaryClass: 'cursor-pointer',
+  detailsClass: '',
 });
 
 export default defineConfig({

@@ -71,19 +71,19 @@ Helpful links
 
 - [Template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)
 
-Function calls
+::title Function calls
 
 ```javascript
 exclaim("Adrian");
 exclaim(exclaim("Adrian"));
 ```
-Result
+::title Result
 
 ```javascript
 "Adrian!";
 "Adrian!!";
 ```
-Solution
+::title Solution
 
 ```javascript
 const exclaim = (str) => `${str}!`;
@@ -104,21 +104,21 @@ Helpful links
 - [String.prototype.join()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join)
 
 
-Function calls
+::title Function calls
 
 ```javascript
 doubleChars("Adrian");
 doubleChars("ssssnake");
 ```
 
-Result
+::title Result
 
 ```javascript
 "AAddrriiaann";
 "ssssssssnnaakkee";
 ```
 
-Solution
+::title Solution
 
 
 ```javascript
@@ -142,7 +142,7 @@ Helpful links
 - [Array.prototype.filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
 - [Truthy](https://developer.mozilla.org/en-US/docs/Glossary/Truthy)
 
-Function calls
+::title Function calls
 
 ```javascript
 atLeastTwo([1, 2, 3, 4, 5], isOdd);
@@ -150,7 +150,7 @@ atLeastTwo([2, 4, 6], isOdd);
 atLeastTwo([1, 2, 3, 4, 5], (t) => t > 3);
 ```
 
-Result
+::title Result
 
 ```javascript
 true;
@@ -158,7 +158,7 @@ false;
 true;
 ```
 
-Solution
+::title Solution
 
 ```javascript
 const isOdd = (num) => {
@@ -185,7 +185,7 @@ Helpful links
 - [Array.prototype.reduce()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
 - [Array.prototype.push()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push)
 
-Function calls
+::title Function calls
 
 ```javascript
 const input = [
@@ -213,7 +213,7 @@ groupBy(input, (t) => t.name);
 groupBy(input, (t) => isOdd(t.yearOfBirth));
 ```
 
-Result
+::title Result
 
 ```javascript
   // 1
@@ -263,7 +263,7 @@ Result
   }
 ```
 
-Solution
+::title Solution
 
 ```javascript
 const input = [
@@ -317,21 +317,21 @@ Helpful links
 - [Recursion](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions#recursion)
 
 
-Function calls
+::title Function calls
 
 ```javascript
 repeat("infinite power", 3, exclaim);
 repeat("triple", 2, doubleChars);
 repeat("trogdor", 3, (t) => `°${t}°`);
 ```
-Result
+::title Result
 
 ```javascript
 "infinite power!!!";
 "tttrrriiipppllleee";
 "°°°trogdor°°°";
 ```
-Solution
+::title Solution
 
 ```javascript
 const repeatRecursive = (input, num, callback) => {
