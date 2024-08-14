@@ -6,8 +6,8 @@ import vercel from '@astrojs/vercel/static';
 import createRemarkPlugin from '@crocoder-dev/remark-plugin';
 
 const remarkPlugin = createRemarkPlugin({
-  titleClass: 'font-bold',
-  summaryClass: 'cursor-pointer',
+  titleClass: 'font-bold text-[1.4rem]',
+  summaryClass: 'cursor-pointer font-bold text-[1.4rem]',
   detailsClass: '',
 });
 

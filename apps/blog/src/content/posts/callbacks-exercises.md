@@ -31,6 +31,11 @@ button.addEventListener("click", (e) => {
 
 The second parameter passed into addEventListener is a **callback**. I have compiled some exercises to improve your understanding of callbacks. Try not to skip them as some code is reused in later exercises.
 
+---
+
+
+## Contents
+
 ## Is this number odd?
 
 Write a function that returns true or false for a given number. We will reuse this function, so make it reusable.
@@ -46,7 +51,6 @@ Write a function that returns true or false for a given number. We will reuse th
 isOdd(4);
 isOdd(5);
 ```
-
 ::title Result
 
 ```javascript
@@ -62,6 +66,7 @@ const isOdd = (num) => num % 2 === 1;
 
 ::enddetails
 
+---
 
 ## Exclaim
 
@@ -83,7 +88,7 @@ exclaim(exclaim("Adrian"));
 "Adrian!";
 "Adrian!!";
 ```
-::title Solution
+::details Show Solution
 
 ```javascript
 const exclaim = (str) => `${str}!`;
@@ -91,6 +96,10 @@ const exclaim = (str) => `${str}!`;
 exclaim("Adrian");
 exclaim(exclaim("Adrian"));
 ```
+
+::enddetails
+
+---
 
 ## Double the chars!
 
@@ -118,8 +127,7 @@ doubleChars("ssssnake");
 "ssssssssnnaakkee";
 ```
 
-::title Solution
-
+::details Show Solution
 
 ```javascript
 const doubleChars = (str) =>
@@ -132,6 +140,9 @@ doubleChars("Adrian");
 doubleChars("ssssnake");
 ```
 
+::enddetails
+
+---
 
 ## At least two elements
 
@@ -158,7 +169,7 @@ false;
 true;
 ```
 
-::title Solution
+::details Show Solution
 
 ```javascript
 const isOdd = (num) => {
@@ -173,6 +184,10 @@ atLeastTwo([2, 4, 6], isOdd);
 
 atLeastTwo([1, 2, 3, 4, 5], (t) => t > 3);
 ```
+
+::enddetails
+
+---
 
 ## Group by
 
@@ -263,7 +278,7 @@ groupBy(input, (t) => isOdd(t.yearOfBirth));
   }
 ```
 
-::title Solution
+::details Show Solution
 
 ```javascript
 const input = [
@@ -307,6 +322,10 @@ groupBy(input, (t) => t.name);
 groupBy(input, (t) => isOdd(t.yearOfBirth));
 ```
 
+::enddetails
+
+---
+
 ## Repeat the function x times
 
 Write a **repeat** function that receives 3 arguments: a string, number of repetitions, and a callback that will be repeated. The **repeat** function should pass the string to the callback as an argument and repeat the callback x times, with the result of the previous repetition as an argument.
@@ -331,7 +350,7 @@ repeat("trogdor", 3, (t) => `°${t}°`);
 "tttrrriiipppllleee";
 "°°°trogdor°°°";
 ```
-::title Solution
+::details Show Solution
 
 ```javascript
 const repeatRecursive = (input, num, callback) => {
@@ -351,3 +370,5 @@ repeat("infinite power", 3, exclaim);
 repeat("triple", 2, doubleChars);
 repeat("trogdor", 3, (t) => `°${t}°`);
 ```
+
+::enddetails
