@@ -12,4 +12,10 @@ h6 {
   @apply font-primary font-bold leading-tight text-dark;
 }
 
+.prose h2 {
+  margin-top: 3rem;
+}
 
+.prose h3 {
+  margin-top: 2.4rem;
+}

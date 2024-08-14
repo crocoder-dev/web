@@ -36,6 +36,8 @@ The second parameter passed into addEventListener is a **callback**. I have comp
 
 ## Contents
 
+---
+
 ## Is this number odd?
 
 Write a function that returns true or false for a given number. We will reuse this function, so make it reusable.
@@ -72,7 +74,7 @@ const isOdd = (num) => num % 2 === 1;
 
 Write a function that returns the given string with a concatenated exclamation ! at the end. We will reuse this function, so make it reusable.
 
-Helpful links
+::title Helpful links
 
 - [Template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)
 
@@ -105,7 +107,7 @@ exclaim(exclaim("Adrian"));
 
 Write a function that duplicates each char in a string. If I pass 'abc' to the function, it should return 'aabbcc'. We will reuse this function, so make it reusable.
 
-Helpful links
+::title Helpful links
 
 - [Template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)
 - [Array.prototype.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
@@ -148,7 +150,7 @@ doubleChars("ssssnake");
 
 Write a function called **atLeastTwo** that receives an array and a callback as its arguments. If at least two elements from the array return a truthy value when passed as an argument to the callback, **atLeastTwo** should return true. If there aren't at least two elements from the array that return a truthy value when passed as arguments to the callback, **atLeastTwo** should return false.
 
-Helpful links
+::title Helpful links
 
 - [Array.prototype.filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
 - [Truthy](https://developer.mozilla.org/en-US/docs/Glossary/Truthy)
@@ -195,7 +197,7 @@ Write a **groupBy** function that groups elements from an array by the returned 
 
 This is a really common pattern when manipulating arrays.
 
-Helpful links
+::title Helpful links
 
 - [Array.prototype.reduce()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
 - [Array.prototype.push()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push)
@@ -330,7 +332,7 @@ groupBy(input, (t) => isOdd(t.yearOfBirth));
 
 Write a **repeat** function that receives 3 arguments: a string, number of repetitions, and a callback that will be repeated. The **repeat** function should pass the string to the callback as an argument and repeat the callback x times, with the result of the previous repetition as an argument.
 
-Helpful links
+::title Helpful links
 
 - [For loop](https://developer.mozilla.org/en-US/docs/Glossary/loop#for_loop)
 - [Recursion](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions#recursion)

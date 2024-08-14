@@ -1,6 +1,7 @@
 import type { Node } from 'unist';
 import { visit } from 'unist-util-visit';
 
+
 function remark({
   titleClass,
   detailsClass,
@@ -11,7 +12,70 @@ function remark({
   summaryClass: string
 }) {
   return () => {
+
+
     return (tree: Node) => {
+      let contentsHtml = '';
+      let lastNodeDepth = 100;
+      let ulDepth = 0;
+      let startingUlDepth = 0;
+      let contentsHeadingParent = null;
+      let contentsHeadingIndex = 0;
+
+      visit(tree, 'heading', (node: any, index: number, parent: any) => {
+        if (!node.children || node.children.length !== 1) return;
+        const textNode = node.children[0];
+
+        if (textNode.type === 'text' && textNode.value === 'Contents') {
+          contentsHeadingParent = parent;
+          contentsHeadingIndex = index;
+          return;
+        }
+
+        const id = textNode.value.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-_\.]/g, '');
+        node.id = id;
+
+        if (contentsHtml.length === 0) {
+          contentsHtml += '<ul>';
+          ulDepth = node.depth;
+          startingUlDepth = node.depth;
+          lastNodeDepth = node.depth;
+        }
+
+        if (node.depth === lastNodeDepth) {
+          contentsHtml += '<li>';
+          contentsHtml += `<a href="#${id}">${textNode.value}</a>`;
+          contentsHtml += '</li>';
+        }
+
+        if (node.depth > lastNodeDepth) {
+          contentsHtml += '<ul>'.repeat(node.depth - lastNodeDepth);
+          contentsHtml += '<li>';
+          contentsHtml += `<a href="#${id}">${textNode.value}</a>`;
+          contentsHtml += '</li>';
+          lastNodeDepth = node.depth;
+        }
+
+        if (node.depth < lastNodeDepth) {
+          contentsHtml += '<li>';
+          contentsHtml += `<a href="#${id}">${textNode.value}</a>`;
+          contentsHtml += '</li>';
+          contentsHtml += '</ul>'.repeat(lastNodeDepth - node.depth);
+          lastNodeDepth = node.depth;
+        }
+      });
+
+      if (contentsHtml.length !== 0) {
+        contentsHtml += '</ul>'.repeat(ulDepth - startingUlDepth + 1);
+      }
+
+      if (contentsHeadingParent !== null) {
+        (contentsHeadingParent as any).children.splice(contentsHeadingIndex + 1, 0, {
+          type: 'html',
+          value: contentsHtml,
+        });
+      }
+
       visit(tree, 'paragraph', (node: any, index: number, parent: any) => {
         if (!node.children || node.children.length !== 1) return;
         const textNode = node.children[0];

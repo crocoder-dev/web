@@ -1,14 +1,13 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
-import remarkToc from 'remark-toc';
 import react from '@astrojs/react';
 import vercel from '@astrojs/vercel/static';
 import createRemarkPlugin from '@crocoder-dev/remark-plugin';
 
 const remarkPlugin = createRemarkPlugin({
-  titleClass: 'font-bold text-[1.4rem]',
-  summaryClass: 'cursor-pointer font-bold text-[1.4rem]',
-  detailsClass: '',
+  titleClass: 'font-bold text-[1.25rem] mt-[2.5rem]',
+  summaryClass: 'cursor-pointer font-bold text-[1.25rem]',
+  detailsClass: 'mt-[2.5rem]',
 });
 
 export default defineConfig({
@@ -22,6 +21,6 @@ export default defineConfig({
   }),
   integrations: [tailwind(), react()],
   markdown: {
-    remarkPlugins: [remarkToc, remarkPlugin],
+    remarkPlugins: [remarkPlugin],
   },
 });

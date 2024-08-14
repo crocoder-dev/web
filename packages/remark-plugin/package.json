@@ -3,6 +3,7 @@
   "module": "index.ts",
   "type": "module",
   "dependencies": {
+    "unist-util-filter": "^5.0.1",
     "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
