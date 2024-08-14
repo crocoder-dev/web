@@ -31,10 +31,6 @@ const posts = [
 ];
 posts.sort((a, b) => b.date.getTime() - a.date.getTime());
 
-function capitalizeFirstLetter(word: string) {
-  return word.charAt(0).toUpperCase() + word.slice(1);
-}
-
 function formatDate(date: Date) {
   return date.toLocaleDateString("en-GB", {
     day: "2-digit",
@@ -45,38 +41,37 @@ function formatDate(date: Date) {
 ---
 
 <Base>
-  <ol class="grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2">
-    {
-      posts.map(({ url, title, image, authors, category, date }, i) => (
-        <li class={i === 0 ? "col-span-1 sm:col-span-2" : ""}>
-          <a class="flex flex-col gap-4" href={url}>
-            <div class="overflow-hidden rounded-lg">
-              {image && (
-                <Picture
-                  src={image}
-                  alt={title}
-                  width={1024}
-                  loading="lazy"
-                  decoding="auto"
-                />
-              )}
-            </div>
-            <ul class="flex gap-5 list-none">
-              {authors.length > 0 && (
-                <li>
-                  {authors.length > 1 ? 'Authors: ' : 'Author: '}
-                  {(authors as string[]).map((author, i) => capitalizeFirstLetter(author) + (i < authors.length - 1 ? ", " : ""))}
-                </li>
-              )}
-              <li>Date: {date && formatDate(date)}</li>
-              {authors.category && (
-                <li>Category: {category}</li>
-              )}
-            </ul>
-            <h3 class="text-3xl">{title}</h3>
-          </a>
-        </li>
-      ))
-    }
-  </ol>
+  <section class="max-w-5xl px-8 mx-auto">
+    <ol class="grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2">
+      {
+        posts.map(({ url, title, image, authors, category, date }, i) => (
+          <li class={i === 0 ? "col-span-1 sm:col-span-2" : ""}>
+            <a class="flex flex-col gap-4" href={url}>
+              <div class="overflow-hidden rounded-lg">
+                {image && (
+                  <Picture
+                    src={image}
+                    alt={title}
+                    width={1024}
+                    loading="lazy"
+                    decoding="auto"
+                  />
+                )}
+              </div>
+              <ul class="flex gap-5 list-none">
+                {authors.length > 0 && (
+                  <li>Author: {authors[0]}</li>
+                )}
+                <li>Date: {date && formatDate(date)}</li>
+                {category && (
+                  <li>Category: {category}</li>
+                )}
+              </ul>
+              <h3 class="text-3xl">{title}</h3>
+            </a>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
 </Base>
