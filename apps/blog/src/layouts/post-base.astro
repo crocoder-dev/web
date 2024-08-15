@@ -47,19 +47,23 @@ const { authorName, authorImage, AuthorContent, formattedDate, title, image } =
           >
             <slot />
           </div>
-          {
-            authorImage && (
-              <Picture
-                src={authorImage}
-                width={100}
-                alt={title}
-                loading="lazy"
-                decoding="auto"
-              />
-            )
-          }
-          {authorName}
-          <AuthorContent />
+          <div class="flex items-center border-t border-slate-200 py-8">
+            {
+              authorImage && (
+                <Picture
+                  src={authorImage}
+                  width={100}
+                  alt={title}
+                  loading="lazy"
+                  decoding="auto"
+                />
+              )
+            }
+            <div>
+              <div class="text-black text-xl font-bold">{authorName}</div>
+              <AuthorContent />
+            </div>
+          </div>
         </div>
       </article>
     </div>

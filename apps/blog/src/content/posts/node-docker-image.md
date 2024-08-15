@@ -33,21 +33,6 @@ By following these practices, you can create a Docker image that's faster, more 
 
 ## Contents
 
-```docker
-FROM node
-
-COPY . .
-
-RUN npm install
-
-CMD "npm" "start"
-```
-Even though this simple Dockerfile works, it's not even close to the best way to create a Docker image for your Node.js app.
-
-In this article, we'll take you through some of the best practices for creating a Dockerfile that can make your Node.js app more efficient. We'll cover topics like setting the Docker base image tag, avoiding npm scripts, properly handling signals, and running containers as a non-root user.
-
-By following these practices, you can create a Docker image that's faster, more secure, and more easily managed, so you can focus on developing your Node.js app rather than worrying about its deployment.
-
 ## Explicitly set the Docker base image tag
 
 If you set a tag for your base image, it ensures that the same image will always be used when building your Docker image. This means that your Docker image will behave consistently no matter where it is used.
