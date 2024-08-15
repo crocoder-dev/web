@@ -1,5 +1,5 @@
 ---
-import { getEntryBySlug } from "astro:content";
+import { getEntry } from "astro:content";
 import Post from "../layouts/post.astro";
 import { getCollection } from "astro:content";
 
@@ -18,72 +18,75 @@ export const data = {
   createdAt: 1675873546123,
 };
 
-const intro = await getEntryBySlug(
+const intro = await getEntry(
   "posts",
   "how-to-write-custom-react-hooks/10-intro",
 );
 const { Content: Intro } = await intro!.render();
 
-const useMousePosition = await getEntryBySlug(
+const useMousePosition = await getEntry(
   "posts",
   "how-to-write-custom-react-hooks/20-use-mouse-position",
 );
 const { Content: UseMousePosition } = await useMousePosition!.render();
 
-const useMousePositionSolution = await getEntryBySlug(
+const useMousePositionSolution = await getEntry(
   "posts",
   "how-to-write-custom-react-hooks/25-use-mouse-position-solution",
 );
-const { Content: UseMousePositionSolution } = await useMousePositionSolution!.render();
+const { Content: UseMousePositionSolution } =
+  await useMousePositionSolution!.render();
 
-const useClickCounter = await getEntryBySlug(
+const useClickCounter = await getEntry(
   "posts",
   "how-to-write-custom-react-hooks/30-use-click-counter",
 );
 const { Content: UseClickCounter } = await useClickCounter!.render();
 
-const useClickCounterSolution = await getEntryBySlug(
+const useClickCounterSolution = await getEntry(
   "posts",
   "how-to-write-custom-react-hooks/35-use-click-counter-solution",
 );
-const { Content: UseClickCounterSolution } = await useClickCounterSolution!.render();
+const { Content: UseClickCounterSolution } =
+  await useClickCounterSolution!.render();
 
-const useClickTracker = await getEntryBySlug(
+const useClickTracker = await getEntry(
   "posts",
   "how-to-write-custom-react-hooks/40-use-click-tracker",
 );
 const { Content: UseClickTracker } = await useClickTracker!.render();
 
-const useClickTrackerSolution = await getEntryBySlug(
+const useClickTrackerSolution = await getEntry(
   "posts",
   "how-to-write-custom-react-hooks/45-use-click-tracker-solution",
 );
-const { Content: UseClickTrackerSolution } = await useClickTrackerSolution!.render();
+const { Content: UseClickTrackerSolution } =
+  await useClickTrackerSolution!.render();
 
-const useFetchData = await getEntryBySlug(
+const useFetchData = await getEntry(
   "posts",
   "how-to-write-custom-react-hooks/50-use-fetch-data",
 );
 const { Content: UseFetchData } = await useFetchData!.render();
 
-const useFetchDataSolution = await getEntryBySlug(
+const useFetchDataSolution = await getEntry(
   "posts",
   "how-to-write-custom-react-hooks/55-use-fetch-data-solution",
 );
 const { Content: UseFetchDataSolution } = await useFetchDataSolution!.render();
 
-const useDebouncedSearch = await getEntryBySlug(
+const useDebouncedSearch = await getEntry(
   "posts",
   "how-to-write-custom-react-hooks/60-use-debounced-search",
 );
 const { Content: UseDebouncedSearch } = await useDebouncedSearch!.render();
 
-const useDebouncedSearchSolution = await getEntryBySlug(
+const useDebouncedSearchSolution = await getEntry(
   "posts",
   "how-to-write-custom-react-hooks/65-use-debounced-search-solution",
 );
-const { Content: UseDebouncedSearchSolution } = await useDebouncedSearchSolution!.render();
-
+const { Content: UseDebouncedSearchSolution } =
+  await useDebouncedSearchSolution!.render();
 ---
 
 <Post
