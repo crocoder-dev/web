@@ -107,6 +107,10 @@ function remark({
       });
 
       visit(tree, 'link', (node: any) => {
+        const isExternal = /^https?:\/\//i.test(node.url) || /^\/\//.test(node.url);
+
+        if (!isExternal) return;
+
         if (!node.data) {
           node.data = {};
         }
