@@ -41,37 +41,35 @@ function formatDate(date: Date) {
 ---
 
 <Base>
-  <section class="max-w-5xl px-8 mx-auto">
-    <ol class="grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2">
-      {
-        posts.map(({ url, title, image, authors, category, date }, i) => (
-          <li class={i === 0 ? "col-span-1 sm:col-span-2" : ""}>
-            <a class="flex flex-col gap-4" href={url}>
-              <div class="overflow-hidden rounded-lg">
-                {image && (
-                  <Picture
-                    src={image}
-                    alt={title}
-                    width={1024}
-                    loading="lazy"
-                    decoding="auto"
-                  />
-                )}
-              </div>
-              <ul class="flex gap-5 list-none">
-                {authors.length > 0 && (
-                  <li>Author: {authors[0]}</li>
-                )}
-                <li>Date: {date && formatDate(date)}</li>
-                {category && (
-                  <li>Category: {category}</li>
-                )}
-              </ul>
-              <h3 class="text-3xl">{title}</h3>
-            </a>
-          </li>
-        ))
-      }
-    </ol>
+  <section class="py-20">
+    <div class="container max-w-[1000px] px-4 md:px-8">
+      <ol class="grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2">
+        {
+          posts.map(({ url, title, image, authors, category, date }, i) => (
+            <li class={i === 0 ? "col-span-1 sm:col-span-2" : ""}>
+              <a class="flex flex-col gap-4" href={url}>
+                <div class="overflow-hidden rounded-lg">
+                  {image && (
+                    <Picture
+                      src={image}
+                      alt={title}
+                      width={1024}
+                      loading="lazy"
+                      decoding="auto"
+                    />
+                  )}
+                </div>
+                <ul class="flex gap-5 list-none">
+                  {authors.length > 0 && <li>{authors[0]}</li>}
+                  <li>{date && formatDate(date)}</li>
+                  {category && <li>{category}</li>}
+                </ul>
+                <h3 class="text-3xl">{title}</h3>
+              </a>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
   </section>
 </Base>
