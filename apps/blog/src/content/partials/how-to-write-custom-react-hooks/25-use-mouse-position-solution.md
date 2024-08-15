@@ -1,4 +1,4 @@
-Solution
+::details Show Solution
 
 ```tsx
 import { useState, useEffect } from 'react';
@@ -40,3 +40,5 @@ The **`useEffect`** hook is used to add a **`mousemove`** event listener to the 
 The custom hook is then used in a component called **`MouseTracker`** that displays the current mouse position on the screen. The component uses the **`useMousePosition`** hook to get the current mouse position, and then displays the **`x`** and **`y`** values in a **`div`** element.
 
 Finally, the **`MouseTracker`** component is exported as the default export from the module, making it possible to import and use the component in other parts of the application.
+
+::enddetails
