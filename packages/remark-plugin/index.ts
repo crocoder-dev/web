@@ -13,7 +13,6 @@ function remark({
 }) {
   return () => {
 
-
     return (tree: Node) => {
       let contentsHtml = '';
       let lastNodeDepth = 100;
@@ -105,7 +104,19 @@ function remark({
           };
           parent.children.splice(index, 1, node);
         }
+      });
 
+      visit(tree, 'link', (node: any) => {
+        if (!node.data) {
+          node.data = {};
+        }
+
+        if (!node.data.hProperties) {
+          node.data.hProperties = {};
+        }
+
+        node.data.hProperties.target = '_blank';
+        node.data.hProperties.rel = 'noopener noreferrer';
       });
     };
   };
