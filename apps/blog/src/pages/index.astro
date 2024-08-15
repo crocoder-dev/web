@@ -2,6 +2,7 @@
 import Base from "../layouts/base.astro";
 import { getCollection } from "astro:content";
 import { Picture } from "astro:assets";
+import formatDate from "../format-date";
 
 const markdownPosts = await getCollection("posts");
 
@@ -30,14 +31,6 @@ const posts = [
   })),
 ];
 posts.sort((a, b) => b.date.getTime() - a.date.getTime());
-
-function formatDate(date: Date) {
-  return date.toLocaleDateString("en-GB", {
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-  });
-}
 ---
 
 <Base>
