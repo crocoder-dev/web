@@ -2,7 +2,7 @@
 import PostBase from "./post-base.astro";
 import { format } from "date-fns";
 
-const { title, image, date, author } = Astro.props;
+const { title, image, date, author, slug } = Astro.props;
 const { name: authorName, image: authorImage } = author.data;
 const { Content: AuthorContent } = await author.render();
 
@@ -25,6 +25,7 @@ const formattedDate = dateFormat(date);
   formattedDate={formattedDate}
   title={title}
   image={image}
+  slug={slug}
 >
-  <slot>
+  <slot />
 </PostBase>

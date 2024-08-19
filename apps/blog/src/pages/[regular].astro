@@ -3,8 +3,8 @@ import Post from "../layouts/post-markdown.astro";
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
-  const posts = (await getCollection("posts")).filter((p) =>
-    !p.slug.includes("/"),
+  const posts = (await getCollection("posts")).filter(
+    (p) => !p.slug.includes("/"),
   );
 
   const paths = posts.map((page: any) => ({
@@ -27,4 +27,4 @@ const authors = authorCollection.filter((author) =>
 );
 ---
 
-<Post post={page} author={authors[0]} />
+<Post post={page} slug={page.slug} author={authors[0]} />
