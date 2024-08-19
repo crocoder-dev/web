@@ -6,11 +6,21 @@ import formatDate from "../format-date";
 
 const markdownPosts = await getCollection("posts");
 
+const authorsCollection = await getCollection("authors");
+
 const pages = (await Astro.glob("../pages/**/*.astro")).filter(
   (page) => !page.url?.includes("[") && !page.url?.includes("index.astro"),
 );
 
 const prefix = import.meta.env.DEV ? "/" : "/blog";
+
+const authorMap = authorsCollection.reduce(
+  (acc, author) => {
+    acc[author.slug] = author.data.name;
+    return acc;
+  },
+  {} as { [slug: string]: string },
+);
 
 const posts = [
   ...markdownPosts.map((post) => ({
@@ -29,7 +39,13 @@ const posts = [
     authors: (page as any).data.authors || [],
     category: (page as any).data.category,
   })),
-];
+].map((post) => {
+  return {
+    ...post,
+    authors: post.authors.map((slug: string) => authorMap[slug] || slug),
+  };
+});
+
 posts.sort((a, b) => b.date.getTime() - a.date.getTime());
 ---
 
