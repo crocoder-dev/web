@@ -2,6 +2,7 @@
 import Base from "../layouts/base.astro";
 import { getCollection } from "astro:content";
 import { Picture } from "astro:assets";
+import formatDate from "../format-date";
 
 const markdownPosts = await getCollection("posts");
 
@@ -17,36 +18,51 @@ const posts = [
     title: post.data.title,
     date: new Date(post.data.date),
     image: post.data.image,
+    authors: post.data.authors || [],
+    category: (post as any).data.category,
   })),
   ...pages.map((page) => ({
     url: `${prefix === "/" ? "" : prefix}${page.url}`,
     title: (page as any).data.title,
     date: new Date((page as any).data.date),
     image: (page as any).data.image,
+    authors: (page as any).data.authors || [],
+    category: (page as any).data.category,
   })),
 ];
 posts.sort((a, b) => b.date.getTime() - a.date.getTime());
 ---
 
 <Base>
-  <ol>
-    {
-      posts.map(({ url, title, image }) => (
-        <li>
-          <a href={url}>
-            {image && (
-              <Picture
-                src={image}
-                width={320}
-                alt={title}
-                loading="lazy"
-                decoding="auto"
-              />
-            )}
-            {title}
-          </a>
-        </li>
-      ))
-    }
-  </ol>
+  <section class="py-20">
+    <div class="container max-w-[1000px] px-4 md:px-8">
+      <ol class="grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2">
+        {
+          posts.map(({ url, title, image, authors, category, date }, i) => (
+            <li class={i === 0 ? "col-span-1 sm:col-span-2" : ""}>
+              <a class="flex flex-col gap-4" href={url}>
+                <div class="overflow-hidden rounded-lg">
+                  {image && (
+                    <Picture
+                      src={image}
+                      alt={title}
+                      width={1024}
+                      loading="lazy"
+                      decoding="auto"
+                    />
+                  )}
+                </div>
+                <ul class="flex gap-5 list-none">
+                  {authors.length > 0 && <li>{authors[0]}</li>}
+                  <li>{date && formatDate(date)}</li>
+                  {category && <li>{category}</li>}
+                </ul>
+                <h3 class="text-3xl">{title}</h3>
+              </a>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
 </Base>
