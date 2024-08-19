@@ -2,9 +2,29 @@
 import Base from "../layouts/base.astro";
 import { Picture } from "astro:assets";
 import { markdownify } from "../ify";
+import { getCollection } from "astro:content";
+import formatDate from "../format-date";
 
 const { authorName, authorImage, AuthorContent, formattedDate, title, image } =
   Astro.props;
+
+const markdownPosts = await getCollection("posts");
+
+const prefix = import.meta.env.DEV ? "/" : "/blog";
+
+const posts = [
+  ...markdownPosts.map((post) => ({
+    url: `${prefix}${prefix === "/" ? "" : "/"}${post.slug}`,
+    title: post.data.title,
+    date: new Date(post.data.date),
+    image: post.data.image,
+    authors: post.data.authors || [],
+    category: (post as any).data.category,
+  }))
+];
+posts.sort(() => 0.5 - Math.random())
+
+const firstThree = posts.slice(0, 3);
 
 ---
 
@@ -66,6 +86,34 @@ const { authorName, authorImage, AuthorContent, formattedDate, title, image } =
           </div>
         </div>
       </article>
+      <h3 class="text-4xl border-b border-slate-200 pt-8 py-4">Recommended posts</h3>
+      <ol class="grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 md:grid-cols-3 pt-10">
+        {
+          firstThree.map(({ url, title, image, authors, category, date }, i) => (
+            <li class="col-span-1">
+              <a class="flex flex-col gap-4" href={url}>
+                <div class="overflow-hidden rounded-lg">
+                  {image && (
+                    <Picture
+                      src={image}
+                      alt={title}
+                      width={1024}
+                      loading="lazy"
+                      decoding="auto"
+                    />
+                  )}
+                </div>
+                <ul class="flex gap-5 list-none">
+                  {authors.length > 0 && <li>{authors[0]}</li>}
+                  <li>{date && formatDate(date)}</li>
+                  {category && <li>{category}</li>}
+                </ul>
+                <h3 class="text-2xl">{title}</h3>
+              </a>
+            </li>
+          ))
+        }
+      </ol>
     </div>
   </section>
   <script is:inline>
