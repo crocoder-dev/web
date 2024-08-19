@@ -18,6 +18,8 @@ export const data = {
   createdAt: 1675873546123,
 };
 
+const slug = "/how-to-write-custom-react-hooks.astro";
+
 const intro = await getEntry(
   "partials",
   "how-to-write-custom-react-hooks/10-intro",
@@ -94,6 +96,7 @@ const { Content: UseDebouncedSearchSolution } =
   image={data.image}
   date={data.date}
   author={authors[0]}
+  slug={slug}
 >
   <Intro />
   {/* Contents */}
