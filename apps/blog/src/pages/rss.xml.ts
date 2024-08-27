@@ -16,8 +16,8 @@ posts.sort((a, b) => b.date.getTime() - a.date.getTime());
 
 export const GET = () =>
   rss({
-    title: "My Blog RSS Feed",
-    description: "Latest posts from my blog",
+    title: "CroCoder | Blog",
+    description: "Tips and ideas to help you learn, build and improve your projects.",
     site: 'https://www.crocoder.dev/blog',
     items: posts.map((post) => ({
       title: post.title,
