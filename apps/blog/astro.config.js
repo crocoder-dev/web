@@ -19,6 +19,9 @@ export default defineConfig({
       domains: ['*'],
     },
   }),
+  redirects: {
+    '/feed': '/rss.xml'
+  },
   integrations: [tailwind(), react()],
   markdown: {
     remarkPlugins: [remarkPlugin],
