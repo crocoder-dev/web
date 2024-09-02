@@ -63,7 +63,7 @@ posts.sort((a, b) => b.date.getTime() - a.date.getTime());
                       src={image}
                       alt={title}
                       width={1024}
-                      loading="lazy"
+                      loading={i < 3 ? 'eager' : 'lazy'}
                       decoding="auto"
                     />
                   )}
