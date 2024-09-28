@@ -1,21 +1,18 @@
 ---
 import PostBase from "./post-base.astro";
-import formatDate from "../format-date";
 
 const { post, author, slug } = Astro.props;
 const { name: authorName, image: authorImage } = author.data;
 const { Content } = await post.render();
 const { Content: AuthorContent } = await author.render();
 const { title, image, date } = post.data;
-
-const formattedDate = formatDate(date);
 ---
 
 <PostBase
   authorName={authorName}
   authorImage={authorImage}
   AuthorContent={AuthorContent}
-  formattedDate={formattedDate}
+  date={date}
   title={title}
   image={image}
   slug={slug}

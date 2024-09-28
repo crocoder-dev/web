@@ -1,28 +1,16 @@
 ---
 import PostBase from "./post-base.astro";
-import { format } from "date-fns";
 
 const { title, image, date, author, slug } = Astro.props;
 const { name: authorName, image: authorImage } = author.data;
 const { Content: AuthorContent } = await author.render();
-
-const dateFormat = (
-  date: Date | string,
-  pattern: string = "dd MMM, yyyy",
-): string => {
-  const dateObj = new Date(date);
-  const output = format(dateObj, pattern);
-  return output;
-};
-
-const formattedDate = dateFormat(date);
 ---
 
 <PostBase
   authorName={authorName}
   authorImage={authorImage}
   AuthorContent={AuthorContent}
-  formattedDate={formattedDate}
+  date={date}
   title={title}
   image={image}
   slug={slug}

@@ -1,0 +1,17 @@
+---
+const { title, image, date, authorName } = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": title,
+  "image": image,  
+  "author": {
+    "@type": "Person",
+    ...(authorName && { "name": authorName})
+  },
+  "datePublished": date,
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
