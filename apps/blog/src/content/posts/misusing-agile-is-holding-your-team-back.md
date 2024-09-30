@@ -1,11 +1,11 @@
 ---
 title: "Misusing Agile is holding your team back"
 description: ""
-date: 1645837875000
+createdAt: 1645837875000
 updatedAt: 1645837875000
 authors: ["david"]
 category: "AWS"
-editor: ["velimir"]
+editors: ["velimir"]
 abstract: ""
 image: "/images/misusing-agile-is-holding-your-team-back.png"
 draft: false
