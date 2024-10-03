@@ -1,0 +1,58 @@
+---
+import CalcomEmbedInline from "../components/CalcomEmbedInline.astro";
+---
+
+<section class="bg-[#FEB534] w-full lg:py-[200px]">
+  <section
+    class="container mx-auto grid grid-cols-6 lg:grid-cols-12 gap-12 px-7"
+  >
+    <div
+      class="col-span-6 lg:col-span-4 xl:col-span-6 flex flex-col gap-12 justify-center"
+    >
+      <h1
+        class="font-poppins text-[74px] lg:text-6xl xl:text-[74px] font-medium leading-[84px] tracking-[-0.02em] text-left text-[#3C3843]"
+      >
+        Build Your Business With Us
+      </h1>
+      <p
+        class="font-poppins text-[16px] font-normal leading-[26px] text-left text-[#3C3843]"
+      >
+        We recognize that thriving today shouldn't compromise future success. By
+        selecting the right tools and focusing on solid software architecture,
+        we address immediate technical challenges while preparing your business
+        for what's ahead.
+      </p>
+    </div>
+    <div
+      class="relative col-span-6 lg:col-span-8 xl:col-span-6 overflow-hidden flex flex-col justify-center"
+    >
+      <div
+        class="lg:-mx-[70px] lg:w-[calc(100%+2*70px)] xl:-mx-[91px] xl:w-[calc(100%+2*91px)] 2xl:-mx-[27px] 2xl:w-[calc(100%+2*27px)]"
+        id="cal-crocoder-quickchat"
+      >
+      </div>
+      <!-- 
+  Because calcom has breakpoint set at 768px to display mobile layout (single column),
+  We need to lie about our column size so we can get the wanted calcom layout.
+  At 770px, calcom renders in fixed width of 605, so we need to add negative margins to get the minimum non-mobile layout.
+  
+  Computed values are:
+  2xl: 770px - 726px(col_span) / 2 = 27px
+  xl: 770px - 588px(col_span) / 2 = 91px
+  lg: 770px - 630px(col_span) / 2 = 70px
+
+  Note: col_span width is affected by gap and padding on the grid container
+  Note: on lg we make slice the grid into 4/8 so the calendar can fit
+
+  For smaller screens the width of the calcom element is wider than our gaps allow 
+  and in that case we have to collapse our columns
+  -->
+    </div>
+  </section>
+  <CalcomEmbedInline
+    calLink="team/crocoder/quickchat"
+    eventType="quickchat"
+    elementOrSelector="#cal-crocoder-quickchat"
+    hideEventTypeDetails={true}
+  />
+</section>
