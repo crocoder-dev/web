@@ -3,7 +3,7 @@ import siteManifest from "../../public/site-manifest.json";
 
 const { street, city, region, postalCode, country } = siteManifest.company;
 const { twitter, linkedin, github, youtube, instagram } = siteManifest.social;
-const socialImage = `${siteManifest.url}/social.png`;
+const socialImage = `https://placehold.co/600x400`;
 
 const schema = {
   "@context": "https://schema.org",
@@ -30,19 +30,14 @@ const schema = {
 <meta content={siteManifest.name} name="application-name" />
 <title>{siteManifest.name}</title>
 <meta content={siteManifest.description} name="description" />
+<link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
 <link
-  href="/icons/favicon-32x32.png"
-  rel="icon"
-  sizes="32x32"
-  type="image/png"
-/>
-<link
-  href="/icons/favicon-16x16.png"
+  href="/favicon-16x16.png"
   rel="icon"
   sizes="16x16"
   type="image/png"
 /><link
-  href="/icons/apple-touch-icon.png"
+  href="/apple-touch-icon.png"
   rel="apple-touch-icon"
   sizes="180x180"
   type="image/png"
