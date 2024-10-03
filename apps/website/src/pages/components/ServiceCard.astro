@@ -1,0 +1,40 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+import classnames from 'classnames';
+
+interface Props {
+  idx: number;
+  title: string;
+  description: string;
+  styles: string,
+  imgPath: string;
+  classNames?: string | string[];
+  onDark?: boolean;
+}
+
+const { idx, title, description, styles, imgPath, classNames, onDark } = Astro.props;
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/images/services/*.png'
+);
+---
+
+<section
+  class={classnames(
+    'col-span-6 relative text-white rounded-2xl md:h-screen p-7 lg:p-12 grid grid-cols-6 grid-rows-[auto_auto_auto] gap-x-3 gap-y-7 md:col-span-12 md:gap-x-7 md:grid-cols-2 md:grid-rows-[44px_auto]', styles,
+    classNames,
+    {
+      'text-[#ffff]': onDark,
+      'text-[#3C3843]': !onDark,
+    }
+  )}
+>
+<span class='font-medium text-[28px] leading-8 col-span-6 md:col-span-1'>{`{${idx}}`}</span>
+<div class="flex flex-col justify-center col-span-6 row-start-3 md:justify-start md:col-span-1 md:row-start-2">
+  {images[imgPath] && <Image src={images[imgPath]()} alt='lalala' />}
+</div>
+<div class="flex flex-col lg:flex-col col-span-6 row-start-2 md:col-span-1 md:col-start-2 md:row-span-2">
+  <h3 class='font-medium text-4xl leading-[44px] mb-7 md:mb-12'>{title}</h3>
+  <p class='text-[22px] leading-8'>{description}</p>
+</div>
+</section>
