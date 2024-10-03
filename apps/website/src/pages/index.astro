@@ -1,5 +1,7 @@
 ---
 import "../styles/main.css";
+import WebJsonld from "../layouts/web-jsonld.astro";
+import siteManifest from "../../public/site-manifest.json";
 ---
 
 <!doctype html>
@@ -10,6 +12,20 @@ import "../styles/main.css";
     <title>Crocodile Emoji</title>
   </head>
   <body class="flex items-center justify-center h-screen bg-gray-100">
+    <WebJsonld
+      companyName={siteManifest.name}
+      description={siteManifest.description}
+      companyStreet={siteManifest.company.street}
+      companyCity={siteManifest.company.city}
+      companyRegion={siteManifest.company.region}
+      companyPostalCode={siteManifest.company.postalCode}
+      companyCountry={siteManifest.company.country}
+      twitterLink,
+      linkedinLink,
+      githubLink,
+      youtubeLink,
+      instagramLink,
+    />
     <div class="text-9xl">🐊</div>
     <a href="/blog" class="mt-6 text-blue-500 text-lg hover:underline">
       Go to blog

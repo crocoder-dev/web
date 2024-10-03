@@ -1,12 +1,63 @@
 ---
+import siteManifest from "../../public/site-manifest.json";
+
+const {
+  companyName,
+  description,
+  logo,
+  url,
+  companyStreet,
+  companyCity,
+  companyRegion,
+  companyPostalCode,
+  companyCountry,
+  twitterLink,
+  linkedinLink,
+  githubLink,
+  youtubeLink,
+  instagramLink,
+} = Astro.props;
+
 const schema = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  name: companyName,
+  description,
+  logo,
+  url,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: companyStreet,
+    addressLocality: companyCity,
+    addressRegion: companyRegion,
+    postalCode: companyPostalCode,
+    addressCountry: companyCountry,
+  },
+  sameAs: [twitterLink, linkedinLink, githubLink, youtubeLink, instagramLink],
 };
 ---
 
 <script type="application/ld+json" set:html={JSON.stringify(schema)} />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-<link rel="manifest" href="/site.webmanifest" />
+<link rel="manifest" href="/site-manifest.json" />
+<meta content={siteManifest.theme_color} name="theme-color" />
+<meta content={siteManifest.name} name="application-name" />
+<title>{siteManifest.name}</title>
+<meta content={siteManifest.description} name="description" />
+<link
+  href="/icons/favicon-32x32.png"
+  rel="icon"
+  sizes="32x32"
+  type="image/png"
+/>
+<link
+  href="/icons/favicon-16x16.png"
+  rel="icon"
+  sizes="16x16"
+  type="image/png"
+/><link
+  href="/icons/apple-touch-icon.png"
+  rel="apple-touch-icon"
+  sizes="180x180"
+  type="image/png"
+/>
