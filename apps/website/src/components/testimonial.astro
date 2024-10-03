@@ -11,45 +11,35 @@ for (const testimonial of testimonialCollections) {
     Content,
     name: testimonial.data.name,
     title: testimonial.data.title,
+    imageUrl: testimonial.data.imageUrl,
   });
 }
 ---
 
 <section
-  class="flex flex-col items-start px-[28px] py-[96px] gap-[48px] max-w-[1280px] h-[688px] z-[3] font-poppins"
+  class="grid lg:grid-cols-12 grid-cols-6 gap-2 px-[48px] py-[96px] max-w-[1280px] font-poppins"
 >
-  <div
-    class="flex justify-center items-center px-[104px] gap-[10px] mx-auto mb-8"
+  <h2
+    class="col-start-2 col-span-11 font-medium pb-12 text-[74px] leading-[84px] tracking-[-0.02em] capitalize text-[#3C3843]"
   >
-    <h2
-      class="font-medium text-[74px] leading-[84px] tracking-[-0.02em] text-center capitalize text-[#3C3843] flex-grow"
-    >
-      What Our Clients Say
-    </h2>
-  </div>
-
-  <div
-    class="flex flex-row justify-center items-start p-0 gap-[8px] flex-none order-1 self-stretch flex-grow-0"
-  >
-    <div class="grid grid-cols-6 md:grid-cols-12 gap-3 md:gap-7 w-full h-full">
-      {
-        testimonials.map(({ name, Content, title }) => (
-          <div class="flex flex-col items-start bg-[#E8E8E8] rounded-2xl p-7 gap-[28px] col-span-4 sm:max-md:mb-8">
-            <p class="leading-7 text-black">
-              <Content />
-            </p>
-            <div class="flex flex-row justify-center items-center gap-3">
-              <div class="size-12 bg-[#D9D9D9] rounded-full flex flex-shrink-0 items-center justify-center">
-                <span class="text-h6">🐊</span>
-              </div>
-              <div class="flex flex-col text-[20px] leading-7 text-black">
-                <p class="font-bold">{name}</p>
-                <p class="font-normal">{title}</p>
-              </div>
-            </div>
+    What Our Clients Say
+  </h2>
+  {
+    testimonials.map(({ name, Content, title, imageUrl }) => (
+      <div class="bg-[#E8E8E8] rounded-2xl p-7 gap-[28px] col-span-4 sm:max-md:mb-8">
+        <p class="leading-7 text-black">
+          <Content />
+        </p>
+        <div class="pt-7 grid grid-cols-5 items-center rounded-lg">
+          <div class="col-span-1">
+            <div class="bg-gray-300 w-12 h-12 rounded-full" />
           </div>
-        ))
-      }
-    </div>
-  </div>
+          <div class="col-span-4">
+            <h3 class="text-xl font-bold">{name}</h3>
+            <p class="text-xl">{title}</p>
+          </div>
+        </div>
+      </div>
+    ))
+  }
 </section>
