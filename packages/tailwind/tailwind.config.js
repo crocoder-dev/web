@@ -64,7 +64,6 @@ module.exports = {
       fontFamily: {
         primary: [fontPrimary, fontPrimaryType],
         secondary: [fontSecondary, fontSecondaryType],
-        poppins: ["Poppins", fontPrimaryType],
       },
     },
   },
