@@ -1,11 +1,11 @@
 ---
 title: "How to Perfect Your CV as an Entry-level Developer"
 description: ""
-date: 1645837875000
+createdAt: 1645837875000
 updatedAt: 1645837875000
 authors: ["david"]
 category: "AWS"
-editor: ["velimir"]
+editors: ["velimir"]
 abstract: ""
 image: "/images/how-to-perfect-your-cv-entry-level-developer.png"
 draft: false

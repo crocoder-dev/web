@@ -1,11 +1,11 @@
 ---
 title: "Excluding Properties with TypeScript's Omit"
 description: ""
-date: 1645837875000
+createdAt: 1645837875000
 updatedAt: 1645837875000
 authors: ["david"]
 category: "AWS"
-editor: ["velimir"]
+editors: ["velimir"]
 draft: false
 abstract: ""
 image: "/images/excluding-properties-typescript-omit.png"

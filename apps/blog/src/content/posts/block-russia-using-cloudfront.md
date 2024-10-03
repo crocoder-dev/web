@@ -1,11 +1,11 @@
 ---
 title: "Block traffic to your website from Russia and Belarus using CloudFront"
 description: ""
-date: 1645837875000
+createdAt: 1645837875000
 updatedAt: 1645837875000
 authors: ["david"]
 category: "AWS"
-editor: ["velimir"]
+editors: ["velimir"]
 draft: false
 abstract: ""
 image: "/images/block-russia-using-cloudfront.jpg"

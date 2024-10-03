@@ -1,11 +1,11 @@
 ---
 title: "What is cycle time in Software Development?"
 description: ""
-date: 1645837875000
+createdAt: 1645837875000
 updatedAt: 1645837875000
 authors: ["david"]
 category: "AWS"
-editor: ["velimir"]
+editors: ["velimir"]
 abstract: ""
 image: "/images/what-is-cycle-time-in-software-development.png"
 draft: false

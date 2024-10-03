@@ -1,11 +1,11 @@
 ---
 title: "A Dockerfile for BLAZINGLY FAST Dockerized Node.js apps"
 description: ""
-date: 1645837875000
+createdAt: 1645837875000
 updatedAt: 1645837875000
 authors: ["david"]
 category: "AWS"
-editor: ["velimir"]
+editors: ["velimir"]
 abstract: ""
 image: "/images/node-docker-image.png"
 draft: false

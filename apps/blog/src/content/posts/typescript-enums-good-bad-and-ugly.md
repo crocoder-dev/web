@@ -1,11 +1,11 @@
 ---
 title: "Typescript Enums: The Good, The Bad, and The Ugly"
 description: ""
-date: 1645837875000
+createdAt: 1645837875000
 updatedAt: 1645837875000
 authors: ["david"]
 category: "AWS"
-editor: ["velimir"]
+editors: ["velimir"]
 abstract: ""
 image: "/images/typescript-enums-good-bad-and-ugly.png"
 draft: false
