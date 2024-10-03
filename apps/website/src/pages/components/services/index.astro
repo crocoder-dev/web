@@ -2,14 +2,15 @@
 import services from '../../../assets/content/services.json'
 import ServiceCard from '../ServiceCard.astro';
 const styles = [
-  "bg-orange-500",
-  "bg-blue-500",
-  "bg-orange-500"
+  "bg-[#5362DBE5] text-white",
+  "bg-[#424C6DE5] text-white",
+  "bg-[#3C3843E5] text-white",
+  "bg-[#1E1A1AE5] text-white"
 ]
 ---
 
 
-<section class='grid grid-cols-6 gap-3 px-3'>
+<section class='grid grid-cols-6 gap-3 px-3 max-w-[1600px] mx-auto md:grid-cols-12 md:gap-7 md:px-7'>
   {
     services.map((value, idx) => (
       <ServiceCard
@@ -17,7 +18,6 @@ const styles = [
         title={value.title}
         description={value.description}
         styles={styles[idx]}
-        classNames={value.styles}
         onDark={idx === 1}
         imgPath={value.imgPath}
       />

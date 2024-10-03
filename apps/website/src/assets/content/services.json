@@ -1,23 +1,25 @@
 [
   {
-    "title": "lead migrations without impacting customers",
+    "title": "Lead migrations without impacting customers",
     "description": "Move away from legacy systems and navigate major tech initiatives such as new framework adoptions. Our bottom-up approach helps empower your existing teams to facilitate the change.",
-    "imgPath": "/src/assets/images/services/1.png",
-    "styles": ["bg-[orange-500]"]
+    "imgPath": "/src/assets/images/services/1.png"
   },
 
   {
-    "title": "create an evolving architecture to withstand trends",
+    "title": "Create an evolving architecture to withstand trends",
     "description": "From start to finish, we are there to design, implement, and guide you through the adoption of a future-proof, flexible software architecture. Tailored to your unique needs, we aim to reduce costs and mitigate the risks of downtime, technical debt, and evolving industry demands.",
-    "imgPath": "/src/assets/images/services/2.png",
-    "styles": ["bg-[blue-500]"]
+    "imgPath": "/src/assets/images/services/2.png"
   },
 
   {
-    "title": "lead migrations without impacting customers",
+    "title": "Lead migrations without impacting customers",
     "description": "Move away from legacy systems and navigate major tech initiatives such as new framework adoptions. Our bottom-up approach helps empower your existing teams to facilitate the change.",
-    "imgPath":  "/src/assets/images/services/3.png",
-    "styles": ["bg-[orange-500]"]
-  }
+    "imgPath":  "/src/assets/images/services/3.png"
+  },
 
+  {
+    "title": "Create an evolving architecture to withstand trends",
+    "description": "From start to finish, we are there to design, implement, and guide you through the adoption of a future-proof, flexible software architecture. Tailored to your unique needs, we aim to reduce costs and mitigate the risks of downtime, technical debt, and evolving industry demands.",
+    "imgPath": "/src/assets/images/services/2.png"
+  }
 ]
