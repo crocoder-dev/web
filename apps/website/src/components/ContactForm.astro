@@ -26,8 +26,9 @@ import CalcomEmbedInline from "../components/CalcomEmbedInline.astro";
     <div
       class="relative col-span-6 lg:col-span-8 xl:col-span-7 2xl:col-span-6 overflow-hidden flex flex-col justify-center"
     >
+      <!-- class="md:-mx-[29px] md:w-[calc(100%+2*29px)] lg:-mx-[70px] lg:w-[calc(100%+2*70px)] xl:-mx-[38px] xl:w-[calc(100%+2*38px)] 2xl:-mx-[27px] 2xl:w-[calc(100%+2*27px)]" -->
       <div
-        class="md:-mx-[29px] md:w-[calc(100%+2*29px)] lg:-mx-[70px] lg:w-[calc(100%+2*70px)] xl:-mx-[38px] xl:w-[calc(100%+2*38px)] 2xl:-mx-[27px] 2xl:w-[calc(100%+2*27px)]"
+        class="md:[--mx:29px] lg:[--mx:70px] xl:[--mx:38px] 2xl:[--mx:27px] md:-mx-[var(--mx)] md:w-[calc(100%+2*var(--mx))]"
         id="cal-crocoder-quickchat"
       >
       </div>
