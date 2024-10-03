@@ -1,0 +1,194 @@
+---
+import { getCollection } from 'astro:content';
+import Section from './Section.astro';
+import SectionTitle from './SectionTitle.astro';
+import ServiceCard from './ServiceCard.astro';
+import { grid_classes } from './_grid';
+
+/* 560px => Height of cards in starting position. 4 cards x 140px of indentation */
+const styles = [
+  'bg-[#5362DBE5] lg:delay-[400ms] lg:top-[calc(100vh-560px)]',
+  'bg-[#424C6DE5] lg:delay-300 lg:top-[calc(100vh-560px+140px)]',
+  'bg-[#3C3843E5] lg:delay-200 lg:top-[calc(100vh-560px+140px+140px)]',
+  'bg-[#1E1A1AE5] lg:delay-100 lg:top-[calc(100vh-560px+140px+140px+140px)]',
+];
+
+const servicesCollection = await getCollection('services');
+
+const services = [];
+
+for (const service of servicesCollection) {
+  const data = await service.render();
+
+  services[service.data.idx - 1] = {
+    content: data.Content,
+    title: service.data.title,
+    img: {
+      path: service.data.imgPath,
+      alt: service.data.imgAlt,
+    },
+  };
+}
+---
+
+<Section
+  className='w-full !overflow-visible lg:!px-0'
+  contentClassName={grid_classes}
+>
+  <SectionTitle className='lg:px-7 col-span-6 lg:col-start-2 lg:col-span-10'>
+    Our Services
+  </SectionTitle>
+  <div id='services' class='col-span-6 md:col-span-12'>
+    <div
+      class='max-lg:grid max-md:grid-cols-6 max-lg:grid-cols-12 max-lg:gap-7 lg:h-screen lg:overflow-hidden lg:sticky lg:top-0'
+    >
+      {
+        services.map((value, idx) => (
+          <ServiceCard
+            idx={idx + 1}
+            title={value.title}
+            content={value.content}
+            styles={styles[idx]}
+            imgPath={value.img.path}
+            imgAlt={value.img.alt}
+            onDark={idx === 1}
+          />
+        ))
+      }
+    </div>
+  </div>
+</Section>
+<script is:inline>
+  const wrapperWidth = window.innerWidth;
+
+  if (wrapperWidth >= 1024) {
+    const servicesWrapper = document.getElementById('services');
+    const cards = document.querySelectorAll('[data-show]');
+    const screenHeight = window.innerHeight;
+    const cardsIndentation = 140;
+
+    const getCardsAnimationData = () => {
+      let animationPos = [];
+      cards.forEach((_, i) => {
+        const prev = cards[i - 1];
+        const startHeight = cards.length * cardsIndentation;
+        if (prev) {
+          const prevPos = animationPos[i - 1];
+
+          animationPos.push({
+            start: prevPos.end,
+            distance: prevPos.distance + cardsIndentation,
+            end: prevPos.end + (prevPos.distance + cardsIndentation),
+          });
+        } else {
+          animationPos.push({
+            start: 0,
+            distance: screenHeight - startHeight,
+            end: screenHeight - startHeight,
+          });
+        }
+      });
+
+      return {
+        animationPos,
+        animationFieldHeight: animationPos[animationPos.length - 1].end,
+      };
+    };
+
+    const { animationPos, animationFieldHeight } = getCardsAnimationData();
+
+    servicesWrapper.style.height = `${animationFieldHeight + screenHeight}px`;
+    let lastScrollTopPos = 0;
+
+    const setupInitPositions = () => {
+      const servicesWrapperBoundingRect =
+        servicesWrapper.getBoundingClientRect();
+      const fromTop = servicesWrapperBoundingRect.top * -1;
+
+      // Do nothing if top edge of animated section is below viewport. Leave elements at bottom position
+      if (servicesWrapperBoundingRect.top > screenHeight) {
+        return;
+      }
+
+      animationPos.forEach((pos, i) => {
+        const cardToPosition = cards[i];
+
+        if (!cardToPosition) {
+          return;
+        }
+
+        // if viewport is below end range of animation set element to top position
+        if (fromTop > pos.start && fromTop > pos.end) {
+          cardToPosition.style.transform = `translateY(-${pos.distance}px)`;
+          return;
+        }
+
+        // if viewport is in range of animation set element to correct position
+        if (fromTop >= pos.start && fromTop < pos.end) {
+          cardToPosition.style.transform = `translateY(${pos.start - fromTop}px)`;
+        }
+      });
+    };
+
+    // Delay init position setup in case there is a smooth scroll behavior at init page render
+    setTimeout(() => {
+      setupInitPositions();
+    }, 200);
+
+    const handleAnimationOnScroll = () => {
+      const currentScrollTop = window.scrollY;
+      const servicesWrapperBoundingRect =
+        servicesWrapper.getBoundingClientRect();
+      const fromTop = servicesWrapperBoundingRect.top * -1;
+      const isScrollDown = lastScrollTopPos < currentScrollTop;
+
+      // Start animation 200px before in case there is a fast scroll up so elements can catch that up and adjust
+      // End animation screenHeight value after in case of fast scroll down (in this case click and smooth scroll to book session section)
+      if (fromTop < -200 || fromTop > animationFieldHeight + screenHeight) {
+        return;
+      }
+
+      if (isScrollDown) {
+        cards.forEach((el, i) => {
+          const startPos = animationPos[i].start;
+          const endPos = animationPos[i].end;
+          if (fromTop > -200) {
+            el.setAttribute('data-show', 'true');
+          }
+
+          if (startPos <= fromTop && endPos > fromTop) {
+            el.style.transform = `translateY(${startPos - fromTop}px)`;
+          }
+          // Adjust element top position after animation range in case we didn't catch last few px.
+          // This can be the case while fast scrolling
+          if (startPos <= fromTop && endPos < fromTop) {
+            el.style.transform = `translateY(${-animationPos[i].distance}px)`;
+          }
+        });
+      } else {
+        cards.forEach((el, i) => {
+          const startPos = animationPos[i].start;
+          const endPos = animationPos[i].end;
+
+          if (fromTop < 0) {
+            el.setAttribute('data-show', '');
+          }
+
+          if (startPos <= fromTop && animationPos[i].end > fromTop) {
+            const startAt = endPos - startPos;
+            el.style.transform = `translateY(-${startAt - (endPos - fromTop)}px)`;
+          }
+          // Adjust element bottom position after animation range in case we didn't catch last few px.
+          // This can be the case while fast scrolling
+          if (endPos > fromTop && startPos > fromTop) {
+            el.style.transform = `translateY(0px)`;
+          }
+        });
+      }
+
+      lastScrollTopPos = currentScrollTop <= 0 ? 0 : currentScrollTop;
+    };
+
+    window.addEventListener('scroll', handleAnimationOnScroll);
+  }
+</script>
