@@ -1,28 +1,26 @@
 ---
 import CalcomEmbedInline from "../components/CalcomEmbedInline.astro";
-// import DebugBreakpoint from "../components/DebugBreakpoint.astro";
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset='UTF-8' />
-    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-    <link rel='preconnect' href='https://fonts.googleapis.com' />
-    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href='https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'
-      rel='stylesheet'
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
     />
     <title>Business Appointment</title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <!-- <DebugBreakpoint /> -->
   <!-- YELLOW-1 = #FEB534 -->
   <body class="bg-[#FEB534] min-h-screen flex items-center justify-center">
     <div class="container mx-auto grid grid-cols-12 gap-12 px-7">
       <div
-        class="font-poppins text-[#3C3843] col-span-12 2xl:col-span-6 flex flex-col gap-12 justify-center"
+        class="font-poppins text-[#3C3843] col-span-12 xl:col-span-6 flex flex-col gap-12 justify-center lg:pl-[104px]"
       >
         <h1
           class="text-[74px] font-medium leading-[84px] tracking-[-0.02em] text-left"
@@ -37,10 +35,25 @@ import CalcomEmbedInline from "../components/CalcomEmbedInline.astro";
         </p>
       </div>
 
+      <!-- 
+      Because calcom has breakpoint set at 768px to display mobile layout (single column),
+      We need to lie about our column size so we can get the wanted calcom layout.
+      At 770px, calcom renders in fixed width of 605, so we need to add negative margins to get the minimum non-mobile layout.
+      
+      Computed values are:
+      2xl: 770px - 726px(col_span) / 2 = 27px
+      xl: 770px - 588px(col_span) / 2 = 91px
+
+      Note: col_span width is affected by gap and padding on the grid container
+
+      For smaller screens the width of the calcom element is wider than our gaps allow 
+      and in that case we have to collapse our columns
+      -->
       <div
         id="cal-crocoder-quickchat"
-        class="col-span-12 2xl:col-span-6 2xl:-mx-[27px] overflow-scroll"
-      />
+        class="col-span-12 xl:col-span-6 xl:-mx-[91px] 2xl:-mx-[27px] overflow-scroll"
+      >
+      </div>
       <CalcomEmbedInline
         calLink="team/crocoder/quickchat"
         eventType="quickchat"
@@ -50,28 +63,3 @@ import CalcomEmbedInline from "../components/CalcomEmbedInline.astro";
     </div>
   </body>
 </html>
-<!-- 
-# 6-col spans; gap-12
-2xl : 716
-xl  : 588
-lg: : 460
-md  : 332
-sm  : 240
-
-# 6-col spans; gap-7
-2xl : 726
-xl  : 598
-lg: : 470
-md  : 342
-sm  : 228
-
-'sm': '640px', -> size = full_width
-// => @media (min-width: 640px) { ... }
-
-'md': '768px', 
-// => @media (min-width: 768px) { ... }
-
-'lg': '1024px', -> size = 605
-// => @media (min-width: 1024px) { ... }
-
- -->
