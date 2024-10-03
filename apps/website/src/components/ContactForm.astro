@@ -2,6 +2,7 @@
 import CalcomEmbedInline from "../components/CalcomEmbedInline.astro";
 ---
 
+<!-- YELLOW-1 = #FEB534 -->
 <section class="bg-[#FEB534] w-full lg:py-[200px]">
   <section
     class="container mx-auto grid grid-cols-6 lg:grid-cols-12 gap-12 px-7"
@@ -26,16 +27,10 @@ import CalcomEmbedInline from "../components/CalcomEmbedInline.astro";
     <div
       class="relative col-span-6 lg:col-span-8 xl:col-span-7 2xl:col-span-6 overflow-hidden flex flex-col justify-center"
     >
-      <!-- class="md:-mx-[29px] md:w-[calc(100%+2*29px)] lg:-mx-[70px] lg:w-[calc(100%+2*70px)] xl:-mx-[38px] xl:w-[calc(100%+2*38px)] 2xl:-mx-[27px] 2xl:w-[calc(100%+2*27px)]" -->
-      <div
-        class="md:[--mx:29px] lg:[--mx:70px] xl:[--mx:38px] 2xl:[--mx:27px] md:-mx-[var(--mx)] md:w-[calc(100%+2*var(--mx))]"
-        id="cal-crocoder-quickchat"
-      >
-      </div>
       <!-- 
-  Because calcom has breakpoint set at 768px to display mobile layout (single column),
-  We need to lie about our column size so we can get the wanted calcom layout.
-  At 770px, calcom renders in fixed width of 605, so we need to add negative margins to get the minimum non-mobile layout.
+  Since calcom displays mobile layout (single column) at 768px,
+  we need to increase the width of our col_span to above 768px
+  At 770px, calcom renders in fixed width of 605 so we need to increase our col_span to above 768px on wider screens  
   
   Computed values are:
   2xl: 770px - 726px(col_span) / 2 = 27px
@@ -47,16 +42,20 @@ import CalcomEmbedInline from "../components/CalcomEmbedInline.astro";
   Note: on lg we split the grid on 4/8 so the calendar can fit
   Note: on xl we split the grid on 5/7
   Note: on md we add negative margin to force the non-mobile layout since we can fit it
-
-  For smaller screens the width of the calcom element is wider than our gaps allow 
-  and in that case we have to collapse our columns
+  
+  class="md:-mx-[29px] md:w-[calc(100%+2*29px)] lg:-mx-[70px] lg:w-[calc(100%+2*70px)] xl:-mx-[38px] xl:w-[calc(100%+2*38px)] 2xl:-mx-[27px] 2xl:w-[calc(100%+2*27px)]"
   -->
+      <div
+        class="md:[--mx:29px] lg:[--mx:70px] xl:[--mx:38px] 2xl:[--mx:27px] md:-mx-[var(--mx)] md:w-[calc(100%+2*var(--mx))]"
+        id="book-a-call"
+      >
+      </div>
+      <CalcomEmbedInline
+        calLink="team/crocoder/quickchat"
+        eventType="quickchat"
+        elementOrSelector="#book-a-call"
+        hideEventTypeDetails={true}
+      />
     </div>
   </section>
-  <CalcomEmbedInline
-    calLink="team/crocoder/quickchat"
-    eventType="quickchat"
-    elementOrSelector="#cal-crocoder-quickchat"
-    hideEventTypeDetails={true}
-  />
 </section>
