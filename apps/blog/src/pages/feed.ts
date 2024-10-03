@@ -16,6 +16,8 @@ posts.sort((a, b) => b.date.getTime() - a.date.getTime());
 
 export const GET = () =>
   rss({
+    customData: '<atom:link href="https://www.crocoder.dev/blog/feed" rel="self" type="application/rss+xml" />',
+    xmlns: { atom: "http://www.w3.org/2005/Atom" },
     title: "CroCoder | Blog",
     description: "Tips and ideas to help you learn, build and improve your projects.",
     site: 'https://www.crocoder.dev/blog',
