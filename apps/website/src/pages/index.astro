@@ -1,5 +1,6 @@
 ---
 import "../styles/main.css";
+import Services from "./components/services/index.astro"
 ---
 
 <!doctype html>
@@ -10,9 +11,13 @@ import "../styles/main.css";
     <title>Crocodile Emoji</title>
   </head>
   <body class="flex items-center justify-center h-screen bg-gray-100">
+    <div class="flex flex-col items-center justify-center h-screen">
     <div class="text-9xl">🐊</div>
     <a href="/blog" class="mt-6 text-blue-500 text-lg hover:underline">
       Go to blog
     </a>
+    <div class="w-full">
+      <Services />
+    </div>
   </body>
 </html>
