@@ -38,11 +38,11 @@
         height={24}
         alt="Crocoder Text Logo"
         src="./images/crocoder-text.svg"
-        class="pl-2 hidden h-6 w-auto md:block"
+        class="pl-2 hidden h-6 w-auto md:block md:duration-1000"
         id="crocoder-logo"
       />
     </a>
-    <ul id="nav-list" class="flex gap-4 mx-2 md:mx-16">
+    <ul id="nav-list" class="flex gap-4 mx-2 md:mx-16 md:duration-1000">
       <li>
         <a
           class="font-medium text-lg text-[#E8E8E8] hover:text-white"
@@ -112,7 +112,6 @@
       !logo.classList.contains(...down) &&
       !navList.classList.contains(...down)
     ) {
-      console.log("down");
       logo.classList.remove(...up);
       logo.classList.add(...down);
 
@@ -123,7 +122,6 @@
       !logo.classList.contains(...up) &&
       !navList.classList.contains(...up)
     ) {
-      console.log("up");
       logo.classList.remove(...down);
       logo.classList.add(...up);
 
