@@ -1,11 +1,11 @@
 ---
 title: "\"No Deployments on Friday\" sucks"
 description: ""
-date: 1645837875000
+createdAt: 1645837875000
 updatedAt: 1645837875000
 authors: ["david"]
 category: "AWS"
-editor: ["velimir"]
+editors: ["velimir"]
 abstract: ""
 image: "/images/no-deployments-on-friday-sucks.png"
 draft: false

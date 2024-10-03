@@ -1,11 +1,11 @@
 ---
 title: "What should be included in an internal component library"
 description: ""
-date: 1645837875000
+createdAt: 1645837875000
 updatedAt: 1645837875000
 authors: ["danica"]
 category: "AWS"
-editor: ["velimir"]
+editors: ["velimir"]
 abstract: ""
 image: "/images/what-should-be-included-in-an-internal-component-library.jpg"
 draft: false

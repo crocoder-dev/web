@@ -1,16 +1,11 @@
 ---
 import "../styles/main.css";
-import Hero from '../components/hero.astro'
+import Hero from "../components/hero.astro";
+import Navigation from "../components/navigation.astro";
+import Base from "../layouts/base.astro";
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Crocodile Emoji</title>
-  </head>
-  <body class="flex h-screen bg-gray-100">
-    <Hero/>
-  </body>
-</html>
+<Base>
+  <Navigation />
+  <Hero />
+</Base>

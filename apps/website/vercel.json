@@ -15,6 +15,14 @@
     {
       "source": "/blog/:path*",
       "destination": "https://crocoder-company-blog.vercel.app/:path*"
+    },
+    {
+      "source": "/rss.xml",
+      "destination": "https://crocoder-company-blog.vercel.app/rss.xml"
+    },
+    {
+      "source": "/feed",
+      "destination": "https://crocoder-company-blog.vercel.app/rss.xml"
     }
   ]
 }
