@@ -7,7 +7,7 @@ import CalcomEmbedInline from "../components/CalcomEmbedInline.astro";
     class="container mx-auto grid grid-cols-6 lg:grid-cols-12 gap-12 px-7"
   >
     <div
-      class="col-span-6 lg:col-span-4 xl:col-span-6 flex flex-col gap-12 justify-center"
+      class="col-span-6 lg:col-span-4 xl:col-span-5 2xl:col-span-6 flex flex-col gap-12 justify-center lg:gap-y-7 xl:gap-y-12"
     >
       <h1
         class="font-poppins text-[74px] lg:text-6xl xl:text-[74px] font-medium leading-[84px] tracking-[-0.02em] text-left text-[#3C3843]"
@@ -24,10 +24,10 @@ import CalcomEmbedInline from "../components/CalcomEmbedInline.astro";
       </p>
     </div>
     <div
-      class="relative col-span-6 lg:col-span-8 xl:col-span-6 overflow-hidden flex flex-col justify-center"
+      class="relative col-span-6 lg:col-span-8 xl:col-span-7 2xl:col-span-6 overflow-hidden flex flex-col justify-center"
     >
       <div
-        class="lg:-mx-[70px] lg:w-[calc(100%+2*70px)] xl:-mx-[91px] xl:w-[calc(100%+2*91px)] 2xl:-mx-[27px] 2xl:w-[calc(100%+2*27px)]"
+        class="md:-mx-[29px] md:w-[calc(100%+2*29px)] lg:-mx-[70px] lg:w-[calc(100%+2*70px)] xl:-mx-[38px] xl:w-[calc(100%+2*38px)] 2xl:-mx-[27px] 2xl:w-[calc(100%+2*27px)]"
         id="cal-crocoder-quickchat"
       >
       </div>
@@ -38,11 +38,14 @@ import CalcomEmbedInline from "../components/CalcomEmbedInline.astro";
   
   Computed values are:
   2xl: 770px - 726px(col_span) / 2 = 27px
-  xl: 770px - 588px(col_span) / 2 = 91px
+  xl: 770px - 694px(col_span) / 2 = 38px
   lg: 770px - 630px(col_span) / 2 = 70px
+  md: 770px - 712px(col_span) / 2 = 29px
 
   Note: col_span width is affected by gap and padding on the grid container
-  Note: on lg we make slice the grid into 4/8 so the calendar can fit
+  Note: on lg we split the grid on 4/8 so the calendar can fit
+  Note: on xl we split the grid on 5/7
+  Note: on md we add negative margin to force the non-mobile layout since we can fit it
 
   For smaller screens the width of the calcom element is wider than our gaps allow 
   and in that case we have to collapse our columns
