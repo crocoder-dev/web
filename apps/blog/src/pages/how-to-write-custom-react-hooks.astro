@@ -11,11 +11,17 @@ const authors = authorCollection.filter((author) =>
   authorIds.includes(author.slug),
 );
 
+const editorIds = ["velimir"];
+
+const editors = authorCollection.filter((editor) =>
+  editorIds.includes(editor.slug),
+);
+
 export const data = {
   title: "How to write custom React hooks? - Code Exercises",
   image: "/images/how-to-write-custom-react-hooks.png",
-  date: 1675873546123,
   createdAt: 1675873546123,
+  updatedAt: 1675873546123,
 };
 
 const slug = "/how-to-write-custom-react-hooks.astro";
@@ -94,8 +100,10 @@ const { Content: UseDebouncedSearchSolution } =
 <Post
   title={data.title}
   image={data.image}
-  date={data.date}
+  createdAt={data.createdAt}
+  updatedAt={data.updatedAt}
   author={authors[0]}
+  editor={editors[0]}
   slug={slug}
 >
   <Intro />
