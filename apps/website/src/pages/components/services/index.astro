@@ -1,28 +1,29 @@
 ---
-import services from '../../../assets/content/services.json'
+import services from '../../../assets/content/services.json';
 import ServiceCard from '../ServiceCard.astro';
 const styles = [
-  "bg-[#5362DBE5] -top-[calc(100vh-140px-480px-480px-480px)]",
-  "bg-[#424C6DE5] -top-[calc(100vh-140px-480px-480px)]",
-  "bg-[#3C3843E5] -top-[calc(100vh-140px-480px)]",
-  "bg-[#1E1A1AE5] -top-[calc(100vh-140px)]"
-]
+  'bg-[#5362DBE5] translate-y-0',
+  'bg-[#424C6DE5] top-[calc(140px-100vh)] translate-y-0',
+  'bg-[#3C3843E5] top-[calc(280px-200vh)] translate-y-0',
+  'bg-[#1E1A1AE5] top-[calc(440px-300vh)] translate-y-0',
+];
 ---
 
-
-<section class='h-screen w-screen overflow-hidden sticky px-3 max-w-[1600px] mx-auto md:px-7'>
-  <div class='absolute w-full pt-[calc(100vh-560px)] grid grid-cols-6 gap-3 md:grid-cols-12 md:gap-x-7 md:gap-y-0'>
+<section class='h-screen w-screen sticky px-3 max-w-[1600px] mx-auto md:px-0'>
+  <div
+    class='absolute w-full h-screen pt-[calc(100vh-560px)] grid grid-cols-6 gap-3 md:grid-cols-12 md:gap-x-7 md:gap-y-0'
+  >
     {
       services.map((value, idx) => (
         <ServiceCard
-        idx={idx + 1}
-        title={value.title}
-        description={value.description}
-        styles={styles[idx]}
-        onDark={idx === 1}
-        imgPath={value.imgPath}
+          idx={idx + 1}
+          title={value.title}
+          description={value.description}
+          styles={styles[idx]}
+          onDark={idx === 1}
+          imgPath={value.imgPath}
         />
-        ))
-        }
+      ))
+    }
   </div>
 </section>
