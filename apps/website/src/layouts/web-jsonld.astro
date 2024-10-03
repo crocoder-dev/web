@@ -1,44 +1,30 @@
 ---
 import siteManifest from "../../public/site-manifest.json";
 
-const {
-  companyName,
-  description,
-  logo,
-  url,
-  companyStreet,
-  companyCity,
-  companyRegion,
-  companyPostalCode,
-  companyCountry,
-  twitterLink,
-  linkedinLink,
-  githubLink,
-  youtubeLink,
-  instagramLink,
-} = Astro.props;
+const { street, city, region, postalCode, country } = siteManifest.company;
+const { twitter, linkedin, github, youtube, instagram } = siteManifest.social;
+const socialImage = `${siteManifest.url}/social.png`;
 
 const schema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: companyName,
-  description,
-  logo,
-  url,
+  name: siteManifest.name,
+  description: siteManifest.description,
+  logo: socialImage,
+  url: siteManifest.url,
   address: {
     "@type": "PostalAddress",
-    streetAddress: companyStreet,
-    addressLocality: companyCity,
-    addressRegion: companyRegion,
-    postalCode: companyPostalCode,
-    addressCountry: companyCountry,
+    streetAddress: street,
+    addressLocality: city,
+    addressRegion: region,
+    postalCode: postalCode,
+    addressCountry: country,
   },
-  sameAs: [twitterLink, linkedinLink, githubLink, youtubeLink, instagramLink],
+  sameAs: [twitter, linkedin, github, youtube, instagram],
 };
 ---
 
 <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 <link rel="manifest" href="/site-manifest.json" />
 <meta content={siteManifest.theme_color} name="theme-color" />
 <meta content={siteManifest.name} name="application-name" />
@@ -61,3 +47,17 @@ const schema = {
   sizes="180x180"
   type="image/png"
 />
+<!-- Facebook Meta Tags -->
+<meta property="og:url" content={siteManifest.url} />
+<meta property="og:type" content="website" />
+<meta property="og:title" content={siteManifest.name} />
+<meta property="og:description" content={siteManifest.description} />
+<meta property="og:image" content={socialImage} />
+
+<!-- Twitter Meta Tags -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:domain" content="crocoder-company-website.vercel.app" />
+<meta property="twitter:url" content={siteManifest.url} />
+<meta name="twitter:title" content={siteManifest.name} />
+<meta name="twitter:description" content={siteManifest.description} />
+<meta name="twitter:image" content={socialImage} />
