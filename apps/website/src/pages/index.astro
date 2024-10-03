@@ -1,6 +1,7 @@
 ---
 import "../styles/main.css";
 import Navigation from "../components/navigation.astro";
+import Base from "../layouts/base.astro";
 ---
 
 <!doctype html>
@@ -10,11 +11,12 @@ import Navigation from "../components/navigation.astro";
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Crocodile Emoji</title>
   </head>
-  <body class="flex items-center justify-center h-screen bg-gray-100">
+ 
+  <Base>
     <Navigation />
     <div class="text-9xl">🐊</div>
     <a href="/blog" class="mt-6 text-blue-500 text-lg hover:underline">
       Go to blog
     </a>
-  </body>
+  </Base>
 </html>
