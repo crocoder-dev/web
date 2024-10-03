@@ -7,12 +7,15 @@ interface Props {
   idx: number;
   title: string;
   description: string;
-  imgPath: string;
+  img: {
+    path: string;
+    alt: string;
+  };
   styles?: string | string[];
   onDark?: boolean;
 }
 
-const { idx, title, description, imgPath, styles, onDark } = Astro.props;
+const { idx, title, description, img, styles, onDark } = Astro.props;
 const images = import.meta.glob<{ default: ImageMetadata }>(
   '/src/assets/images/values/*.png'
 );
@@ -32,8 +35,8 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
   <h3 class='font-medium text-[28px] leading-8'>{title}</h3>
   <p class='text-base leading-7'>{description}</p>
   {
-    images[imgPath] && (
-      <Image class='mt-auto' src={images[imgPath]()} alt='lalala' />
+    images[img.path] && (
+      <Image class='mt-auto' src={images[img.path]()} alt={img.alt} />
     )
   }
 </section>

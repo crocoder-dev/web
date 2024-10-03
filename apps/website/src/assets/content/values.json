@@ -2,16 +2,25 @@
   {
     "title": "Ensuring Alignment with business goals",
     "description": "We continuously assess opportunities and challenges to gain deep understanding of your business so we deliver software solutions that are only fully aligned with your overall strategy. If it doesn’t work toward an impactful purpose, it does not get built. ",
-    "imgPath": "/src/assets/images/values/1.png"
+    "img": {
+      "path": "/src/assets/images/values/1.png",
+      "alt": "Illustration of a video meeting with Crocoder team member"
+    }
   },
   {
     "title": "Complementing technical with people skills",
     "description": "Software development is rarely just about software. By working with us, you gain committed partners with demonstrated technical expertise that can guide you through periods of intensive technical and organisational change. We adapt our approach based on your unique needs, leveraging our interpersonal skills to foster effective collaboration and drive successful outcomes.",
-    "imgPath": "/src/assets/images/values/2.png"
+    "img": {
+      "path": "/src/assets/images/values/2.png",
+      "alt": "Illustration of people in company with crocodiles"
+    }
   },
   {
     "title": "Balancing today's priorities with tomorrow's expectations",
     "description": "We recognize that thriving today shouldn't compromise future success. By selecting the right tools and focusing on solid software architecture, we address immediate technical challenges while preparing your business for what's ahead.",
-    "imgPath": "/src/assets/images/values/3.png"
+    "img": {
+      "path": "/src/assets/images/values/3.png",
+      "alt": "Illustration of a crocodile presenting"
+    }
   }
 ]
