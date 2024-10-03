@@ -1,31 +1,71 @@
-<!DOCTYPE html>
+---
+import CalcomEmbedInline from "../components/CalcomEmbedInline.astro";
+// import DebugBreakpoint from "../components/DebugBreakpoint.astro";
+---
+
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Business Appointment</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<!-- YELLOW-1 = #FEB534 -->
-<body class="bg-[#FEB534] min-h-screen flex items-center justify-center">
-  <div class="container mx-auto grid grid-cols-12 gap-12 px-7">
-    
-    <!-- Left Side (Text Content) -->
-    <div class="font-poppins text-[#3C3843] col-span-6 flex flex-col gap-12 justify-center">
-      <h1 class="text-5xl text-[74px] font-medium leading-[84px] tracking-[-0.02em] text-left">Build Your Business With Us</h1>
-      <p class="text-[16px] font-normal leading-[26px] text-left">
-        We recognize that thriving today shouldn't compromise future success. 
-        By selecting the right tools and focusing on solid software architecture, 
-        we address immediate technical challenges while preparing your business 
-        for what's ahead.
-      </p>
-    </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Business Appointment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <!-- <DebugBreakpoint /> -->
+  <!-- YELLOW-1 = #FEB534 -->
+  <body class="bg-[#FEB534] min-h-screen flex items-center justify-center">
+    <div class="container mx-auto grid grid-cols-12 gap-7 px-7">
+      <div
+        class="font-poppins text-[#3C3843] col-span-6 flex flex-col gap-12 justify-center"
+      >
+        <h1
+          class="text-[74px] font-medium leading-[84px] tracking-[-0.02em] text-left"
+        >
+          Build Your Business With Us
+        </h1>
+        <p class="text-[16px] font-normal leading-[26px] text-left">
+          We recognize that thriving today shouldn't compromise future success.
+          By selecting the right tools and focusing on solid software
+          architecture, we address immediate technical challenges while
+          preparing your business for what's ahead.
+        </p>
+      </div>
 
-    <!-- Right Side (Calendar) -->
-    <div class="col-span-6 bg-white p-6 rounded-lg shadow-lg">
-      <div class="h-[300px]"></div>
+      <div
+        id="cal-crocoder-quickchat"
+        class="col-span-12 2xl:col-span-6 2xl:-mx-[22px] overflow-scroll"
+      />
+      <CalcomEmbedInline
+        calLink="team/crocoder/quickchat"
+        eventType="quickchat"
+        elementOrSelector="#cal-crocoder-quickchat"
+        hideEventTypeDetails={true}
+      />
     </div>
-
-  </div>
-</body>
+  </body>
 </html>
+<!-- 
+# 6-col spans; gap-12
+2xl : 716
+xl  : 588
+lg: : 460
+md  : 332
+sm  : 240
+
+# 6-col spans; gap-7
+2xl : 726
+xl  : 598
+lg: : 470
+md  : 342
+sm  : 228
+
+'sm': '640px', -> size = full_width
+// => @media (min-width: 640px) { ... }
+
+'md': '768px', 
+// => @media (min-width: 768px) { ... }
+
+'lg': '1024px', -> size = 605
+// => @media (min-width: 1024px) { ... }
+
+ -->
