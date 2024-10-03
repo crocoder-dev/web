@@ -26,7 +26,7 @@ const posts = [
   ...markdownPosts.map((post) => ({
     url: `${prefix}${prefix === "/" ? "" : "/"}${post.slug}`,
     title: post.data.title,
-    date: new Date(post.data.createdAt),
+    createdAt: new Date(post.data.createdAt),
     image: post.data.image,
     authors: post.data.authors || [],
     category: (post as any).data.category,
@@ -34,7 +34,7 @@ const posts = [
   ...pages.map((page) => ({
     url: `${prefix === "/" ? "" : prefix}${page.url}`,
     title: (page as any).data.title,
-    date: new Date((page as any).data.createdAt),
+    createdAt: new Date((page as any).data.createdAt),
     image: (page as any).data.image,
     authors: (page as any).data.authors || [],
     category: (page as any).data.category,
@@ -46,7 +46,7 @@ const posts = [
   };
 });
 
-posts.sort((a, b) => b.date.getTime() - a.date.getTime());
+posts.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
 ---
 
 <Base>
@@ -54,35 +54,37 @@ posts.sort((a, b) => b.date.getTime() - a.date.getTime());
     <div class="container max-w-[1000px] px-4 md:px-8">
       <ol class="grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2">
         {
-          posts.map(({ url, title, image, authors, category, date }, i) => (
-            <li class={i === 0 ? "col-span-1 sm:col-span-2" : ""}>
-              <a class="flex flex-col gap-4" href={url}>
-                <div class="overflow-hidden rounded-lg">
-                  {image && (
-                    <Picture
-                      src={image}
-                      alt={title}
-                      width={1024}
-                      loading={i < 3 ? "eager" : "lazy"}
-                      decoding="auto"
-                    />
-                  )}
-                </div>
-                <ul class="flex gap-5 list-none">
-                  {authors.length > 0 && <li>{authors[0]}</li>}
-                  <li>
-                    {date && (
-                      <time datetime={date.toISOString()}>
-                        {formatDate(date)}
-                      </time>
+          posts.map(
+            ({ url, title, image, authors, category, createdAt }, i) => (
+              <li class={i === 0 ? "col-span-1 sm:col-span-2" : ""}>
+                <a class="flex flex-col gap-4" href={url}>
+                  <div class="overflow-hidden rounded-lg">
+                    {image && (
+                      <Picture
+                        src={image}
+                        alt={title}
+                        width={1024}
+                        loading={i < 3 ? "eager" : "lazy"}
+                        decoding="auto"
+                      />
                     )}
-                  </li>
-                  {category && <li>{category}</li>}
-                </ul>
-                <h3 class="text-3xl">{title}</h3>
-              </a>
-            </li>
-          ))
+                  </div>
+                  <ul class="flex gap-5 list-none">
+                    {authors.length > 0 && <li>{authors[0]}</li>}
+                    <li>
+                      {createdAt && (
+                        <time datetime={new Date(createdAt).toISOString()}>
+                          {formatDate(createdAt)}
+                        </time>
+                      )}
+                    </li>
+                    {category && <li>{category}</li>}
+                  </ul>
+                  <h3 class="text-3xl">{title}</h3>
+                </a>
+              </li>
+            ),
+          )
         }
       </ol>
     </div>
