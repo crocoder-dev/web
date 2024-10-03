@@ -1,11 +1,11 @@
 ---
 title: "GitOps: Is it the Right Choice for Your DevOps in 2023?"
 description: ""
-date: 1645837875000
+createdAt: 1645837875000
 updatedAt: 1645837875000
 authors: ["david"]
 category: "AWS"
-editor: ["velimir"]
+editors: ["velimir"]
 abstract: ""
 image: "/images/gitops-is-it-the-right-choice-for-your-devops.png"
 draft: false

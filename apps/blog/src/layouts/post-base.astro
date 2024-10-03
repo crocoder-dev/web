@@ -6,15 +6,8 @@ import { markdownify } from "../ify";
 import { getCollection } from "astro:content";
 import formatDate from "../format-date";
 
-const {
-  authorName,
-  authorImage,
-  AuthorContent,
-  date,
-  title,
-  image,
-  slug,
-} = Astro.props;
+const { authorName, authorImage, AuthorContent, createdAt, title, image, slug } =
+  Astro.props;
 
 const markdownPosts = await getCollection("posts");
 
@@ -24,7 +17,7 @@ const posts = [
   ...markdownPosts.map((post) => ({
     url: `${prefix}${prefix === "/" ? "" : "/"}${post.slug}`,
     title: post.data.title,
-    date: new Date(post.data.date),
+    createdAt: new Date(post.data.createdAt),
     image: post.data.image,
     authors: post.data.authors || [],
     category: (post as any).data.category,
@@ -34,7 +27,7 @@ const posts = [
 posts.sort(() => 0.5 - Math.random());
 
 const recommendedPosts = posts.filter((post) => post.slug !== slug).slice(0, 3);
-const dateObj = new Date(date);
+const dateObj = new Date(createdAt);
 ---
 
 <Base>
@@ -50,8 +43,11 @@ const dateObj = new Date(date);
               <span>{authorName}</span>
               <li class="mx-3 flex items-center flex-wrap font-medium">
                 {
-                  dateObj &&
-                  <time datetime={dateObj.toISOString()}>{formatDate(dateObj)}</time>
+                  dateObj && (
+                    <time datetime={dateObj.toISOString()}>
+                      {formatDate(dateObj)}
+                    </time>
+                  )
                 }
               </li>
             </li>
@@ -107,7 +103,7 @@ const dateObj = new Date(date);
       >
         {
           recommendedPosts.map(
-            ({ url, title, image, authors, category, date }) => (
+            ({ url, title, image, authors, category, createdAt }) => (
               <li class="col-span-1">
                 <a class="flex flex-col gap-4" href={url}>
                   <div class="overflow-hidden rounded-lg">
@@ -123,7 +119,13 @@ const dateObj = new Date(date);
                   </div>
                   <ul class="flex gap-5 list-none">
                     {authors.length > 0 && <li>{authors[0]}</li>}
-                    <li>{date && <time datetime={date.toISOString()}>{formatDate(date)}</time>}</li>
+                    <li>
+                      {createdAt && (
+                        <time datetime={createdAt.toISOString()}>
+                          {formatDate(createdAt)}
+                        </time>
+                      )}
+                    </li>
                     {category && <li>{category}</li>}
                   </ul>
                   <h3 class="text-2xl">{title}</h3>

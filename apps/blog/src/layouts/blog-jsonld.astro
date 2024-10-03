@@ -1,17 +1,39 @@
 ---
-const { title, image, date, authorName } = Astro.props;
+const {
+  title,
+  image,
+  date,
+  authorName,
+  content,
+  abstract,
+  updatedAt,
+  editorName,
+} = Astro.props;
 
 const schema = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": title,
-  "image": image,  
-  "author": {
+  headline: title,
+  name: title,
+  image: image,
+  articleBody: content,
+  abstract: abstract,
+  author: {
     "@type": "Person",
-    ...(authorName && { "name": authorName})
+    name: authorName,
   },
-  "datePublished": date,
+  editor: {
+    "@type": "Person",
+    name: editorName,
+  },
+  dateCreated: date,
+  datePublished: date,
+  dateModified: updatedAt,
 };
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+<script
+  type="application/ld+json"
+  is:inline
+  set:html={JSON.stringify(schema)}
+/>

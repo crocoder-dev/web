@@ -1,11 +1,11 @@
 ---
 title: "structuredClone() - the simplest way to clone an object in JavaScript"
 description: ""
-date: 1645837875000
+createdAt: 1645837875000
 updatedAt: 1645837875000
 authors: ["david"]
 category: "AWS"
-editor: ["velimir"]
+editors: ["velimir"]
 abstract: ""
 image: "/images/how-to-clone-object-in-javascript.png"
 draft: false
