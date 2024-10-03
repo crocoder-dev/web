@@ -1,5 +1,6 @@
 ---
 import "../styles/main.css";
+import Services from "./components/services/index.astro"
 ---
 
 <!doctype html>
@@ -9,10 +10,24 @@ import "../styles/main.css";
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Crocodile Emoji</title>
   </head>
-  <body class="flex items-center justify-center h-screen bg-gray-100">
-    <div class="text-9xl">🐊</div>
-    <a href="/blog" class="mt-6 text-blue-500 text-lg hover:underline">
-      Go to blog
-    </a>
+  <body class="flex items-center justify-center bg-gray-100">
+    <Services />
+    <script>
+      function handleScroll() {
+        const sections = document.querySelectorAll('.scroll-reveal');
+        sections.forEach((section) => {
+          const sectionTop = section.getBoundingClientRect().top;
+          const windowHeight = window.innerHeight;
+          if (sectionTop < windowHeight * 0.75) {
+            section.classList.add('visible');
+          } else {
+            section.classList.remove('visible');
+          }
+        });
+      }
+
+      window.addEventListener('scroll', handleScroll);
+      window.addEventListener('load', handleScroll);
+    </script>
   </body>
 </html>
