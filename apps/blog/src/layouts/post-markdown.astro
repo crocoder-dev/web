@@ -1,21 +1,32 @@
 ---
 import PostBase from "./post-base.astro";
+import { marked } from "marked";
 
 const { post, author, slug } = Astro.props;
 const { name: authorName, image: authorImage } = author.data;
 const { Content } = await post.render();
 const { Content: AuthorContent } = await author.render();
-const { title, image, date } = post.data;
+const { title, image, createdAt, updatedAt } = post.data;
+
+const markdownToText = async (markdown: string) => {
+  const html = await marked.parse(markdown);
+  const plainText = html.replace(/<[^>]*>?/gm, "").replace(/^::\S*\s*/gm, "");
+  return plainText;
+};
+
+const content = await markdownToText(post.body);
 ---
 
 <PostBase
   authorName={authorName}
   authorImage={authorImage}
   AuthorContent={AuthorContent}
-  date={date}
   title={title}
   image={image}
   slug={slug}
+  content={content}
+  createdAt={createdAt}
+  updatedAt={updatedAt}
 >
   <Content />
 </PostBase>

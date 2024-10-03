@@ -8,11 +8,11 @@ const prefix = import.meta.env.DEV ? "/" : "/blog";
 const posts = markdownPosts.map((post) => ({
   url: `${prefix}${prefix === "/" ? "" : "/"}${post.slug}`,
   title: post.data.title,
-  date: new Date(post.data.date),
+  createdAt: new Date(post.data.createdAt),
   description: post.data.description || "",
 }));
 
-posts.sort((a, b) => b.date.getTime() - a.date.getTime());
+posts.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
 
 export const GET = () =>
   rss({
@@ -25,6 +25,6 @@ export const GET = () =>
       title: post.title,
       description: post.description,
       link: post.url,
-      pubDate: post.date,
+      pubDate: post.createdAt,
     })),
   });

@@ -1,11 +1,11 @@
 ---
 title: "No, you shouldn't measure developer productivity.."
 description: ""
-date: 1645837875000
+createdAt: 1645837875000
 updatedAt: 1645837875000
 authors: ["david"]
 category: "AWS"
-editor: ["velimir"]
+editors: ["velimir"]
 abstract: ""
 image: "/images/you-should-not-measure-developer-productivity-response-to-mckinsey.png"
 draft: false

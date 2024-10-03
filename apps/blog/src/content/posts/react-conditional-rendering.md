@@ -1,11 +1,11 @@
 ---
 title: "Stop using && in React Conditional Rendering"
 description: ""
-date: 1645837875000
+createdAt: 1645837875000
 updatedAt: 1645837875000
 authors: ["david"]
 category: "AWS"
-editor: ["velimir"]
+editors: ["velimir"]
 abstract: ""
 image: "/images/react-conditional-rendering.png"
 draft: false

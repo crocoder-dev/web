@@ -1,11 +1,11 @@
 ---
 title: "Create React App is dead! What are the alternatives?"
 description: ""
-date: 1645837875000
+createdAt: 1645837875000
 updatedAt: 1645837875000
 authors: ["david"]
 category: "AWS"
-editor: ["velimir"]
+editors: ["velimir"]
 abstract: ""
 image: "/images/create-react-app-is-dead-what-are-the-alternatives.jpg"
 draft: false

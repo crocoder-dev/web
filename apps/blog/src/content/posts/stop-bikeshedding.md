@@ -1,11 +1,11 @@
 ---
 title: "Stop bikeshedding in software engineering"
 description: ""
-date: 1645837875000
+createdAt: 1645837875000
 updatedAt: 1645837875000
 authors: ["david"]
 category: "AWS"
-editor: ["velimir"]
+editors: ["velimir"]
 abstract: ""
 image: "/images/stop-bikeshedding.png"
 draft: false

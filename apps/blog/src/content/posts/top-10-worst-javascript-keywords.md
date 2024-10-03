@@ -1,11 +1,11 @@
 ---
 title: "Top 10 worst JavaScript keywords"
 description: ""
-date: 1645837875000
+createdAt: 1645837875000
 updatedAt: 1645837875000
 authors: ["david"]
 category: "AWS"
-editor: ["velimir"]
+editors: ["velimir"]
 abstract: ""
 image: "/images/top-10-worst-javascript-keywords.png"
 draft: false
