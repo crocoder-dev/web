@@ -5,8 +5,7 @@
   "dependencies": {
     "@astrojs/tailwind": "^5.1.0",
     "@crocoder-dev/tailwind": "*",
-    "astro": "4.14.5",
-    "classnames": "^2.5.1"
+    "astro": "4.14.5"
   },
   "scripts": {
     "dev": "astro dev --port 4321",
