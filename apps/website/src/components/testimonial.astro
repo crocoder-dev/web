@@ -1,0 +1,45 @@
+---
+import { getCollection } from "astro:content";
+
+const testimonialCollections = await getCollection("testimonials");
+
+const testimonials = [];
+
+for (const testimonial of testimonialCollections) {
+  const { Content } = await testimonial.render();
+  testimonials.push({
+    Content,
+    name: testimonial.data.name,
+    title: testimonial.data.title,
+    imageUrl: testimonial.data.imageUrl,
+  });
+}
+---
+
+<section
+  class="grid xl:grid-cols-12 lg:grid-cols-8 grid-cols-6 gap-2 px-3 lg:px-12 py-24 max-w-[1280px] font-poppins"
+>
+  <h2
+    class="xl:col-start-2 xl:col-span-11 lg:col-start-2 lg:col-span-5 col-start-1 col-span-6 font-medium lg:pb-12 text-5xl lg:text-[74px] tracking-[-0.02em] capitalize text-[#3C3843]"
+  >
+    What Our Clients Say
+  </h2>
+  {
+    testimonials.map(({ name, Content, title, imageUrl }) => (
+      <div class="col-span-6 lg:col-span-4 xl:col-span-4 bg-[#E8E8E8] rounded-2xl p-7 gap-[28px]">
+        <p class="leading-7 text-black">
+          <Content />
+        </p>
+        <div class="pt-7 grid grid-cols-5 items-center rounded-lg">
+          <div class="col-span-1">
+            <div class="bg-gray-300 w-12 h-12 rounded-full" />
+          </div>
+          <div class="col-span-4">
+            <h3 class="text-xl font-bold">{name}</h3>
+            <p class="text-xl">{title}</p>
+          </div>
+        </div>
+      </div>
+    ))
+  }
+</section>
