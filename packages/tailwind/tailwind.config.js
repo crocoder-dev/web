@@ -1,11 +1,11 @@
 const theme = require("./theme.json");
 
 const font_base = Number(theme.fonts.font_size.base.replace("px", ""));
-const h6 = 1
+const h6 = 1;
 const h5 = 1.2;
 const h4 = 1.4;
-const h3 = 1.6
-const h2 = 2
+const h3 = 1.6;
+const h2 = 2;
 const h1 = 2.5;
 
 let fontPrimary, fontPrimaryType, fontSecondary, fontSecondaryType;
@@ -64,6 +64,7 @@ module.exports = {
       fontFamily: {
         primary: [fontPrimary, fontPrimaryType],
         secondary: [fontSecondary, fontSecondaryType],
+        poppins: ["Poppins", fontPrimaryType],
       },
     },
   },

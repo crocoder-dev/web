@@ -1,26 +1,13 @@
 ---
 import "../styles/main.css";
+import Values from "../components/Values.astro";
 import Navigation from "../components/navigation.astro";
 import Base from "../layouts/base.astro";
 import ContactForm from "../components/ContactForm.astro";
 ---
-
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Crocodile Emoji</title>
-  </head>
- 
-  <Base>
-    <Navigation />
-    <!-- Temp spacer -->
-    <div class="h-[33vh]"></div>
-    <div class="text-9xl">🐊</div>
-    <a href="/blog" class="mt-6 text-blue-500 text-lg hover:underline">
-      Go to blog
-    </a>
-    <ContactForm/>
-  </Base>
-</html>
+  
+<Base>
+  <Navigation />
+  <Values />
+  <ContactForm/>
+</Base>

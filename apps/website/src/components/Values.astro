@@ -1,0 +1,50 @@
+---
+import { getCollection } from "astro:content";
+import ValueCard from "./ValueCard.astro";
+
+const styles = [
+  "bg-[#FEB534]",
+  "bg-[#607A1A] [&_img]:max-w-[calc(100%+56px)] [&_img]:-ml-7 xl:[&_img]:max-w-[calc(100%+96px)] xl:[&_img]:-ml-12",
+  "bg-[#F6FCFD]",
+];
+
+const valueCollection = await getCollection("values");
+
+const values = [];
+
+for (const value of valueCollection) {
+  const { Content } = await value.render();
+  values.push({
+    Content,
+    title: value.data.title,
+    img: {
+      path: value.data.imgPath,
+      alt: value.data.imgAlt,
+    },
+  });
+}
+---
+
+<section
+  class="grid grid-cols-6 gap-x-3 gap-y-7 md:gap-y-12 px-3 md:grid-cols-12 md:gap-x-7 md:px-7 max-w-[1280px] mx-auto my-24"
+>
+  <h2
+    class="col-span-6 md:col-span-10 md:col-start-2 text-5xl lg:text-[74px] lg:leading-[84px] font-medium text-[#3C3843] max-md:max-w-[470px] mx-auto"
+  >
+    Creating Value Through The Power Of Software
+  </h2>
+  {
+    values.map((value, idx) => {
+      return (
+        <ValueCard
+          idx={idx + 1}
+          title={value.title}
+          content={value.Content}
+          styles={styles[idx]}
+          onDark={idx === 1}
+          img={value.img}
+        />
+      );
+    })
+  }
+</section>
