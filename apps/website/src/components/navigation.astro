@@ -2,27 +2,35 @@
   class="fixed
     m-auto
     mx:0
+    max-w-[100vw]
     top-0
     w-full
     md:mx-2
-    md:top-4
+    md:top-1
     md:w-auto
+    md:[&_[data-navhidden]]:duration-700 
+    md:[&_[data-navhidden]]:!overflow-hidden
+    md:[&_[data-navhidden]]:ease-in-out
+    md:[&_[data-navhidden='false']]:w-0 
+    md:[&_[data-navhidden='false']]:px-0
+    md:[&_[data-navhidden='false']]:mx-0 
+    md:[&_[data-navhidden='']]:max-w-48
     z-50"
 >
   <nav
     class="bg-[#3C3843E5]
-        flex
-        items-center
-        justify-between
-        py-3
-        px-2
-        sm:px-4
-        md:rounded-l-[3rem]
-        md:rounded-r-lg
-        overflow-hidden"
+      flex
+      items-center
+      justify-between
+      py-[13px]
+      px-2
+      sm:px-[15px]
+      md:rounded-l-[3rem]
+      md:rounded-r-lg
+      overflow-hidden"
   >
     <a
-      class="hidden sm:flex sm:items-center"
+      class=" sm:flex sm:items-center"
       href="/"
       aria-label="Crocoder Logo"
     >
@@ -38,14 +46,25 @@
         height={24}
         alt="Crocoder Text Logo"
         src="./images/crocoder-text.svg"
-        class="pl-2 hidden h-6 w-auto md:max-w-48 md:block md:duration-1000"
-        id="crocoder-logo"
+        class="pl-2 hidden h-6 w-auto md:block
+          md:[&[data-navhidden='false']]:opacity-0
+          md:[&[data-navhidden='']]:opacity-100
+        "
+        data-navhidden
       />
     </a>
     <ul
-      id="nav-list"
-      class="flex gap-4 mx-2 md:mx-16 md:max-w-48 md:duration-1000"
+      data-navhidden
+      class="flex gap-4 mx-2 md:ml-20 md:w-auto relative top-1"
     >
+    <li>
+      <a
+        class="font-medium text-lg text-[#E8E8E8] hover:text-white whitespace-nowrap"
+        href="/blog"
+      >
+        For CTOs
+      </a>
+    </li>
       <li>
         <a
           class="font-medium text-lg text-[#E8E8E8] hover:text-white"
@@ -58,10 +77,18 @@
     <ul class="flex gap-4">
       <li>
         <a
-          class="flex font-medium h-[45px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-[#545664] text-[#ffffff] hover:opacity-90"
-          href="#book-a-call">Book a call</a
+          class="flex font-medium h-[45px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-[#545664] text-[#ffffff] hover:opacity-90	ml-4
+          md:[&[data-navhidden='false']]:!w-auto
+          md:[&[data-navhidden='false']]:!px-4 
+          md:[&[data-navhidden='false']]:opacity-0
+          md:[&[data-navhidden='']]:opacity-100
+          md:[&[data-navhidden='']]:delay-100
+          "
+          data-navhidden="false"
+          href="#book-a-call-section"
+        >Book a call</a
         >
-        <li>
+        <li class="hidden">
           <a
             class="flex font-medium h-[45px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-[#FEC343] text-[#1E1A1A] hover:opacity-90"
             href="/contact"
@@ -98,38 +125,33 @@
     };
   }
 
-  const down = "md:!max-w-0 md:!mx-0 md:overflow-hidden".split(" ");
-  const up = "md:max-w-48".split(" ");
-
-  const logo = document.querySelector("#crocoder-logo");
-  const navList = document.querySelector("#nav-list");
-
   let lastScrollTop = 0;
+  const allDataHidden = document.querySelectorAll("[data-navhidden]");
+
+  function invertDataAttributte  () {
+    allDataHidden.forEach(e => {
+        if (e.getAttribute("data-navhidden") === "")
+        e.setAttribute("data-navhidden", "false")
+      else 
+      e.setAttribute("data-navhidden", "")
+      })
+  }
 
   function handleScroll() {
     let currentScrollTop = window.scrollY || document.documentElement.scrollTop;
-
+    
     if (
       currentScrollTop > lastScrollTop &&
-      !logo.classList.contains(...down) &&
-      !navList.classList.contains(...down)
+      allDataHidden[0].getAttribute("data-navhidden") === ''
     ) {
-      logo.classList.add(...down);
-      logo.classList.remove(...up);
-
-      navList.classList.add(...down);
-      navList.classList.remove(...up);
+      invertDataAttributte();
     } else if (
       currentScrollTop <= lastScrollTop &&
-      !logo.classList.contains(...up) &&
-      !navList.classList.contains(...up)
+      allDataHidden[0].getAttribute("data-navhidden") === "false"
     ) {
-      logo.classList.remove(...down);
-      logo.classList.add(...up);
-
-      navList.classList.remove(...down);
-      navList.classList.add(...up);
-    }
+      
+      invertDataAttributte();
+    } 
 
     lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
   }

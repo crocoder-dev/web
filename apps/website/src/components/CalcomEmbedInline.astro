@@ -52,7 +52,7 @@ const {
         p(cal, ar);
       };
   })(window, "https://app.cal.com/embed/embed.js", "init");
-  Cal("init", "quickchat", { origin: "https://cal.com" });
+  Cal("init", "hello", { origin: "https://cal.com" });
 
   Cal.ns[eventType]("inline", {
     elementOrSelector,
@@ -61,7 +61,25 @@ const {
   });
 
   Cal.ns[eventType]("ui", {
-    styles: { branding: { brandColor: "#000000" } },
+    styles: { 
+      body: {
+        background: "transparent",
+      },
+      branding: {
+        brandColor: "#FEB534",
+        lightColor: "#494545",
+        lighterColor: "#4c4848",
+        lightestColor: "#7c7777",
+        highlightColor: "#1E1A1A",
+        medianColor: "#1E1A1A",
+      },
+      enabledDateButton: {
+        backgroundColor: "rgba(254, 181, 52, 0.65)", //"rgba(254, 181, 52, 0.40)",
+      },
+      disabledDateButton: {
+        backgroundColor: "rgba(232,232,232,0.30)",
+      },
+    },
     hideEventTypeDetails,
     layout,
   });

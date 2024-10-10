@@ -3,3 +3,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+* {
+  font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
+}
+
+:root {
+  --max-width: 1280px;
+}
+
+.fadeInUp {
+  animation: fade-in-up 1.5s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+@keyframes fade-in-up {
+  0% { opacity: 0; transform: translateY(-100%); };
+  100% { opacity: 1 !important; transform: translateY(0); };
+}

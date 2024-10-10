@@ -1,0 +1,16 @@
+---
+interface Props {
+  idx?: string;
+  className?: string;
+}
+
+const { idx, className } = Astro.props;
+---
+
+<h1
+  id={idx}
+  class={`text-5xl lg:text-6xl lg:leading-[84px] font-medium capitalize text-[#3C3843]
+    ${className} `}
+>
+    <slot />
+</h1>
