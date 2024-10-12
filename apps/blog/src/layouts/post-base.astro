@@ -1,6 +1,6 @@
 ---
 import Base from "../layouts/base.astro";
-import BlogJSONLD from "../layouts/blog-jsonld.astro";
+import JsonldMeta from "../layouts/jsonld-meta.astro";
 import { Picture } from "astro:assets";
 import { markdownify } from "../ify";
 import { getCollection } from "astro:content";
@@ -31,7 +31,7 @@ const dateObj = new Date(createdAt);
 ---
 
 <Base>
-  <BlogJSONLD {...Astro.props} />
+  <JsonldMeta slot={"blog-meta"} {...Astro.props} />
   <section class="py-20">
     <div class="container max-w-[1000px] px-4 md:px-8">
       <article class="row justify-center">
