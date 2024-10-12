@@ -4,7 +4,7 @@ description: ""
 createdAt: 1645837875000
 updatedAt: 1645837875000
 authors: ["david"]
-category: "AWS"
+category: "After Work Talks"
 editors: ["velimir"]
 abstract: ""
 image: "/images/you-should-not-measure-developer-productivity-response-to-mckinsey.png"

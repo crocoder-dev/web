@@ -4,7 +4,7 @@ description: ""
 createdAt: 1645837875000
 updatedAt: 1645837875000
 authors: ["danica"]
-category: "AWS"
+category: "Design System / Component Library"
 editors: ["velimir"]
 abstract: ""
 image: "/images/what-should-be-included-in-an-internal-component-library.jpg"

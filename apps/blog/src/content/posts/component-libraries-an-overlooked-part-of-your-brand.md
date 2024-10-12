@@ -6,7 +6,7 @@ updatedAt: 1645837875000
 authors: ["danica"]
 category: "AWS"
 editors: ["velimir"]
-abstract: ""
+abstract: "Design System / Component Library"
 image: "/images/component-libraries-an-overlooked-part-of-your-brand.jpg"
 draft: false
 ---

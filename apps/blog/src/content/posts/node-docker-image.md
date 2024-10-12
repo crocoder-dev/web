@@ -4,7 +4,7 @@ description: ""
 createdAt: 1645837875000
 updatedAt: 1645837875000
 authors: ["david"]
-category: "AWS"
+category: "Docker"
 editors: ["velimir"]
 abstract: ""
 image: "/images/node-docker-image.png"
