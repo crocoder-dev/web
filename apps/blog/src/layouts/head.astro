@@ -14,6 +14,15 @@ const {
   description,
 } = Astro.props;
 
+const formatDate = (timestamp: number): string => {
+  const d = new Date(timestamp);
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  
+  return `${year}-${month}-${day}`;
+}
+
 const sufix = import.meta.env.DEV ? "" : "blog/";
 
 const siteUrl = import.meta.env.SITE_URL + sufix;
@@ -24,6 +33,9 @@ const currentPost = posts.find(post => post.slug === slug);
 const articleBodyMarkdown = currentPost ? currentPost.body : "";
 const articleBodyHTML = marked.parse(articleBodyMarkdown);
 const articleBody = (articleBodyHTML as string || '').replace(/<[^>]+>/g, '');
+
+const dateCreated = formatDate(date);
+const dateModified = formatDate(updatedAt);
 
 const schema = {
   "@context": "https://schema.org",
@@ -53,9 +65,9 @@ const schema = {
       "url": "/croc-nav.svg"
     }
   },
-  dateCreated: date,
-  datePublished: date,
-  dateModified: updatedAt,
+  dateCreated: dateCreated,
+  datePublished: dateCreated,
+  dateModified: dateModified,
 };
 
 ---
