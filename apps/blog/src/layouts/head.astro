@@ -15,7 +15,6 @@ const {
 } = Astro.props;
 
 const formatDate = (timestamp: number): string => {
-  console.log('timestap',timestamp)
   const d = new Date(timestamp);
   const year = d.getFullYear();
   const month = String(d.getMonth() + 1).padStart(2, '0');
