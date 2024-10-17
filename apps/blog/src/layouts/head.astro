@@ -5,7 +5,7 @@ import { marked } from 'marked';
 const {
   title,
   image,
-  date,
+  createdAt,
   authorName,
   abstract,
   updatedAt,
@@ -15,6 +15,7 @@ const {
 } = Astro.props;
 
 const formatDate = (timestamp: number): string => {
+  console.log('timestap',timestamp)
   const d = new Date(timestamp);
   const year = d.getFullYear();
   const month = String(d.getMonth() + 1).padStart(2, '0');
@@ -32,9 +33,9 @@ const currentPost = posts.find(post => post.slug === slug);
 
 const articleBodyMarkdown = currentPost ? currentPost.body : "";
 const articleBodyHTML = marked.parse(articleBodyMarkdown);
-const articleBody = (articleBodyHTML as string || '').replace(/<[^>]+>/g, '');
+const articleBody = (articleBodyHTML as string).replace(/<[^>]+>/g, '');
 
-const dateCreated = formatDate(date);
+const dateCreated = formatDate(createdAt);
 const dateModified = formatDate(updatedAt);
 
 const schema = {
