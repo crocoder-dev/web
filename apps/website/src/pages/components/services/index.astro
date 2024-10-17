@@ -7,30 +7,48 @@ const styles = [
 ];
 ---
 
-<div id='services' class="w-full">
-  <div
-    class='h-screen overflow-hidden sticky top-0 max-w-[1440px] mx-auto'
-  >
+<div id='services' class='w-full border border-blue-500'>
+  <div class='h-screen overflow-hidden sticky top-0 max-w-[1440px] mx-auto'>
     <div
       id='first'
       data-show='true'
-      class='bg-yellow-500 w-full [&[data-show="true"]]:opacity-100 transition-opacity duration-300 absolute top-[calc(100vh-560px)] ease-in-out opacity-0 rounded-2xl h-screen'
+      class='bg-yellow-500/80 p-7 w-full [&[data-show="true"]]:opacity-100 transition-opacity duration-300 absolute top-[calc(100vh-560px)] ease-in-out opacity-0 rounded-2xl h-screen'
     >
+      <div class='bg-neutral-500 h-16 w-full rounded-md'></div>
+      <div class='flex gap-7 mt-7'>
+        <div class='grow rounded h-[400px] bg-neutral-500'></div>
+        <div class='grow rounded h-[400px] bg-neutral-500'></div>
+      </div>
     </div>
     <div
       data-show='true'
-      class='bg-purple-500 w-full [&[data-show="true"]]:opacity-100 transition-opacity duration-300 absolute top-[calc(100vh-560px+140px)] ease-in-out opacity-0 rounded-2xl h-screen'
+      class='bg-purple-500/80 p-7 w-full [&[data-show="true"]]:opacity-100 transition-opacity duration-300 absolute top-[calc(100vh-560px+140px)] ease-in-out opacity-0 rounded-2xl h-screen'
     >
+      <div class='bg-neutral-500 h-16 w-full rounded-md'></div>
+      <div class='flex gap-7 mt-7'>
+        <div class='grow rounded h-[400px] bg-neutral-500'></div>
+        <div class='grow rounded h-[400px] bg-neutral-500'></div>
+      </div>
     </div>
     <div
       data-show='true'
-      class='bg-orange-500 w-full [&[data-show="true"]]:opacity-100 transition-opacity duration-300 absolute top-[calc(100vh-560px+140px+140px)] ease-in-out opacity-0 rounded-2xl h-screen'
+      class='bg-orange-500/80 p-7 w-full [&[data-show="true"]]:opacity-100 transition-opacity duration-300 absolute top-[calc(100vh-560px+140px+140px)] ease-in-out opacity-0 rounded-2xl h-screen'
     >
+      <div class='bg-neutral-500 h-16 w-full rounded-md'></div>
+      <div class='flex gap-7 mt-7'>
+        <div class='grow rounded h-[400px] bg-neutral-500'></div>
+        <div class='grow rounded h-[400px] bg-neutral-500'></div>
+      </div>
     </div>
     <div
       data-show='true'
-      class='bg-fuchsia-500 w-full [&[data-show="true"]]:opacity-100 transition-opacity duration-300 absolute top-[calc(100vh-560px+140px+140px+140px)] ease-in-out opacity-0 rounded-2xl h-screen'
+      class='bg-fuchsia-500/80 p-7 w-full [&[data-show="true"]]:opacity-100 transition-opacity duration-300 absolute top-[calc(100vh-560px+140px+140px+140px)] ease-in-out opacity-0 rounded-2xl h-screen'
     >
+      <div class='bg-neutral-500 h-16 w-full rounded-md'></div>
+      <div class='flex gap-7 mt-7'>
+        <div class='grow rounded h-[400px] bg-neutral-500'></div>
+        <div class='grow rounded h-[400px] bg-neutral-500'></div>
+      </div>
     </div>
     <!-- {
       services.map((value, idx) => (
@@ -47,61 +65,123 @@ const styles = [
   </div>
 </div>
 <script is:inline>
-  console.log("HELLO")
   const servicesWrapper = document.getElementById('services');
-  const allHiddenElems = document.querySelectorAll('[data-show]');
+  const cards = document.querySelectorAll('[data-show]');
   const screenHeight = window.innerHeight;
+  const cardsIndentation = 140;
 
-  const r = {};
-  let wrapperHeight = 4 * 140;
+  const getCardsAnimationData = () => {
+    let animationPos = [];
+    cards.forEach((_, i) => {
+      const prev = cards[i - 1];
+      const startHeight = cards.length * cardsIndentation;
+      if (prev) {
+        const prevPos = animationPos[i - 1];
 
-  allHiddenElems.forEach((el, idx) => {
-    if (idx === 0) {
-      r[idx] = {
-        distanceFromTop: screenHeight - 4 * 140,
-        top: 0,
-      };
-    } else {
-      const prev = r[idx - 1];
-      r[idx] = {
-        distanceFromTop: prev.distanceFromTop + 140,
-        top: prev.distanceFromTop + prev.top,
-      };
-    }
-    wrapperHeight += r[idx].top;
-  });
+        animationPos.push({
+          start: prevPos.end,
+          distance: prevPos.distance + cardsIndentation,
+          end: prevPos.end + (prevPos.distance + cardsIndentation),
+        });
+      } else {
+        animationPos.push({
+          start: 0,
+          distance: screenHeight - startHeight,
+          end: screenHeight - startHeight,
+        });
+      }
+    });
 
-  servicesWrapper.style.height = `${wrapperHeight}px`;
+    return {
+      animationPos,
+      animationFieldHeight: animationPos[animationPos.length - 1].end,
+    };
+  };
 
+  const { animationPos, animationFieldHeight } = getCardsAnimationData();
+
+  servicesWrapper.style.height = `${animationFieldHeight + screenHeight}px`;
   let lastScrollTopPos = 0;
 
-  window.addEventListener('scroll', () => {
+  const setupInitPositions = () => {
+    const servicesWrapperBoundingRect = servicesWrapper.getBoundingClientRect();
+    const fromTop = servicesWrapperBoundingRect.top * -1;
+
+    // Do nothing if top edge of animated section is below viewport. Leave elements at bottom position
+    if (servicesWrapperBoundingRect.top > screenHeight) {
+      return;
+    }
+
+    animationPos.forEach((pos, i) => {
+      const cardToPosition = cards[i];
+
+      if (!cardToPosition) {
+        return;
+      }
+
+      // if viewport is below end range of animation set element to top position
+      if (fromTop > pos.start && fromTop > pos.end) {
+        cardToPosition.style.transform = `translateY(-${pos.distance}px)`;
+        return;
+      }
+
+      // if viewport is in range of animation set element to correct position
+      if (fromTop >= pos.start && fromTop < pos.end) {
+        cardToPosition.style.transform = `translateY(${pos.start - fromTop}px)`;
+      }
+    });
+  };
+
+  // Delay init position setup in case there is a smooth scroll behavior at init page render
+  setTimeout(() => {
+    setupInitPositions();
+  }, 200);
+
+  const handleAnimationOnScroll = () => {
     const currentScrollTop = window.scrollY;
     const servicesWrapperBoundingRect = servicesWrapper.getBoundingClientRect();
+    const fromTop = servicesWrapperBoundingRect.top * -1;
+    const isScrollDown = lastScrollTopPos < currentScrollTop;
 
-    if (
-      servicesWrapperBoundingRect.top <= 0 &&
-      lastScrollTopPos < currentScrollTop
-    ) {
-      const fromTop = servicesWrapperBoundingRect.top * -1;
-      allHiddenElems.forEach((elem, idx) => {
-        const elemBoundingRect = elem.getBoundingClientRect();
+    // Start animation 100px before in case there is a fast scroll up so elements can catch that up and adjust
+    // End animation screenHeight value after in case of fast scroll down (in this case click and smooth scroll to book session section)
+    if (fromTop < 0 - 100 || fromTop > animationFieldHeight + screenHeight) {
+      return;
+    }
 
-        const isPrevOnTop =
-          idx === 0 || allHiddenElems[idx - 1].getBoundingClientRect().top <= 0;
-        if (isPrevOnTop && elemBoundingRect.top > 0) {
-          console.log(`translateY(-${fromTop - r[idx].top}px)`, idx);
-          elem.style.transform = `translateY(-${fromTop - r[idx].top}px)`;
+    if (isScrollDown) {
+      cards.forEach((el, i) => {
+        const startPos = animationPos[i].start;
+        const endPos = animationPos[i].end;
+
+        if (startPos <= fromTop && endPos > fromTop) {
+          el.style.transform = `translateY(${startPos - fromTop}px)`;
+        }
+        // Adjust element top position after animation range in case we didn't catch last few px.
+        // This can be the case while fast scrolling
+        if (startPos <= fromTop && endPos < fromTop) {
+          el.style.transform = `translateY(${-animationPos[i].distance}px)`;
+        }
+      });
+    } else {
+      cards.forEach((el, i) => {
+        const startPos = animationPos[i].start;
+        const endPos = animationPos[i].end;
+
+        if (startPos <= fromTop && animationPos[i].end > fromTop) {
+          const startAt = endPos - startPos;
+          el.style.transform = `translateY(-${startAt - (endPos - fromTop)}px)`;
+        }
+        // Adjust element bottom position after animation range in case we didn't catch last few px.
+        // This can be the case while fast scrolling
+        if (endPos > fromTop && startPos > fromTop) {
+          el.style.transform = `translateY(0px)`;
         }
       });
     }
 
-   /*  if (
-      servicesWrapperBoundingRect.bottom >= screenHeight &&
-      lastScrollTopPos > currentScrollTop
-    ) {
-      console.log('Going up and in view');
-    } */
     lastScrollTopPos = currentScrollTop <= 0 ? 0 : currentScrollTop;
-  });
+  };
+
+  window.addEventListener('scroll', handleAnimationOnScroll);
 </script>
