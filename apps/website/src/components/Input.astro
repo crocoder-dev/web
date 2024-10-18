@@ -1,0 +1,70 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import classnames from 'classnames';
+
+interface Props {
+  inputProps: HTMLAttributes<'input'>;
+  labelProps: HTMLAttributes<'label'>;
+  label: string,
+  classNames?: string;
+}
+
+const { classNames, inputProps, labelProps, label } = Astro.props;
+---
+
+<div
+  class={classnames(
+    `
+    relative pt-6 overflow-hidden
+    after:absolute
+    after:h-[44px]
+    after:top-6
+    after:rounded-[2px]
+    after:w-[calc(100%-2px)]
+    after:bg-[#F6FCFD]
+    after:ml-[1px]
+    rounded-[2px]
+    z-[2]
+    flex`,
+    classNames
+  )}
+>
+  <input
+    {...inputProps}
+    class='rounded-[2px]
+        border
+        border-transparent
+        bg-transparent
+        placeholder-transparent
+        px-4 py-2.5
+        peer/first-name
+        relative z-[4]
+        ml-[1px]
+        w-[calc(100%-2px)]
+        focus:outline-0
+        focus:ring-0
+        focus:border-transparent autofill:!bg-transparent autofill:border-none'
+  />
+  <label
+    {...labelProps}
+    class='text-[#3C3843]
+        text-sm
+        absolute
+        top-0
+        translate-y-0
+        transition-transform
+        translate-x-0
+        peer-placeholder-shown/first-name:translate-y-[37px]
+        peer-placeholder-shown/first-name:translate-x-[17px]
+        peer-placeholder-shown/first-name:text-base
+        z-[3]'
+    >{label}</label
+  >
+  <div
+    class='absolute w-full h-[46px] rounded-[2px] bg-[#424c6d50] top-[23px] flex overflow-hidden items-center justify-center peer-focus/first-name:[&>span]:scale-[20]'
+  >
+    <span
+      class='h-5 w-5 rounded-full bg-[#67a807] scale-0 transition-transform duration-[400ms]'
+    ></span>
+  </div>
+</div>
