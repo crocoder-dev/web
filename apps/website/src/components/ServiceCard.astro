@@ -1,6 +1,6 @@
 ---
 import type { ImageMetadata } from 'astro';
-/* import { Image } from 'astro:assets'; */
+import { Image } from 'astro:assets';
 import classnames from 'classnames';
 
 interface Props {
@@ -19,9 +19,9 @@ const { idx, title, content, styles, imgPath, imgAlt, onDark, classNames } =
 
 const Content = content;
 
-/* const images = import.meta.glob<{ default: ImageMetadata }>(
+const images = import.meta.glob<{ default: ImageMetadata }>(
   '/src/assets/images/services/*.png'
-); */
+);
 ---
 
 <div
@@ -73,7 +73,7 @@ const Content = content;
     <div
       class='flex flex-col justify-center col-span-6 row-start-3 lg:justify-start lg:col-span-1 lg:row-start-2'
     >
-      <!-- {images[imgPath] && <Image src={images[imgPath]()} alt={imgAlt} />} -->
+      {images[imgPath] && <Image src={images[imgPath]()} alt={imgAlt} />}
     </div>
     <div
       class='flex flex-col lg:flex-col col-span-6 row-start-2 lg:col-span-1 lg:col-start-2 lg:row-span-2'
