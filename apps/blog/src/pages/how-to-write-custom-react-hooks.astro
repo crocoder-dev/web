@@ -2,6 +2,7 @@
 import { getEntry } from "astro:content";
 import Post from "../layouts/post.astro";
 import { getCollection } from "astro:content";
+import Content, { type ContentItem } from "../layouts/content.astro";
 
 const authorCollection = await getCollection("authors");
 
@@ -96,6 +97,29 @@ const useDebouncedSearchSolution = await getEntry(
 );
 const { Content: UseDebouncedSearchSolution } =
   await useDebouncedSearchSolution!.render();
+
+const contentList: ContentItem[] = [
+  {
+    title: "useMousePosition",
+    href: "#usemouseposition"
+  },
+  {
+    title: "useClickCounter",
+    href: "#useclickcounter"
+  },
+  {
+    title: "useClickTracker",
+    href: "#useclicktracker"
+  },
+  {
+    title: "useFetchData",
+    href: "#usefetchdata"
+  },
+  {
+    title: "useDebouncedSearch",
+    href: "#usedebouncedsearch"
+  }
+];
 ---
 
 <Post
@@ -109,6 +133,7 @@ const { Content: UseDebouncedSearchSolution } =
   category={data.category}
 >
   <Intro />
+  <Content contentList={contentList} />
   {/* Contents */}
   <UseMousePosition />
   {/* Demo */}
