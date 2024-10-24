@@ -1,12 +1,12 @@
 ---
 title: "Promises - Code Exercises"
-description: ""
-createdAt: 1645837875000
-updatedAt: 1645837875000
+description: "Explore JavaScript Promises with exercises on random resolution, chained arithmetic, parallel data fetching, fastest response, and cancellation. Improve your async skills with concise code and clear explanations. Learn effective methods for handling promises, simplifying errors, and creating resilient, maintainable code."
+createdAt: 1705592903000
+updatedAt: 1705592903000
 authors: ["david"]
 category: "Learn Javascript"
 editors: ["velimir"]
-abstract: ""
+abstract: "This article dives into the world of JavaScript Promises with hands-on exercises, exploring essential concepts like random resolution, chained arithmetic operations, and parallel data fetching. The blog post equips developers with practical solutions for managing asynchronous tasks efficiently, streamlining error handling, and enhancing code readability. The blog includes a unique interview question by ThePrimeagen that challenges the reader to design an asynchronous request queue with a three-task concurrency limit."
 image: "/images/promises-exercises.png"
 draft: false
 ---

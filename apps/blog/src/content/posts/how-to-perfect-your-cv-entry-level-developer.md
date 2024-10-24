@@ -1,12 +1,12 @@
 ---
 title: "How to Perfect Your CV as an Entry-level Developer"
-description: ""
-createdAt: 1645837875000
-updatedAt: 1645837875000
+description: "If you are looking for a complete change in your profession or are fresh out of university and searching for your first job in the world's fastest-growing industry, this video is for you!"
+createdAt: 1636471205000
+updatedAt: 1636471205000
 authors: ["david"]
 category: "After Work Talks"
 editors: ["velimir"]
-abstract: ""
+abstract: "In this episode of After Work Talks, we reviewed a CV from an actual entry-level software developer and provided helpful tips on how to improve your resume writing skills. "
 image: "/images/how-to-perfect-your-cv-entry-level-developer.png"
 draft: false
 ---

@@ -1,12 +1,12 @@
 ---
 title: "What should be included in an internal component library"
-description: ""
-createdAt: 1645837875000
-updatedAt: 1645837875000
+description: "Knowing which components should be included in an internal component library is an important skill for developers to have. Our senior web development consultant Danica Pivalica Abram provides some helpful tips that can steer you in the right direction and help you decide if a component should be part of your internal component library."
+createdAt: 1665153811570
+updatedAt: 1667171280000
 authors: ["danica"]
 category: "Design System / Component Library"
 editors: ["velimir"]
-abstract: ""
+abstract: "The question of which components should be included in an internal component library is a tough one to answer. Because component libraries are usually used and maintained by several teams with a lot of autonomy over coding styles, developers are generally reluctant to make decisive decisions - worrying about the overall impact their choices might have. The following article contains some tips that can help you decide whether or not a component should be included in your internal component library. One of the first things you should do is to focus on your design system in order to gain clarity when determining component implementation, and if there is no design system, you should take a look at the product designs. It also makes sense to check other existing component libraries to check which components exist in their codebase and to examine their API. You don't need to implement every component and every behavior from scratch. If most components from a third-party suit your case, use whatever you can. Utilize Existing Design Pattern and Widget Guides because that can show you which components are frequent patterns or widgets that probably should be included. Make sure you and everyone on your team understand that the internal component library is not a shared folder. Focus on the purpose of the component rather than reusability. Make sure to integrate the expertise you have in the domain as well as the knowledge of the teams using it. The best internal component libraries are the ones that accommodate the developers that are using them to build products."
 image: "/images/what-should-be-included-in-an-internal-component-library.jpg"
 draft: false
 ---

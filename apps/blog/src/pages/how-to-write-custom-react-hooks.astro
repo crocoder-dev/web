@@ -20,9 +20,13 @@ const editors = authorCollection.filter((editor) =>
 
 export const data = {
   title: "How to write custom React hooks? - Code Exercises",
+  description:
+    "Custom React hooks are user-defined functions that allow developers to reuse stateful logic and side effects from React components in a clean and reusable way. Try to solve the given exercises!",
   image: "/images/how-to-write-custom-react-hooks.png",
   createdAt: 1675873546123,
   updatedAt: 1675873546123,
+  abstract:
+    "Unlock the full potential of **React** with custom hooks! In this blog post, we'll go through some exercises that can help you level up your react skills by writing custom hooks in **TypeScript**. From state management to performance optimization, you'll learn how to create reusable logic for your React components and make your code more efficient and scalable. Every exercise has a brief description of the problem, starting code and relevant links. Try to solve the problems without taking a peek at the solution.",
   category: "Learn Javascript",
 };
 
@@ -127,6 +131,8 @@ const contentList: ContentItem[] = [
   image={data.image}
   createdAt={data.createdAt}
   updatedAt={data.updatedAt}
+  description={data.description}
+  abstract={data.abstract}
   author={authors[0]}
   editor={editors[0]}
   slug={slug}
