@@ -1,7 +1,7 @@
 ---
 import PostBase from "./post-base.astro";
 
-const { title, image, createdAt, updatedAt, author, slug, description } = Astro.props;
+const { title, image, createdAt, updatedAt, author, slug, description, abstract } = Astro.props;
 const { name: authorName, image: authorImage } = author.data;
 const { Content: AuthorContent } = await author.render();
 ---
@@ -14,6 +14,7 @@ const { Content: AuthorContent } = await author.render();
   updatedAt={updatedAt}
   title={title}
   description={description}
+  abstract={abstract}
   image={image}
   slug={slug}
 >

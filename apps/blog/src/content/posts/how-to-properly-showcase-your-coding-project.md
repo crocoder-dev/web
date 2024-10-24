@@ -1,12 +1,12 @@
 ---
 title: "How to Properly Showcase Your Coding Projects"
-description: ""
-createdAt: 1645837875000
-updatedAt: 1645837875000
+description: "If you are looking for a complete change in your profession or are fresh out of university and searching for your first job in the world's fastest-growing industry, this video is for you!"
+createdAt: 1644227110000
+updatedAt: 1644227110000
 authors: ["david"]
 category: "After Work Talks"
 editors: ["velimir"]
-abstract: ""
+abstract: "In this episode of After Work Talks, we reviewed a CV and a GitHub profile from an actual entry-level software developer and provided helpful tips on how to improve your project writing skills."
 image: "/images/how-to-properly-showcase-your-coding-projects.jpg"
 draft: false
 ---

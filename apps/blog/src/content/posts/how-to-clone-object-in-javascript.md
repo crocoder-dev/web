@@ -1,12 +1,12 @@
 ---
 title: "structuredClone() - the simplest way to clone an object in JavaScript"
-description: ""
-createdAt: 1645837875000
-updatedAt: 1645837875000
+description: "This are the simplest ways to clone in JavaScript. Shallow cloning is achieved with the object spread operator, while deep cloning is done with JSON.stringify() and JSON.parse(). Deep cloning has limitations and can be resource-intensive. The newer structuredClone() method can handle more complex objects, but it's not supported in all browsers."
+createdAt: 1635894000000
+updatedAt: 1695854795815
 authors: ["david"]
 category: "Learn Javascript"
 editors: ["velimir"]
-abstract: ""
+abstract: "This article explains the concepts of shallow and deep cloning in JavaScript. Shallow cloning creates a new object based on an existing object but only copies the properties of the original object at the top level, whereas deep cloning copies all the nested objects and their properties. The article describes different methods for shallow and deep cloning, such as the object spread operator, JSON.stringify() and JSON.parse(), and the newer structuredClone() method. It also highlights the limitations of these methods and provides some guidance on when to use each one."
 image: "/images/how-to-clone-object-in-javascript.png"
 draft: false
 ---

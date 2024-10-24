@@ -1,12 +1,12 @@
 ---
 title: "Map, Filter, Reduce - Code Exercises"
-description: ""
-createdAt: 1645837875000
-updatedAt: 1645837875000
+description: "Map, filter and reduce are the most useful array methods to manipulate arrays and often the hardest to master. Try to solve the given exercises!"
+createdAt: 1619474400000
+updatedAt: 1700594726985
 authors: ["david"]
 category: "Learn Javascript"
 editors: ["velimir"]
-abstract: ""
+abstract: "It's really hard to test your programming knowledge after you have completed a tutorial or a lecture. We have prepared some exercises to help out beginner devs to solidify their understanding of Map, Filter, Reduce, and other useful array methods. Every exercise has a brief description of the problem, starting code, links to relevant MDN docs, and expected results. Try to solve the problems without taking a peek at the solution."
 image: "/images/map-filter-reduce-exercises.png"
 draft: false
 ---

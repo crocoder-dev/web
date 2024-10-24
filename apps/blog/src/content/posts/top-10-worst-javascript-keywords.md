@@ -1,12 +1,12 @@
 ---
 title: "Top 10 worst JavaScript keywords"
-description: ""
-createdAt: 1645837875000
-updatedAt: 1645837875000
+description: "A who's who of coding nightmares that will make you miss Internet Explorer 7. Discover these 'gems' and their quirky charms, and learn how to tame them into submission. Perfect for a laugh, or a cry, depending on your debugging skills!"
+createdAt: 1700742891471
+updatedAt: 1700742891471
 authors: ["david"]
 category: "Learn Javascript"
 editors: ["velimir"]
-abstract: ""
+abstract: "This article presents a critical examination of the most problematic JavaScript keywords that often lead to bugs and frustration among developers. The author shares personal experiences and insights into the quirks of these keywords, especially when dealing with legacy issues like Internet Explorer 7 support. The keywords critiqued include instanceof, loose equality (== and !=), delete, new Function, void, this, arguments, var, eval, and with. Each keyword is discussed in detail, outlining its limitations, unexpected behaviors, and why it can be considered one of the worst features of JavaScript. The article also provides alternative methods and best practices to avoid the pitfalls associated with these keywords, ultimately guiding developers towards writing cleaner and more maintainable JavaScript code."
 image: "/images/top-10-worst-javascript-keywords.png"
 draft: false
 ---
