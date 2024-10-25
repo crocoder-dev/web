@@ -1,36 +1,45 @@
 ---
 import Field from './Field.astro';
+import formContent from '../content/contact-us/form.json';
+import '../styles/loader.css';
 ---
 
 <form
-  class='bg-[#F6FCFD] rounded-xl mx-auto col-span-6 md:col-span-12 lg:mx-0 p-7 lg:col-span-6 xl:col-span-5 shadow-[0_5px_20px] shadow-neutral-500/25 flex flex-col gap-2 max-w-[530px]'
+  class='bg-[#F6FCFD] group/contact-us rounded-xl mx-auto col-span-6 md:col-span-12 lg:mx-0 p-7 pb-6 lg:col-span-6 xl:col-span-5 shadow-[0_5px_20px] shadow-neutral-500/25 flex flex-col gap-2 max-w-[530px]'
   id='contact-us-form'
+  novalidate
 >
   <Field
     isTextArea={false}
     inputProps={{
       name: 'form-full-name',
       maxlength: '100',
-      placeholder: 'Full Name *',
+      placeholder: formContent.fullname.label,
+      required: true,
+      minlength: 3,
     }}
     labelProps={{
       for: 'form-full-name',
       'aria-hidden': 'false',
     }}
-    label='Full Name *'
+    label={formContent.fullname.label}
+    errorText={formContent.fullname.minimalLength}
   />
   <Field
     isTextArea={false}
     inputProps={{
       name: 'form-email',
       maxlength: '100',
-      placeholder: 'E-Mail *',
+      placeholder: formContent.email.label,
+      type: 'email',
+      required: true,
     }}
     labelProps={{
       for: 'form-email',
       'aria-hidden': 'false',
     }}
-    label='E-Mail *'
+    label={formContent.email.label}
+    errorText={formContent.email.invalidEmail}
   />
   <div>
     <Field
@@ -38,132 +47,124 @@ import Field from './Field.astro';
       textAreaProps={{
         name: 'form-message',
         maxlength: 1500,
-        placeholder: 'Tell Us About Your Project *',
+        minlength: 1,
+        placeholder: formContent.projectInfo.label,
         id: 'form-message',
+        required: true,
       }}
       labelProps={{
         for: 'form-message',
         'aria-hidden': 'false',
       }}
-      label='Tell Us About Your Project *'
+      label={formContent.projectInfo.label}
+      errorText={formContent.projectInfo.requiredField}
     />
     <span class='text-[#3C3843] text-xs text-right mt-1 block'
       ><span id='char-counter'>0</span>/1500</span
     >
   </div>
-  <div class='flex gap-2.5 mt-4'>
-    <input
-      id='form-consent'
-      name='form-consent'
-      type='checkbox'
-      aria-describedby='form-consent-text'
-      class='h-4 w-4 rounded border-gray-300 text-[#67a807] focus:ring-[#67a807] mt-1 cursor-pointer'
-    />
-    <label
-      id='form-consent-text'
-      for='form-consent'
-      class='text-[#3C3843] [&>em]:not-italic [&_b]:text-[#67a807] [&>em]:font-semibold cursor-pointer'
+  <div class='mt-4'>
+    <div class="flex gap-2.5">
+      <input
+        id='form-consent'
+        name='form-consent'
+        type='checkbox'
+        aria-describedby='form-consent-text'
+        class='h-4 w-4 rounded border-gray-300 text-[#67a807] focus:ring-[#67a807] mt-1 cursor-pointer'
+      />
+      <label
+        set:html={formContent.consent}
+        id='form-consent-text'
+        for='form-consent'
+        class='text-[#3C3843] [&>em]:not-italic [&_b]:text-[#67a807] [&>em]:font-semibold cursor-pointer'
+      />
+    </div>
+    <button
+      id='form-submit-button'
+      class='rounded-md min-h-14 group-invalid/contact-us:pointer-events-none group-invalid/contact-us:opacity-30 bg-[#85a32a] px-[25px] w-full py-4 focus-visible:bg-[#67a807] focus:bg-[#67a807] focus-visible:outline-1 focus-visible:outline-[#3C3843] text-center text-[#3C3843] text-base font-medium mt-6'
     >
-      I give consent to <em><b>Cro</b>Coder</em> to use this information to contact
-      me
-    </label>
+      <span>{formContent.submit}</span>
+      <div class='loader mx-auto hidden'></div>
+    </button>
+    <p id='form-notification' class='text-sm min-h-5'></p>
   </div>
-  <button
-    class='rounded-md bg-[#85a32a] px-[25px] w-full py-4 focus-visible:bg-[#67a807] focus:bg-[#67a807] focus-visible:outline-1 focus-visible:outline-[#3C3843] text-center text-[#3C3843] text-base font-medium mt-6'
-  >
-    SUBMIT
-  </button>
-</form>
-<script>
-  import formContent from '../content/contact-us/form.json';
+  <script>
+    import notification from '../content/contact-us/notification.json';
 
-  type FormContent = typeof formContent;
+    const messageField = document.getElementById('form-message');
+    const charCounter = document.getElementById('char-counter');
 
-  const messageField = document.getElementById('form-message');
-  const charCounter = document.getElementById('char-counter');
-  const form = document.getElementById('contact-us-form');
+    const form = document.getElementById('contact-us-form');
 
-  const updateCount = (e: Event) => {
-    const charCount = `${(e.target as HTMLTextAreaElement).value.length}`;
-    if (charCounter) {
-      charCounter.textContent = charCount;
-    }
-  };
+    const submitBtn = form?.querySelector('#form-submit-button');
+    const submitBtnElems = submitBtn?.querySelectorAll('*');
+    const submitBtnContent = submitBtnElems && submitBtnElems[0];
+    const submitBtnLoader = submitBtnElems && submitBtnElems[1];
 
-  const validateFullName = (
-    fullName: FormDataEntryValue | null,
-    formData: FormContent
-  ) => {
-    if (typeof fullName !== 'string' || !fullName) {
-      return formData.fullname.requiredField;
-    }
-    if (fullName.length < 3) {
-      return formData.fullname.minimalLength;
-    }
-    return null;
-  };
+    const notificationElem = form?.querySelector('#form-notification');
 
-  const validateEmail = (
-    email: FormDataEntryValue | null,
-    formData: FormContent
-  ) => {
-    if (typeof email !== 'string' || !email) {
-      return formData.email.requiredField;
-    }
-    if (/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/.test(email) === false) {
-      return formData.email.invalidEmail;
-    }
-    return null;
-  };
-
-  const validateAboutProject = (
-    aboutProject: FormDataEntryValue | null,
-    formData: FormContent
-  ) => {
-    if (typeof aboutProject !== 'string' || !aboutProject) {
-      return formData.projectInfo.requiredField;
-    }
-    return null;
-  };
-
-  if (messageField) {
-    messageField.addEventListener('input', updateCount);
-  }
-
-  if (form) {
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const formData = new FormData(e.target as HTMLFormElement);
-      const fullName = formData.get('form-full-name');
-      const email = formData.get('form-email');
-      const message = formData.get('form-message');
-
-      const fullNameError = validateFullName(fullName, formContent);
-      if (fullNameError) {
-        //handle
-        return;
+    const clearForm = () => {
+      if (form) {
+        const fields = form.querySelectorAll('input, textarea');
+        fields.forEach((child) => {
+          (child as HTMLInputElement).value = '';
+        });
       }
-      const emailError = validateEmail(email, formContent);
-      if (emailError) {
-        //handle
-        return;
-      }
-      const messageError = validateAboutProject(message, formContent);
-      if (messageError) {
-        //handle
-        return;
-      }
+    };
 
-      // TO-DO => Valudate data
-      if (!fullNameError && !emailError && !messageError) {
+    const showLoader = () => {
+      if (submitBtnContent && submitBtnLoader) {
+        submitBtnContent.classList.add('hidden');
+        submitBtnLoader.classList.add('!block');
+      }
+    };
+
+    const hideLoader = () => {
+      if (submitBtnContent && submitBtnLoader) {
+        submitBtnContent.classList.remove('hidden');
+        submitBtnLoader.classList.remove('!block');
+      }
+    };
+
+    const updateCount = (e: Event) => {
+      const charCount = `${(e.target as HTMLTextAreaElement).value.length}`;
+      if (charCounter) {
+        charCounter.textContent = charCount;
+      }
+    };
+
+    if (messageField) {
+      messageField.addEventListener('input', updateCount);
+    }
+
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target as HTMLFormElement);
+
+        showLoader();
         const response = await fetch('/api/contact', {
           method: 'POST',
           body: formData,
         });
+
+        if (response.status !== 200 && notificationElem) {
+          notificationElem.classList.add('text-red-500');
+          notificationElem.textContent = notification.error;
+          hideLoader();
+          return;
+        }
+
         const data = await response.json();
 
-        console.log({ data });
-      }
-    });
-  }
-</script>
+        if (notificationElem) {
+          notificationElem.classList.add('text-[#67a807]');
+          notificationElem.innerHTML = notification.success;
+          hideLoader();
+          clearForm();
+          console.log({ data });
+        }
+      });
+    }
+  </script>
+</form>

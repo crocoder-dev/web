@@ -5,6 +5,7 @@ import classnames from 'classnames';
 type BaseProps = {
   labelProps?: HTMLAttributes<'label'>;
   label?: string;
+  errorText?: string;
   classNames?: string;
 };
 
@@ -20,12 +21,12 @@ type TextAreaProps = {
 
 type Props = BaseProps & (InputProps | TextAreaProps);
 
-const { classNames, labelProps, label } = Astro.props;
+const { classNames, labelProps, label, errorText } = Astro.props;
 ---
 
 <div
   class={classnames(
-    `min-h-fit
+    `min-h-[74px]
     relative pt-6 overflow-hidden
     after:absolute
     after:top-6
@@ -38,7 +39,7 @@ const { classNames, labelProps, label } = Astro.props;
     flex`,
     classNames,
     {
-      'after:h-[44px]': !Astro.props.isTextArea,
+      'after:h-[46px]': !Astro.props.isTextArea,
       'after:h-[139px] after:max-h-[139px]': Astro.props.isTextArea,
     }
   )}
@@ -47,8 +48,8 @@ const { classNames, labelProps, label } = Astro.props;
     !Astro.props.isTextArea ? (
       <input
         {...Astro.props.inputProps}
-        class=
-        'rounded-[6px]
+        class='rounded-[6px]
+        h-[46px]
         border
         border-transparent
         bg-transparent
@@ -60,7 +61,8 @@ const { classNames, labelProps, label } = Astro.props;
         w-[calc(100%-2px)]
         focus:outline-0
         focus:ring-0
-        focus:border-transparent'
+        focus:border-transparent
+       '
       />
     ) : (
       <textarea
@@ -77,7 +79,8 @@ const { classNames, labelProps, label } = Astro.props;
           peer/input
           focus:outline-0
           focus:ring-0
-          focus:border-transparent`,
+          focus:border-transparent
+          `,
           Astro.props.textAreaProps.class
         )}
         {...Astro.props.textAreaProps}
@@ -86,9 +89,9 @@ const { classNames, labelProps, label } = Astro.props;
   }
   <label
     {...labelProps}
-    class=
-      'text-[#3C3843]
-      text-sm
+    class='text-[#3C3843]
+      text-xs
+      min-[375px]:text-sm
       absolute
       top-0
       translate-y-0
@@ -97,17 +100,23 @@ const { classNames, labelProps, label } = Astro.props;
       peer-placeholder-shown/input:translate-y-[37px]
       peer-placeholder-shown/input:translate-x-[17px]
       peer-placeholder-shown/input:text-base
-      z-[3]'
-    >{label}</label
+      z-[3]
+      [&>span:nth-child(2)]:hidden
+      peer-[&:not(:placeholder-shown):not(:focus):invalid]/input:[&>span:first-child]:hidden
+      peer-[&:not(:placeholder-shown):not(:focus):invalid]/input:[&>span:nth-child(2)]:inline
+      peer-[&:not(:placeholder-shown):not(:focus):invalid]/input:text-red-500'
   >
+    <span>{label}</span>
+    <span class='truncate text-ellipsis'
+      >{errorText || 'Invalid field'}</span
+    >
+  </label>
   <div
     class={classnames(
       `absolute
-      w-full
-      
+      w-full 
       rounded-[6px]
       bg-[#424c6d50]
-      
       flex
       overflow-hidden
       items-center
@@ -119,10 +128,11 @@ const { classNames, labelProps, label } = Astro.props;
       after:bg-[#67a807]
       after:scale-0
       after:transition-transform
-      after:duration-[400ms]`,
+      after:duration-[400ms]
+      peer-[&:not(:placeholder-shown):not(:focus):invalid]/input:bg-red-500`,
       {
-        "h-[46px] top-[23px]" : !Astro.props.isTextArea,
-        "h-[142px] top-[23px]" : Astro.props.isTextArea
+        'h-[48px] top-[23px]': !Astro.props.isTextArea,
+        'h-[142px] top-[23px]': Astro.props.isTextArea,
       }
     )}
   >

@@ -1,17 +1,18 @@
 {
   "fullname": {
-    "label": "Full name",
+    "label": "Full name *",
     "requiredField": "This is a required field.",
-    "minimalLength": "Your name should be at least 3 characters long."
+    "minimalLength": "Name must be at least 3 characters."
   },
   "email": {
-    "label": "E-mail",
+    "label": "E-mail *",
     "requiredField": "This is a required field.",
-    "invalidEmail": "Looks like the email you entered is not valid."
+    "invalidEmail": "Email you entered is not valid."
   },
   "projectInfo": {
-    "label": "Tell us about your project",
+    "label": "Tell us about your project *",
     "requiredField": "This is a required field."
   },
+  "consent": "I give consent to <em><b>Cro</b>Coder</em> to use this information to contact me.",
   "submit": "Submit"
 }
