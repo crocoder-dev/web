@@ -8,6 +8,13 @@ export const POST: APIRoute = async ({ request }) => {
   const name = data.get("form-full-name");
   const email = data.get("form-email");
   const message = data.get("form-message");
+
+  const delay = () =>
+    new Promise((res) => {
+      return setTimeout(res, 1000);
+    });
+
+  await delay();
   // Do something with data
   return new Response(
     JSON.stringify({
