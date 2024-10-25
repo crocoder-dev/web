@@ -1,0 +1,17 @@
+{
+  "fullname": {
+    "label": "Full name",
+    "requiredField": "This is a required field.",
+    "minimalLength": "Your name should be at least 3 characters long."
+  },
+  "email": {
+    "label": "E-mail",
+    "requiredField": "This is a required field.",
+    "invalidEmail": "Looks like the email you entered is not valid."
+  },
+  "projectInfo": {
+    "label": "Tell us about your project",
+    "requiredField": "This is a required field."
+  },
+  "submit": "Submit"
+}
