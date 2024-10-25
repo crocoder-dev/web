@@ -1,133 +1,35 @@
 ---
-export const prerender = false;
-
 import { grid_classes } from './_grid';
-import Field from './Field.astro';
+import ContactUsForm from './ContactUsForm.astro';
 import Section from './Section.astro';
 import SectionTitle from './SectionTitle.astro';
+import { Image } from 'astro:assets';
+import peopleCollaborating from '../assets/people-collaborating.png';
 ---
 
 <Section
   className='bg-gray-100 pt-[74px]'
   contentClassName={`${grid_classes} items-center py-12`}
 >
-  <SectionTitle
-    className='col-span-6 md:col-span-10 md:!col-start-2 text-[#3C3843]'
-  >
-    Build Your Business <br class='xl:hidden sm:block hidden' />With Us
+  <div class='col-span-6 md:col-span-12'>
+    <SectionTitle className='text-[#3C3843]'>
+      Build Your Business <br class='xl:hidden sm:block hidden' />With Us
+    </SectionTitle>
     <p
       class='leading-normal text-base font-normal text-left text-[#3C3843] mt-4'
     >
       Our software development services helped clients big and small build
       solutions with a lasting impact.
     </p>
-  </SectionTitle>
-  <form
-    class='bg-[#F6FCFD] rounded-xl p-7 col-span-6 shadow-[0_5px_20px] shadow-neutral-500/25 flex flex-col gap-2 max-w-[500px]'
-    id='contact-us-form'
-  >
-    <Field
-      isTextArea={false}
-      inputProps={{
-        name: 'form-full-name',
-        maxlength: '100',
-        placeholder: 'Full Name *',
-        type: 'text',
-      }}
-      labelProps={{
-        for: 'form-full-name',
-        'aria-hidden': 'false',
-      }}
-      label='Full Name *'
+  </div>
+  <ContactUsForm />
+  <div class="col-span-6 min-xl:col-span-7 hidden lg:block">
+    <Image
+      src={peopleCollaborating}
+      widths={[540, 720]}
+      sizes={"(max-width: 1280px) 540px, 720px"}
+      alt='Illustration of people collaborating',
+      loading='eager'
     />
-    <Field
-      isTextArea={false}
-      inputProps={{
-        name: 'form-email',
-        maxlength: '100',
-        placeholder: 'E-Mail *',
-        type: 'email',
-      }}
-      labelProps={{
-        for: 'form-email',
-        'aria-hidden': 'false',
-      }}
-      label='E-Mail *'
-    />
-    <div>
-      <Field
-        isTextArea
-        textAreaProps={{
-          name: 'form-message',
-          maxlength: 1500,
-          placeholder: 'Tell Us About Your Project *',
-          id: 'form-message',
-        }}
-        labelProps={{
-          for: 'form-message',
-          'aria-hidden': 'false',
-        }}
-        label='Tell Us About Your Project *'
-      />
-      <span class='text-[#3C3843] text-xs text-right mt-1 block'
-        ><span id='char-counter'>0</span>/1500</span
-      >
-    </div>
-    <div class='flex gap-2.5 mt-4'>
-      <input
-        id='form-consent'
-        name='form-consent'
-        type='checkbox'
-        aria-describedby='form-consent-text'
-        class='h-4 w-4 rounded border-gray-300 text-[#67a807] focus:ring-[#67a807] mt-1 cursor-pointer'
-      />
-      <label
-        id='form-consent-text'
-        for='form-consent'
-        class='text-[#3C3843] [&>em]:not-italic [&_b]:text-[#67a807] [&>em]:font-semibold cursor-pointer'
-      >
-        I give consent to <em><b>Cro</b>Coder</em> to use this information to contact
-        me
-      </label>
-    </div>
-    <button
-      class='rounded-md bg-[#85a32a] px-[25px] w-full py-4 focus-visible:bg-[#67a807] focus:bg-[#67a807] focus-visible:outline-1 focus-visible:outline-[#3C3843] text-center text-[#3C3843] text-base font-medium mt-6'
-    >
-      SUBMIT
-    </button>
-  </form>
+  </div>
 </Section>
-<script>
-  const messageField = document.getElementById('form-message');
-  const charCounter = document.getElementById('char-counter');
-  const form = document.getElementById('contact-us-form');
-
-  const updateCount = (e: Event) => {
-    const charCount = `${(e.target as HTMLTextAreaElement).value.length}`;
-    if (charCounter) {
-      charCounter.textContent = charCount;
-    }
-  };
-
-  if (messageField) {
-    messageField.addEventListener('input', updateCount);
-  }
-
-  if (form) {
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const formData = new FormData(e.target as HTMLFormElement);
-      const name = formData.get('form-full-name');
-      const email = formData.get('form-email');
-      const message = formData.get('form-message');
-      // TO-DO => Valudate data
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        body: formData,
-      });
-      const data = await response.json();
-
-      console.log({ data });
-    });
-  }
-</script>
