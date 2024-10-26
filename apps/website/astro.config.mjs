@@ -1,10 +1,10 @@
-import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
-import vercel from "@astrojs/vercel/static";
+import tailwind from "@astrojs/tailwind";
+import vercel from "@astrojs/vercel/serverless";
+import { defineConfig } from "astro/config";
 
 export default defineConfig({
-  output: "static",
+  output: "hybrid",
   adapter: vercel({
     imageService: true,
   }),

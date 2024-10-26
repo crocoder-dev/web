@@ -20,10 +20,10 @@ const bodyValidationSchema = z.object({
 
 type RequestBody = z.infer<typeof bodyValidationSchema>;
 
-const notion = new Client({ auth: process.env.NOTION_TOKEN });
+const notion = new Client({ auth: import.meta.env.NOTION_TOKEN });
 
 const createPayload = (name: string, email: string, url: string) => ({
-  channel: process.env.SLACK_CHANNEL,
+  channel: import.meta.env.SLACK_CHANNEL,
   blocks: [
     {
       type: "header",
@@ -72,7 +72,7 @@ const notifyContactCreated = async (
   const payload = createPayload(name, email, url);
   const payloadStringify = JSON.stringify(payload);
 
-  if (process.env.IS_OFFLINE) {
+  if (import.meta.env.IS_OFFLINE) {
     console.log(payload);
   } else {
     try {
@@ -82,7 +82,7 @@ const notifyContactCreated = async (
         headers: {
           "Content-Type": "application/json; charset=utf-8",
           "Content-Length": payloadStringify.length.toString(),
-          Authorization: `Bearer ${process.env.SLACK_BOT_TOKEN}`,
+          Authorization: `Bearer ${import.meta.env.SLACK_BOT_TOKEN}`,
           Accept: "application/json",
         },
       });
@@ -122,9 +122,9 @@ const mentionPerson = ({ id, email }: { id: string; email: string }) => [
 ];
 
 const getMentions = () => {
-  if (process.env.MENTION_EMAILS && process.env.MENTION_IDS) {
-    const emails = process.env.MENTION_EMAILS.split(",");
-    const ids = process.env.MENTION_IDS.split(",");
+  if (import.meta.env.MENTION_EMAILS && import.meta.env.MENTION_IDS) {
+    const emails = import.meta.env.MENTION_EMAILS.split(",");
+    const ids = import.meta.env.MENTION_IDS.split(",");
 
     if (emails.length && ids.length) {
       return ids.map((id, i) => ({
@@ -147,7 +147,7 @@ const createContactObject = (
   content: string,
 ) => ({
   parent: {
-    database_id: process.env.NOTION_DATABASE_ID || "",
+    database_id: import.meta.env.NOTION_DATABASE_ID || "",
   },
   properties: {
     id: {
@@ -256,7 +256,7 @@ const allowRequest = async (request: Request & { ip?: string }) => {
        * variables. For instance when using the Vercel integration.
        *
        * This tries to load `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` from
-       * your environment using `process.env`.
+       * your environment using `import.meta.env`.
        */
       redis: Redis.fromEnv(),
     });
@@ -277,8 +277,6 @@ export const POST: APIRoute = async ({ request }) => {
     try {
       const body = (await request.json()) as RequestBody;
       const bodyValidationResult = bodyValidationSchema.safeParse(body);
-
-      console.log(bodyValidationResult.error, body);
 
       if (!body || bodyValidationResult.error) {
         throw {
