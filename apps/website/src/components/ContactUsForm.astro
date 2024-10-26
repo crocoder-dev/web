@@ -59,8 +59,9 @@ import '../styles/loader.css';
       label={formContent.projectInfo.label}
       errorText={formContent.projectInfo.requiredField}
     />
-    <span class='text-[#3C3843] text-xs text-right mt-1 block'
-      ><span id='char-counter'>0</span>/1500</span
+    <span class='text-[#3C3843] text-xs text-right mt-1 block'>
+      <span id='char-counter'>0</span>/1500
+    </span
     >
   </div>
   <div class='mt-4'>
@@ -101,9 +102,9 @@ import '../styles/loader.css';
       font-medium mt-6'
     >
       <span>{formContent.submit}</span>
-      <div class='loader mx-auto hidden'></div>
+      <div class='loader mx-auto hidden'/>
     </button>
-    <p id='form-notification' class='text-sm min-h-5'></p>
+    <p id='form-notification' class='text-sm min-h-6 pt-1' />
   </div>
   <script>
     import notification from '../content/contact-us/notification.json';
