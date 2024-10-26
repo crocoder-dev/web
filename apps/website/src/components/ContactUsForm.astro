@@ -64,7 +64,7 @@ import '../styles/loader.css';
     >
   </div>
   <div class='mt-4'>
-    <div class="flex gap-2.5">
+    <div class='flex gap-2.5'>
       <input
         id='form-consent'
         name='form-consent'
@@ -81,7 +81,21 @@ import '../styles/loader.css';
     </div>
     <button
       id='form-submit-button'
-      class='rounded-md min-h-14 group-invalid/contact-us:pointer-events-none group-invalid/contact-us:opacity-30 bg-[#85a32a] px-[25px] w-full py-4 focus-visible:bg-[#67a807] focus:bg-[#67a807] focus-visible:outline-1 focus-visible:outline-[#3C3843] text-center text-[#3C3843] text-base font-medium mt-6'
+      class='rounded-md
+      min-h-14
+      group-invalid/contact-us:pointer-events-none
+      group-invalid/contact-us:opacity-30
+      bg-[#85a32a]
+      hover:bg-[#84a22ab3]
+      px-[25px] w-full py-4
+      focus-visible:bg-[#84a22ab3]
+      focus:bg-[#84a22ab3]
+      focus-visible:outline-1
+      focus-visible:outline-[#3C3843]
+      text-center
+      text-[#3C3843]
+      text-base
+      font-medium mt-6'
     >
       <span>{formContent.submit}</span>
       <div class='loader mx-auto hidden'></div>
@@ -141,11 +155,18 @@ import '../styles/loader.css';
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target as HTMLFormElement);
+        const name = formData.get('form-full-name');
+        const email = formData.get('form-email');
+        const message = formData.get('form-message');
 
         showLoader();
         const response = await fetch('/api/contact', {
           method: 'POST',
-          body: formData,
+          mode: 'cors',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ name, email, message }),
         });
 
         if (response.status !== 200 && notificationElem) {
