@@ -3,6 +3,7 @@
   "module": "index.ts",
   "type": "module",
   "dependencies": {
+    "@astrojs/react": "^3.6.2",
     "@astrojs/tailwind": "^5.1.0",
     "@astrojs/vercel": "^7.7.2",
     "@crocoder-dev/tailwind": "*",
@@ -11,6 +12,7 @@
     "@upstash/redis": "^1.34.3",
     "astro": "4.14.5",
     "nanoid": "^5.0.7",
+    "react-icons": "^5.3.0",
     "zod": "^3.23.8"
   },
   "scripts": {
