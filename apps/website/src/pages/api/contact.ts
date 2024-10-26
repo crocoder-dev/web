@@ -208,10 +208,14 @@ const createContact = async (
       createContactObject(id, email, name, content),
     );
 
-    if (isFullPage(response)) {
+    if (response.id && isFullPage(response)) {
       return response.url;
     }
-    return "";
+    throw {
+      body: {
+        message: "Failed to create notion page",
+      },
+    };
   } catch (error) {
     throw error;
   }
