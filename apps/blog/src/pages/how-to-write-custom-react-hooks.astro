@@ -3,6 +3,11 @@ import { getEntry } from "astro:content";
 import Post from "../layouts/post.astro";
 import { getCollection } from "astro:content";
 import Content, { type ContentItem } from "../layouts/content.astro";
+import SimpleMouseTracker from "../content/partials/how-to-write-custom-react-hooks/demos/SimpleMouseTracker/demo";
+import SimpleButtonClickTracker from "../content/partials/how-to-write-custom-react-hooks/demos/SimpleButtonClickTracker/demo";
+import NextLevelButtonClickTracker from "../content/partials/how-to-write-custom-react-hooks/demos/NextLevelButtonClickTracker/demo";
+import UseFetchDataDemo from "../content/partials/how-to-write-custom-react-hooks/demos/useFetchData/demo";
+import UseDebouncedSearchDemo from "../content/partials/how-to-write-custom-react-hooks/demos/useDebouncedSearch/demo";
 
 const authorCollection = await getCollection("authors");
 
@@ -140,20 +145,19 @@ const contentList: ContentItem[] = [
 >
   <Intro />
   <Content contentList={contentList} />
-  {/* Contents */}
   <UseMousePosition />
-  {/* Demo */}
+  <SimpleMouseTracker client:load />
   <UseMousePositionSolution />
   <UseClickCounter />
-  {/* Demo */}
+  <SimpleButtonClickTracker client:load />
   <UseClickCounterSolution />
   <UseClickTracker />
-  {/* Demo */}
+  <NextLevelButtonClickTracker client:load />
   <UseClickTrackerSolution />
   <UseFetchData />
-  {/* Demo */}
+  <UseFetchDataDemo client:load />
   <UseFetchDataSolution />
   <UseDebouncedSearch />
-  {/* Demo */}
+  <UseDebouncedSearchDemo client:load />
   <UseDebouncedSearchSolution />
 </Post>
