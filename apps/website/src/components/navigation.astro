@@ -118,9 +118,15 @@
           >
             Book a call
           </a>
-          <li class="hidden">
+          <li>
             <a
-              class="flex font-medium w-fit h-[45px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-[#FEC343] text-[#1E1A1A] hover:opacity-90"
+              class="flex font-medium w-fit h-[45px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-[#FEC343] text-[#1E1A1A] hover:opacity-90
+              md:[&[data-navhidden='false']]:!w-auto
+              md:[&[data-navhidden='false']]:!px-4
+              md:[&[data-navhidden='false']]:opacity-0
+              md:[&[data-navhidden='']]:opacity-100
+              md:[&[data-navhidden='']]:delay-100"
+              data-navhidden="false"
               href="/contact"
             >
               Contact us
