@@ -21,6 +21,11 @@ const bodyValidationSchema = z.object({
 
 type RequestBody = z.infer<typeof bodyValidationSchema>;
 
+console.log("ENV", {
+  url: import.meta.env.UPSTASH_REDIS_REST_URL,
+  token: import.meta.env.UPSTASH_REDIS_REST_TOKEN,
+});
+
 const notion = new Client({ auth: import.meta.env.NOTION_TOKEN });
 
 const redis = new Redis({
