@@ -21,20 +21,39 @@ const bodyValidationSchema = z.object({
 
 type RequestBody = z.infer<typeof bodyValidationSchema>;
 
-console.log("ENV", {
-  url: import.meta.env.UPSTASH_REDIS_REST_URL,
-  token: import.meta.env.UPSTASH_REDIS_REST_TOKEN,
+const {
+  NOTION_TOKEN,
+  SLACK_CHANNEL,
+  SLACK_BOT_TOKEN,
+  MENTION_EMAILS,
+  MENTION_IDS,
+  NOTION_DATABASE_ID,
+  UPSTASH_REDIS_REST_URL,
+  UPSTASH_REDIS_REST_TOKEN,
+  IS_OFFLINE,
+} = import.meta.env.DEV ? import.meta.env : process.env;
+
+console.log({
+  NOTION_TOKEN,
+  SLACK_CHANNEL,
+  SLACK_BOT_TOKEN,
+  MENTION_EMAILS,
+  MENTION_IDS,
+  NOTION_DATABASE_ID,
+  UPSTASH_REDIS_REST_URL,
+  UPSTASH_REDIS_REST_TOKEN,
+  IS_OFFLINE,
 });
 
-const notion = new Client({ auth: import.meta.env.NOTION_TOKEN });
+const notion = new Client({ auth: NOTION_TOKEN });
 
 const redis = new Redis({
-  url: import.meta.env.UPSTASH_REDIS_REST_URL,
-  token: import.meta.env.UPSTASH_REDIS_REST_TOKEN,
+  url: UPSTASH_REDIS_REST_URL,
+  token: UPSTASH_REDIS_REST_TOKEN,
 });
 
 const createPayload = (name: string, email: string, url: string) => ({
-  channel: import.meta.env.SLACK_CHANNEL,
+  channel: SLACK_CHANNEL,
   blocks: [
     {
       type: "header",
@@ -83,7 +102,7 @@ const notifyContactCreated = async (
   const payload = createPayload(name, email, url);
   const payloadStringify = JSON.stringify(payload);
 
-  if (import.meta.env.IS_OFFLINE) {
+  if (IS_OFFLINE) {
     console.log(payload);
   } else {
     try {
@@ -93,7 +112,7 @@ const notifyContactCreated = async (
         headers: {
           "Content-Type": "application/json; charset=utf-8",
           "Content-Length": payloadStringify.length.toString(),
-          Authorization: `Bearer ${import.meta.env.SLACK_BOT_TOKEN}`,
+          Authorization: `Bearer ${SLACK_BOT_TOKEN}`,
           Accept: "application/json",
         },
       });
@@ -133,9 +152,9 @@ const mentionPerson = ({ id, email }: { id: string; email: string }) => [
 ];
 
 const getMentions = () => {
-  if (import.meta.env.MENTION_EMAILS && import.meta.env.MENTION_IDS) {
-    const emails = import.meta.env.MENTION_EMAILS.split(",");
-    const ids = import.meta.env.MENTION_IDS.split(",");
+  if (MENTION_EMAILS && MENTION_IDS) {
+    const emails = MENTION_EMAILS.split(",");
+    const ids = MENTION_IDS.split(",");
 
     if (emails.length && ids.length) {
       return ids.map((id, i) => ({
@@ -158,7 +177,7 @@ const createContactObject = (
   content: string,
 ) => ({
   parent: {
-    database_id: import.meta.env.NOTION_DATABASE_ID || "",
+    database_id: NOTION_DATABASE_ID || "",
   },
   properties: {
     id: {
