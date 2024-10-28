@@ -61,8 +61,7 @@ import '../styles/loader.css';
     />
     <span class='text-[#3C3843] text-xs text-right mt-1 block'>
       <span id='char-counter'>0</span>/1500
-    </span
-    >
+    </span>
   </div>
   <div class='mt-4'>
     <div class='flex gap-2.5'>
@@ -70,6 +69,7 @@ import '../styles/loader.css';
         id='form-consent'
         name='form-consent'
         type='checkbox'
+        required
         aria-describedby='form-consent-text'
         class='h-4 w-4 rounded border-gray-300 text-[#67a807] focus:ring-[#67a807] mt-1 cursor-pointer'
       />
@@ -102,9 +102,9 @@ import '../styles/loader.css';
       font-medium mt-6'
     >
       <span>{formContent.submit}</span>
-      <div class='loader mx-auto hidden'/>
+      <div class='loader mx-auto hidden'></div>
     </button>
-    <p id='form-notification' class='text-sm min-h-6 pt-1' />
+    <p id='form-notification' class='text-sm min-h-6 pt-1'></p>
   </div>
   <script>
     import notification from '../content/contact-us/notification.json';
@@ -125,7 +125,11 @@ import '../styles/loader.css';
       if (form) {
         const fields = form.querySelectorAll('input, textarea');
         fields.forEach((child) => {
-          (child as HTMLInputElement).value = '';
+          if (child.tagName === 'INPUT' && (child as HTMLInputElement).type === "checkbox") {
+            (child as HTMLInputElement).checked = false;
+          } else {
+            (child as HTMLInputElement).value = '';
+          }
         });
       }
     };
@@ -162,8 +166,9 @@ import '../styles/loader.css';
         const name = formData.get('form-full-name');
         const email = formData.get('form-email');
         const message = formData.get('form-message');
+        const consent = formData.get('form-consent');
 
-        if (!name || !email || !message) {
+        if (!name || !email || !message || !consent) {
           return;
         }
 
@@ -174,7 +179,12 @@ import '../styles/loader.css';
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ name, email, message }),
+          body: JSON.stringify({
+            name,
+            email,
+            message,
+            hasConsent: consent ? true : false,
+          }),
         });
 
         if (response.status !== 200 && notificationElem) {
