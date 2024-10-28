@@ -33,18 +33,6 @@ const {
   IS_OFFLINE,
 } = import.meta.env.DEV ? import.meta.env : process.env;
 
-console.log({
-  NOTION_TOKEN,
-  SLACK_CHANNEL,
-  SLACK_BOT_TOKEN,
-  MENTION_EMAILS,
-  MENTION_IDS,
-  NOTION_DATABASE_ID,
-  UPSTASH_REDIS_REST_URL,
-  UPSTASH_REDIS_REST_TOKEN,
-  IS_OFFLINE,
-});
-
 const notion = new Client({ auth: NOTION_TOKEN });
 
 const redis = new Redis({

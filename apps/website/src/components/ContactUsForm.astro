@@ -194,14 +194,11 @@ import '../styles/loader.css';
           return;
         }
 
-        const data = await response.json();
-
         if (notificationElem) {
           notificationElem.classList.add('text-[#67a807]');
           notificationElem.innerHTML = notification.success;
           hideLoader();
           clearForm();
-          console.log({ data });
         }
       });
     }
