@@ -16,11 +16,17 @@ const bodyValidationSchema = z.object({
     .min(1, { message: "Required field" })
     .email({ message: "Invalid email adress" }),
   message: z.string().min(1, { message: "Required field" }),
+  hasConsent: z.boolean().optional(),
 });
 
 type RequestBody = z.infer<typeof bodyValidationSchema>;
 
 const notion = new Client({ auth: import.meta.env.NOTION_TOKEN });
+
+const redis = new Redis({
+  url: import.meta.env.UPSTASH_REDIS_REST_URL,
+  token: import.meta.env.UPSTASH_REDIS_REST_TOKEN,
+});
 
 const createPayload = (name: string, email: string, url: string) => ({
   channel: import.meta.env.SLACK_CHANNEL,
@@ -173,7 +179,7 @@ const createContactObject = (
     },
     date: {
       date: {
-        start: new Date().toString(),
+        start: new Date().toISOString(),
       },
     },
   },
@@ -262,7 +268,7 @@ const allowRequest = async (request: Request & { ip?: string }) => {
        * This tries to load `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` from
        * your environment using `import.meta.env`.
        */
-      redis: Redis.fromEnv(),
+      redis,
     });
 
     const response = await ratelimit.limit(ip);
@@ -295,7 +301,16 @@ export const POST: APIRoute = async ({ request }) => {
         };
       }
 
-      const { name, email, message } = body;
+      const { name, email, message, hasConsent } = body;
+
+      if (!hasConsent) {
+        throw {
+          statusCode: 403,
+          body: {
+            message: "No consent by user",
+          },
+        };
+      }
 
       const { success, limit, reset, remaining } = await allowRequest(request);
 
