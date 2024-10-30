@@ -32,10 +32,8 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
     max-lg:col-span-6
     md:gap-x-7
     w-full
-    lg:transition-opacity
-    lg:duration-400
+    lg:[transition:opacity_400ms_ease-out,transform_800ms_cubic-bezier(.5,.99,.49,.99)]
     lg:absolute
-    lg:ease-in-out
     lg:opacity-0
     lg:h-screen
     overflow-hidden
@@ -47,17 +45,18 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
   <section
     class={classnames(
       `text-neutral-50
-      md:h-screen
+      h-full
+      lg:h-screen
       p-7
-      lg:p-12 
+      lg:px-12 
       grid
       grid-cols-6
-      grid-rows-[auto_auto_auto]
+      grid-rows-[min-content_min-content_auto]
       gap-x-3
       gap-y-7
       lg:gap-x-7
       lg:grid-cols-2
-      lg:grid-rows-[44px_auto]
+      lg:grid-rows-[min-content_auto]
       backdrop-blur-[30px]
       `,
       classNames,
@@ -67,9 +66,14 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
       }
     )}
   >
-    <span class='font-medium text-[28px] leading-8 col-span-6 lg:col-span-1'
-      >{`{0${idx}}`}</span
-    >
+    <div class='col-span-6 flex flex-col gap-7 lg:flex-row lg:col-span-2 lg:items-center'>
+      <span class='font-medium text-[28px] leading-8 lg:leading-[44px] lg:mt-[2px]'>{`{0${idx}}`}</span>
+      <h3
+        class='font-medium text-[28px] lg:text-4xl leading-[44px]'
+      >
+        {title}
+      </h3>
+    </div>
     <div
       class='flex flex-col justify-center col-span-6 row-start-3 lg:justify-start lg:col-span-1 lg:row-start-2'
     >
@@ -78,11 +82,6 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
     <div
       class='flex flex-col lg:flex-col col-span-6 row-start-2 lg:col-span-1 lg:col-start-2 lg:row-span-2'
     >
-      <h3
-        class='font-medium text-[28px] lg:text-4xl leading-[44px] mb-7 lg:mb-12'
-      >
-        {title}
-      </h3>
       <p class='lg:text-[22px] leading-8'>{(<Content />)}</p>
     </div>
   </section>
