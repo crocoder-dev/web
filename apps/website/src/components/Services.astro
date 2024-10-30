@@ -4,13 +4,14 @@ import Section from './Section.astro';
 import SectionTitle from './SectionTitle.astro';
 import ServiceCard from './ServiceCard.astro';
 import { grid_classes } from './_grid';
+import classNames from 'classnames';
 
-/* 560px => Height of cards in starting position. 4 cards x 140px of indentation */
+/* 320px => Height of cards in starting position. 4 cards x 80px of indentation */
 const styles = [
-  'bg-[#5362DBE5] lg:delay-[400ms] lg:top-[calc(100vh-560px)]',
-  'bg-[#424C6DE5] lg:delay-300 lg:top-[calc(100vh-560px+140px)]',
-  'bg-[#3C3843E5] lg:delay-200 lg:top-[calc(100vh-560px+140px+140px)]',
-  'bg-[#1E1A1AE5] lg:delay-100 lg:top-[calc(100vh-560px+140px+140px+140px)]',
+  `bg-[#5362DBE5] lg:delay-[400ms] lg:top-[calc(100vh-320px)]`,
+  `bg-[#424C6DE5] lg:delay-300 lg:top-[calc(100vh-320px+80px)]`,
+  `bg-[#3C3843E5] lg:delay-200 lg:top-[calc(100vh-320px+80px+80px)]`,
+  `bg-[#1E1A1AE5] lg:delay-100 lg:top-[calc(100vh-320px+80px+80px+80px)]`,
 ];
 
 const servicesCollection = await getCollection('services');
@@ -33,13 +34,20 @@ for (const service of servicesCollection) {
 
 <Section
   className='w-full !overflow-visible lg:!px-0'
-  contentClassName={grid_classes}
+  contentClassName={classNames(grid_classes, 'lg:pt-12')}
 >
-  <SectionTitle className='lg:px-7 col-span-6 lg:col-start-2 lg:col-span-10'>
+  <SectionTitle
+    idx='services-title'
+    className='lg:px-7 col-span-6 lg:col-start-2 lg:col-span-10'
+  >
     Our Services
   </SectionTitle>
-  <div id='services' class='col-span-6 md:col-span-12'>
+  <div
+    id='services-wrapper'
+    class='col-span-6 md:col-span-12'
+  >
     <div
+      id='animation-wrapper'
       class='max-lg:grid max-md:grid-cols-6 max-lg:grid-cols-12 max-lg:gap-7 lg:h-screen lg:overflow-hidden lg:sticky lg:top-0'
     >
       {
@@ -62,10 +70,15 @@ for (const service of servicesCollection) {
   const wrapperWidth = window.innerWidth;
 
   if (wrapperWidth >= 1024) {
-    const servicesWrapper = document.getElementById('services');
+    const valuesWrapper = document.getElementById('values-wrapper');
+
+    const servicesWrapper = document.getElementById('services-wrapper');
+    const animationWrapper = document.getElementById('animation-wrapper');
+    const servicesTitle = document.getElementById('services-title');
     const cards = document.querySelectorAll('[data-show]');
+
     const screenHeight = window.innerHeight;
-    const cardsIndentation = 140;
+    const cardsIndentation = 80;
 
     const getCardsAnimationData = () => {
       let animationPos = [];
@@ -94,10 +107,18 @@ for (const service of servicesCollection) {
         animationFieldHeight: animationPos[animationPos.length - 1].end,
       };
     };
-
     const { animationPos, animationFieldHeight } = getCardsAnimationData();
 
-    servicesWrapper.style.height = `${animationFieldHeight + screenHeight}px`;
+    const firstCardAnimationRange = animationPos[0].distance;
+    const servicesWrapperHeight = animationFieldHeight + screenHeight;
+
+    servicesWrapper.style.transform = `translateY(${-firstCardAnimationRange}px)`;
+    servicesWrapper.style.height = `${servicesWrapperHeight}px`;
+
+    animationWrapper.style.top = `${firstCardAnimationRange}px`;
+
+    servicesWrapper.parentElement.style.maxHeight = `${servicesWrapperHeight - (firstCardAnimationRange - 180)}px`;
+
     let lastScrollTopPos = 0;
 
     const setupInitPositions = () => {
@@ -135,16 +156,23 @@ for (const service of servicesCollection) {
       setupInitPositions();
     }, 200);
 
-    const handleAnimationOnScroll = () => {
-      const currentScrollTop = window.scrollY;
-      const servicesWrapperBoundingRect =
-        servicesWrapper.getBoundingClientRect();
-      const fromTop = servicesWrapperBoundingRect.top * -1;
-      const isScrollDown = lastScrollTopPos < currentScrollTop;
+    const animateSurroundingElems = (fromTop) => {
+      if (fromTop >= 0 && fromTop <= servicesWrapperHeight / 2) {
+        valuesWrapper.style.transform = `translateY(${fromTop * 0.9}px)`;
+        servicesTitle.style.transform = `translateY(${fromTop * 0.9}px)`;
+      } else {
+        valuesWrapper.style.transform = `translateY(0px)`;
+        servicesTitle.style.transform = `translateY(0px)`;
+      }
+    };
 
+    const animateCards = (fromTop, isScrollDown, fadeInPosition) => {
       // Start animation 200px before in case there is a fast scroll up so elements can catch that up and adjust
       // End animation screenHeight value after in case of fast scroll down (in this case click and smooth scroll to book session section)
-      if (fromTop < -200 || fromTop > animationFieldHeight + screenHeight) {
+      if (
+        fromTop < fadeInPosition ||
+        fromTop > animationFieldHeight + screenHeight
+      ) {
         return;
       }
 
@@ -152,7 +180,7 @@ for (const service of servicesCollection) {
         cards.forEach((el, i) => {
           const startPos = animationPos[i].start;
           const endPos = animationPos[i].end;
-          if (fromTop > -200) {
+          if (fromTop > fadeInPosition) {
             el.setAttribute('data-show', 'true');
           }
 
@@ -169,8 +197,7 @@ for (const service of servicesCollection) {
         cards.forEach((el, i) => {
           const startPos = animationPos[i].start;
           const endPos = animationPos[i].end;
-
-          if (fromTop < 0) {
+          if (fromTop < fadeInPosition + cardsIndentation) {
             el.setAttribute('data-show', '');
           }
 
@@ -185,6 +212,20 @@ for (const service of servicesCollection) {
           }
         });
       }
+    };
+
+    const handleAnimationOnScroll = () => {
+      const currentScrollTop = window.scrollY;
+      const servicesWrapperBoundingRect =
+        servicesWrapper.getBoundingClientRect();
+      const fromTop = servicesWrapperBoundingRect.top * -1;
+      const isScrollDown = lastScrollTopPos < currentScrollTop;
+      const fadeInPosition = firstCardAnimationRange - screenHeight;
+
+      requestAnimationFrame(() => {
+        animateSurroundingElems(fromTop);
+        animateCards(fromTop, isScrollDown, fadeInPosition);
+      });
 
       lastScrollTopPos = currentScrollTop <= 0 ? 0 : currentScrollTop;
     };
