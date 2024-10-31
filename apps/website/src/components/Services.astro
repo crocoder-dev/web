@@ -42,10 +42,7 @@ for (const service of servicesCollection) {
   >
     Our Services
   </SectionTitle>
-  <div
-    id='services-wrapper'
-    class='col-span-6 md:col-span-12'
-  >
+  <div id='services-wrapper' class='col-span-6 md:col-span-12'>
     <div
       id='animation-wrapper'
       class='max-lg:grid max-md:grid-cols-6 max-lg:grid-cols-12 max-lg:gap-7 lg:h-screen lg:overflow-hidden lg:sticky lg:top-0'
@@ -79,38 +76,47 @@ for (const service of servicesCollection) {
 
     const screenHeight = window.innerHeight;
     const cardsIndentation = 80;
+    // Threshold value for amount of px we need to enter into animation
+    // field before elements start moving around.
+    const scrollThreshold = 1000;
 
-    const getCardsAnimationData = () => {
-      let animationPos = [];
+    const getCardsAnimationThresholds = () => {
+      let animationThresholds = [];
       cards.forEach((_, i) => {
         const prev = cards[i - 1];
         const startHeight = cards.length * cardsIndentation;
         if (prev) {
-          const prevPos = animationPos[i - 1];
+          const prevThresholds = animationThresholds[i - 1];
 
-          animationPos.push({
-            start: prevPos.end,
-            distance: prevPos.distance + cardsIndentation,
-            end: prevPos.end + (prevPos.distance + cardsIndentation),
+          animationThresholds.push({
+            startAt: prevThresholds.endAt,
+            distance: prevThresholds.distance + cardsIndentation,
+            endAt:
+              prevThresholds.endAt +
+              (prevThresholds.distance + cardsIndentation),
           });
         } else {
-          animationPos.push({
-            start: 0,
+          animationThresholds.push({
+            startAt: 0,
             distance: screenHeight - startHeight,
-            end: screenHeight - startHeight,
+            endAt: screenHeight - startHeight,
           });
         }
       });
 
       return {
-        animationPos,
-        animationFieldHeight: animationPos[animationPos.length - 1].end,
+        animationThresholds,
+        animationFieldHeight:
+          animationThresholds[animationThresholds.length - 1].endAt,
       };
     };
-    const { animationPos, animationFieldHeight } = getCardsAnimationData();
+    const { animationThresholds, animationFieldHeight } =
+      getCardsAnimationThresholds();
 
-    const firstCardAnimationRange = animationPos[0].distance;
-    const servicesWrapperHeight = animationFieldHeight + screenHeight;
+    const firstCardAnimationRange = animationThresholds[0].distance;
+
+    const servicesWrapperHeight =
+      animationFieldHeight + screenHeight + 2 * scrollThreshold;
 
     servicesWrapper.style.transform = `translateY(${-firstCardAnimationRange}px)`;
     servicesWrapper.style.height = `${servicesWrapperHeight}px`;
@@ -131,7 +137,7 @@ for (const service of servicesCollection) {
         return;
       }
 
-      animationPos.forEach((pos, i) => {
+      animationThresholds.forEach((pos, i) => {
         const cardToPosition = cards[i];
 
         if (!cardToPosition) {
@@ -139,14 +145,14 @@ for (const service of servicesCollection) {
         }
 
         // if viewport is below end range of animation set element to top position
-        if (fromTop > pos.start && fromTop > pos.end) {
+        if (fromTop > pos.startAt && fromTop > pos.endAt) {
           cardToPosition.style.transform = `translateY(-${pos.distance}px)`;
           return;
         }
 
         // if viewport is in range of animation set element to correct position
-        if (fromTop >= pos.start && fromTop < pos.end) {
-          cardToPosition.style.transform = `translateY(${pos.start - fromTop}px)`;
+        if (fromTop >= pos.startAt && fromTop < pos.endAt) {
+          cardToPosition.style.transform = `translateY(${pos.startAt - fromTop}px)`;
         }
       });
     };
@@ -158,19 +164,19 @@ for (const service of servicesCollection) {
 
     const animateSurroundingElems = (fromTop) => {
       if (fromTop >= 0 && fromTop <= servicesWrapperHeight / 2) {
-        valuesWrapper.style.transform = `translateY(${fromTop * 0.9}px)`;
-        servicesTitle.style.transform = `translateY(${fromTop * 0.9}px)`;
+        valuesWrapper.style.transform = `translateY(${fromTop}px)`;
+        servicesTitle.style.transform = `translateY(${fromTop}px)`;
       } else {
         valuesWrapper.style.transform = `translateY(0px)`;
         servicesTitle.style.transform = `translateY(0px)`;
       }
     };
 
-    const animateCards = (fromTop, isScrollDown, fadeInPosition) => {
+    const animateCards = (fromTop, isScrollDown, fadeInOutThreshold) => {
       // Start animation 200px before in case there is a fast scroll up so elements can catch that up and adjust
       // End animation screenHeight value after in case of fast scroll down (in this case click and smooth scroll to book session section)
       if (
-        fromTop < fadeInPosition ||
+        fromTop < fadeInOutThreshold ||
         fromTop > animationFieldHeight + screenHeight
       ) {
         return;
@@ -178,9 +184,9 @@ for (const service of servicesCollection) {
 
       if (isScrollDown) {
         cards.forEach((el, i) => {
-          const startPos = animationPos[i].start;
-          const endPos = animationPos[i].end;
-          if (fromTop > fadeInPosition) {
+          const startPos = animationThresholds[i].startAt;
+          const endPos = animationThresholds[i].endAt;
+          if (fromTop > fadeInOutThreshold) {
             el.setAttribute('data-show', 'true');
           }
 
@@ -190,18 +196,18 @@ for (const service of servicesCollection) {
           // Adjust element top position after animation range in case we didn't catch last few px.
           // This can be the case while fast scrolling
           if (startPos <= fromTop && endPos < fromTop) {
-            el.style.transform = `translateY(${-animationPos[i].distance}px)`;
+            el.style.transform = `translateY(${-animationThresholds[i].distance}px)`;
           }
         });
       } else {
         cards.forEach((el, i) => {
-          const startPos = animationPos[i].start;
-          const endPos = animationPos[i].end;
-          if (fromTop < fadeInPosition + cardsIndentation) {
+          const startPos = animationThresholds[i].startAt;
+          const endPos = animationThresholds[i].endAt;
+          if (fromTop < fadeInOutThreshold + cardsIndentation) {
             el.setAttribute('data-show', '');
           }
 
-          if (startPos <= fromTop && animationPos[i].end > fromTop) {
+          if (startPos <= fromTop && animationThresholds[i].endAt > fromTop) {
             const startAt = endPos - startPos;
             el.style.transform = `translateY(-${startAt - (endPos - fromTop)}px)`;
           }
@@ -220,12 +226,10 @@ for (const service of servicesCollection) {
         servicesWrapper.getBoundingClientRect();
       const fromTop = servicesWrapperBoundingRect.top * -1;
       const isScrollDown = lastScrollTopPos < currentScrollTop;
-      const fadeInPosition = firstCardAnimationRange - screenHeight;
+      const fadeInOutThreshold = firstCardAnimationRange - screenHeight - 1000;
 
-      requestAnimationFrame(() => {
-        animateSurroundingElems(fromTop);
-        animateCards(fromTop, isScrollDown, fadeInPosition);
-      });
+      animateSurroundingElems(fromTop);
+      animateCards(fromTop - 1000, isScrollDown, fadeInOutThreshold);
 
       lastScrollTopPos = currentScrollTop <= 0 ? 0 : currentScrollTop;
     };
