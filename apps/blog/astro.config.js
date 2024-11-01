@@ -3,7 +3,6 @@ import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
 import vercel from '@astrojs/vercel/static';
 import createRemarkPlugin from '@crocoder-dev/remark-plugin';
-import { classes } from "./astro-tailwind.config";
 
 const classes = {
   titleClass: 'font-bold text-[1.25rem] mt-[2.5rem]',
