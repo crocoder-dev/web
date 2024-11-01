@@ -27,24 +27,24 @@ I would like to prove to you that by using **Map, Filter, and Reduce** array met
 
 Square the value of every element in the array. Presume that you will only get numbers in the input array.
 
-Helpful links
+::title Helpful links
 
 - [Array.prototype.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 - [Math.pow()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/pow)
 
-Input
+::title Input
 
 ```javascript
 const input = [1, 2, 3, 4, 5];
 ```
 
-Result
+::title Result
 
 ```javascript
 [1, 4, 9, 16, 25];
 ```
 
-Solution
+::details Show Solution
 
 ```javascript
 const input = [1, 2, 3, 4, 5];

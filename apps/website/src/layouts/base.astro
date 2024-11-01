@@ -1,7 +1,7 @@
 ---
 import theme from "@crocoder-dev/tailwind/theme.json";
 import "../styles/main.css";
-import WebJsonld from "../layouts/web-jsonld.astro";
+import Meta from "../layouts/meta-tags.astro";
 
 const pf = theme.fonts.font_family.primary;
 const sf = theme.fonts.font_family.secondary;
@@ -27,7 +27,7 @@ if (theme.fonts.font_family.secondary) {
       name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=5"
     />
-    <WebJsonld />
+    <Meta />
   </head>
   <body class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
     <slot />
