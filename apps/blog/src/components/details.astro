@@ -1,0 +1,11 @@
+---
+import { classes } from "../../astro-tailwind.config";
+
+const { detailsClass, summaryClass } = classes;
+---
+
+<details class={detailsClass}>
+  <summary class={summaryClass}>
+    <slot />
+  </summary>`
+</details>
