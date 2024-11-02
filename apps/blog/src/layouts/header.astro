@@ -1,11 +1,17 @@
 ---
+
 ---
-<header class="sticky top-0 shadow bg-white">
+
+<header class="top-0 shadow bg-white">
   <div class="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
       <div class="flex-shrink-0">
         <a href="/">
-            <img src="./images/croc-nav.svg" alt="Go to Home" class="w-[225px] h-auto" />
+          <img
+            src="./images/croc-nav.svg"
+            alt="Go to Home"
+            class="w-[225px] h-auto"
+          />
         </a>
       </div>
 
@@ -16,23 +22,63 @@
           aria-controls="mobile-menu"
           aria-expanded="false"
         >
-          <input type="checkbox" class="hidden peer" id="menu-toggle">
+          <input type="checkbox" class="hidden peer" id="menu-toggle" />
           <label for="menu-toggle" class="cursor-pointer peer-checked:hidden">
-            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            <svg
+              class="h-6 w-6"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"></path>
             </svg>
           </label>
-          <label for="menu-toggle" class="cursor-pointer hidden peer-checked:block">
-            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          <label
+            for="menu-toggle"
+            class="cursor-pointer hidden peer-checked:block"
+          >
+            <svg
+              class="h-6 w-6"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"></path>
             </svg>
           </label>
           <!-- Mobile -->
-          <div class="lg:hidden hidden shadow bg-white peer-checked:block peer-checked:fixed top-16 left-0 w-full" id="mobile-menu">
-            <div class="flex flex-col items-center w-full  px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              <a href="/" class="text-black hover:text-gray-700 block px-3 py-2 rounded-md text-base font-medium">Home</a>
-              <a href="/blog" class="text-black hover:text-gray-700 block px-3 py-2 rounded-md text-base font-medium">Blog</a>
-              <a href="/contact" class="text-black hover:text-gray-700 block px-3 py-2 rounded-md text-base font-medium">Contact Us</a>
+          <div
+            class="lg:hidden hidden shadow bg-white peer-checked:block peer-checked:fixed top-16 left-0 w-full"
+            id="mobile-menu"
+          >
+            <div
+              class="flex flex-col items-center w-full px-2 pt-2 pb-3 space-y-1 sm:px-3"
+            >
+              <a
+                href="/"
+                class="text-black hover:text-gray-700 block px-3 py-2 rounded-md text-base font-medium"
+                >Home</a
+              >
+              <a
+                href="/blog"
+                class="text-black hover:text-gray-700 block px-3 py-2 rounded-md text-base font-medium"
+                >Blog</a
+              >
+              <a
+                href="/contact"
+                class="text-black hover:text-gray-700 block px-3 py-2 rounded-md text-base font-medium"
+                >Contact Us</a
+              >
             </div>
           </div>
         </button>
@@ -40,10 +86,23 @@
 
       <!-- Desktop -->
       <div class="hidden lg:flex space-x-4">
-        <a href="/" class="text-black hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium">Home</a>
-        <a href="/blog" class="text-black hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium">Blog</a>
-        <a href="/contact" class="text-black hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium">Contact Us</a>
+        <a
+          href="/"
+          class="text-black hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium"
+          >Home</a
+        >
+        <a
+          href="/blog"
+          class="text-black hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium"
+          >Blog</a
+        >
+        <a
+          href="/contact"
+          class="text-black hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium"
+          >Contact Us</a
+        >
       </div>
     </div>
   </div>
 </header>
+

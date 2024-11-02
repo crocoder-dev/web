@@ -6,8 +6,15 @@ import { markdownify } from "../ify";
 import { getCollection } from "astro:content";
 import formatDate from "../format-date";
 
-const { authorName, authorImage, AuthorContent, createdAt, title, image, slug } =
-  Astro.props;
+const {
+  authorName,
+  authorImage,
+  AuthorContent,
+  createdAt,
+  title,
+  image,
+  slug,
+} = Astro.props;
 
 const markdownPosts = await getCollection("posts");
 
@@ -102,37 +109,24 @@ const dateObj = new Date(createdAt);
         class="grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 md:grid-cols-3 pt-10"
       >
         {
-          recommendedPosts.map(
-            ({ url, title, image, authors, category, createdAt }) => (
-              <li class="col-span-1">
-                <a class="flex flex-col gap-4" href={url}>
-                  <div class="overflow-hidden rounded-lg">
-                    {image && (
-                      <Picture
-                        src={image}
-                        alt={title}
-                        width={1024}
-                        loading="lazy"
-                        decoding="auto"
-                      />
-                    )}
-                  </div>
-                  <ul class="flex gap-5 list-none">
-                    {authors.length > 0 && <li>{authors[0]}</li>}
-                    <li>
-                      {createdAt && (
-                        <time datetime={createdAt.toISOString()}>
-                          {formatDate(createdAt)}
-                        </time>
-                      )}
-                    </li>
-                    {category && <li>{category}</li>}
-                  </ul>
-                  <h3 class="text-2xl">{title}</h3>
-                </a>
-              </li>
-            ),
-          )
+          recommendedPosts.map(({ url, title, image }) => (
+            <li class="col-span-1">
+              <a class="flex flex-col gap-4" href={url}>
+                <div class="overflow-hidden rounded-lg">
+                  {image && (
+                    <Picture
+                      src={image}
+                      alt={title}
+                      width={1024}
+                      loading="lazy"
+                      decoding="auto"
+                    />
+                  )}
+                </div>
+                <h3 class="text-2xl">{title}</h3>
+              </a>
+            </li>
+          ))
         }
       </ol>
     </div>
