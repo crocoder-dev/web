@@ -31,7 +31,7 @@ const StatusQuoDemo = () => {
   }, [setConsoleOutputs, setEmail, setName, email, name]);
 
   return (
-    <div className='flex gap-4 p-4 border rounded'>
+    <div className='flex flex-col md:flex-row gap-4 p-4 border rounded'>
       <div className='flex flex-col gap-2 flex-1'>
         <div>Contact CroCoder</div>
         <input className='rounded' type="email" placeholder='E-mail' required onChange={handleEmailChange} />

@@ -51,7 +51,7 @@ const UncontrolledDemo = () => {
   ]);
 
   return (
-    <div className='flex gap-4 p-4 border rounded'>
+    <div className='flex flex-col md:flex-row gap-4 p-4 border rounded'>
       <div className='flex-1'>
         <div>
           <ParentComponent setConsoleOutputs={setConsoleOutputs} />
