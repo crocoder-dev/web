@@ -83,18 +83,22 @@ const dateObj = new Date(createdAt);
           >
             <slot />
           </div>
-          <div class="flex items-center border-t border-slate-200 py-8">
-            {
-              authorImage && (
-                <Picture
-                  src={authorImage}
-                  width={100}
-                  alt={title}
-                  loading="lazy"
-                  decoding="auto"
-                />
-              )
-            }
+          <div class="flex items-center border-t gap-4 border-slate-200 py-8">
+            <div class="flex items-center justify-center overflow-hidden bg-[#67a807] rounded-full min-w-[140px] w-[140px] h-[140px] ">
+              {
+                authorImage && (
+                  <Picture
+                    src={authorImage}
+                    width={215}
+                    height={140}
+                    alt={title}
+                    loading="lazy"
+                    decoding="auto"
+                    class={"max-w-none"}
+                  />
+                )
+              }
+            </div>
             <div>
               <div class="text-black text-xl font-bold">{authorName}</div>
               <AuthorContent />

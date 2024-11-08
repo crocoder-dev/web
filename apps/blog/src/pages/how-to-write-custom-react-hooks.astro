@@ -9,31 +9,37 @@ import NextLevelButtonClickTracker from "../content/partials/how-to-write-custom
 import UseFetchDataDemo from "../content/partials/how-to-write-custom-react-hooks/demos/useFetchData/demo";
 import UseDebouncedSearchDemo from "../content/partials/how-to-write-custom-react-hooks/demos/useDebouncedSearch/demo";
 
-const authorCollection = await getCollection("authors");
+export async function getData() {
+  const authorCollection = await getCollection("authors");
 
-const authorIds = ["david"];
+  const authorIds = ["david"];
 
-const authors = authorCollection.filter((author) =>
-  authorIds.includes(author.slug),
-);
+  const authors = authorCollection.filter((author) =>
+    authorIds.includes(author.slug),
+  );
 
-const editorIds = ["velimir"];
+  const editorIds = ["velimir"];
 
-const editors = authorCollection.filter((editor) =>
-  editorIds.includes(editor.slug),
-);
+  const editors = authorCollection.filter((editor) =>
+    editorIds.includes(editor.slug),
+  );
 
-export const data = {
-  title: "How to write custom React hooks? - Code Exercises",
-  description:
-    "Custom React hooks are user-defined functions that allow developers to reuse stateful logic and side effects from React components in a clean and reusable way. Try to solve the given exercises!",
-  image: "/images/how-to-write-custom-react-hooks.png",
-  createdAt: 1675873546123,
-  updatedAt: 1675873546123,
-  abstract:
-    "Unlock the full potential of **React** with custom hooks! In this blog post, we'll go through some exercises that can help you level up your react skills by writing custom hooks in **TypeScript**. From state management to performance optimization, you'll learn how to create reusable logic for your React components and make your code more efficient and scalable. Every exercise has a brief description of the problem, starting code and relevant links. Try to solve the problems without taking a peek at the solution.",
-  category: "Learn Javascript",
-};
+  return {
+    title: "How to write custom React hooks? - Code Exercises",
+    description:
+      "Custom React hooks are user-defined functions that allow developers to reuse stateful logic and side effects from React components in a clean and reusable way. Try to solve the given exercises!",
+    image: "/images/how-to-write-custom-react-hooks.png",
+    createdAt: 1675873546123,
+    updatedAt: 1675873546123,
+    authors,
+    editors,
+    abstract:
+      "Unlock the full potential of **React** with custom hooks! In this blog post, we'll go through some exercises that can help you level up your react skills by writing custom hooks in **TypeScript**. From state management to performance optimization, you'll learn how to create reusable logic for your React components and make your code more efficient and scalable. Every exercise has a brief description of the problem, starting code and relevant links. Try to solve the problems without taking a peek at the solution.",
+    category: "Learn Javascript",
+  };
+}
+
+export const data = await getData();
 
 const slug = "/how-to-write-custom-react-hooks.astro";
 
@@ -138,8 +144,8 @@ const contentList: ContentItem[] = [
   updatedAt={data.updatedAt}
   description={data.description}
   abstract={data.abstract}
-  author={authors[0]}
-  editor={editors[0]}
+  author={data.authors[0]}
+  editor={data.editors[0]}
   slug={slug}
   category={data.category}
 >

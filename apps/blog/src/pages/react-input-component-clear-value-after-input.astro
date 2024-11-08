@@ -6,32 +6,38 @@ import Content, { type ContentItem } from "../layouts/content.astro";
 import StatusQuoDemo from "../content/partials/react-input-component-clear-value-after-input/demos/StatusQuoDemo";
 import UncontrolledDemo from "../content/partials/react-input-component-clear-value-after-input/demos/UncontrolledDemo";
 
-const authorCollection = await getCollection("authors");
+export async function getData() {
+  const authorCollection = await getCollection("authors");
 
-const authorIds = ["david"];
+  const authorIds = ["david"];
 
-const authors = authorCollection.filter((author) =>
-  authorIds.includes(author.slug),
-);
+  const authors = authorCollection.filter((author) =>
+    authorIds.includes(author.slug),
+  );
 
-const editorIds = ["velimir"];
+  const editorIds = ["velimir"];
 
-const editors = authorCollection.filter((editor) =>
-  editorIds.includes(editor.slug),
-);
+  const editors = authorCollection.filter((editor) =>
+    editorIds.includes(editor.slug),
+  );
 
-export const data = {
-  title:
-    "The controlled and the uncontrolled way to clear React Input component value after submit",
-  description:
-    "There are multiple ways to go about building React Input components. The most often used solution is to create a controlled Input component, but there is a not well known solution that uses the useImperativeHandle hook.",
-  category: "Learn JavaScript",
-  image: "/images/react-input-component-clear-value-after-input.jpg",
-  createdAt: 1651439868751,
-  updatedAt: 1651439868751,
-  abstract:
-    "We had to refactor the Input component from our internal component library because its value wasn't getting cleared after submission. In this article, we discuss different ways for how to solve this problem in React. One of the solutions for your Input component discussed in this post is a controlled component, which is achieved by adding a state to the component itself. Another solution is to keep the Input component uncontrolled and give it the ability to pass a ref via props to the rendered <input> HTML element, allowing the parent component to pass the ref to the Input component. The alternative solution we suggest is to use a not well-known hook called useImperativeHandle in combination with a piece of React API called forwardRef. This allows the parent component to access the component API with ref.current, while the Input component remains uncontrolled.",
-};
+  return {
+    title:
+      "The controlled and the uncontrolled way to clear React Input component value after submit",
+    description:
+      "There are multiple ways to go about building React Input components. The most often used solution is to create a controlled Input component, but there is a not well known solution that uses the useImperativeHandle hook.",
+    category: "Learn JavaScript",
+    image: "/images/react-input-component-clear-value-after-input.jpg",
+    createdAt: 1651439868751,
+    updatedAt: 1651439868751,
+    authors,
+    editors,
+    abstract:
+      "We had to refactor the Input component from our internal component library because its value wasn't getting cleared after submission. In this article, we discuss different ways for how to solve this problem in React. One of the solutions for your Input component discussed in this post is a controlled component, which is achieved by adding a state to the component itself. Another solution is to keep the Input component uncontrolled and give it the ability to pass a ref via props to the rendered <input> HTML element, allowing the parent component to pass the ref to the Input component. The alternative solution we suggest is to use a not well-known hook called useImperativeHandle in combination with a piece of React API called forwardRef. This allows the parent component to access the component API with ref.current, while the Input component remains uncontrolled.",
+  }
+}
+
+export const data = await getData();
 
 const slug = "/react-input-component-clear-value-after-input.astro";
 
@@ -102,8 +108,8 @@ const contentList: ContentItem[] = [
   updatedAt={data.updatedAt}
   description={data.description}
   abstract={data.abstract}
-  author={authors[0]}
-  editor={editors[0]}
+  author={data.authors[0]}
+  editor={data.editors[0]}
   slug={slug}
   category={data.category}
 >
