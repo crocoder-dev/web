@@ -4,7 +4,7 @@ const InputComponent = ({ label, inputRef, id }) => (
   <div>
     <label htmlFor={id}>
       {label}
-      <input className='rounded ml-2' id={id} ref={inputRef} />
+      <input className='rounded min-w-52 max-w-full' id={id} ref={inputRef} />
     </label>
   </div>
 );
@@ -33,15 +33,13 @@ const ParentComponent = ({ setConsoleOutputs }) => {
   }, [setConsoleOutputs, emailInputRef, nameInputRef]);
 
   return (
-    <>
+    <div className='flex flex-col gap-2'>
       <InputComponent id="email" label="E-mail" inputRef={emailInputRef} />
-      <br />
       <InputComponent id="name" label="Name" inputRef={nameInputRef} />
-      <br />
-      <button type="button" style={{ height: '30px' }} onClick={handleSubmit}>
+      <button className='rounded p-2 bg-slate-300 hover:bg-slate-200' type="button" onClick={handleSubmit}>
         Submit
       </button>
-    </>
+    </div>
   );
 };
 
@@ -51,7 +49,7 @@ const UncontrolledDemo = () => {
   ]);
 
   return (
-    <div className='flex flex-col md:flex-row gap-4 p-4 border rounded'>
+    <div className='flex flex-col md:flex-row gap-4 p-4 border rounded-md'>
       <div className='flex-1'>
         <div>
           <ParentComponent setConsoleOutputs={setConsoleOutputs} />

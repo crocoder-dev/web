@@ -9,7 +9,7 @@ const ListOfItemsDemo = () => {
   const [items, setItems] = useState(['Map, filter, reduce', 'The DOM', 'Callbacks']);
 
   return (
-    <div>
+    <div className='border rounded-md p-4'>
       Click on the item to change the text, or click on the button to create a new item.
       <ul>
         {items.map((item) => (
@@ -28,8 +28,11 @@ const ListOfItemsDemo = () => {
 
           </LI>
         ))}
-        <input type="text" value={text} onChange={(e) => setText(e.target.value)} />
+      </ul>
+      <div className='flex gap-2 flex-wrap'>
+        <input className='rounded min-w-52 max-w-full' type="text" value={text} onChange={(e) => setText(e.target.value)} />
         <button
+          className='rounded p-2 bg-slate-300 hover:bg-slate-200'
           type="button"
           onClick={() => {
             setItems(
@@ -39,9 +42,8 @@ const ListOfItemsDemo = () => {
           }}
         >
           Create New
-
         </button>
-      </ul>
+      </div>
     </div>
   );
 };

@@ -13,8 +13,9 @@ const UseDebouncedSearchDemo: React.FC = () => {
 
 
   return (
-    <div>
+    <div className='border rounded-md p-4'>
       <input
+        className='rounded min-w-52 max-w-full'
         type="text"
         value={searchTerm}
         onChange={e => setSearchTerm(e.target.value)}

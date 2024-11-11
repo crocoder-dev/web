@@ -20,10 +20,12 @@ Thanks "Peter" for sending us your CV to review it.
 You can download the modified version of [Peter's CV](https://bit.ly/3wvx3B0).
 
 If you want us to review and improve your CV in video form similar to this, contact us at [afterworktalks@crocoder.dev](mailto:afterworktalks@crocoder.dev)!
-
+<div class='relative pb-[56.1%]'>
   <iframe
+    class="absolute top-0 left-0 w-full h-full"
     src="https://www.youtube-nocookie.com/embed/9dW7ust_cb4"
     title="YouTube video player"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
     allowFullScreen
   ></iframe>
+</div>
