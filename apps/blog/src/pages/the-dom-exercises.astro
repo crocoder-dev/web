@@ -6,31 +6,37 @@ import Content, { type ContentItem } from "../layouts/content.astro";
 import ListOfItemsDemo from "../content/partials/the-dom-exercises/demos/ListOfItems/demo";
 import CroCoderLogoDemo from "../content/partials/the-dom-exercises/demos/CroCoderLogo/demo";
 
-const authorCollection = await getCollection("authors");
+export async function getData() {
+  const authorCollection = await getCollection("authors");
 
-const authorIds = ["david"];
+  const authorIds = ["david"];
 
-const authors = authorCollection.filter((author) =>
-  authorIds.includes(author.slug),
-);
+  const authors = authorCollection.filter((author) =>
+    authorIds.includes(author.slug),
+  );
 
-const editorIds = ["velimir"];
+  const editorIds = ["velimir"];
 
-const editors = authorCollection.filter((editor) =>
-  editorIds.includes(editor.slug),
-);
+  const editors = authorCollection.filter((editor) =>
+    editorIds.includes(editor.slug),
+  );
 
-export const data = {
-  title: "JavaScript DOM - Code Exercises",
-  description:
-    "The DOM or the Document Object Model of the page is created after the web page is loaded. Learn some DOM manuipulation with these exercises.",
-  image: "/images/dom.jpg",
-  createdAt: 1619463600000,
-  updatedAt: 1675249865796,
-  abstract:
-    "It's really hard to test your programming knowledge after you have completed a tutorial or a lecture. We have prepared some exercises to help out beginner devs to solidify their understanding of the DOM. Every exercise has a brief description of the problem, starting code, links to relevant MDN docs, and expected results. Try to solve the problems without taking a peek at the solution.",
-  category: "Learn Javascript",
-};
+  return {
+    title: "JavaScript DOM - Code Exercises",
+    description:
+      "The DOM or the Document Object Model of the page is created after the web page is loaded. Learn some DOM manuipulation with these exercises.",
+    image: "/images/dom.jpg",
+    createdAt: 1619463600000,
+    updatedAt: 1675249865796,
+    authors,
+    editors,
+    abstract:
+      "It's really hard to test your programming knowledge after you have completed a tutorial or a lecture. We have prepared some exercises to help out beginner devs to solidify their understanding of the DOM. Every exercise has a brief description of the problem, starting code, links to relevant MDN docs, and expected results. Try to solve the problems without taking a peek at the solution.",
+    category: "Learn Javascript",
+  }
+}
+
+export const data = await getData();
 
 const slug = "/the-dom-exercises.astro";
 
@@ -103,8 +109,8 @@ const contentList: ContentItem[] = [
   updatedAt={data.updatedAt}
   description={data.description}
   abstract={data.abstract}
-  author={authors[0]}
-  editor={editors[0]}
+  author={data.authors[0]}
+  editor={data.editors[0]}
   slug={slug}
   category={data.category}
 >

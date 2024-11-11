@@ -36,7 +36,7 @@ const posts = [
     title: (page as any).data.title,
     createdAt: new Date((page as any).data.createdAt),
     image: (page as any).data.image,
-    authors: (page as any).data.authors || [],
+    authors: (page as any).data.authors.map((e: any) => e.slug) || [],
     category: (page as any).data.category,
   })),
 ].map((post) => {

@@ -1,4 +1,4 @@
 ---
 name: Velimir Ujević
-image: ""
+image: "/images/authors/velimirujevic.pn"
 ---
