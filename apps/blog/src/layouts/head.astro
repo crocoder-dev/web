@@ -1,6 +1,8 @@
 ---
+import type { MarkdownInstance } from "astro";
 import { getCollection } from "astro:content";
 import { marked } from 'marked';
+import { plainify } from "../ify";
 
 const {
   title,
@@ -23,6 +25,22 @@ const formatDate = (timestamp: number): string => {
   return `${year}-${month}-${day}`;
 }
 
+let paritals: MarkdownInstance<Record<string, any>>[] = [];
+
+if (slug === '/how-to-write-custom-react-hooks.astro') {
+  paritals = await Astro.glob('../content/partials/how-to-write-custom-react-hooks/*.md')
+} else if (slug === '/the-dom-exercises.astro') {
+  paritals = await Astro.glob('../content/partials/the-dom-exercises/*.md')
+} else if (slug === '/react-input-component-clear-value-after-input.astro') {
+  paritals = await Astro.glob('../content/partials/react-input-component-clear-value-after-input/*.md')
+}
+
+const allPartialsPlainText = (await Promise.all(paritals.map(async (page) => {
+  const { rawContent } = page;
+  const plainText = plainify(rawContent());
+  return plainText;
+}))).join("");
+
 const sufix = import.meta.env.DEV ? "" : "blog/";
 
 const siteUrl = import.meta.env.SITE_URL + sufix;
@@ -31,8 +49,7 @@ const posts = await getCollection('posts');
 const currentPost = posts.find(post => post.slug === slug);
 
 const articleBodyMarkdown = currentPost ? currentPost.body : "";
-const articleBodyHTML = marked.parse(articleBodyMarkdown);
-const articleBody = (articleBodyHTML as string).replace(/<[^>]+>/g, '');
+const articleBody = plainify(articleBodyMarkdown);
 
 const dateCreated = formatDate(createdAt);
 const dateModified = formatDate(updatedAt);
@@ -43,7 +60,7 @@ const schema = {
   headline: title,
   name: title,
   image: image,
-  articleBody,
+  articleBody: paritals.length ? allPartialsPlainText : articleBody,
   abstract: abstract,
   mainEntityOfPage: {
     "@type": "WebPage",
