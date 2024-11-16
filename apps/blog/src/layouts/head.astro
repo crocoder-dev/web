@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import { marked } from 'marked';
+import { marked } from "marked";
 
 const {
   title,
@@ -17,22 +17,20 @@ const {
 const formatDate = (timestamp: number): string => {
   const d = new Date(timestamp);
   const year = d.getFullYear();
-  const month = String(d.getMonth() + 1).padStart(2, '0');
-  const day = String(d.getDate()).padStart(2, '0');
+  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
 
   return `${year}-${month}-${day}`;
-}
+};
 
-const sufix = import.meta.env.DEV ? "" : "blog/";
+const siteUrl = "https://crocoder.dev/blog/";
 
-const siteUrl = import.meta.env.SITE_URL + sufix;
-
-const posts = await getCollection('posts');
-const currentPost = posts.find(post => post.slug === slug);
+const posts = await getCollection("posts");
+const currentPost = posts.find((post) => post.slug === slug);
 
 const articleBodyMarkdown = currentPost ? currentPost.body : "";
 const articleBodyHTML = marked.parse(articleBodyMarkdown);
-const articleBody = (articleBodyHTML as string).replace(/<[^>]+>/g, '');
+const articleBody = (articleBodyHTML as string).replace(/<[^>]+>/g, "");
 
 const dateCreated = formatDate(createdAt);
 const dateModified = formatDate(updatedAt);
@@ -47,7 +45,7 @@ const schema = {
   abstract: abstract,
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": siteUrl + slug
+    "@id": siteUrl + slug,
   },
   author: {
     "@type": "Person",
@@ -62,14 +60,13 @@ const schema = {
     name: "CroCoder, Inc.",
     logo: {
       "@type": "ImageObject",
-      "url": "/croc-nav.svg"
-    }
+      url: "/croc-nav.svg",
+    },
   },
   dateCreated: dateCreated,
   datePublished: dateCreated,
   dateModified: dateModified,
 };
-
 ---
 
 <script
@@ -77,14 +74,13 @@ const schema = {
   is:inline
   set:html={JSON.stringify(schema)}
 />
-<script></script>
 
 <meta property="og:url" content={siteUrl + slug} />
 <meta property="og:type" content="website" />
 <meta property="og:title" content={title} />
 <meta property="og:name" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={siteUrl + 'public' + image} />
+<meta property="og:image" content={siteUrl + "public" + image} />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta property="twitter:domain" content="crocoder.dev" />
@@ -92,4 +88,4 @@ const schema = {
 <meta name="twitter:title" content={title} />
 <meta name="twitter:text:title" content={title} />
 <meta name="twitter:description" content={description} />
-<meta name="twitter:image" content={siteUrl + 'public' + image} />
+<meta name="twitter:image" content={siteUrl + "public" + image} />
