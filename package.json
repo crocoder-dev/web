@@ -21,6 +21,8 @@
     "packages/*"
   ],
   "dependencies": {
+    "@astrojs/react": "^3.6.2",
+    "classnames": "^2.5.1",
     "prettier": "^3.3.3",
     "prettier-plugin-astro": "^0.14.1"
   }
