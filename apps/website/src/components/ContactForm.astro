@@ -1,0 +1,35 @@
+---
+import CalcomEmbedInline from "../components/CalcomEmbedInline.astro";
+import { grid_classes } from "./_grid";
+import Section from "./Section.astro";
+import SectionTitle from "./SectionTitle.astro";
+---
+
+<!-- YELLOW-1 = #FEB534 -->
+<Section
+idx="book-a-call-section"
+  className="bg-[#FEB534] !py-16 md:!py-24"
+  contentClassName={`${grid_classes} items-center`}
+>
+<SectionTitle className="col-span-6 md:col-span-10 md:!col-start-2 ">
+  Build Your Business  <br class="xl:hidden sm:block" />With Us
+  <p
+    class="leading-normal text-base font-normal text-left text-[#3C3843] mt-4"
+  >
+  Our software development services helped clients big and small build solutions with a lasting impact.
+  </p>
+</SectionTitle>
+
+  
+  <div
+    class="relative col-span-6 md:col-span-10 md:col-start-2 overflow-hidden flex flex-col justify-center bg-white rounded"
+  >
+    <div   id="book-a-call"></div>
+    <CalcomEmbedInline
+      calLink="team/crocoder/hello"
+      eventType="hello"
+      elementOrSelector="#book-a-call"
+      hideEventTypeDetails={false}
+    />
+  </div>
+</Section>

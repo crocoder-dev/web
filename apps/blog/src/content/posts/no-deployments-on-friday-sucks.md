@@ -1,12 +1,12 @@
 ---
 title: "\"No Deployments on Friday\" sucks"
-description: ""
-createdAt: 1645837875000
-updatedAt: 1645837875000
+description: "Explore the debate on 'no deployments on Fridays' in tech — a sign of caution or a red flag? Unpack the truth behind this rule's impact on engineering culture, team confidence, and system reliability."
+createdAt: 1699736934343
+updatedAt: 1699736934343
 authors: ["david"]
-category: "AWS"
+category: "After Work Talks"
 editors: ["velimir"]
-abstract: ""
+abstract: "The tech industry's unwritten rule against Friday deployments is often heralded as a mark of a mature engineering culture. This article critically examines the rationale behind this practice, questioning whether it signifies a commendable caution or an alarming lack of trust in systems and processes. Through a detailed analysis, it highlights the potential issues this maxim may mask, such as frequent rollbacks, trepidation around production changes, and protracted problem-solving for seemingly simple fixes. These issues are indicative of deeper systemic problems, such as complex, unmanageable systems, inadequate testing procedures, and fragile infrastructure. The article argues for a paradigm shift towards creating resilient systems and processes that inspire confidence for deployments on any day of the week. It emphasizes the importance of snappy release cycles, impeccable testing and monitoring, and intelligent system design. Rejecting the defeatist attitude inherent in the 'no deployments on Fridays' rule, the article advocates for a competent, bold approach to software deployment, pushing for a culture that values readiness and reliability over rigid risk-avoidance rituals."
 image: "/images/no-deployments-on-friday-sucks.png"
 draft: false
 ---

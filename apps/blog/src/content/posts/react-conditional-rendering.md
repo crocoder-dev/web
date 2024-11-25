@@ -1,12 +1,12 @@
 ---
 title: "Stop using && in React Conditional Rendering"
-description: ""
-createdAt: 1645837875000
-updatedAt: 1645837875000
+description: "Learn how to use conditional rendering in React and avoid rendering unexpected values like 0 or NaN with this simple guide. Make your React components dynamic and only show the information that is relevant to your users based on the current state of your application."
+createdAt: 1676501933066
+updatedAt: 1676501933066
 authors: ["david"]
-category: "AWS"
+category: "Learn Javascript"
 editors: ["velimir"]
-abstract: ""
+abstract: "The article explores conditional rendering, a React technique that allows developers to show or hide components in the user interface based on certain conditions. It presents a code snippet of a React component and explains how the conditional rendering is implemented using the && operator. The article also examines the issue that arises when the left operand of the && operator is a falsy value, such as 0 or NaN. When a falsy value is used, React interprets it as a string and renders it on the page. The article then proposes different solutions, including using the ternary operator or converting falsy values to Boolean."
 image: "/images/react-conditional-rendering.png"
 draft: false
 ---

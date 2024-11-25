@@ -1,12 +1,12 @@
 ---
 title: "What's \"use server\" in Next.js?"
-description: ""
-createdAt: 1645837875000
-updatedAt: 1645837875000
+description: "Curious about \"use server\" in Next.js 13.4 and 14? Discover how Server Actions can streamline server-side processes, reduce client-side JavaScript, and supercharge form functionalities."
+createdAt: 1698662116738
+updatedAt: 1698662116738
 authors: ["david"]
-category: "AWS"
+category: "Learn Javascript"
 editors: ["velimir"]
-abstract: ""
+abstract: "This article explores Server Actions, a novel feature in Next.js 13.4, designed to optimize server-side data handling, reduce client-side JavaScript, and improve form functionalities. By defining asynchronous functions with the \"use server\" directive, Server Actions ensure execution exclusively on the server, enhancing security and performance. The article guides readers through enabling this experimental feature and provides a comparative analysis between the traditional API routes approach and the streamlined process offered by Server Actions. The \"use server\" directive is highlighted for its crucial role in confining specific functions to server-side execution, necessitating serializable arguments and return values. A practical example demonstrates the implementation of Server Actions in a signup form, showcasing the simplification and colocation of server and client code."
 image: "/images/use-server-nextjs.png"
 draft: false
 ---

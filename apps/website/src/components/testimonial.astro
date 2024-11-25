@@ -1,0 +1,43 @@
+---
+import { getCollection } from "astro:content";
+import Section from "./Section.astro";
+import SectionTitle from "./SectionTitle.astro";
+import { grid_classes } from "./_grid";
+
+const testimonialCollections = await getCollection("testimonials");
+
+const testimonials = [];
+
+for (const testimonial of testimonialCollections) {
+  const { Content } = await testimonial.render();
+  testimonials.push({
+    Content,
+    name: testimonial.data.name,
+    title: testimonial.data.title,
+    imageUrl: testimonial.data.imageUrl,
+  });
+}
+---
+
+<Section
+contentClassName={`${grid_classes} items-baseline`}
+>
+  <SectionTitle
+    className="col-span-6 md:col-span-10 md:col-start-2"
+  >
+    What Our Clients Say
+  </SectionTitle>
+  {
+    testimonials.map(({ name, Content, title, imageUrl }) => (
+      <article class="col-span-6 lg:col-span-4 bg-[#E8E8E8] rounded-2xl p-7 gap-7">
+        <p class="leading-7 text-black">
+          <Content />
+        </p>
+        <div class="pt-7 rounded-lg">
+          <h3 class="text-xl font-bold">{name}</h3>
+          <p class="text-xl">{title}</p>
+        </div>
+      </article>
+    ))
+  }
+</Section>

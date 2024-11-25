@@ -1,0 +1,58 @@
+---
+import siteManifest from "../../public/site-manifest.json";
+
+const { street, city, region, postalCode, country } = siteManifest.company;
+const { twitter, linkedin, github, youtube, instagram } = siteManifest.social;
+const socialImage = `https://placehold.co/600x400`;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: siteManifest.name,
+  description: siteManifest.description,
+  logo: socialImage,
+  url: siteManifest.url,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: street,
+    addressLocality: city,
+    addressRegion: region,
+    postalCode: postalCode,
+    addressCountry: country,
+  },
+  sameAs: [twitter, linkedin, github, youtube, instagram],
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+<link rel="manifest" href="/site-manifest.json" />
+<meta content={siteManifest.theme_color} name="theme-color" />
+<meta content={siteManifest.name} name="application-name" />
+<title>{siteManifest.name}</title>
+<meta content={siteManifest.description} name="description" />
+<link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+<link
+  href="/favicon-16x16.png"
+  rel="icon"
+  sizes="16x16"
+  type="image/png"
+/><link
+  href="/apple-touch-icon.png"
+  rel="apple-touch-icon"
+  sizes="180x180"
+  type="image/png"
+/>
+<!-- OpenGraph -->
+<meta property="og:url" content={siteManifest.url} />
+<meta property="og:type" content="website" />
+<meta property="og:title" content={siteManifest.name} />
+<meta property="og:description" content={siteManifest.description} />
+<meta property="og:image" content={socialImage} />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:domain" content="crocoder-company-website.vercel.app" />
+<meta property="twitter:url" content={siteManifest.url} />
+<meta name="twitter:title" content={siteManifest.name} />
+<meta name="twitter:description" content={siteManifest.description} />
+<meta name="twitter:image" content={socialImage} />
