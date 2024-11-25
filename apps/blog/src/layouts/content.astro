@@ -1,0 +1,25 @@
+---
+export type ContentItem = {
+  title: string;
+  href: string;
+}
+
+type Props = {
+  contentList: ContentItem[];
+}
+
+const { contentList } = Astro.props as Props;
+---
+
+<h2>Content</h2>
+<ul>
+  {
+    contentList.map((item) => (
+      <li>
+        <a target="_self" rel="noopener noreferrer" href={item.href}>
+          {item.title}
+        </a>
+      </li>
+    ))
+  }
+</ul>
