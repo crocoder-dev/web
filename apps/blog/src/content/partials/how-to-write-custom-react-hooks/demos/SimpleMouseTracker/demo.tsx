@@ -3,7 +3,7 @@ import { useMousePosition } from './useMousePosition';
 const SimpleMouseTracker: React.FC = () => {
   const [position] = useMousePosition();
   return (
-    <div>
+    <div className='border rounded-md p-4'>
       <p>X: {position.x}</p>
       <p>Y: {position.y}</p>
     </div>

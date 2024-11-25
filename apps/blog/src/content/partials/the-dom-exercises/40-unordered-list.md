@@ -2,7 +2,7 @@
 
 Change the text in the first and the last list item element in every unordered list element on this page. Change it to `'first'` and `'last'`.
 
-<NonHSubtitle>Helpful links</NonHSubtitle>
+::title Helpful links
 
 - [Document.querySelectorAll()](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll)
 - [Pseudo-elements](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements)

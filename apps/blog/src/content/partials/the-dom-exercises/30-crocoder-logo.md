@@ -2,7 +2,7 @@
 
 Add the CroCoder logo (image element) as a child element to the existing div element.
 
-<NonHSubtitle>Helpful links</NonHSubtitle>
+::title Helpful links
 
 - [Document.querySelector()](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector)
 - [Document.createElement()](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement)

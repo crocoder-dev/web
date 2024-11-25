@@ -21,10 +21,12 @@ You can check out our **Serverless Email** [project example](https://github.com/
 
 If you want us to review and improve your CV in video form similar to this, contact us at [afterworktalks@crocoder.dev](mailto:afterworktalks@crocoder.dev)!
 
-
+<div class='relative pb-[56.1%]'>
   <iframe
+    class="absolute top-0 left-0 w-full h-full"
     src="https://www.youtube.com/embed/Jlr1aUSUwyI"
     title="YouTube video player"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
     allowFullScreen
   ></iframe>
+</div>

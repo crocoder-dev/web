@@ -9,11 +9,13 @@ const UseFetchDataDemo: React.FC = () => {
   if (!data) return <p>No data</p>;
 
   return (
-    <ul>
-      {data.slice(0, 5).map((item) => (
-        <li key={item.id}>{item.title}</li>
-      ))}
-    </ul>
+    <div className='border rounded-md p-4'>
+      <ul>
+        {data.slice(0, 5).map((item) => (
+          <li key={item.id}>{item.title}</li>
+        ))}
+      </ul>
+    </div>
   );
 };
 

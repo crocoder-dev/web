@@ -1,12 +1,12 @@
 const CroCoderLogoDemo = () => {
   return (
-    <div>
-    <img
-      style={{ height: "200px" }}
-      src="https://crocoder.dev/icon.png"
-      alt="Crocoder crocodile"
-    />
-  </div>
+    <div className="border rounded-md p-4">
+      <img
+        style={{ height: "200px" }}
+        src="https://crocoder.dev/icon.png"
+        alt="Crocoder crocodile"
+      />
+    </div>
   );
 };
 
