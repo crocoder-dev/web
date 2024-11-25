@@ -1,4 +1,4 @@
-Solution
+::details Show Solution
 
 ```tsx
 import { useState, useEffect } from 'react';
@@ -65,3 +65,5 @@ In the **`SearchComponent`** component, we use the **`useDebouncedSearch`** hook
 The **`useDebouncedSearch`** hook returns the **`debouncedSearchTerm`** state, which we use to display in the component. The component also calls the **`handleSearch`** function with the debounced search term whenever it changes.
 
 With this custom hook, the search function will only be executed after the user stops typing for 500 milliseconds, rather than being called with every keystroke.
+
+::enddetails

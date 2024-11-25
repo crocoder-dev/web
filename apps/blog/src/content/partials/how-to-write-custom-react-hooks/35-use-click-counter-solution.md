@@ -1,4 +1,4 @@
-Solution
+::details Show Solution
 
 ```tsx
 import { useState } from 'react';
@@ -30,3 +30,5 @@ The **`increment`** function is created to increment the count when the button i
 The hook then returns an array that contains the **`count`** and the **`increment`** function.
 
 The **`ClickCounter`** component imports the **`useClickCounter`** hook and calls it to get the count and increment function. The component then displays the number of clicks and uses the increment function as the **`onClick`** handler for the button.
+
+::enddetails

@@ -1,12 +1,12 @@
 ---
 title: "No, you shouldn't measure developer productivity.."
-description: ""
-createdAt: 1645837875000
-updatedAt: 1645837875000
+description: "Explore the contentious debate surrounding developer productivity measurement ignited by McKinsey's recent article. Discover why focusing on individual metrics hinders software engineering teams."
+createdAt: 1695115503000
+updatedAt: 1695115503000
 authors: ["david"]
-category: "AWS"
+category: "After Work Talks"
 editors: ["velimir"]
-abstract: ""
+abstract: "This article delves into the contentious debate sparked by McKinsey's recent publication on measuring developer productivity in the dynamic realm of software development. While acknowledging the importance of metrics in optimizing software engineering processes, the article critiques McKinsey's emphasis on individual productivity metrics and their potential pitfalls. It highlights the collaborative nature of software development and the limitations of simplistic metrics while advocating for a more comprehensive, evidence-driven approach to evaluation. As the discussion continues, software engineers are encouraged to explore meaningful measurement practices that foster teamwork and continuous improvement in this ever-evolving field."
 image: "/images/you-should-not-measure-developer-productivity-response-to-mckinsey.png"
 draft: false
 ---

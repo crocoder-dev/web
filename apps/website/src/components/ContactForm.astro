@@ -1,61 +1,35 @@
 ---
 import CalcomEmbedInline from "../components/CalcomEmbedInline.astro";
+import { grid_classes } from "./_grid";
+import Section from "./Section.astro";
+import SectionTitle from "./SectionTitle.astro";
 ---
 
 <!-- YELLOW-1 = #FEB534 -->
-<section class="bg-[#FEB534] w-full lg:py-[200px]">
-  <section
-    class="container mx-auto grid grid-cols-6 lg:grid-cols-12 gap-12 px-7"
+<Section
+idx="book-a-call-section"
+  className="bg-[#FEB534] !py-16 md:!py-24"
+  contentClassName={`${grid_classes} items-center`}
+>
+<SectionTitle className="col-span-6 md:col-span-10 md:!col-start-2 ">
+  Build Your Business  <br class="xl:hidden sm:block" />With Us
+  <p
+    class="leading-normal text-base font-normal text-left text-[#3C3843] mt-4"
   >
-    <div
-      class="col-span-6 lg:col-span-4 xl:col-span-5 2xl:col-span-6 flex flex-col gap-12 justify-center lg:gap-y-7 xl:gap-y-12"
-    >
-      <h1
-        class="font-poppins text-[74px] lg:text-6xl xl:text-[74px] font-medium leading-[84px] tracking-[-0.02em] text-left text-[#3C3843]"
-      >
-        Build Your Business With Us
-      </h1>
-      <p
-        class="font-poppins text-[16px] font-normal leading-[26px] text-left text-[#3C3843]"
-      >
-        We recognize that thriving today shouldn't compromise future success. By
-        selecting the right tools and focusing on solid software architecture,
-        we address immediate technical challenges while preparing your business
-        for what's ahead.
-      </p>
-    </div>
-    <div
-      class="relative col-span-6 lg:col-span-8 xl:col-span-7 2xl:col-span-6 overflow-hidden flex flex-col justify-center"
-    >
-      <!-- 
-  Since calcom displays mobile layout (single column) at 768px,
-  we need to increase the width of our col_span to above 768px
-  At 770px, calcom renders in fixed width of 605 so we need to increase our col_span to above 768px on wider screens  
-  
-  Computed values are:
-  2xl: 770px - 726px(col_span) / 2 = 27px
-  xl: 770px - 694px(col_span) / 2 = 38px
-  lg: 770px - 630px(col_span) / 2 = 70px
-  md: 770px - 712px(col_span) / 2 = 29px
+  Our software development services helped clients big and small build solutions with a lasting impact.
+  </p>
+</SectionTitle>
 
-  Note: col_span width is affected by gap and padding on the grid container
-  Note: on lg we split the grid on 4/8 so the calendar can fit
-  Note: on xl we split the grid on 5/7
-  Note: on md we add negative margin to force the non-mobile layout since we can fit it
   
-  class="md:-mx-[29px] md:w-[calc(100%+2*29px)] lg:-mx-[70px] lg:w-[calc(100%+2*70px)] xl:-mx-[38px] xl:w-[calc(100%+2*38px)] 2xl:-mx-[27px] 2xl:w-[calc(100%+2*27px)]"
-  -->
-      <div
-        class="md:[--mx:29px] lg:[--mx:70px] xl:[--mx:38px] 2xl:[--mx:27px] md:-mx-[var(--mx)] md:w-[calc(100%+2*var(--mx))]"
-        id="book-a-call"
-      >
-      </div>
-      <CalcomEmbedInline
-        calLink="team/crocoder/quickchat"
-        eventType="quickchat"
-        elementOrSelector="#book-a-call"
-        hideEventTypeDetails={true}
-      />
-    </div>
-  </section>
-</section>
+  <div
+    class="relative col-span-6 md:col-span-10 md:col-start-2 overflow-hidden flex flex-col justify-center bg-white rounded"
+  >
+    <div   id="book-a-call"></div>
+    <CalcomEmbedInline
+      calLink="team/crocoder/hello"
+      eventType="hello"
+      elementOrSelector="#book-a-call"
+      hideEventTypeDetails={false}
+    />
+  </div>
+</Section>

@@ -1,12 +1,12 @@
 ---
 title: "What is cycle time in Software Development?"
-description: ""
-createdAt: 1645837875000
-updatedAt: 1645837875000
+description: "Discover the power of cycle time in software development, a pivotal metric that holds the key to enhanced productivity and streamlined workflows. Learn how cycle time, from initial commit to code deployment, measures a team's efficiency and ability to deliver working software within defined time frames."
+createdAt: 1686829994694
+updatedAt: 1686829994694
 authors: ["david"]
-category: "AWS"
+category: "After Work Talks"
 editors: ["velimir"]
-abstract: ""
+abstract: "This article explores the concept of cycle time in software development and its significance in enhancing efficiency and speed. Cycle time, defined as the actual time spent from a developer's initial commit to the ultimate deployment of code, serves as a crucial metric for measuring a team's productivity and the ability to deliver working software within specified time frames. By examining the role of cycle time as a lagging indicator, leaders can uncover underlying issues and inefficiencies within their teams. The article highlights the importance of measuring and tracking cycle time, showcasing its impact on team culture, innovation, and overall business success. It also emphasizes the need for a consistent definition and measurement of cycle time across organizations. With insights from successful engineering teams, readers gain valuable knowledge on optimizing cycle time to drive productivity and achieve faster time to market."
 image: "/images/what-is-cycle-time-in-software-development.png"
 draft: false
 ---
