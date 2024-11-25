@@ -1,12 +1,12 @@
 ---
 title: "Stop bikeshedding in software engineering"
-description: ""
-date: 1645837875000
-updatedAt: 1645837875000
+description: "Learn how to avoid bikeshedding, a phenomenon where a group spends too much time on trivial matters while neglecting more important issues. Discover tips to prevent bikeshedding in any group setting, from corporate board meetings to software development teams."
+createdAt: 1683151069601
+updatedAt: 1683151069601
 authors: ["david"]
-category: "AWS"
-editor: ["velimir"]
-abstract: ""
+category: "After Work Talks"
+editors: ["velimir"]
+abstract: "Bikeshedding, also known as Parkinson's Law of Triviality, is a phenomenon where a group of people spends an inordinate amount of time and energy on relatively trivial matters while neglecting more important issues. To avoid it, the article suggests tips such as keeping the focus on the big picture, setting clear goals and timelines, encouraging constructive criticism, and limiting discussion time. By recognizing the occurrences of bikeshedding and taking these steps to prevent it, groups can stay focused on the bigger issues and achieve their goals more efficiently."
 image: "/images/stop-bikeshedding.png"
 draft: false
 ---

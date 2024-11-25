@@ -4,11 +4,13 @@ import react from '@astrojs/react';
 import vercel from '@astrojs/vercel/static';
 import createRemarkPlugin from '@crocoder-dev/remark-plugin';
 
-const remarkPlugin = createRemarkPlugin({
+const classes = {
   titleClass: 'font-bold text-[1.25rem] mt-[2.5rem]',
   summaryClass: 'cursor-pointer font-bold text-[1.25rem]',
   detailsClass: 'mt-[2.5rem]',
-});
+}
+
+const remarkPlugin = createRemarkPlugin(classes);
 
 export default defineConfig({
   output: 'static',
@@ -19,6 +21,9 @@ export default defineConfig({
       domains: ['*'],
     },
   }),
+  redirects: {
+    '/feed': '/rss.xml'
+  },
   integrations: [tailwind(), react()],
   markdown: {
     remarkPlugins: [remarkPlugin],

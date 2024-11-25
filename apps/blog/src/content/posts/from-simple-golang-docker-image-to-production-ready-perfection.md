@@ -1,13 +1,13 @@
 ---
 title: "From simple Golang docker image to production-ready perfection"
-description: ""
-date: 1645837875000
-updatedAt: 1645837875000
+description: "Optimize, secure, and deploy Golang apps with Docker. Learn efficient caching, performance compilation, and environment configurations. Utilize non-root users, delightful dev tools, and a final production stage."
+createdAt: 1689628390000
+updatedAt: 1689628390000
 authors: ["david"]
-category: "AWS"
-editor: ["velimir"]
-abstract: ""
-image: ""
+category: "Docker"
+editors: ["velimir"]
+abstract: "In this article, the author takes the readers on an exciting Dockerizing journey, transforming a basic Golang Docker image into a production-ready masterpiece. The article covers essential steps such as pinning versions, embracing Debian, optimizing caching, and compiling for performance. The author introduces a two-stage approach to reduce image size and enhance security. Environment configurations, non-root user anchoring, and delightful development tools like air and dlv are explored to improve the development experience. The article concludes with a final stage for production deployment, providing the readers with valuable insights and skills to confidently deploy Golang applications using Docker."
+image: "/images/golang-docker-image.png"
 draft: false
 ---
 

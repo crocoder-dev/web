@@ -1,12 +1,12 @@
 ---
 title: "Misusing Agile is holding your team back"
-description: ""
-date: 1645837875000
-updatedAt: 1645837875000
+description: "Learn why Agile development is not just a set of processes, but a mindset focused on collaboration, flexibility, and continuous improvement. This article discusses the core principles and values of Agile, the common misconceptions that hinder its implementation, and the benefits of adopting Agile effectively."
+createdAt: 1680132272254
+updatedAt: 1680132272254
 authors: ["david"]
-category: "AWS"
-editor: ["velimir"]
-abstract: ""
+category: "After Work Talks"
+editors: ["velimir"]
+abstract: "This article discusses the common misconceptions and mistakes that teams make when implementing the Agile development methodology. Agile is not a set of rigid processes and procedures to be followed to the letter, but rather a philosophy emphasizing flexibility, adaptability, and continuous improvement. Genuine agility requires a cultural shift toward collaboration, communication, and transparency, where teams focus on outcomes rather than outputs and are measured by their ability to deliver value to customers. The article addresses common misconceptions, including top-down \"Agile\" adoption, limiting the responsibility of understanding customer needs to project managers or product owners, working in silos, treating every task on an equal level of importance, and rigid planning. By addressing these misconceptions, teams can better understand and implement Agile principles, leading to more successful software development projects."
 image: "/images/misusing-agile-is-holding-your-team-back.png"
 draft: false
 ---

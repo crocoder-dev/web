@@ -1,4 +1,4 @@
-Solution
+::details Show Solution
 
 ```tsx
 import { useState, useCallback } from 'react';
@@ -47,3 +47,5 @@ export default ButtonClickTracker;
 The hook also uses the **`useCallback`** hook to ensure that the **`incrementCount`** function is only created once, even if the component is re-rendered multiple times. This can improve performance by avoiding the creation of unnecessary functions.
 
 The component **`ButtonClickTracker`** imports the hook and calls it using the **`useClickTracker`** hook. The hook returns an array with two elements: **`state`** and **`incrementCount`**. The component uses the **`state`** object to display the number of times the button has been clicked and the time of the most recent click. The component also uses the **`incrementCount`** function as the **`onClick`** handler for the button.
+
+::enddetails

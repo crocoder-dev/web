@@ -1,12 +1,12 @@
 ---
 title: "Internal component libraries - an overlooked part of your brand"
-description: ""
-date: 1645837875000
-updatedAt: 1645837875000
+description: "High-quality design is a justified expense for companies of any size, regardless of the hefty price tag. Internal component libraries, on the other hand, aren’t often seen as such an important investment as UI/UX. Danica Pivalica Abram challenges this stance arguing that placing a lot of effort into internal component libraries is crucial for your brand."
+createdAt: 1657712492358
+updatedAt: 1657712492358
 authors: ["danica"]
-category: "AWS"
-editor: ["velimir"]
-abstract: ""
+category: "Design System / Component Library"
+editors: ["velimir"]
+abstract: "Good design means doing good business - it shows credibility, facilitates trust, and makes the user feel involved. UX/UI also creates and maintains the ever-so-important promise of a brand. Design systems and component libraries help reduce duplication, improve cross-team collaboration, drive product scalability, and make the UI consistent. There are arguments popular in the developer community that diminish the value of building an internal component library, in favor of using third-party component libraries. However, third-party component libraries constrain your development team in multiple different ways. When there is a problem your development team cannot solve (which happens more often than you think), issues will spill into the design team, forcing them to rethink their proposed design system. This, in turn, requires compromises to be made in the design, damaging the perception of the product brand. Only by building your own component library will you possess enough flexibility to ensure that the components used to shape your product match the design system specification in a way that does not damage your carefully built brand."
 image: "/images/component-libraries-an-overlooked-part-of-your-brand.jpg"
 draft: false
 ---

@@ -20,11 +20,15 @@ export async function getStaticPaths() {
 const authorCollection = await getCollection("authors");
 
 const { page } = Astro.props;
-const { authors: authorIds } = page.data;
+const { authors: authorIds, editors: editorIds } = page.data;
 
 const authors = authorCollection.filter((author) =>
   authorIds.includes(author.slug),
 );
+
+const editors = authorCollection.filter((editor) =>
+  editorIds.includes(editor.slug),
+);
 ---
 
-<Post post={page} slug={page.slug} author={authors[0]} />
+<Post post={page} slug={page.slug} editor={editors[0]} author={authors[0]} />
