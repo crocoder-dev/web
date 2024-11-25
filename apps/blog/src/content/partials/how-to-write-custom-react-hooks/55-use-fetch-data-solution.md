@@ -1,4 +1,4 @@
-Solution
+::details Show Solution
 
 ```tsx
 import { useState, useEffect } from 'react';
@@ -66,3 +66,5 @@ The hook uses the **`useEffect`** hook to make an asynchronous call to fetch the
 In a component, the hook is used by calling **`useFetchData`** and passing in the URL to fetch data from. The hook returns an array with the data, error, and loading state, which can be destructured into separate variables.
 
 The component then uses conditional rendering to display either a "Loading..." message, an error message, or the fetched data. The fetched data is displayed as a list of items, each item being a title from the data.
+
+::enddetails

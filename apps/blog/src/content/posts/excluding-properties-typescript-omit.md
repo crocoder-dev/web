@@ -1,13 +1,13 @@
 ---
 title: "Excluding Properties with TypeScript's Omit"
-description: ""
-createdAt: 1645837875000
-updatedAt: 1645837875000
+description: "Learn how to wield TypeScript's Omit tool effectively with clear examples. Craft precise types by excluding properties from existing types. Discover solutions for unions, extending interfaces, and enforcing strictness."
+createdAt: 1692047597000
+updatedAt: 1692047597000
 authors: ["david"]
 category: "Learn Javascript"
 editors: ["velimir"]
 draft: false
-abstract: ""
+abstract: "Dive into TypeScript's Omit tool with expert insights from David Abram. Learn to sculpt precise type definitions by excluding properties. Discover DistributiveOmit for unions and creative interface extensions. Embrace StrictOmit's reliability. Elevate your code with cleaner, robust types. Master TypeScript's Omit today."
 image: "/images/excluding-properties-typescript-omit.png"
 ---
 

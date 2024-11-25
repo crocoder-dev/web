@@ -1,12 +1,12 @@
 ---
 title: "Create React App is dead! What are the alternatives?"
-description: ""
-createdAt: 1645837875000
-updatedAt: 1645837875000
+description: 'CRA may be "dead", but there are many alternative tools available for building React applications that offer superior performance, faster development times and extensive plugin compatibility.'
+createdAt: 1674342628465
+updatedAt: 1679077320886
 authors: ["david"]
 category: "Learn Javascript"
 editors: ["velimir"]
-abstract: ""
+abstract: "Create React App seems abandoned and dead. I want to show you some great alternatives that we personally use at CroCoder. T3 Stack is a web development stack created by Theo that focuses on simplicity, modularity, and full-stack type safety. Its core pieces are Next.js, TypeScript, and Tailwind CSS. T3 Stack is a great alternative to Create React App (CRA) because it offers superior performance, faster development time, and is actively maintained. Vite + React is a great alternative to Create React App (CRA) because it offers superior performance and faster development time. Additionally, Next.js is a frontend framework that is built on top of React and is designed to improve the performance, user experience, and SEO of web applications. It provides an out-of-the-box solution for server-side rendering (SSR) of React components, which allows for simple indexable HTML to be sent to the user, making it easier for web crawlers to read the text content of the application, thereby improving its visibility in search engines."
 image: "/images/create-react-app-is-dead-what-are-the-alternatives.jpg"
 draft: false
 ---

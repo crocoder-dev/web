@@ -1,6 +1,6 @@
 ---
 name: David Abram
-image: ""
+image: "/images/authors/davidabram.png"
 ---
 
 Spends his time untangling software architectures and doing DevOps. Likes to build stuff.  
