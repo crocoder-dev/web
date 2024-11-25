@@ -1,12 +1,12 @@
 ---
 title: "Map, Filter, Reduce - Code Exercises"
-description: ""
-date: 1645837875000
-updatedAt: 1645837875000
+description: "Map, filter and reduce are the most useful array methods to manipulate arrays and often the hardest to master. Try to solve the given exercises!"
+createdAt: 1619474400000
+updatedAt: 1700594726985
 authors: ["david"]
-category: "AWS"
-editor: ["velimir"]
-abstract: ""
+category: "Learn Javascript"
+editors: ["velimir"]
+abstract: "It's really hard to test your programming knowledge after you have completed a tutorial or a lecture. We have prepared some exercises to help out beginner devs to solidify their understanding of Map, Filter, Reduce, and other useful array methods. Every exercise has a brief description of the problem, starting code, links to relevant MDN docs, and expected results. Try to solve the problems without taking a peek at the solution."
 image: "/images/map-filter-reduce-exercises.png"
 draft: false
 ---
@@ -27,24 +27,24 @@ I would like to prove to you that by using **Map, Filter, and Reduce** array met
 
 Square the value of every element in the array. Presume that you will only get numbers in the input array.
 
-Helpful links
+::title Helpful links
 
 - [Array.prototype.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 - [Math.pow()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/pow)
 
-Input
+::title Input
 
 ```javascript
 const input = [1, 2, 3, 4, 5];
 ```
 
-Result
+::title Result
 
 ```javascript
 [1, 4, 9, 16, 25];
 ```
 
-Solution
+::details Show Solution
 
 ```javascript
 const input = [1, 2, 3, 4, 5];
@@ -62,28 +62,30 @@ For each number, it applies the function passed to it, which is **`Math.pow(num,
 
 The second version is the same as the first version but it uses **`Arrow function`** instead of anonymous function.
 
+::enddetails
+
 ## Sum of every positive element
 
 If the given input is an array of numbers, return the sum of all the positives ones. If the array is empty or there aren't any positive numbers, return 0.
 
-Helpful links
+::title Helpful links
 
 - [Array.prototype.filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
 - [Array.prototype.reduce()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
 
-Input
+::title Input
 
 ```javascript
 const input = [1, -4, 12, 0, -3, 29, -150];
 ```
 
-Result
+::title Result
 
 ```javascript
 42;
 ```
 
-Solution
+::details Show Solution
 
 ```javascript
 const input = [1, -4, 12, 0, -3, 29, -150];
@@ -108,29 +110,31 @@ The code first filters the input array to only include numbers greater than 0 us
 
 The code is also written with **`Arrow function`** which are shorthand for writing function expressions that behave similarly to regular functions while being more concise.
 
+::enddetails
+
 ## Calculate median and mean
 
 Calculate the mean and median values of the number elements from the input array.
 
-Helpful links
+::title Helpful links
 
 - [Array.prototype.reduce()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
 - [Array.prototype.sort()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
 - [Math.abs()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/abs)
 
-Input
+::title Input
 
 ```javascript
 const input = [12, 46, 32, 64];
 ```
 
-Result
+::title Result
 
 ```javascript
   { mean: 38.5, median: 39 }
 ```
 
-Solution
+::details Show Solution
 
 ```javascript
 const input = [12, 46, 32, 64];
@@ -169,30 +173,31 @@ Furthermore, the function first adds the **`currentValue`** divided by the array
 
 Finally, the function returns the **`accumulator`** object with the updated mean and median values, after iterating through the entire array.
 
+::enddetails
 
 ## Get name initials
 
 The given input is a string of multiple words with a single space between each of them. Abbreviate the name and return the name initials.
 
-Helpful links
+::title Helpful links
 
 - [Array.prototype.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 - [String.prototype.split()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split)
 - [String.prototype.join()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join)
 
-Input
+::title Input
 
 ```javascript
 const input = "George Raymond Richard Martin";
 ```
 
-Result
+::title Result
 
 ```javascript
 "GRRM";
 ```
 
-Solution
+::details Show Solution
 
 ```javascript
 const input = "George Raymond Richard Martin";
@@ -219,17 +224,19 @@ Finally, the **`join`** method is used to join all the elements of the new array
 
 The code is also written with **`Arrow function`** which are shorthand for writing function expressions that behave similarly to regular functions while being more concise.
 
+::enddetails
+
 ## Age difference from the youngest and oldest
 
 Find the difference in age between the oldest and youngest family members, and return their respective ages and the age difference.
 
-Helpful links
+::title Helpful links
 
 - [Array.prototype.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 - [Math.min()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/min)
 - [Math.max()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/max)
 
-Input
+::title Input
 
 ```javascript
 const input = [
@@ -256,13 +263,13 @@ const input = [
 ];
 ```
 
-Result
+::title Result
 
 ```javascript
 [13, 67, 54];
 ```
 
-Solution
+::details Show Solution
 
 ```javascript
 const input = [
@@ -301,30 +308,32 @@ The **`Math.min`** method is then used with the spread operator **`(...)`** to f
 
 Finally, the difference between the max and min is calculated and returned in an array.
 
+::enddetails
+
 
 ## Numeronyms
 
 Devs like to abbreviate everything: k8s means Kubernetes, a11y means accessibility, l10n means localization. You get the Dev numeronyms by taking the first and the last letter and counting the number of letters in between. Words that have less than 4 letters aren't abbreviated, because that would just be odd. The input is a sentence, and you should abbreviate every word that is 4 letters long or longer. There won't be any punctuation in the sentence. g2d l2k e6e
 
-Helpful links
+::title Helpful links
 
 - [Array.prototype.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 - [String.prototype.split()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split)
 - [String.prototype.join()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join)
 
-Input 
+::title Input 
 
 ```javascript
 const input = "Every developer likes to mix kubernetes and javascript";
 ```
 
-Result
+::title Result
 
 ```javascript
 "E3y d7r l3s to mix k8s and j8t";
 ```
 
-Solution
+::details Show Solution
 
 ```javascript
 const input = "Every developer likes to mix kubernetes and javascript";
@@ -357,29 +366,31 @@ Finally, it uses the **`join()`** method to join the array of modified words bac
 
 The second version is the same as the first version but it uses **`Arrow function`** and **`Conditional operator`**.
 
+::enddetails
+
 
 ## n! with Map and Reduce
 
 If the given input is a number, you should return the factorial of that number. The factorial of a natural number n is the product of the positive integers less than or equal to n. So, 2! = 2, 3! = 6, 4! = 24 and so on.
 
-Helpful links
+::title Helpful links
 
 - [Array.prototype.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 - [Array.prototype.fill()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fill)
 - [Array.prototype.reduce()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
 
-Input
+::title Input
 
 ```javascript
 const input = 6;
 ```
-Result
+::title Result
 
 ```javascript
 720;
 ```
 
-Solution
+::details Show Solution
 
 ```javascript
 const input = 6;
@@ -410,16 +421,18 @@ Finally, the **`reduce`** method is used to iterate through the new array and ca
 
 The code is also written with **`Arrow function`** which are shorthand for writing function expressions that behave similarly to regular functions while being more concise.
 
+::enddetails
+
 ## Count elements in array of arrays
 
 Count the occurrences of distinct elements in the given 2D array. The given input is an array, the elements of which are arrays of strings. The result is an object whose property names are the values from the arrays and their value is the number of their occurrences.
 
-Helpful links
+::title Helpful links
 
 - [Array.prototype.reduce()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
 - [Array.prototype.flat()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flat)
 
-Input
+::title Input
 
 ```javascript
 const input = [
@@ -429,7 +442,7 @@ const input = [
 ];
 ```
 
-Result
+::title Result
 
 ```javascript
   {
@@ -442,7 +455,7 @@ Result
   }
 ```
 
-Solution
+::details Show Solution
 
 ```javascript
 const input = [
@@ -469,16 +482,19 @@ The function checks if the **`currentValue`** already exists in the **`accumulat
 
 Finally, the function returns the **`accumulator`** object with the count of each character in the flattened array.
 
+::enddetails
+
+
 ## High performing students
 
 You are given an array of objects representing a group of students, each with a name and an array of test scores. Your task is to use map, filter, and reduce to calculate the average test score for each student, and then return an array of objects containing only the students who have an average score above 90.
 
-Helpful links
+::title Helpful links
 - [Array.prototype.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 - [Array.prototype.reduce()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
 - [Array.prototype.filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
 
-Input
+::title Input
 
 ```javascript
 const students = [
@@ -488,14 +504,15 @@ const students = [
   { name: "Jack", scores: [100, 100, 100] }
 ];
 ```
-Result
+::title Result
 
 ```javascript
 [ 
   { name: 'Jack', average: 100 }
 ]
 ```
-Solution
+
+::details Show Solution
 
 ```javascript
 const students = [
@@ -523,11 +540,13 @@ It calculates the sum of all the test scores using the **`reduce`** method on th
 
 The function passed to the **`filter`** method takes one argument, **`student`**, which is the current element being processed, and it returns a Boolean value that indicates whether the student's average test score is greater than 90 or not.
 
+::enddetails
+
 ## High Priced Product Categories
 
 You are given an array of objects representing a collection of products, each with a name, price, and category. Your task is to use map, filter, and reduce to calculate the average price of products in each category, and then return an array of objects containing only the categories that have an average price above 50.
 
-Helpful links
+::title Helpful links
 - [Array.prototype.reduce()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
 - [Array.prototype.push()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push)
 - [Array.prototype.keys()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/keys)
@@ -535,7 +554,7 @@ Helpful links
 - [Array.prototype.filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
 
 
-Input
+::title Input
 
 ```javascript
 const products = [
@@ -549,7 +568,7 @@ const products = [
   { name: "Product 8", price: 90, category: "Electronics" },
 ];
 ```
-Result
+::title Result
 ```javascript
 [ 
   { category: 'Clothes', average: 55 },
@@ -557,7 +576,8 @@ Result
 ]
 ```
 
-Solution
+::details Show Solution
+
 ```javascript
 const products = [
   { name: "Product 1", price: 20, category: "Electronics" },
@@ -603,19 +623,21 @@ Next, it uses **`Object.keys(productsByCategory)`** to extract the keys (categor
 
 Finally, it filters the categories that have an average price greater than 50 using **`filter`** method.
 
+::enddetails
+
 
 ## HR VS IT Department
 
 You are given an array of objects representing a collection of employees, each with a name, salary, and department. Your task is to use map, filter, and reduce to calculate the average salary for each department and then return an array of objects containing only the departments that have an average salary above 65000.
 
-Helpful links
+::title Helpful links
 - [Array.prototype.reduce()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
 - [Array.prototype.push()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push)
 - [Array.prototype.keys()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/keys)
 - [Array.prototype.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 - [Array.prototype.filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
 
-Input
+::title Input
 
 ```javascript
 const employees = [
@@ -628,7 +650,7 @@ const employees = [
   { name: "David", salary: 70000, department: "IT" },
 ];
 ```
-Result
+::title Result
 
 ```javascript
 [
@@ -636,7 +658,8 @@ Result
 ]
 ```
 
-Solution
+::details Show Solution
+
 ```javascript
 const employees = [
   { name: "John", salary: 50000, department: "IT" },
@@ -680,3 +703,5 @@ The **`Object.keys`** method is then used to get all the departments from the **
 It first calculates the sum of all the salary of employees in that department using the **`reduce`** method on the **`department`** array and then returns an object with the department name and average salary which is the sum of salary divided by the number of employees in that **`department`**.
 
 Finally, the **`filter`** method is used to iterate through the array of department averages, and create a new array by applying a function to each **`department`** object. The function passed to the **`filter`** method takes one argument, **`department`**, which is the current element being processed, and it returns a Boolean value that indicates whether the department's average salary is greater than 65000 or not.
+
+::enddetails

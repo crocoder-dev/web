@@ -1,12 +1,12 @@
 ---
 title: "A Dockerfile for BLAZINGLY FAST Dockerized Node.js apps"
-description: ""
-date: 1645837875000
-updatedAt: 1645837875000
+description: "Learn how to create performant and secure docker images and avoid issues with signals when running Node.js applications with npm scripts. Discover how using a smaller Alpine-based image can reduce the attack surface and why it's recommended to use execform notation in the Dockerfile's CMD directive."
+createdAt: 1678659672751
+updatedAt: 1679415017609
 authors: ["david"]
-category: "AWS"
-editor: ["velimir"]
-abstract: ""
+category: "Docker"
+editors: ["velimir"]
+abstract: "This article explains the process of creating a Docker image for a Node.js application and optimizing it for performance. The post discusses the advantages of using Docker and provides step-by-step instructions on how to create a Dockerfile, build the image, and run it. It also covers best practices for optimizing Docker images, including reducing image size and using multi-stage builds."
 image: "/images/node-docker-image.png"
 draft: false
 ---

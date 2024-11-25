@@ -1,12 +1,12 @@
 ---
 title: "Callbacks - Code Exercises"
-description: ""
-date: 1645837875000
-updatedAt: 1645837875000
+description: "Callbacks are so common in JavaScript, you certainly used callbacks without knowing they're called that. Let's try to solve some exercises that will help you learn callbacks in JavaScript."
+createdAt: 1619463600000
+updatedAt: 1619463600000
 authors: ["david"]
-category: "AWS"
-editor: ["velimir"]
-abstract: ""
+category: "Learn Javascript"
+editors: ["velimir"]
+abstract: "It's really hard to test your programming knowledge after you have completed a tutorial or a lecture. We have prepared some exercises to help out beginner devs to solidify their understanding of callbacks. Every exercise has a brief description of the problem, starting code, links to relevant MDN docs, and expected results. Try to solve the problems without taking a peek at the solution."
 image: "/images/callback-hell.jpg"
 draft: false
 ---

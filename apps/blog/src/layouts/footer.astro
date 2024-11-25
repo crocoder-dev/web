@@ -1,13 +1,50 @@
+
 ---
 import { markdownify } from "../ify";
-
+import { FaYoutube, FaLinkedin } from 'react-icons/fa';
 const copyright = `
 &copy; ${new Date().getFullYear()} CroCoder, Inc. All rights reserved.
 `;
 ---
 
-<footer class="bg-theme-dark">
-  <div class="text-center">
-    <p set:html={markdownify(copyright)} class="text-white/75" />
+<footer class="bg-gray-800 text-white py-5">
+  <div class="max-w-[1000px] mx-auto px-6">
+    <div class="flex flex-col md:flex-row gap-4 justify-between items-center text-center">
+      <div class="flex justify-center sm:justify-start">
+        <a href="/" aria-label="Go to Home">
+          <img src="./images/logoFooter.png" alt="Go to Home" class="w-[225px] h-auto" />
+        </a>
+      </div>
+      <div class="flex flex-col md:flex-row justify-center items-center gap-4 text-center sm:text-left">
+        <a href="/" class="text-white">Home</a>
+        <a href="/terms" class="text-white">Terms of use</a>
+        <a href="/privacy_policy" class="text-white">Privacy policy</a>
+        <a href="/feed" class="text-white">Feed</a>
+      </div>
+    </div>
+    <div class="border-t border-gray-600 my-4"></div>
+    <div class="flex justify-between items-center text-center text-gray-400">
+      <p set:html={markdownify(copyright)} class="text-sm" />
+      <div class="flex justify-center sm:justify-end items-center">
+        <div class="flex space-x-4">
+          <a
+            href="https://www.youtube.com/channel/UCWU6cnq4hp4LnunPhP-sAqA"
+            aria-label="Go to CroCoder YouTube page"
+            class="flex items-center justify-center w-10 h-10 bg-white text-black rounded-full"
+            rel="nofollow noopener noreferrer"
+          >
+            <FaYoutube />
+          </a>
+          <a
+            href="https://www.linkedin.com/company/crocoderdev"
+            aria-label="Go to CroCoder Linked In page"
+            class="flex items-center justify-center w-10 h-10 bg-white text-black rounded-full"
+            rel="nofollow noopener noreferrer"
+          >
+            <FaLinkedin />
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 </footer>

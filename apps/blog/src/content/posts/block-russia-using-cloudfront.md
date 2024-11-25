@@ -1,13 +1,13 @@
 ---
 title: "Block traffic to your website from Russia and Belarus using CloudFront"
-description: ""
-date: 1645837875000
+description: "We want to invite you all to block your website traffic from Russia and Belarus to show support for the Ukranian people. the following tutorial will help you to enable CloudFront Geographic Restrictions and block traffic."
+createdAt: 1645837875000
 updatedAt: 1645837875000
 authors: ["david"]
 category: "AWS"
-editor: ["velimir"]
+editors: ["velimir"]
 draft: false
-abstract: ""
+abstract: "Russia invaded Ukraine on the 24th of February 2022. Belarus offers logistic support to the Russian army. This website won't be available in Russia and Belarus until the invasion stops. We don't intend to punish our readers from Russia and Belarus but to show dissatisfaction and disapproval of the political and philosophical stance of the Russian government. Our company and I are strong supporters and believers in individual liberty, free trade, and free association. In addition to being against war, we strongly oppose evil and destructive ideas that support autocracies. Make no mistake, this is not the doing of one man, but a joint effort of individuals who believe it is not you who should be deciding how to live your life. We want to invite you all to block your website traffic from Russia and Belarus to show support for the Ukranian people. the following tutorial will help you to enable CloudFront Geographic Restrictions and block traffic."
 image: "/images/block-russia-using-cloudfront.jpg"
 ---
 

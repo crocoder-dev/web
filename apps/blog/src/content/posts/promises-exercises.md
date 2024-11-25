@@ -1,12 +1,12 @@
 ---
 title: "Promises - Code Exercises"
-description: ""
-date: 1645837875000
-updatedAt: 1645837875000
+description: "Explore JavaScript Promises with exercises on random resolution, chained arithmetic, parallel data fetching, fastest response, and cancellation. Improve your async skills with concise code and clear explanations. Learn effective methods for handling promises, simplifying errors, and creating resilient, maintainable code."
+createdAt: 1705592903000
+updatedAt: 1705592903000
 authors: ["david"]
-category: "AWS"
-editor: ["velimir"]
-abstract: ""
+category: "Learn Javascript"
+editors: ["velimir"]
+abstract: "This article dives into the world of JavaScript Promises with hands-on exercises, exploring essential concepts like random resolution, chained arithmetic operations, and parallel data fetching. The blog post equips developers with practical solutions for managing asynchronous tasks efficiently, streamlining error handling, and enhancing code readability. The blog includes a unique interview question by ThePrimeagen that challenges the reader to design an asynchronous request queue with a three-task concurrency limit."
 image: "/images/promises-exercises.png"
 draft: false
 ---
@@ -30,7 +30,7 @@ Create a JavaScript Promise that, after a delay of 2 seconds, either resolves wi
 
 The outcome (resolve or reject) should be determined by a random condition, ensuring a 50/50 chance of either occurring each time the code runs.
 
-Helpful links
+::title Helpful links
 
 - [setTimeout()](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout)
 - [Math.random()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random)
@@ -39,7 +39,7 @@ Helpful links
 - [Promise.prototype.catch()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch)
 
 
-Input
+::title Input
 
 ```javascript
 randomPromise
@@ -51,7 +51,7 @@ randomPromise
   });
 ```
 
-Result
+::title Result
 
 ```javascript
 // 50% of the time console.logs
@@ -61,7 +61,7 @@ Result
 "Error occurred"
 ```
 
-Solution
+::details Show Solution
 
 ```javascript
 const randomPromise = new Promise((resolve, reject) => {
@@ -85,6 +85,7 @@ randomPromise
     console.error(error);
   });
 ```
+
 The Promise is constructed with an executor function that invokes **`setTimeout`** to simulate a 2-second asynchronous operation.
 
 Within the **`setTimeout`** callback, a random boolean **`shouldResolve`** is determined using **`Math.random() > 0.5`**. This expression has a 50% chance to evaluate a value as either true or false.
@@ -93,6 +94,8 @@ The Promise is resolved with "Hello World" if shouldResolve is true, and rejecte
 
 Each execution of this code has an equal probability of either resolving or rejecting the Promise, demonstrating the handling of different Promise states in a single code structure.
 
+::enddetails
+
 
 ## Chain some Math with Promises
 
@@ -100,12 +103,12 @@ Input a number, double it, increase it by 10, and then multiply by 3.
 
 Each operation should be in a separate Promise and then chained together.
 
-Helpful links
+::title Helpful links
 
 - [Promise() constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/Promise)
 - [Promise.prototype.then()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then)
 
-Input
+::title Input
 
 ```javascript
 const value = 5;
@@ -123,13 +126,13 @@ double(value)
 
   <Column>
 
-Result
+::title Result
 
 ```javascript
 40
 ```
 
-Solution
+::details Show Solution
 
 ```javascript
 
@@ -150,6 +153,8 @@ double(value)
 
 ```
 
+::enddetails
+
 Each function returns a Promise that performs an arithmetic operation and resolves immediately. 
 
 The initial value is passed through the chain, undergoing each operation sequentially. 
@@ -165,12 +170,12 @@ Each "fetch" will be represented by a Promise that resolves after a delay taken 
 
 Use **`Promise.all`** to wait for all these Promises to resolve and then process the results.
 
-Helpful links
+::title Helpful links
 
 - [Promise.all()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all)
 - [Promise.prototype.then()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then)
 
-Input
+::title Input
 
 ```javascript
 
@@ -182,7 +187,7 @@ const fetchSimulator = (url, delay) => {
 
 ```
 
-Solution
+::details Show Solution
 
 ```javascript
 const delays = [800, 1200, 1000];
@@ -205,6 +210,8 @@ Three simulated fetch requests are created with different delays. **`Promise.all
 
 Once all Promises resolve, their results are processed together, showcasing the ability of **`Promise.all`** to synchronize multiple asynchronous operations.
 
+::enddetails
+
 
 ## The fastest response wins
 
@@ -214,12 +221,12 @@ Each "fetch" will be represented by a Promise that resolves after a delay taken 
 
 Use **`Promise.race`** to get the fastest response!
 
-Helpful links
+::title Helpful links
 
 - [Promise.race()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/race)
 - [Promise.prototype.then()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then)
 
-Input
+::title Input
 
 ```javascript
 
@@ -232,7 +239,7 @@ const fetchSimulator = (url, delay) => {
 
 ```
 
-Solution
+::details Show Solution
 
 ```javascript
 const delays = [800, 1200, 1000];
@@ -257,6 +264,8 @@ Each Promise is set to resolve after a different duration.
 
 This demonstrates how **`Promise.race()`** can be used to handle scenarios where only the first completion (or error) in a group of asynchronous operations is of interest.
 
+::enddetails
+
 
 ## Cancel a running Promise
 
@@ -266,14 +275,14 @@ If the operation is cancelled, the Promise should reject with a "Cancelled" mess
 
 Cancel it!
 
-Helpful links
+::title Helpful links
 
 - [setTimeout()](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout)
 - [Promise() constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/Promise)
 - [Promise.prototype.then()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then)
 - [Promise.prototype.catch()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch)
 
-Input
+::title Input
 
 ```javascript
 function createCancellationToken() {
@@ -298,7 +307,7 @@ fetchPromise
     .catch(error => console.error(error.message));
 ```
 
-Solution
+::details Show Solution
 
 ```javascript
 function createCancellationToken() {
@@ -348,6 +357,8 @@ In a typical flow, after a wait of 1.5 seconds, the `cancel` function is execute
 
 To manage the outcomes of the fetch promise, the `.then` and `.catch` methods are employed for handling its resolved and rejected states, respectively.
 
+::enddetails
+
 
 ## ThePrimeagen's interview question
 
@@ -367,7 +378,7 @@ Create several promise factories that simulate async tasks with different durati
 
 Add these factories to the queue and test if the queue correctly limits the concurrency and processes tasks in the order they were added.
 
-Helpful links
+::title Helpful links
 
 - [setTimeout()](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout)
 - [Promise() constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/Promise)
@@ -375,7 +386,7 @@ Helpful links
 - [Promise.prototype.catch()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch)
 
 
-Solution
+::details Show Solution
 
 ```javascript
 class AsyncQueue {
@@ -428,4 +439,6 @@ The **`AsyncQueue`** class manages and regulates task execution, maintaining a c
 Each task within this system is essentially a promise factory, designed to simulate an asynchronous operation. This is typically represented through the use of **`setTimeout`**, which allows each task to log both its initiation and completion, thereby mimicking the behavior of an asynchronous process. The completion of a task is a critical event, as it triggers the decrement of the running task count, creating room for additional tasks to be executed. Subsequently, the runNext method is called again to potentially initiate the next queued task, if available.
 
 This entire mechanism, as embodied by the **`AsyncQueue`** class, exemplifies a prevalent and practical pattern in software development. It is particularly relevant in scenarios requiring meticulous management of asynchronous tasks, where the control over task execution and the limitation of concurrency are of paramount importance. The use of queues and promise factories in this context is not only effective but also illustrates a common approach to handling similar challenges in various programming environments.
+
+::enddetails
 

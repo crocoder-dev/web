@@ -1,0 +1,58 @@
+---
+import { getCollection } from "astro:content";
+import ValueCard from "./ValueCard.astro";
+import SectionTitle from "./SectionTitle.astro";
+import Section from "./Section.astro";
+import { grid_classes } from "./_grid";
+
+const styles = [
+  "bg-[#FEB534]",
+  "bg-[#607A1A] [&_img]:max-w-[calc(100%+56px)] [&_img]:-ml-7 xl:[&_img]:max-w-[calc(100%+96px)] xl:[&_img]:-ml-12",
+  "bg-[#F6FCFD]",
+];
+
+const valueCollection = await getCollection("values");
+
+const values = [];
+
+for (const value of valueCollection) {
+  const { Content } = await value.render();
+  values.push({
+    Content,
+    title: value.data.title,
+    img: {
+      path: value.data.imgPath,
+      alt: value.data.imgAlt,
+    },
+  });
+}
+---
+
+<Section contentClassName={grid_classes}>
+  <div
+    class="col-start-1 col-span-6 md:col-start-2 md:col-span-10 lg:col-span-9 text-2xl md:text-3xl !leading-relaxed pb-8"
+  >
+    Our tailored software services bridge the gap between the big-picture
+    strategy and day-to-day operations, turning ambitious goals into concrete,
+    actionable steps that drive results.
+  </div>
+  <SectionTitle
+    className="col-span-6 md:col-span-10 md:col-start-2 "
+  >
+    Creating Value Through<br /> The Power Of Software
+  </SectionTitle>
+  {
+    values.map((value, idx) => {
+      return (
+        <ValueCard
+          idx={idx + 1}
+          title={value.title}
+          content={value.Content}
+          styles={styles[idx]}
+          onDark={idx === 1}
+          img={value.img}
+        />
+      );
+    })
+  }
+</Section>

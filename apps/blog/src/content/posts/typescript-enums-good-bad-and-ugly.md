@@ -1,12 +1,12 @@
 ---
 title: "Typescript Enums: The Good, The Bad, and The Ugly"
-description: ""
-date: 1645837875000
-updatedAt: 1645837875000
+description: "Are TypeScript enums useful? Typesafe? Do you even need to consider using them? Welcome to the TypeScript's typesafe wild west."
+createdAt: 1684961204000
+updatedAt: 1684961204000
 authors: ["david"]
-category: "AWS"
-editor: ["velimir"]
-abstract: ""
+category: "Learn Javascript"
+editors: ["velimir"]
+abstract: "This article explores the world of TypeScript enums, discussing their advantages and limitations. Enums, a type of data structure commonly used in programming languages, provide a set of named values representing related constants or options. The article highlights the benefits of using enums in TypeScript, such as enforcing type safety, facilitating comparison and manipulation of enum variant values, and their integration with discriminated unions. It also addresses the drawbacks, including default variant assignments and the potential for modifying enum values. The article compares TypeScript enums with their counterparts in other languages like Java and Rust, showcasing additional features and capabilities. Ultimately, the article expresses the anticipation for JavaScript to introduce native enums. Whether you're new to enums or seeking a deeper understanding, this article offers valuable insights into TypeScript enums and their role in software development."
 image: "/images/typescript-enums-good-bad-and-ugly.png"
 draft: false
 ---
