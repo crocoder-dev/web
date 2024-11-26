@@ -163,12 +163,18 @@ for (const service of servicesCollection) {
     }, 200);
 
     const animateSurroundingElems = (fromTop) => {
+      const startHeight = cards.length * cardsIndentation;
+      const paddings = 160;
+      const valuesWrapperTop = valuesWrapper.offsetHeight - screenHeight + startHeight + paddings + servicesTitle.offsetHeight;
+      const servicesTitleTop = screenHeight - startHeight - 48 - servicesTitle.offsetHeight;
       if (fromTop >= 0 && fromTop <= servicesWrapperHeight / 2) {
-        valuesWrapper.style.transform = `translateY(${fromTop}px)`;
-        servicesTitle.style.transform = `translateY(${fromTop}px)`;
+        valuesWrapper.style.position = 'sticky';
+        valuesWrapper.style.top = `-${valuesWrapperTop}px`
+        servicesTitle.style.position = 'sticky';
+        servicesTitle.style.top = `${servicesTitleTop}px`;
       } else {
-        valuesWrapper.style.transform = `translateY(0px)`;
-        servicesTitle.style.transform = `translateY(0px)`;
+        valuesWrapper.style.position = 'initial';
+        servicesTitle.style.position = 'initial';
       }
     };
 
