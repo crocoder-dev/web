@@ -64,7 +64,7 @@ for (const service of servicesCollection) {
   </div>
 </Section>
 <script is:inline>
-  let handleAnimationOnScroll = null; 
+  let handleAnimationOnScroll = null;
 
   function addCardsAnimation() {
     const wrapperWidth = window.innerWidth;
@@ -90,14 +90,16 @@ for (const service of servicesCollection) {
 
       const getCardsAnimationThresholds = () => {
         let animationThresholds = [];
-        cards.forEach((_, i) => {
+        cards.forEach((card, i) => {
           const prev = cards[i - 1];
           const startHeight = cards.length * cardsIndentation;
+
           if (prev) {
             const prevThresholds = animationThresholds[i - 1];
-
+            const cardRect = card.getBoundingClientRect();
+            
             animationThresholds.push({
-              startAt: prevThresholds.endAt,
+              startAt: prevThresholds.endAt + cardRect.height/2,
               distance: prevThresholds.distance + cardsIndentation,
               endAt:
                 prevThresholds.endAt +
@@ -181,8 +183,8 @@ for (const service of servicesCollection) {
           servicesTitle.style.position = 'sticky';
           servicesTitle.style.top = `${servicesTitleTop}px`;
         } else {
-          valuesWrapper.style.position = 'static';
-          servicesTitle.style.position = 'static';
+          // valuesWrapper.style.position = 'static';
+          // servicesTitle.style.position = 'static';
         }
       };
 
@@ -200,6 +202,7 @@ for (const service of servicesCollection) {
           cards.forEach((el, i) => {
             const startPos = animationThresholds[i].startAt;
             const endPos = animationThresholds[i].endAt;
+
             if (fromTop > fadeInOutThreshold) {
               el.setAttribute('data-show', 'true');
             }
@@ -242,7 +245,8 @@ for (const service of servicesCollection) {
         const isScrollDown = lastScrollTopPos < currentScrollTop;
         const fadeInOutThreshold = firstCardAnimationRange - screenHeight - 1000;
 
-        animateSurroundingElems(fromTop);
+        // add 200px to prevent jump when fast scrolling
+        animateSurroundingElems(fromTop + 200);
         animateCards(fromTop - 1000, isScrollDown, fadeInOutThreshold);
 
         lastScrollTopPos = currentScrollTop <= 0 ? 0 : currentScrollTop;
