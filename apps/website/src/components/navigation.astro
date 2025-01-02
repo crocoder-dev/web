@@ -153,7 +153,6 @@
   }
 
   let lastScrollTop = 0;
-  const allDataHidden = document.querySelectorAll("[data-navhidden]");
   const bookACallAction = document.getElementById("book-a-call-action");
 
   function invertDataAttributte() {
@@ -167,7 +166,7 @@
   }
 
   function handleScroll() {
-    console.log("scrolled");
+    const allDataHidden = document.querySelectorAll("[data-navhidden]");
     let currentScrollTop = window.scrollY || document.documentElement.scrollTop;
 
     if (
