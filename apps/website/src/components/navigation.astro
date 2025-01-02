@@ -173,7 +173,7 @@
       currentScrollTop > lastScrollTop &&
       allDataHidden[0].getAttribute("data-navhidden") === ""
     ) {
-      invertDataAttributte();
+      invertDataAttributte(allDataHidden);
     } else if (
       currentScrollTop <= lastScrollTop &&
       allDataHidden[0].getAttribute("data-navhidden") === "false"
