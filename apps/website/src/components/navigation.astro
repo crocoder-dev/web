@@ -155,7 +155,7 @@
   let lastScrollTop = 0;
   const bookACallAction = document.getElementById("book-a-call-action");
 
-  function invertDataAttributte() {
+  function invertDataAttributte(allDataHidden) {
     allDataHidden.forEach((e) => {
       if (e.getAttribute("data-navhidden") === "") {
         e.setAttribute("data-navhidden", "false");
@@ -178,7 +178,7 @@
       currentScrollTop <= lastScrollTop &&
       allDataHidden[0].getAttribute("data-navhidden") === "false"
     ) {
-      invertDataAttributte();
+      invertDataAttributte(allDataHidden);
     }
 
     lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
