@@ -18,7 +18,7 @@
     z-50"
 >
   <nav
-    class='bg-[#3C3843E5]
+    class="bg-[#3C3843E5]
       flex
       items-center
       justify-between
@@ -29,21 +29,21 @@
       md:rounded-r-lg
       md:overflow-hidden
       relative
-      max-md:has-[input:checked]:bg-[#3c3843]'
+      max-md:has-[input:checked]:bg-[#3c3843]"
   >
-    <a class='sm:flex sm:items-center' href='/' aria-label='Crocoder Logo'>
+    <a class="sm:flex sm:items-center" href="/" aria-label="Crocoder Logo">
       <img
         width={64}
         height={30}
-        alt='Crocoder Crocodile Logo'
-        src='./images/crocoder-logo.png'
-        class='h-[48px] w-auto'
+        alt="Crocoder Crocodile Logo"
+        src="./images/crocoder-logo.png"
+        class="h-[48px] w-auto"
       />
       <img
         width={153}
         height={24}
-        alt='Crocoder Text Logo'
-        src='./images/crocoder-text.svg'
+        alt="Crocoder Text Logo"
+        src="./images/crocoder-text.svg"
         class="pl-2 hidden h-6 w-auto md:block
           md:[&[data-navhidden='false']]:opacity-0
           md:[&[data-navhidden='']]:opacity-100"
@@ -51,14 +51,14 @@
       />
     </a>
     <input
-      id='nav-menu-toggle'
-      type='checkbox'
+      id="nav-menu-toggle"
+      type="checkbox"
       readonly
-      class='hidden peer/menu-toggle'
+      class="hidden peer/menu-toggle"
     />
     <label
-      for='nav-menu-toggle'
-      class='md:hidden
+      for="nav-menu-toggle"
+      class="md:hidden
       flex
       flex-col
       gap-1.5
@@ -67,57 +67,57 @@
       peer-checked/menu-toggle:[&>*:nth-child(2)]:opacity-0
       peer-checked/menu-toggle:[&>*:nth-child(2)]:-translate-x-full
       peer-checked/menu-toggle:[&>*:nth-child(3)]:-translate-y-2
-      peer-checked/menu-toggle:[&>*:nth-child(3)]:-rotate-45'
+      peer-checked/menu-toggle:[&>*:nth-child(3)]:-rotate-45"
     >
-      <span class='h-0.5 w-6 bg-neutral-50 transition-transform duration-200'
+      <span class="h-0.5 w-6 bg-neutral-50 transition-transform duration-200"
       ></span>
       <span
-        class='h-0.5 w-6 bg-neutral-50 transition-[transform_opacity] duration-350'
+        class="h-0.5 w-6 bg-neutral-50 transition-[transform_opacity] duration-350"
       ></span>
-      <span class='h-0.5 w-6 bg-neutral-50 transition-transform duration-200'
+      <span class="h-0.5 w-6 bg-neutral-50 transition-transform duration-200"
       ></span>
     </label>
     <div
-      class='max-md:absolute max-md:hidden max-md:peer-checked/menu-toggle:flex max-md:flex-col max-md:gap-7 max-md:top-[74px] max-md:w-full max-md:py-7 bg-[#3c3843] max-md:h-[calc(100vh-74px)] max-md:right-0 md:bg-transparent md:flex md:items-center'
+      class="max-md:absolute max-md:hidden max-md:peer-checked/menu-toggle:flex max-md:flex-col max-md:gap-7 max-md:top-[74px] max-md:w-full max-md:py-7 bg-[#3c3843] max-md:h-[calc(100vh-74px)] max-md:right-0 md:bg-transparent md:flex md:items-center"
     >
       <ul
         data-navhidden
-        class='flex flex-col md:flex-row gap-7 mx-7 md:mx-0 md:ml-20 md:w-auto relative top-1'
+        class="flex flex-col md:flex-row gap-7 mx-7 md:mx-0 md:ml-20 md:w-auto relative top-1"
       >
         <li>
           <a
-            class='font-medium text-2xl md:text-lg text-[#E8E8E8] hover:text-white whitespace-nowrap'
-            href='/blog'
+            class="font-medium text-2xl md:text-lg text-[#E8E8E8] hover:text-white whitespace-nowrap"
+            href="/blog"
           >
             For CTOs
           </a>
         </li>
         <li>
           <a
-            class='font-medium text-2xl md:text-lg text-[#E8E8E8] hover:text-white'
-            href='/blog'
+            class="font-medium text-2xl md:text-lg text-[#E8E8E8] hover:text-white"
+            href="/blog"
           >
             Blog
           </a>
         </li>
       </ul>
-      <ul class='flex gap-4 mx-7 md:ml-4 md:mx-4'>
+      <ul class="flex gap-4 mx-7 md:ml-4 md:mx-4">
         <li>
           <a
-            id='book-a-call-action'
+            id="book-a-call-action"
             class="flex w-fit font-medium h-[45px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-[#545664] text-[#ffffff] hover:opacity-90
           md:[&[data-navhidden='false']]:!w-auto
           md:[&[data-navhidden='false']]:!px-4
           md:[&[data-navhidden='false']]:opacity-0
           md:[&[data-navhidden='']]:opacity-100
           md:[&[data-navhidden='']]:delay-100"
-            data-navhidden='false'
-            href='#book-a-call-section'>Book a call</a
+            data-navhidden="false"
+            href="#book-a-call-section">Book a call</a
           >
-          <li class='hidden'>
+          <li class="hidden">
             <a
-              class='flex font-medium w-fit h-[45px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-[#FEC343] text-[#1E1A1A] hover:opacity-90'
-              href='/contact'
+              class="flex font-medium w-fit h-[45px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-[#FEC343] text-[#1E1A1A] hover:opacity-90"
+              href="/contact"
             >
               Contact us
             </a>
@@ -146,48 +146,52 @@
               lastRan = Date.now();
             }
           },
-          limit - (Date.now() - lastRan)
+          limit - (Date.now() - lastRan),
         );
       }
     };
   }
 
   let lastScrollTop = 0;
-  const allDataHidden = document.querySelectorAll('[data-navhidden]');
-  const bookACallAction = document.getElementById('book-a-call-action');
+  const bookACallAction = document.getElementById("book-a-call-action");
 
-  function invertDataAttributte() {
+  function invertDataAttributte(allDataHidden) {
     allDataHidden.forEach((e) => {
-      if (e.getAttribute('data-navhidden') === '')
-        e.setAttribute('data-navhidden', 'false');
-      else e.setAttribute('data-navhidden', '');
+      if (e.getAttribute("data-navhidden") === "") {
+        e.setAttribute("data-navhidden", "false");
+      } else {
+        e.setAttribute("data-navhidden", "");
+      }
     });
   }
 
   function handleScroll() {
+    const allDataHidden = document.querySelectorAll("[data-navhidden]");
     let currentScrollTop = window.scrollY || document.documentElement.scrollTop;
 
     if (
       currentScrollTop > lastScrollTop &&
-      allDataHidden[0].getAttribute('data-navhidden') === ''
+      allDataHidden[0].getAttribute("data-navhidden") === ""
     ) {
-      invertDataAttributte();
+      invertDataAttributte(allDataHidden);
     } else if (
       currentScrollTop <= lastScrollTop &&
-      allDataHidden[0].getAttribute('data-navhidden') === 'false'
+      allDataHidden[0].getAttribute("data-navhidden") === "false"
     ) {
-      invertDataAttributte();
+      invertDataAttributte(allDataHidden);
     }
 
     lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
   }
 
   function handleBookACall() {
-    const input = document.getElementById('nav-menu-toggle');
+    const input = document.getElementById("nav-menu-toggle");
     input.checked = false;
   }
 
-  window.addEventListener('scroll', throttle(handleScroll, 200));
+  window.addEventListener("scroll", throttle(handleScroll, 200));
 
-  bookACallAction.addEventListener('click', handleBookACall);
+  console.log("window", window);
+
+  bookACallAction.addEventListener("click", handleBookACall);
 </script>
