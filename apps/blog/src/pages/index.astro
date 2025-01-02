@@ -9,7 +9,7 @@ const markdownPosts = await getCollection("posts");
 
 const authorsCollection = await getCollection("authors");
 
-const pages = Astro.glob("../pages/**/*.astro").filter(
+const pages = (await Astro.glob("../pages/**/*.astro")).filter(
   (page) => !page.url?.includes("[") && !page.url?.includes("index.astro"),
 );
 
