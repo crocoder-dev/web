@@ -6,12 +6,12 @@ import ServiceCard from './ServiceCard.astro';
 import { grid_classes } from './_grid';
 import classNames from 'classnames';
 
-/* 320px => Height of cards in starting position. 4 cards x 80px of indentation */
+/* 560px => Height of cards in starting position. 4 cards x 140px of indentation */
 const styles = [
-  `bg-[#5362DBE5] lg:[transition:opacity_400ms_ease-out_600ms] lg:top-[calc(100vh-320px)]`,
-  `bg-[#424C6DE5] lg:[transition:opacity_400ms_ease-out_400ms] lg:top-[calc(100vh-320px+80px)]`,
-  `bg-[#3C3843E5] lg:[transition:opacity_400ms_ease-out_200ms] lg:top-[calc(100vh-320px+80px+80px)]`,
-  `bg-[#1E1A1AE5] lg:[transition:opacity_400ms_ease-out] lg:top-[calc(100vh-320px+80px+80px+80px)]`,
+  `bg-[#5362DBE5] lg:[transition:opacity_400ms_ease-out_600ms] lg:top-[calc(100vh-560px)]`,
+  `bg-[#424C6DE5] lg:[transition:opacity_400ms_ease-out_400ms] lg:top-[calc(100vh-560px+140px)]`,
+  `bg-[#3C3843E5] lg:[transition:opacity_400ms_ease-out_200ms] lg:top-[calc(100vh-560px+140px+140px)]`,
+  `bg-[#1E1A1AE5] lg:[transition:opacity_400ms_ease-out] lg:top-[calc(100vh-560px+140px+140px+140px)]`,
 ];
 
 const servicesCollection = await getCollection('services');
@@ -83,7 +83,7 @@ for (const service of servicesCollection) {
     if (wrapperWidth >= 1024) {
 
       const screenHeight = window.innerHeight;
-      const cardsIndentation = 80;
+      const cardsIndentation = 140;
       // Threshold value for amount of px we need to enter into animation
       // field before elements start moving around.
       const scrollThreshold = 1000;
@@ -99,7 +99,7 @@ for (const service of servicesCollection) {
             const cardRect = card.getBoundingClientRect();
             
             animationThresholds.push({
-              startAt: prevThresholds.endAt + cardRect.height/2,
+              startAt: prevThresholds.endAt + cardRect.height/6,
               distance: prevThresholds.distance + cardsIndentation,
               endAt:
                 prevThresholds.endAt +
@@ -213,9 +213,10 @@ for (const service of servicesCollection) {
             }
             // Adjust element top position after animation range in case we didn't catch last few px.
             // This can be the case while fast scrolling
-            if (startPos <= fromTop && endPos < fromTop) {
+          /*   if (startPos <= fromTop && endPos < fromTop) {
+              console.log("FAST SCROLL ", -animationThresholds[i].distance)
               el.style.transform = `translateY(${-animationThresholds[i].distance}px)`;
-            }
+            } */
           });
         } else {
           cards.forEach((el, i) => {
@@ -244,7 +245,7 @@ for (const service of servicesCollection) {
           servicesWrapper.getBoundingClientRect();
         const fromTop = servicesWrapperBoundingRect.top * -1;
         const isScrollDown = lastScrollTopPos < currentScrollTop;
-        const fadeInOutThreshold = lastCardAnimationRange - screenHeight - 900;
+        const fadeInOutThreshold = lastCardAnimationRange - screenHeight - 1000;
 
         // add 200px to prevent jump when fast scrolling
         animateSurroundingElems(fromTop + 200);

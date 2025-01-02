@@ -37,6 +37,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
     lg:opacity-0
     lg:h-screen
     overflow-hidden
+    will-change-transform	
     `,
     styles
   )}
@@ -48,13 +49,14 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
       h-full
       lg:h-screen
       p-7
-      lg:px-12 
+      lg:p-12 
       grid
       grid-cols-6
       grid-rows-[min-content_min-content_auto]
       gap-x-3
       gap-y-7
       lg:gap-x-7
+      lg:gap-y-12
       lg:grid-cols-2
       lg:grid-rows-[min-content_auto]
       backdrop-blur-[30px]
@@ -66,7 +68,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
       }
     )}
   >
-    <div class='col-span-6 flex flex-col gap-7 lg:flex-row lg:col-span-2 lg:items-center'>
+    <div class='col-span-6 grid gap-7 grid-cols-2 lg:col-span-2 lg:items-start justify-between'>
       <span class='font-medium text-[28px] leading-8 lg:leading-[44px] lg:mt-[2px]'>{`{0${idx}}`}</span>
       <h3
         class='font-medium text-[28px] lg:text-4xl leading-[44px]'
