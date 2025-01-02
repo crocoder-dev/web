@@ -5,7 +5,6 @@
 @tailwind utilities;
 
 * {
-  font-family: "Poppins", sans-serif;
   scroll-behavior: smooth;
 }
 

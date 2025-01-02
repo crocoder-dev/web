@@ -1,5 +1,5 @@
 ---
-import siteManifest from "../../public/site-manifest.json";
+import siteManifest from "../../../website/public/site-manifest.json";
 
 const { street, city, region, postalCode, country } = siteManifest.company;
 const { twitter, linkedin, github, youtube, instagram } = siteManifest.social;
@@ -32,7 +32,7 @@ const schema = {
 <link rel="manifest" href="/site-manifest.json" />
 <meta content={siteManifest.theme_color} name="theme-color" />
 <meta content={siteManifest.name} name="application-name" />
-<title>{siteManifest.name}</title>
+<title>Blog | CroCoder</title>
 <meta content={siteManifest.description} name="description" />
 <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
 <link
@@ -47,7 +47,7 @@ const schema = {
   type="image/png"
 />
 <!-- OpenGraph -->
-<meta property="og:url" content={siteManifest.url} />
+<meta property="og:url" content={`${siteManifest.url}/blog`} />
 <meta property="og:type" content="website" />
 <meta property="og:title" content={siteManifest.name} />
 <meta property="og:description" content={siteManifest.description} />
@@ -56,7 +56,7 @@ const schema = {
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta property="twitter:domain" content="crocoder.dev" />
-<meta property="twitter:url" content={siteManifest.url} />
+<meta property="twitter:url" content={`${siteManifest.url}/blog`} />
 <meta name="twitter:title" content={siteManifest.name} />
 <meta name="twitter:description" content={siteManifest.description} />
 <meta name="twitter:image" content={socialImage} />

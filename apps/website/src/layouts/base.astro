@@ -2,6 +2,8 @@
 import theme from "@crocoder-dev/tailwind/theme.json";
 import "../styles/main.css";
 import Meta from "../layouts/meta-tags.astro";
+import { AstroFont } from "astro-font";
+import { ViewTransitions } from "astro:transitions";
 
 const pf = theme.fonts.font_family.primary;
 const sf = theme.fonts.font_family.secondary;
@@ -28,8 +30,33 @@ if (theme.fonts.font_family.secondary) {
       content="width=device-width, initial-scale=1, maximum-scale=5"
     />
     <Meta />
+    <AstroFont
+      config={[
+        {
+          src: [],
+          preload: false,
+          display: "swap",
+          name: fontPrimary!,
+          fallback: "sans-serif",
+          cssVariable: "font-primary",
+          googleFontsURL: `https://fonts.googleapis.com/css2?family=${pf}&display=swap`,
+        },
+        {
+          src: [],
+          preload: false,
+          display: "swap",
+          name: fontSecondary!,
+          fallback: "sans-serif",
+          cssVariable: "font-secondary",
+          googleFontsURL: `https://fonts.googleapis.com/css2?family=${sf}&display=swap`,
+        },
+      ]}
+    />
+    <ViewTransitions />
   </head>
-  <body class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+  <body
+    class="flex flex-col font-primary items-center justify-center min-h-screen bg-gray-100"
+  >
     <slot />
   </body>
 </html>
