@@ -158,13 +158,16 @@
 
   function invertDataAttributte() {
     allDataHidden.forEach((e) => {
-      if (e.getAttribute("data-navhidden") === "")
+      if (e.getAttribute("data-navhidden") === "") {
         e.setAttribute("data-navhidden", "false");
-      else e.setAttribute("data-navhidden", "");
+      } else {
+        e.setAttribute("data-navhidden", "");
+      }
     });
   }
 
   function handleScroll() {
+    console.log("scrolled");
     let currentScrollTop = window.scrollY || document.documentElement.scrollTop;
 
     if (
