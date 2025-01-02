@@ -8,10 +8,10 @@ import classNames from 'classnames';
 
 /* 320px => Height of cards in starting position. 4 cards x 80px of indentation */
 const styles = [
-  `bg-[#5362DBE5] lg:delay-[400ms] lg:top-[calc(100vh-320px)]`,
-  `bg-[#424C6DE5] lg:delay-300 lg:top-[calc(100vh-320px+80px)]`,
-  `bg-[#3C3843E5] lg:delay-200 lg:top-[calc(100vh-320px+80px+80px)]`,
-  `bg-[#1E1A1AE5] lg:delay-100 lg:top-[calc(100vh-320px+80px+80px+80px)]`,
+  `bg-[#5362DBE5] lg:[transition:opacity_400ms_ease-out_600ms] lg:top-[calc(100vh-320px)]`,
+  `bg-[#424C6DE5] lg:[transition:opacity_400ms_ease-out_400ms] lg:top-[calc(100vh-320px+80px)]`,
+  `bg-[#3C3843E5] lg:[transition:opacity_400ms_ease-out_200ms] lg:top-[calc(100vh-320px+80px+80px)]`,
+  `bg-[#1E1A1AE5] lg:[transition:opacity_400ms_ease-out] lg:top-[calc(100vh-320px+80px+80px+80px)]`,
 ];
 
 const servicesCollection = await getCollection('services');
@@ -124,6 +124,7 @@ for (const service of servicesCollection) {
         getCardsAnimationThresholds();
 
       const firstCardAnimationRange = animationThresholds[0].distance;
+      const lastCardAnimationRange = animationThresholds[animationThresholds.length - 1].distance;
 
       const servicesWrapperHeight =
         animationFieldHeight + screenHeight + 2 * scrollThreshold;
@@ -201,7 +202,7 @@ for (const service of servicesCollection) {
         if (isScrollDown) {
           cards.forEach((el, i) => {
             const startPos = animationThresholds[i].startAt;
-            const endPos = animationThresholds[i].endAt;
+            const endPos = animationThresholds[i].endAt;            
 
             if (fromTop > fadeInOutThreshold) {
               el.setAttribute('data-show', 'true');
@@ -243,7 +244,7 @@ for (const service of servicesCollection) {
           servicesWrapper.getBoundingClientRect();
         const fromTop = servicesWrapperBoundingRect.top * -1;
         const isScrollDown = lastScrollTopPos < currentScrollTop;
-        const fadeInOutThreshold = firstCardAnimationRange - screenHeight - 1000;
+        const fadeInOutThreshold = lastCardAnimationRange - screenHeight - 900;
 
         // add 200px to prevent jump when fast scrolling
         animateSurroundingElems(fromTop + 200);
