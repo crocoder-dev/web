@@ -3,7 +3,7 @@ export interface Props {
   calLink: string;
   eventType: string;
   layout?: "month_view" | "week_view" | "column_view";
-  elementOrSelector: string;  
+  elementOrSelector: string;
   hideEventTypeDetails?: boolean;
 }
 
@@ -18,7 +18,14 @@ const {
 
 <script
   type="text/javascript"
-  define:vars={{ calLink, layout, elementOrSelector, hideEventTypeDetails, eventType }}
+  is:inline
+  define:vars={{
+    calLink,
+    layout,
+    elementOrSelector,
+    hideEventTypeDetails,
+    eventType,
+  }}
 >
   (function (C, A, L) {
     let p = function (a, ar) {
@@ -56,12 +63,12 @@ const {
 
   Cal.ns[eventType]("inline", {
     elementOrSelector,
-    config: { layout },
+    config: { layout, theme: "light" },
     calLink,
   });
 
   Cal.ns[eventType]("ui", {
-    styles: { 
+    styles: {
       body: {
         background: "transparent",
       },
