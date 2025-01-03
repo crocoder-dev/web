@@ -8,10 +8,10 @@ import classNames from 'classnames';
 
 /* 560px => Height of cards in starting position. 4 cards x 140px of indentation */
 const styles = [
-  `bg-[#5362DBE5] lg:[transition:opacity_400ms_ease-out_600ms] lg:top-[calc(100vh-560px)]`,
-  `bg-[#424C6DE5] lg:[transition:opacity_400ms_ease-out_400ms] lg:top-[calc(100vh-560px+140px)]`,
-  `bg-[#3C3843E5] lg:[transition:opacity_400ms_ease-out_200ms] lg:top-[calc(100vh-560px+140px+140px)]`,
-  `bg-[#1E1A1AE5] lg:[transition:opacity_400ms_ease-out] lg:top-[calc(100vh-560px+140px+140px+140px)]`,
+  `bg-[#5362DBE5] lg:[transition:opacity_400ms_ease-out_600ms,transform_800ms_cubic-bezier(.5,.99,.49,.99)] lg:top-[calc(100vh-560px)]`,
+  `bg-[#424C6DE5] lg:[transition:opacity_400ms_ease-out_400ms,transform_800ms_cubic-bezier(.5,.99,.49,.99)] lg:top-[calc(100vh-560px+140px)]`,
+  `bg-[#3C3843E5] lg:[transition:opacity_400ms_ease-out_200ms,transform_800ms_cubic-bezier(.5,.99,.49,.99)] lg:top-[calc(100vh-560px+140px+140px)]`,
+  `bg-[#1E1A1AE5] lg:[transition:opacity_400ms_ease-out,transform_800ms_cubic-bezier(.5,.99,.49,.99)] lg:top-[calc(100vh-560px+140px+140px+140px)]`,
 ];
 
 const servicesCollection = await getCollection('services');
@@ -99,7 +99,7 @@ for (const service of servicesCollection) {
             const cardRect = card.getBoundingClientRect();
             
             animationThresholds.push({
-              startAt: prevThresholds.endAt + cardRect.height/6,
+              startAt: prevThresholds.endAt + cardRect.height/2,
               distance: prevThresholds.distance + cardsIndentation,
               endAt:
                 prevThresholds.endAt +
@@ -122,6 +122,8 @@ for (const service of servicesCollection) {
       };
       const { animationThresholds, animationFieldHeight } =
         getCardsAnimationThresholds();
+
+        console.log("KAJ", {animationThresholds, animationFieldHeight})
 
       const firstCardAnimationRange = animationThresholds[0].distance;
       const lastCardAnimationRange = animationThresholds[animationThresholds.length - 1].distance;
@@ -213,10 +215,10 @@ for (const service of servicesCollection) {
             }
             // Adjust element top position after animation range in case we didn't catch last few px.
             // This can be the case while fast scrolling
-          /*   if (startPos <= fromTop && endPos < fromTop) {
+             if (startPos <= fromTop && endPos < fromTop) {
               console.log("FAST SCROLL ", -animationThresholds[i].distance)
               el.style.transform = `translateY(${-animationThresholds[i].distance}px)`;
-            } */
+            } 
           });
         } else {
           cards.forEach((el, i) => {
