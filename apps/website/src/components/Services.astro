@@ -15,12 +15,10 @@ const styles = [
 ];
 
 const servicesCollection = await getCollection("services");
-
 const services = [];
 
 for (const service of servicesCollection) {
   const data = await service.render();
-
   services[service.data.idx - 1] = {
     content: data.Content,
     title: service.data.title,
@@ -42,6 +40,7 @@ for (const service of servicesCollection) {
   >
     Our Services
   </SectionTitle>
+
   <div id="services-wrapper" class="col-span-6 md:col-span-12">
     <div
       id="animation-wrapper"
@@ -57,70 +56,81 @@ for (const service of servicesCollection) {
             imgPath={value.img.path}
             imgAlt={value.img.alt}
             onDark={idx === 1}
+            classNames="will-change-transform"
           />
         ))
       }
     </div>
   </div>
 </Section>
-<script is:inline>
+
+<script>
+  let animationThresholds = [];
+  let animationFieldHeight = 0;
   let handleAnimationOnScroll = null;
+  let lastScrollTopPos = 0;
+  let isScrolling = false;
+
+  function onScroll() {
+    if (!isScrolling) {
+      window.requestAnimationFrame(() => {
+        handleAnimationOnScroll();
+        isScrolling = false;
+      });
+    }
+    isScrolling = true;
+  }
+
+  function calculateThresholds(cardsIndentation, screenHeight, cards) {
+    const thresholds = [];
+    const startHeight = cards.length * cardsIndentation;
+
+    cards.forEach((card, i) => {
+      if (i === 0) {
+        thresholds.push({
+          startAt: 0,
+          distance: screenHeight - startHeight,
+          endAt: screenHeight - startHeight,
+        });
+      } else {
+        const prev = thresholds[i - 1];
+        const cardRect = card.getBoundingClientRect();
+
+        thresholds.push({
+          startAt: prev.endAt + cardRect.height / 2,
+          distance: prev.distance + cardsIndentation,
+          endAt: prev.endAt + (prev.distance + cardsIndentation),
+        });
+      }
+    });
+
+    return {
+      animationThresholds: thresholds,
+      animationFieldHeight: thresholds[thresholds.length - 1].endAt,
+    };
+  }
 
   function addCardsAnimation() {
     const wrapperWidth = window.innerWidth;
     const valuesWrapper = document.getElementById("values-wrapper");
-
     const servicesWrapper = document.getElementById("services-wrapper");
     const animationWrapper = document.getElementById("animation-wrapper");
     const servicesTitle = document.getElementById("services-title");
+
     const cards = document.querySelectorAll("[data-show]");
 
     if (handleAnimationOnScroll) {
-      window.removeEventListener("scroll", handleAnimationOnScroll);
-      console.log("Scroll listener removed");
+      window.removeEventListener("scroll", onScroll);
     }
 
     if (wrapperWidth >= 1024) {
       const screenHeight = window.innerHeight;
       const cardsIndentation = 140;
-      // Threshold value for amount of px we need to enter into animation
-      // field before elements start moving around.
       const scrollThreshold = 1000;
 
-      const getCardsAnimationThresholds = () => {
-        let animationThresholds = [];
-        cards.forEach((card, i) => {
-          const prev = cards[i - 1];
-          const startHeight = cards.length * cardsIndentation;
-
-          if (prev) {
-            const prevThresholds = animationThresholds[i - 1];
-            const cardRect = card.getBoundingClientRect();
-
-            animationThresholds.push({
-              startAt: prevThresholds.endAt + cardRect.height / 2,
-              distance: prevThresholds.distance + cardsIndentation,
-              endAt:
-                prevThresholds.endAt +
-                (prevThresholds.distance + cardsIndentation),
-            });
-          } else {
-            animationThresholds.push({
-              startAt: 0,
-              distance: screenHeight - startHeight,
-              endAt: screenHeight - startHeight,
-            });
-          }
-        });
-
-        return {
-          animationThresholds,
-          animationFieldHeight:
-            animationThresholds[animationThresholds.length - 1].endAt,
-        };
-      };
-      const { animationThresholds, animationFieldHeight } =
-        getCardsAnimationThresholds();
+      const result = calculateThresholds(cardsIndentation, screenHeight, cards);
+      animationThresholds = result.animationThresholds;
+      animationFieldHeight = result.animationFieldHeight;
 
       const firstCardAnimationRange = animationThresholds[0].distance;
       const lastCardAnimationRange =
@@ -129,61 +139,31 @@ for (const service of servicesCollection) {
       const servicesWrapperHeight =
         animationFieldHeight + screenHeight + 2 * scrollThreshold;
 
-      servicesWrapper.style.transform = `translateY(${-firstCardAnimationRange}px)`;
+      servicesWrapper.style.transform = `translate3d(0, -${firstCardAnimationRange}px, 0)`;
       servicesWrapper.style.height = `${servicesWrapperHeight}px`;
-
       animationWrapper.style.top = `${firstCardAnimationRange}px`;
 
-      servicesWrapper.parentElement.style.maxHeight = `${servicesWrapperHeight - (firstCardAnimationRange - 180)}px`;
+      if (servicesWrapper.parentElement) {
+        servicesWrapper.parentElement.style.maxHeight = `${
+          servicesWrapperHeight - (firstCardAnimationRange - 180)
+        }px`;
+      }
 
-      let lastScrollTopPos = 0;
-
-      const setupInitPositions = () => {
-        const servicesWrapperBoundingRect =
-          servicesWrapper.getBoundingClientRect();
-        const fromTop = servicesWrapperBoundingRect.top * -1;
-
-        // Do nothing if top edge of animated section is below viewport. Leave elements at bottom position
-        if (servicesWrapperBoundingRect.top > screenHeight) {
-          return;
-        }
-
-        animationThresholds.forEach((pos, i) => {
-          const cardToPosition = cards[i];
-
-          if (!cardToPosition) {
-            return;
-          }
-
-          // if viewport is below end range of animation set element to top position
-          if (fromTop > pos.startAt && fromTop > pos.endAt) {
-            cardToPosition.style.transform = `translateY(-${pos.distance}px)`;
-            return;
-          }
-
-          // if viewport is in range of animation set element to correct position
-          if (fromTop >= pos.startAt && fromTop < pos.endAt) {
-            cardToPosition.style.transform = `translateY(${pos.startAt - fromTop}px)`;
-          }
-        });
-      };
-
-      // Delay init position setup in case there is a smooth scroll behavior at init page render
-      setTimeout(() => {
-        setupInitPositions();
-      }, 200);
-
-      const animateSurroundingElems = (fromTop) => {
+      function animateSurroundingElems(fromTop) {
         const startHeight = cards.length * cardsIndentation;
         const paddings = 160;
+        if (!valuesWrapper || !servicesTitle) return;
+
         const valuesWrapperTop =
           valuesWrapper.offsetHeight -
           screenHeight +
           startHeight +
           paddings +
           servicesTitle.offsetHeight;
+
         const servicesTitleTop =
           screenHeight - startHeight - 48 - servicesTitle.offsetHeight;
+
         if (fromTop >= 0 && fromTop <= servicesWrapperHeight / 2) {
           valuesWrapper.style.position = "sticky";
           valuesWrapper.style.top = `-${valuesWrapperTop}px`;
@@ -193,11 +173,9 @@ for (const service of servicesCollection) {
           valuesWrapper.style.position = "static";
           servicesTitle.style.position = "static";
         }
-      };
+      }
 
-      const animateCards = (fromTop, isScrollDown, fadeInOutThreshold) => {
-        // Start animation 200px before in case there is a fast scroll up so elements can catch that up and adjust
-        // End animation screenHeight value after in case of fast scroll down (in this case click and smooth scroll to book session section)
+      function animateCards(fromTop, isScrollDown, fadeInOutThreshold) {
         if (
           fromTop < fadeInOutThreshold ||
           fromTop > animationFieldHeight + screenHeight
@@ -207,66 +185,59 @@ for (const service of servicesCollection) {
 
         if (isScrollDown) {
           cards.forEach((el, i) => {
-            const startPos = animationThresholds[i].startAt;
-            const endPos = animationThresholds[i].endAt;
+            const { startAt, endAt, distance } = animationThresholds[i];
 
             if (fromTop > fadeInOutThreshold) {
               el.setAttribute("data-show", "true");
             }
-
-            if (startPos <= fromTop && endPos > fromTop) {
-              el.style.transform = `translateY(${startPos - fromTop}px)`;
-            }
-            // Adjust element top position after animation range in case we didn't catch last few px.
-            // This can be the case while fast scrolling
-            if (startPos <= fromTop && endPos < fromTop) {
-              el.style.transform = `translateY(${-animationThresholds[i].distance}px)`;
+            if (startAt <= fromTop && endAt > fromTop) {
+              el.style.transform = `translate3d(0, ${startAt - fromTop}px, 0)`;
+            } else if (startAt <= fromTop && endAt < fromTop) {
+              el.style.transform = `translate3d(0, -${distance}px, 0)`;
             }
           });
         } else {
           cards.forEach((el, i) => {
-            const startPos = animationThresholds[i].startAt;
-            const endPos = animationThresholds[i].endAt;
+            const { startAt, endAt } = animationThresholds[i];
+
             if (fromTop < fadeInOutThreshold + cardsIndentation) {
               el.setAttribute("data-show", "");
             }
-
-            if (startPos <= fromTop && animationThresholds[i].endAt > fromTop) {
-              const startAt = endPos - startPos;
-              el.style.transform = `translateY(-${startAt - (endPos - fromTop)}px)`;
-            }
-            // Adjust element bottom position after animation range in case we didn't catch last few px.
-            // This can be the case while fast scrolling
-            if (endPos > fromTop && startPos > fromTop) {
-              el.style.transform = `translateY(0px)`;
+            if (startAt <= fromTop && endAt > fromTop) {
+              const startDistance = endAt - startAt;
+              el.style.transform = `translate3d(0, -${
+                startDistance - (endAt - fromTop)
+              }px, 0)`;
+            } else if (endAt > fromTop && startAt > fromTop) {
+              el.style.transform = `translate3d(0, 0, 0)`;
             }
           });
         }
-      };
+      }
 
       handleAnimationOnScroll = () => {
         const currentScrollTop = window.scrollY;
-        const servicesWrapperBoundingRect =
-          servicesWrapper.getBoundingClientRect();
-        const fromTop = servicesWrapperBoundingRect.top * -1;
+        const fromTop = servicesWrapper.getBoundingClientRect().top * -1;
         const isScrollDown = lastScrollTopPos < currentScrollTop;
-        const fadeInOutThreshold = lastCardAnimationRange - screenHeight - 1000;
-
-        // add 200px to prevent jump when fast scrolling
-        animateSurroundingElems(fromTop + 200);
-        animateCards(fromTop - 1000, isScrollDown, fadeInOutThreshold);
 
         lastScrollTopPos = currentScrollTop <= 0 ? 0 : currentScrollTop;
+        const fadeInOutThreshold = lastCardAnimationRange - screenHeight - 1000;
+
+        animateSurroundingElems(fromTop + 200);
+        animateCards(fromTop - 1000, isScrollDown, fadeInOutThreshold);
       };
 
-      window.addEventListener("scroll", handleAnimationOnScroll);
+      handleAnimationOnScroll();
+
+      window.addEventListener("scroll", onScroll);
     } else {
-      valuesWrapper.style.position = "static";
-      servicesTitle.style.position = "static";
-      servicesWrapper.style.height = "unset";
-      servicesWrapper.style.transform = "unset";
+      if (valuesWrapper) valuesWrapper.style.position = "static";
+      if (servicesTitle) servicesTitle.style.position = "static";
+
+      servicesWrapper.style.height = "auto";
+      servicesWrapper.style.transform = "none";
       cards.forEach((el) => {
-        el.style.transform = "unset";
+        el.style.transform = "none";
       });
     }
   }
@@ -275,3 +246,4 @@ for (const service of servicesCollection) {
 
   window.addEventListener("resize", addCardsAnimation);
 </script>
+

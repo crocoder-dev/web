@@ -77,6 +77,7 @@
       <span class="h-0.5 w-6 bg-neutral-50 transition-transform duration-200"
       ></span>
     </label>
+
     <div
       class="max-md:absolute max-md:hidden max-md:peer-checked/menu-toggle:flex max-md:flex-col max-md:gap-7 max-md:top-[74px] max-md:w-full max-md:py-7 bg-[#3c3843] max-md:h-[calc(100vh-74px)] max-md:right-0 md:bg-transparent md:flex md:items-center"
     >
@@ -112,8 +113,10 @@
           md:[&[data-navhidden='']]:opacity-100
           md:[&[data-navhidden='']]:delay-100"
             data-navhidden="false"
-            href="#book-a-call-section">Book a call</a
+            href="#book-a-call-section"
           >
+            Book a call
+          </a>
           <li class="hidden">
             <a
               class="flex font-medium w-fit h-[45px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-[#FEC343] text-[#1E1A1A] hover:opacity-90"
@@ -127,3 +130,56 @@
     </div>
   </nav>
 </header>
+
+<script is:inline>
+  let lastScrollTop = 0;
+  let isScrolling = false;
+
+  const allDataHidden = document.querySelectorAll("[data-navhidden]");
+  const bookACallAction = document.getElementById("book-a-call-action");
+  const navMenuToggle = document.getElementById("nav-menu-toggle");
+
+  function onScroll() {
+    if (!isScrolling) {
+      window.requestAnimationFrame(() => {
+        handleScroll();
+        isScrolling = false;
+      });
+    }
+    isScrolling = true;
+  }
+
+  function handleScroll() {
+    const currentScrollTop =
+      window.scrollY || document.documentElement.scrollTop;
+
+    if (
+      currentScrollTop > lastScrollTop &&
+      allDataHidden[0].getAttribute("data-navhidden") === ""
+    ) {
+      invertDataAttributte(allDataHidden);
+    } else if (
+      currentScrollTop <= lastScrollTop &&
+      allDataHidden[0].getAttribute("data-navhidden") === "false"
+    ) {
+      invertDataAttributte(allDataHidden);
+    }
+
+    lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
+  }
+
+  function invertDataAttributte(dataHiddenNodes) {
+    dataHiddenNodes.forEach((node) => {
+      const currentVal = node.getAttribute("data-navhidden");
+      node.setAttribute("data-navhidden", currentVal === "" ? "false" : "");
+    });
+  }
+
+  function handleBookACall() {
+    navMenuToggle.checked = false;
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  bookACallAction.addEventListener("click", handleBookACall);
+</script>
+
