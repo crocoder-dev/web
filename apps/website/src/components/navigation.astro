@@ -140,19 +140,23 @@
   const navMenuToggle = document.getElementById("nav-menu-toggle");
 
   function onScroll() {
+    const currentScrollTop =
+      window.scrollY || document.documentElement.scrollTop;
+    const halfViewportHeight = window.innerHeight / 2;
+
+    // Do not request animation frame if past the top half of the page
+    if (currentScrollTop > halfViewportHeight) return;
+
     if (!isScrolling) {
+      isScrolling = true;
       window.requestAnimationFrame(() => {
-        handleScroll();
+        handleScroll(currentScrollTop);
         isScrolling = false;
       });
     }
-    isScrolling = true;
   }
 
-  function handleScroll() {
-    const currentScrollTop =
-      window.scrollY || document.documentElement.scrollTop;
-
+  function handleScroll(currentScrollTop) {
     if (
       currentScrollTop > lastScrollTop &&
       allDataHidden[0].getAttribute("data-navhidden") === ""
