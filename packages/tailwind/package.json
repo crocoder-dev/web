@@ -7,7 +7,7 @@
   ],
   "dependencies": {
     "@tailwindcss/forms": "0.5.9",
-    "@tailwindcss/typography": "0.5.15",
+    "@tailwindcss/typography": "0.5.16",
     "tailwind-bootstrap-grid": "5.1.0"
   }
 }
