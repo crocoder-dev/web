@@ -62,7 +62,7 @@ const Content = content;
     )}
   >
     <div
-      class="col-span-6 grid gap-7 grid-cols-2 lg:col-span-2 lg:items-start justify-between"
+      class="col-span-6 grid gap-7 lg:grid-cols-2 lg:col-span-2 lg:items-start justify-between"
     >
       <span
         class="font-medium text-[28px] leading-8 lg:leading-[44px] lg:mt-[2px]"
@@ -78,9 +78,9 @@ const Content = content;
       <img src={imgPath} alt={imgAlt} />
     </div>
     <div
-      class="flex flex-col lg:flex-col col-span-6 row-start-2 lg:col-span-1 lg:col-start-2 lg:row-span-2"
+      class="flex flex-col lg:flex-col col-span-6 row-start-2 lg:col-span-1 lg:col-start-2 lg:row-span-2 lg:[&_p]:text-[22px] [&_p]:leading-8"
     >
-      <p class="lg:text-[22px] leading-8">{(<Content />)}</p>
+      {(<Content />)}
     </div>
   </section>
 </div>
