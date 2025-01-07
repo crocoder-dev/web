@@ -122,7 +122,7 @@ for (const service of servicesCollection) {
       const { animationThresholds, animationFieldHeight } =
         getCardsAnimationThresholds();
 
-        console.log("THRES", {animationThresholds, animationFieldHeight});
+      console.log("THRES", { animationThresholds, animationFieldHeight });
 
       const firstCardAnimationRange = animationThresholds[0].distance;
       const lastCardAnimationRange =
@@ -253,7 +253,7 @@ for (const service of servicesCollection) {
       window.addEventListener("scroll", handleAnimationOnScroll);
     } else {
       servicesTitle.style.position = "static";
-      servicesWrapper.style.height = "unset";      
+      servicesWrapper.style.height = "unset";
       servicesWrapper.style.transform = "unset";
       cards.forEach((el) => {
         el.style.transform = "unset";

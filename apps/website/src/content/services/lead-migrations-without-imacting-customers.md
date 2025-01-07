@@ -1,6 +1,6 @@
 ---
 title: "Lead migrations without impacting customers"
-imgPath: "/src/assets/images/services/1.png"
+imgPath: "/services-1.png"
 imgAlt: "Illustration of a video meeting with Crocoder team member"
 idx: 1
 ---
