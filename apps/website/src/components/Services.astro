@@ -45,7 +45,7 @@ for (const service of servicesCollection) {
   <div id="services-wrapper" class="col-span-6 md:col-span-12">
     <div
       id="animation-wrapper"
-      class="max-lg:grid max-md:grid-cols-6 max-lg:grid-cols-12 max-lg:gap-7 lg:h-screen lg:overflow-hidden lg:sticky lg:top-0"
+      class="max-lg:grid max-md:grid-cols-6 max-lg:grid-cols-12 max-lg:gap-7 lg:h-screen lg:overflow-hidden lg:sticky lg:top-28 mt-7"
     >
       {
         services.map((value, idx) => (
@@ -107,7 +107,7 @@ for (const service of servicesCollection) {
           } else {
             animationThresholds.push({
               startAt: 0,
-              distance: screenHeight - startHeight,
+              distance: screenHeight - startHeight - 40,
               endAt: screenHeight - startHeight,
             });
           }
@@ -121,6 +121,8 @@ for (const service of servicesCollection) {
       };
       const { animationThresholds, animationFieldHeight } =
         getCardsAnimationThresholds();
+
+        console.log("THRES", {animationThresholds, animationFieldHeight});
 
       const firstCardAnimationRange = animationThresholds[0].distance;
       const lastCardAnimationRange =
@@ -174,23 +176,12 @@ for (const service of servicesCollection) {
       }, 200);
 
       const animateSurroundingElems = (fromTop) => {
-        const startHeight = cards.length * cardsIndentation;
-        const paddings = 160;
-        const valuesWrapperTop =
-          valuesWrapper.offsetHeight -
-          screenHeight +
-          startHeight +
-          paddings +
-          servicesTitle.offsetHeight;
-        const servicesTitleTop =
-          screenHeight - startHeight - 48 - servicesTitle.offsetHeight;
-        if (fromTop >= 0 && fromTop <= servicesWrapperHeight / 2) {
-          valuesWrapper.style.position = "sticky";
-          valuesWrapper.style.top = `-${valuesWrapperTop}px`;
+        const servicesTitleTop = servicesTitle.offsetHeight;
+
+        if (fromTop >= 0 && fromTop >= servicesTitle.offsetHeight * 3) {
           servicesTitle.style.position = "sticky";
           servicesTitle.style.top = `${servicesTitleTop}px`;
         } else {
-          valuesWrapper.style.position = "static";
           servicesTitle.style.position = "static";
         }
       };
@@ -261,9 +252,8 @@ for (const service of servicesCollection) {
 
       window.addEventListener("scroll", handleAnimationOnScroll);
     } else {
-      valuesWrapper.style.position = "static";
       servicesTitle.style.position = "static";
-      servicesWrapper.style.height = "unset";
+      servicesWrapper.style.height = "unset";      
       servicesWrapper.style.transform = "unset";
       cards.forEach((el) => {
         el.style.transform = "unset";
