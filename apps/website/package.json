@@ -3,10 +3,13 @@
   "module": "index.ts",
   "type": "module",
   "dependencies": {
+    "@astrojs/react": "^4.1.2",
     "@astrojs/tailwind": "^5.1.4",
+    "@astrojs/vercel": "^8.0.1",
     "@crocoder-dev/tailwind": "*",
     "astro": "5.1.2",
-    "astro-font": "^0.1.81"
+    "astro-font": "^0.1.81",
+    "classnames": "^2.5.1"
   },
   "scripts": {
     "dev": "astro dev --port 4321",

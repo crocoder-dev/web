@@ -4,6 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .will-change-transform {
+    will-change: transform;
+  }
+}
+
 * {
   scroll-behavior: smooth;
 }

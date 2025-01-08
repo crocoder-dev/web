@@ -1,0 +1,86 @@
+---
+import classnames from "classnames";
+
+interface Props {
+  idx: number;
+  title: string;
+  content: any;
+  styles: string;
+  imgPath: string;
+  imgAlt: string;
+  onDark?: boolean;
+  classNames?: string | string[];
+}
+
+const { idx, title, content, styles, imgPath, imgAlt, onDark, classNames } =
+  Astro.props;
+
+const Content = content;
+---
+
+<div
+  class={classnames(
+    `
+    lg:[&[data-show="true"]]:opacity-100
+    rounded-2xl
+    max-lg:col-span-6
+    md:gap-x-7
+    w-full   
+    lg:absolute
+    lg:opacity-0
+    lg:h-screen
+    overflow-hidden
+    will-change-transform	
+    `,
+    styles,
+  )}
+  data-show=""
+>
+  <section
+    class={classnames(
+      `text-neutral-50
+      h-full
+      lg:h-screen
+      p-7
+      lg:p-12 
+      grid
+      grid-cols-6
+      grid-rows-[min-content_min-content_auto]
+      gap-x-3
+      gap-y-7
+      lg:gap-x-7
+      lg:gap-y-12
+      lg:grid-cols-2
+      lg:grid-rows-[min-content_auto]
+      backdrop-blur-[30px]
+      `,
+      classNames,
+      {
+        "text-neutral-50": onDark,
+        "text-[#3C3843]": !onDark,
+      },
+    )}
+  >
+    <div
+      class="col-span-6 grid gap-7 lg:grid-cols-2 lg:col-span-2 lg:items-start justify-between"
+    >
+      <span
+        class="font-medium text-[28px] leading-8 lg:leading-[44px] lg:mt-[2px]"
+        >{`{0${idx}}`}</span
+      >
+      <h3 class="font-medium text-[28px] lg:text-4xl leading-[44px]">
+        {title}
+      </h3>
+    </div>
+    <div
+      class="flex flex-col justify-center col-span-6 row-start-3 lg:justify-start lg:col-span-1 lg:row-start-2"
+    >
+      <img src={imgPath} alt={imgAlt} />
+    </div>
+    <div
+      class="flex flex-col lg:flex-col col-span-6 row-start-2 lg:col-span-1 lg:col-start-2 lg:row-span-2 lg:[&_p]:text-[22px] [&_p]:leading-8"
+    >
+      <Content />
+    </div>
+  </section>
+</div>

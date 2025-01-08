@@ -1,0 +1,239 @@
+---
+import { getCollection } from "astro:content";
+import Section from "./Section.astro";
+import SectionTitle from "./SectionTitle.astro";
+import ServiceCard from "./ServiceCard.astro";
+import { grid_classes } from "./_grid";
+import classNames from "classnames";
+
+/* 560px => Height of cards in starting position. 4 cards x 140px of indentation */
+const styles = [
+  `bg-[#5362DBE5] lg:[transition:opacity_400ms_ease-out_600ms,transform_800ms_cubic-bezier(.5,.99,.49,.99)] lg:top-[calc(100vh-560px)]`,
+  `bg-[#424C6DE5] lg:[transition:opacity_400ms_ease-out_400ms,transform_800ms_cubic-bezier(.5,.99,.49,.99)] lg:top-[calc(100vh-560px+140px)]`,
+  `bg-[#3C3843E5] lg:[transition:opacity_400ms_ease-out_200ms,transform_800ms_cubic-bezier(.5,.99,.49,.99)] lg:top-[calc(100vh-560px+140px+140px)]`,
+  `bg-[#1E1A1AE5] lg:[transition:opacity_400ms_ease-out,transform_800ms_cubic-bezier(.5,.99,.49,.99)] lg:top-[calc(100vh-560px+140px+140px+140px)]`,
+];
+
+const servicesCollection = await getCollection("services");
+
+const services = [];
+
+for (const service of servicesCollection) {
+  const data = await service.render();
+
+  services[service.data.idx - 1] = {
+    content: data.Content,
+    title: service.data.title,
+    img: {
+      path: service.data.imgPath,
+      alt: service.data.imgAlt,
+    },
+  };
+}
+---
+
+<Section
+  className="w-full !overflow-visible lg:!px-0"
+  contentClassName={classNames(grid_classes, "lg:pt-12")}
+>
+  <SectionTitle
+    idx="services-title"
+    className="lg:px-7 col-span-6 lg:col-start-2 lg:col-span-10"
+  >
+    Our Services
+  </SectionTitle>
+  <div id="services-wrapper" class="col-span-6 md:col-span-12">
+    <div
+      id="animation-wrapper"
+      class="max-lg:grid max-md:grid-cols-6 max-lg:grid-cols-12 max-lg:gap-7 lg:h-screen lg:overflow-hidden lg:sticky lg:top-28 mt-7"
+    >
+      {
+        services.map((value, idx) => (
+          <ServiceCard
+            idx={idx + 1}
+            title={value.title}
+            content={value.content}
+            styles={styles[idx]}
+            imgPath={value.img.path}
+            imgAlt={value.img.alt}
+            onDark={idx === 1}
+            classNames="will-change-transform"
+          />
+        ))
+      }
+    </div>
+    <div id="end" class="absolute bottom-0"></div>
+  </div>
+</Section>
+
+<script is:inline>
+  let animationThresholds = [];
+  let animationFieldHeight = 0;
+  let handleAnimationOnScroll = null;
+  let lastScrollTopPos = 0;
+  let isScrolling = false;
+
+  function onScroll() {
+    if (!isScrolling) {
+      window.requestAnimationFrame(() => {
+        handleAnimationOnScroll();
+        isScrolling = false;
+      });
+    }
+    isScrolling = true;
+  }
+
+  function calculateThresholds(cardsIndentation, screenHeight, cards) {
+    const thresholds = [];
+    const startHeight = cards.length * cardsIndentation;
+
+    cards.forEach((card, i) => {
+      if (i === 0) {
+        thresholds.push({
+          startAt: 0,
+          distance: screenHeight - startHeight - 40,
+          endAt: screenHeight - startHeight,
+        });
+      } else {
+        const prev = thresholds[i - 1];
+        const cardRect = card.getBoundingClientRect();
+
+        thresholds.push({
+          startAt: prev.endAt + cardRect.height / 2,
+          distance: prev.distance + cardsIndentation,
+          endAt: prev.endAt + (prev.distance + cardsIndentation),
+        });
+      }
+    });
+
+    return {
+      animationThresholds: thresholds,
+      animationFieldHeight: thresholds[thresholds.length - 1].endAt,
+    };
+  }
+
+  function addCardsAnimation() {
+    const wrapperWidth = window.innerWidth;
+
+    const servicesWrapper = document.getElementById("services-wrapper");
+    const animationWrapper = document.getElementById("animation-wrapper");
+    const servicesTitle = document.getElementById("services-title");
+    const endDiv = document.getElementById("end");
+    const cards = document.querySelectorAll("[data-show]");
+
+    if (handleAnimationOnScroll) {
+      window.removeEventListener("scroll", onScroll);
+    }
+
+    if (wrapperWidth >= 1024) {
+      const screenHeight = window.innerHeight;
+      const cardsIndentation = 140;
+      const scrollThreshold = 1000;
+
+      const result = calculateThresholds(cardsIndentation, screenHeight, cards);
+      animationThresholds = result.animationThresholds;
+      animationFieldHeight = result.animationFieldHeight;
+
+      const firstCardAnimationRange = animationThresholds[0].distance;
+      const lastCardAnimationRange =
+        animationThresholds[animationThresholds.length - 1].distance;
+
+      const servicesWrapperHeight =
+        animationFieldHeight + screenHeight + 2 * scrollThreshold;
+
+      servicesWrapper.style.transform = `translate3d(0, -${firstCardAnimationRange}px, 0)`;
+      servicesWrapper.style.height = `${servicesWrapperHeight}px`;
+
+      animationWrapper.style.top = `${firstCardAnimationRange}px`;
+
+      if (servicesWrapper.parentElement) {
+        servicesWrapper.parentElement.style.maxHeight = `${
+          servicesWrapperHeight - (firstCardAnimationRange - 180)
+        }px`;
+      }
+
+      function animateSurroundingElems(fromTop) {
+        const servicesTitleTop = servicesTitle.offsetHeight;
+        if (!servicesTitle) return;
+
+        if (fromTop >= 0 && fromTop >= servicesTitle.offsetHeight * 3) {
+          servicesTitle.style.position = "sticky";
+          servicesTitle.style.top = `${servicesTitleTop}px`;
+        } else {
+          servicesTitle.style.position = "static";
+        }
+      }
+
+      function animateCards(fromTop, isScrollDown, fadeInOutThreshold) {
+        if (
+          fromTop < fadeInOutThreshold ||
+          fromTop > animationFieldHeight + screenHeight
+        ) {
+          return;
+        }
+
+        if (isScrollDown) {
+          cards.forEach((el, i) => {
+            const { startAt, endAt, distance } = animationThresholds[i];
+
+            if (fromTop > fadeInOutThreshold) {
+              el.setAttribute("data-show", "true");
+            }
+            if (startAt <= fromTop && endAt > fromTop) {
+              el.style.transform = `translate3d(0, ${startAt - fromTop}px, 0)`;
+            } else if (startAt <= fromTop && endAt < fromTop) {
+              el.style.transform = `translate3d(0, -${distance}px, 0)`;
+            }
+
+            if (fromTop > endAt + 200 && i === cards.length - 1) {
+              endDiv.scrollIntoView({ behavior: "smooth" });
+            }
+          });
+        } else {
+          cards.forEach((el, i) => {
+            const { startAt, endAt } = animationThresholds[i];
+            if (fromTop < fadeInOutThreshold + cardsIndentation) {
+              el.setAttribute("data-show", "");
+            }
+
+            if (startAt <= fromTop && endAt > fromTop) {
+              const startDistance = endAt - startAt;
+              el.style.transform = `translate3d(0, -${
+                startDistance - (endAt - fromTop)
+              }px, 0)`;
+            } else if (endAt > fromTop && startAt > fromTop) {
+              el.style.transform = `translate3d(0, 0, 0)`;
+            }
+          });
+        }
+      }
+
+      handleAnimationOnScroll = () => {
+        const currentScrollTop = window.scrollY;
+        const fromTop = servicesWrapper.getBoundingClientRect().top * -1;
+
+        const isScrollDown = lastScrollTopPos < currentScrollTop;
+        lastScrollTopPos = currentScrollTop <= 0 ? 0 : currentScrollTop;
+        const fadeInOutThreshold = lastCardAnimationRange - screenHeight - 1000;
+
+        animateSurroundingElems(fromTop + 200);
+        animateCards(fromTop - 1000, isScrollDown, fadeInOutThreshold);
+      };
+
+      handleAnimationOnScroll();
+      window.addEventListener("scroll", onScroll);
+    } else {
+      if (servicesTitle) servicesTitle.style.position = "static";
+
+      servicesWrapper.style.height = "auto";
+      servicesWrapper.style.transform = "none";
+      cards.forEach((el) => {
+        el.style.transform = "none";
+      });
+    }
+  }
+
+  addCardsAnimation();
+
+  window.addEventListener("resize", addCardsAnimation);
+</script>
