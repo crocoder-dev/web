@@ -7,10 +7,6 @@ export default defineConfig({
   output: "static",
   adapter: vercel({
     imageService: true,
-    imagesConfig: {
-      sizes: [640, 936],
-      domains: ['*'],
-    },
   }),
   integrations: [tailwind(), react()],
 });
