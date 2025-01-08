@@ -62,6 +62,7 @@ for (const service of servicesCollection) {
         ))
       }
     </div>
+    <div id="end" class="absolute bottom-0"></div>
   </div>
 </Section>
 
@@ -117,6 +118,7 @@ for (const service of servicesCollection) {
     const servicesWrapper = document.getElementById("services-wrapper");
     const animationWrapper = document.getElementById("animation-wrapper");
     const servicesTitle = document.getElementById("services-title");
+    const endDiv = document.getElementById("end");
     const cards = document.querySelectorAll("[data-show]");
 
     if (handleAnimationOnScroll) {
@@ -182,6 +184,10 @@ for (const service of servicesCollection) {
             } else if (startAt <= fromTop && endAt < fromTop) {
               el.style.transform = `translate3d(0, -${distance}px, 0)`;
             }
+
+            if (fromTop > endAt + 200 && i === cards.length - 1) {
+              endDiv.scrollIntoView({ behavior: "smooth" });
+            }
           });
         } else {
           cards.forEach((el, i) => {
@@ -207,6 +213,7 @@ for (const service of servicesCollection) {
         const fromTop = servicesWrapper.getBoundingClientRect().top * -1;
 
         const isScrollDown = lastScrollTopPos < currentScrollTop;
+        lastScrollTopPos = currentScrollTop <= 0 ? 0 : currentScrollTop;
         const fadeInOutThreshold = lastCardAnimationRange - screenHeight - 1000;
 
         animateSurroundingElems(fromTop + 200);
