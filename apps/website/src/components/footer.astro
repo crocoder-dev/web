@@ -1,6 +1,5 @@
 ---
 import { Image } from "astro:assets";
-import logoFooter from "../assets/logoFooter.png";
 const copyright = `
  ${new Date().getFullYear()} CroCoder, Inc. All rights reserved.
 `;
@@ -17,8 +16,24 @@ const copyright = `
       class="grid grid-cols-[repeat(3,minmax(min-content,1fr))] grid-rows-[auto_auto_auto_auto] items-center gap-4 lg:grid-cols-[min-content_1fr_min-content]"
     >
       <div class="w-[225px] col-span-2 lg:col-span-1">
-        <a href="/" aria-label="Go to Home">
-          <Image src={logoFooter} alt="Crocoder logo" />
+        <a class="sm:flex sm:items-center" href="/" aria-label="Crocoder Logo">
+          <img
+            width={64}
+            height={30}
+            alt="Crocoder Crocodile Logo"
+            src="./images/crocoder-logo.png"
+            class="h-[48px] w-auto"
+          />
+          <img
+            width={153}
+            height={24}
+            alt="Crocoder Text Logo"
+            src="./images/crocoder-text.svg"
+            class="pl-2 hidden h-6 w-auto md:block
+              md:[&[data-navhidden='false']]:opacity-0
+              md:[&[data-navhidden='']]:opacity-100"
+            data-navhidden
+          />
         </a>
       </div>
       <div
