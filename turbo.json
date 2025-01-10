@@ -18,5 +18,15 @@
       "cache": false,
       "persistent": true
     }
-  }
+  },
+  "globalEnv": [
+    "UPSTASH_REDIS_REST_URL",
+    "UPSTASH_REDIS_REST_TOKEN",
+    "MENTION_IDS",
+    "MENTION_EMAILS",
+    "SLACK_CHANNEL",
+    "NOTION_TOKEN",
+    "SLACK_BOT_TOKEN",
+    "NOTION_DATABASE_ID"
+  ]
 }
