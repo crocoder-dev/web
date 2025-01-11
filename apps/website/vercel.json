@@ -24,5 +24,8 @@
       "source": "/feed",
       "destination": "https://crocoder-company-blog.vercel.app/rss.xml"
     }
-  ]
+  ],
+  "build": {
+    "outputDirectory": "dist"
+  }
 }
