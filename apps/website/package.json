@@ -3,6 +3,7 @@
   "module": "index.ts",
   "type": "module",
   "dependencies": {
+    "@astrojs/sitemap": "^3.2.1",
     "@astrojs/tailwind": "^5.1.4",
     "@crocoder-dev/tailwind": "*",
     "astro": "5.1.2",
