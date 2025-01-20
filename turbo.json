@@ -27,6 +27,7 @@
     "SLACK_CHANNEL",
     "NOTION_TOKEN",
     "SLACK_BOT_TOKEN",
-    "NOTION_DATABASE_ID"
+    "NOTION_DATABASE_ID",
+    "SITE_URL"
   ]
 }

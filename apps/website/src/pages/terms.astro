@@ -1,19 +1,19 @@
 ---
-import Footer from '../components/footer.astro';
-import Navigation from '../components/navigation.astro';
-import Section from '../components/Section.astro';
-import Base from '../layouts/base.astro';
-import '../styles/main.css';
+import Footer from "../components/footer.astro";
+import Navigation from "../components/navigation.astro";
+import Section from "../components/Section.astro";
+import Base from "../layouts/base.astro";
+import "../styles/main.css";
 
-const contentClasses = '[&>h2]:font-bold [&>h2]:text-2xl [&>h2]:my-5';
+const contentClasses = "[&>h2]:font-bold [&>h2]:text-2xl [&>h2]:my-5";
 ---
 
 <Base>
   <Navigation />
-  <main class='min-h-[calc(100vh-244px)] pt-[74px] md:pt-[78px] text-[#3C3843]'>
+  <main class="min-h-[calc(100vh-244px)] pt-[74px] md:pt-[78px] text-[#3C3843]">
     <Section
-      className='pb-5 md:pt-20 md:pb-5 lg:pt-20 lg:pb-5'
-      contentClassName='[&>h1]:font-bold [&>h1]:text-3xl [&>h1]:mb-5'
+      className="pb-5 md:pt-20 md:pb-5 lg:pt-20 lg:pb-5"
+      contentClassName="[&>h1]:font-bold [&>h1]:text-3xl [&>h1]:mb-5"
     >
       <h1>Terms of use</h1>
       <p>
@@ -44,7 +44,7 @@ const contentClasses = '[&>h2]:font-bold [&>h2]:text-2xl [&>h2]:my-5';
       </p>
     </Section>
 
-    <Section className='!py-0 !pb-5' contentClassName={contentClasses}>
+    <Section className="!py-0 !pb-5" contentClassName={contentClasses}>
       <h2>License</h2>
 
       <p>
@@ -58,7 +58,7 @@ const contentClasses = '[&>h2]:font-bold [&>h2]:text-2xl [&>h2]:my-5';
       </p>
     </Section>
     <Section
-      className='pt-0 lg:pt-0 lg:py-24'
+      className="pt-0 lg:pt-0 lg:py-24"
       contentClassName={contentClasses}
     >
       <h2>Removal of links from our website</h2>
@@ -74,7 +74,7 @@ const contentClasses = '[&>h2]:font-bold [&>h2]:text-2xl [&>h2]:my-5';
         <br />
         <br />
         If you have any questions about this Terms of use, please contact us via
-        <a class='underline' href='mailto:hello@crocoder.dev'
+        <a class="underline" href="mailto:hello@crocoder.dev"
           >hello@crocoder.dev</a
         >.
       </p>

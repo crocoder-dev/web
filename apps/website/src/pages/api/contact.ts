@@ -1,10 +1,10 @@
 export const prerender = false;
 
-import type { APIRoute } from "astro";
+import { Client, isFullPage } from "@notionhq/client";
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
+import type { APIRoute } from "astro";
 import { nanoid } from "nanoid";
-import { Client, isFullPage } from "@notionhq/client";
 import z from "zod";
 
 const bodyValidationSchema = z.object({
