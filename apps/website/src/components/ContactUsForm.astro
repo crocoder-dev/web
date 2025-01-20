@@ -1,6 +1,6 @@
 ---
 import Field from "./Field.astro";
-import formContent from "../content/contact-us/form.json";
+import * as formContent from "../content/contact/form.md";
 import "../styles/loader.css";
 ---
 
@@ -14,7 +14,7 @@ import "../styles/loader.css";
     inputProps={{
       name: "form-full-name",
       maxlength: "100",
-      placeholder: formContent.fullname.label,
+      placeholder: formContent.frontmatter.fullname,
       required: true,
       minlength: 3,
     }}
@@ -22,15 +22,15 @@ import "../styles/loader.css";
       for: "form-full-name",
       "aria-hidden": "false",
     }}
-    label={formContent.fullname.label}
-    errorText={formContent.fullname.minimalLength}
+    label={formContent.frontmatter.fullname}
+    errorText={formContent.frontmatter.fullnameLength}
   />
   <Field
     isTextArea={false}
     inputProps={{
       name: "form-email",
       maxlength: "100",
-      placeholder: formContent.email.label,
+      placeholder: formContent.frontmatter.email,
       type: "email",
       required: true,
     }}
@@ -38,8 +38,8 @@ import "../styles/loader.css";
       for: "form-email",
       "aria-hidden": "false",
     }}
-    label={formContent.email.label}
-    errorText={formContent.email.invalidEmail}
+    label={formContent.frontmatter.email}
+    errorText={formContent.frontmatter.emailInvalid}
   />
   <div>
     <Field
@@ -48,7 +48,7 @@ import "../styles/loader.css";
         name: "form-message",
         maxlength: 1500,
         minlength: 1,
-        placeholder: formContent.projectInfo.label,
+        placeholder: formContent.frontmatter.projectInfo,
         id: "form-message",
         required: true,
       }}
@@ -56,8 +56,8 @@ import "../styles/loader.css";
         for: "form-message",
         "aria-hidden": "false",
       }}
-      label={formContent.projectInfo.label}
-      errorText={formContent.projectInfo.requiredField}
+      label={formContent.frontmatter.projectInfo}
+      errorText={formContent.frontmatter.requiredField}
     />
     <span class="text-[#3C3843] text-xs text-right mt-1 block">
       <span id="char-counter">0</span>/1500
@@ -74,7 +74,7 @@ import "../styles/loader.css";
         class="h-4 w-4 rounded border-gray-300 text-[#67a807] focus:ring-[#67a807] mt-1 cursor-pointer"
       />
       <label
-        set:html={formContent.consent}
+        set:html={formContent.frontmatter.consent}
         id="form-consent-text"
         for="form-consent"
         class="text-[#3C3843] [&>em]:not-italic [&_b]:text-[#67a807] [&>em]:font-semibold cursor-pointer"
@@ -101,13 +101,13 @@ import "../styles/loader.css";
       text-base
       font-medium mt-6"
     >
-      <span>{formContent.submit}</span>
+      <span>{formContent.frontmatter.submit}</span>
       <div class="loader mx-auto hidden"></div>
     </button>
     <p id="form-notification" class="text-sm min-h-6 pt-1"></p>
   </div>
   <script>
-    import notification from "../content/contact-us/notification.json";
+    import * as notification from "../content/contact/notification.md";
 
     const messageField = document.getElementById("form-message");
     const charCounter = document.getElementById("char-counter");
@@ -192,14 +192,14 @@ import "../styles/loader.css";
 
         if (response.status !== 200 && notificationElem) {
           notificationElem.classList.add("text-red-500");
-          notificationElem.textContent = notification.error;
+          notificationElem.textContent = notification.frontmatter.error;
           hideLoader();
           return;
         }
 
         if (notificationElem) {
           notificationElem.classList.add("text-[#67a807]");
-          notificationElem.innerHTML = notification.success;
+          notificationElem.innerHTML = notification.frontmatter.success;
           hideLoader();
           clearForm();
         }

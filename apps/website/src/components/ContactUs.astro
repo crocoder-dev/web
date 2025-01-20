@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
-import peopleCollaborating from "../../public/people-collaborating.png";
-import contactUsContent from "../content/contact-us/contact-us.json";
+import * as contactUsContent from "../content/contact/contact-us.md";
+import { Content } from "../content/contact/contact-us.md";
 import { grid_classes } from "./_grid";
 import ContactUsForm from "./ContactUsForm.astro";
 import Section from "./Section.astro";
@@ -14,23 +14,24 @@ import SectionTitle from "./SectionTitle.astro";
 >
   <div class="col-span-6 md:col-span-12">
     <SectionTitle
-      set:html={contactUsContent.title}
+      set:html={contactUsContent.frontmatter.title}
       className="text-[#3C3843]"
     />
     <p
       class="leading-normal text-base font-normal text-left text-[#3C3843] mt-4"
     >
-      {contactUsContent.description}
+      <Content />
     </p>
   </div>
   <ContactUsForm />
   <div class="col-span-6 min-xl:col-span-7 hidden lg:block">
     <Image
-      src={peopleCollaborating}
+      src={contactUsContent.frontmatter.imgPath}
       widths={[540, 720]}
       sizes={"(max-width: 1280px) 540px, 720px"}
-      alt={contactUsContent.imageAlt}
+      alt={contactUsContent.frontmatter.imgAlt}
       loading="eager"
+      width={540}
     />
   </div>
 </Section>

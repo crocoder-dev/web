@@ -136,7 +136,7 @@
     const currentScrollTop =
       window.scrollY || document.documentElement.scrollTop;
     const valuesWrapper = document.getElementById("values-wrapper");
-    const valuesWrapperTop = valuesWrapper.offsetHeight;
+    const valuesWrapperTop = valuesWrapper ? valuesWrapper.offsetHeight : 0;
 
     // Do not request animation frame if past the top half of the page
     if (currentScrollTop > valuesWrapperTop) return;
