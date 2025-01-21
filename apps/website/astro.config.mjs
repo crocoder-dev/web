@@ -1,5 +1,7 @@
-import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
+import { defineConfig } from "astro/config";
+import tailwind from "@astrojs/tailwind";
+import react from "@astrojs/react";
+import vercel from "@astrojs/vercel/static";
 import sitemap from "@astrojs/sitemap";
 import { loadEnv } from 'vite';
 
@@ -19,5 +21,10 @@ export default defineConfig({
     changefreq: 'monthly',
     priority: 0.85,
     customPages: [`${siteUrl}/blog`],
-  })]
+  })],
+  output: "static",
+  adapter: vercel({
+    imageService: true,
+  }),
+  integrations: [tailwind(), react()],
 });

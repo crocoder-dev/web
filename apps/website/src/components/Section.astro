@@ -17,8 +17,9 @@ const { idx, className, contentClassName } = Astro.props;
    overflow-hidden
    ${className} `}
 >
-<div class={` max-w-[100vw] md:max-w-[var(--max-width)] m-auto  ${contentClassName}`}>
+  <div
+    class={`max-w-[100vw] md:max-w-[var(--max-width)] m-auto  ${contentClassName}`}
+  >
     <slot />
-</div>
-
+  </div>
 </section>
