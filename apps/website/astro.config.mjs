@@ -1,8 +1,11 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import sitemap from "@astrojs/sitemap";
+import { loadEnv } from 'vite';
 
-const siteUrl = import.meta.env.SITE_URL;
+const env = loadEnv(process.env.NODE_ENV, process.cwd(), '');
+
+const siteUrl = env.PUBLIC_SITE_URL;
 
 // https://astro.build/config
 export default defineConfig({
@@ -12,8 +15,5 @@ export default defineConfig({
     changefreq: 'monthly',
     priority: 0.85,
     customPages: [`${siteUrl}/blog`],
-  })],
-  redirects: {
-    '/sitemap': '/sitemap.xml'
-  },
+  })]
 });
