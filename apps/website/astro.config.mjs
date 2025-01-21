@@ -10,6 +10,10 @@ const siteUrl = env.PUBLIC_SITE_URL;
 // https://astro.build/config
 export default defineConfig({
   site: siteUrl,
+  redirects: {
+    '/sitemap': '/sitemap-0.xml',
+    '/sitemap.xml': '/sitemap-0.xml'
+  },
   integrations: [tailwind(), sitemap({
     lastmod: new Date(),
     changefreq: 'monthly',
