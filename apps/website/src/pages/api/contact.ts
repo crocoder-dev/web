@@ -1,5 +1,3 @@
-export const prerender = false;
-
 import { Client, isFullPage } from "@notionhq/client";
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
