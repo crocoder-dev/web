@@ -3,23 +3,15 @@ import { getCollection } from "astro:content";
 export async function get({ site }: { site: any }) {
   const markdownPosts = await getCollection("posts");
 
-  const pages = (await Astro.glob("../pages/**/*.astro")).filter(
-    (page: any) =>
-      !page.url?.includes("[") && !page.url?.includes("index.astro"),
-  );
-
   const prefix = import.meta.env.DEV ? "/" : "/blog";
 
   const posts = [
     ...markdownPosts.map((post: any) => ({
-      url: `${prefix}${prefix === "/" ? "" : "/"}${post.slug}`,
-      updatedAt: new Date(post.data.updatedAt),
+      slug: `${prefix}${prefix === "/" ? "" : "/"}${post.slug}`,
+      updatedAt: post.data.updatedAt
+        ? new Date(post.data.updatedAt)
+        : new Date(),
       image: post.data.image,
-    })),
-    ...pages.map((page: any) => ({
-      url: `${prefix === "/" ? "" : prefix}${page.url}`,
-      updatedAt: new Date((page as any).data.updatedAt),
-      image: (page as any).data.image,
     })),
   ];
 
@@ -31,6 +23,14 @@ export async function get({ site }: { site: any }) {
     <url>
       <loc>${site}${post.slug}</loc>
       <lastmod>${post.createdAt}</lastmod>
+      ${
+        post.image
+          ? `
+          <image:image>
+            <image:loc>${post.image}</image:loc>
+          </image:image>`
+          : ""
+      }
     </url>
   `,
     )
