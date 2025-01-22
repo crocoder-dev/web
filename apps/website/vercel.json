@@ -27,5 +27,17 @@
   ],
   "build": {
     "outputDirectory": "dist"
-  }
+  },
+  "redirects": [
+    {
+      "source": "/sitemap",
+      "destination": "/sitemap-0.xml",
+      "permanent": true
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "/sitemap-0.xml",
+      "permanent": true
+    }
+  ]
 }

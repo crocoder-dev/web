@@ -8,8 +8,8 @@ export async function get({ site }: { site: any }) {
   const posts = [
     ...markdownPosts.map((post: any) => ({
       slug: `${prefix}${prefix === "/" ? "" : "/"}${post.slug}`,
-      updatedAt: post.data.updatedAt
-        ? new Date(post.data.updatedAt)
+      createdAt: post.data.createdAt
+        ? new Date(post.data.createdAt)
         : new Date(),
       image: post.data.image,
     })),
