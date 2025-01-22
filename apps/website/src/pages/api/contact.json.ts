@@ -1,3 +1,10 @@
+/**
+ * Your routes will be rendered on demand by default in server mode.
+ * In static mode, you must opt out of prerendering for each custom endpoint with
+ * export const prerender = false;
+ */
+export const prerender = false;
+
 import { Client, isFullPage } from "@notionhq/client";
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
