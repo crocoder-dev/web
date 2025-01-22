@@ -1,7 +1,6 @@
 import { Client, isFullPage } from "@notionhq/client";
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
-import type { APIRoute } from "astro";
 import { nanoid } from "nanoid";
 import z from "zod";
 
@@ -292,7 +291,7 @@ const allowRequest = async (request: Request & { ip?: string }) => {
   }
 };
 
-export const POST: APIRoute = async ({ request }) => {
+export const POST = async (request: Request) => {
   if (request.headers.get("Content-Type") === "application/json") {
     try {
       const body = (await request.json()) as RequestBody;
