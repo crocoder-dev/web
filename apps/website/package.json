@@ -3,7 +3,6 @@
   "module": "index.ts",
   "type": "module",
   "dependencies": {
-    "@astrojs/sitemap": "^3.2.1",
     "@astrojs/react": "^4.1.2",
     "@astrojs/tailwind": "^5.1.4",
     "@astrojs/vercel": "^8.0.1",
@@ -15,8 +14,5 @@
   "scripts": {
     "dev": "astro dev --port 4321",
     "build": "astro build"
-  },
-  "devDependencies": {
-    "vite": "^6.0.9"
   }
 }

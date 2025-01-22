@@ -23,6 +23,10 @@
     {
       "source": "/feed",
       "destination": "https://crocoder-company-blog.vercel.app/rss.xml"
+    },
+    {
+      "source": "/sitemap",
+      "destination": "https://crocoder-company-blog.vercel.app/sitemap.xml"
     }
   ],
   "build": {
@@ -31,13 +35,7 @@
   "redirects": [
     {
       "source": "/sitemap",
-      "destination": "/sitemap-0.xml",
-      "permanent": true
-    },
-    {
-      "source": "/sitemap.xml",
-      "destination": "/sitemap-0.xml",
-      "permanent": true
+      "destination": "/sitemap.xml"
     }
   ]
 }
