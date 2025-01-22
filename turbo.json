@@ -8,9 +8,6 @@
     "apps/blog#build": {
       "outputs": ["apps/blog/dist/**"]
     },
-    "apps/website#build": {
-      "outputs": ["apps/website/dist/**"]
-    },
     "lint": {
       "dependsOn": ["^lint"]
     },
