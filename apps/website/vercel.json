@@ -5,6 +5,13 @@
       "maxDuration": 5
     }
   },
+ "routes": [
+    {
+      "src": "/api/contact",
+      "methods": ["POST"],
+      "dest": "api/contact.ts"
+    }
+  ],
   "rewrites": [
     {
       "source": "/images/:path*",
