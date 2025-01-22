@@ -4,7 +4,7 @@ import vercel from "@astrojs/vercel";
 import { defineConfig } from "astro/config";
 
 export default defineConfig({
-  output: "server",
+  output: "hybrid",
   adapter: vercel({
     imageService: true,
   }),
