@@ -16,15 +16,14 @@ export default defineConfig({
     '/sitemap': '/sitemap-0.xml',
     '/sitemap.xml': '/sitemap-0.xml'
   },
-  integrations: [tailwind(), sitemap({
+  output: "static",
+  adapter: vercel({
+    imageService: true,
+  }),
+  integrations: [tailwind(), react(), sitemap({
     lastmod: new Date(),
     changefreq: 'monthly',
     priority: 0.85,
     customPages: [`${siteUrl}/blog`],
   })],
-  output: "static",
-  adapter: vercel({
-    imageService: true,
-  }),
-  integrations: [tailwind(), react()],
 });
