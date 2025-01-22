@@ -1,8 +1,8 @@
 import { getCollection } from "astro:content";
 const markdownPosts = await getCollection("posts");
 
-const prefix = import.meta.env.DEV ? "/" : "/blog";
-const siteUrl = import.meta.env.SITE_URL + (prefix === "/" ? "" : prefix);
+const prefix = process.env.DEV ? "/" : "/blog";
+const siteUrl = process.env.SITE_URL + (prefix === "/" ? "" : prefix);
 
 export function GET() {
   const posts = [
