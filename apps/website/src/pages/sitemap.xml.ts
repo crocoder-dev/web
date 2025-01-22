@@ -1,6 +1,7 @@
+const siteUrl = import.meta.env.SITE_URL;
+const blogUrl = import.meta.env.BLOG_URL;
+
 export async function GET() {
-  const siteUrl = import.meta.env.SITE_URL;
-  const blogUrl = import.meta.env.BLOG_URL;
 
   const urls = [
     `<url>
@@ -9,16 +10,17 @@ export async function GET() {
       <priority>1</priority>
     </url>`,
   ];
-
-  try {
-    const blogSitemapRes = await fetch(`${blogUrl}/sitemap.xml`);
-    if (blogSitemapRes.ok) {
-      const blogSitemap = await blogSitemapRes.text();
-      const blogUrls = blogSitemap.match(/<url>[\s\S]*?<\/url>/g) || [];
-      urls.push(...blogUrls);
+  if (blogUrl) {
+    try {
+      const blogSitemapRes = await fetch(`${blogUrl}/sitemap.xml`);
+      if (blogSitemapRes.ok) {
+        const blogSitemap = await blogSitemapRes.text();
+        const blogUrls = blogSitemap.match(/<url>[\s\S]*?<\/url>/g) || [];
+        urls.push(...blogUrls);
+      }
+    } catch (error) {
+      console.error('Error fetching blog sitemap:', error);
     }
-  } catch (error) {
-    console.error('Error fetching blog sitemap:', error);
   }
 
   return new Response(

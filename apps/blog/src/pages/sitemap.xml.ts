@@ -1,14 +1,13 @@
 import { getCollection } from "astro:content";
 const markdownPosts = await getCollection("posts");
 
+const prefix = import.meta.env.DEV ? "/" : "/blog";
+const siteUrl = import.meta.env.SITE_URL + (prefix === "/" ? "" : prefix);
+
 export function GET() {
-  const prefix = import.meta.env.DEV ? "/" : "/blog";
-
-  const siteUrl = import.meta.env.SITE_URL + (prefix === "/" ? "" : prefix);
-
   const posts = [
     ...markdownPosts.map((post: any) => ({
-      url: `${siteUrl}${prefix}${prefix === "/" ? "" : "/"}${post.slug}`,
+      url: `${siteUrl}${prefix === "/" ? "" : "/"}${post.slug}`,
       createdAt: post.data.createdAt
         ? new Date(post.data.createdAt)
         : new Date(),
