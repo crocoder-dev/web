@@ -1,0 +1,140 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import classnames from "classnames";
+
+type BaseProps = {
+  labelProps?: HTMLAttributes<"label">;
+  label?: string;
+  errorText?: string;
+  classNames?: string;
+};
+
+type InputProps = {
+  isTextArea: false;
+  inputProps: HTMLAttributes<"input">;
+};
+
+type TextAreaProps = {
+  isTextArea: true;
+  textAreaProps: HTMLAttributes<"textarea">;
+};
+
+type Props = BaseProps & (InputProps | TextAreaProps);
+
+const { classNames, labelProps, label, errorText } = Astro.props;
+---
+
+<div
+  class={classnames(
+    `min-h-[74px]
+    relative pt-6 overflow-hidden
+    after:absolute
+    after:top-6
+    after:rounded-[6px]
+    after:w-[calc(100%-2px)]
+    after:bg-[#F6FCFD]
+    after:ml-[1px]
+    rounded-[6px]
+    z-[2]
+    flex`,
+    classNames,
+    {
+      "after:h-[46px]": !Astro.props.isTextArea,
+      "after:h-[139px] after:max-h-[139px]": Astro.props.isTextArea,
+    },
+  )}
+>
+  {
+    !Astro.props.isTextArea ? (
+      <input
+        {...Astro.props.inputProps}
+        class="rounded-[6px]
+        h-[46px]
+        border
+        border-transparent
+        bg-transparent
+        placeholder-transparent
+        px-4 py-2.5
+        peer/input
+        relative z-[4]
+        ml-[1px]
+        w-[calc(100%-2px)]
+        focus:outline-0
+        focus:ring-0
+        focus:border-transparent
+        text-[#3C3843]
+       "
+      />
+    ) : (
+      <textarea
+        class={classnames(
+          `min-h-[140px] max-h-[140px]
+          border
+          border-transparent
+          bg-transparent
+          placeholder-transparent
+          px-4 py-2.5
+          relative z-[4]
+          ml-[1px]
+          w-[calc(100%-2px)]
+          peer/input
+          focus:outline-0
+          focus:ring-0
+          focus:border-transparent
+          text-[#3C3843]
+          `,
+          Astro.props.textAreaProps.class,
+        )}
+        {...Astro.props.textAreaProps}
+      />
+    )
+  }
+  <label
+    {...labelProps}
+    class="text-[#3C3843]
+      text-xs
+      min-[375px]:text-sm
+      absolute
+      top-0
+      translate-y-0
+      transition-transform
+      translate-x-0
+      peer-placeholder-shown/input:translate-y-[37px]
+      peer-placeholder-shown/input:translate-x-[17px]
+      peer-placeholder-shown/input:text-base
+      z-[3]
+      [&>span:nth-child(2)]:hidden
+      peer-[&:not(:placeholder-shown):not(:focus):invalid]/input:[&>span:first-child]:hidden
+      peer-[&:not(:placeholder-shown):not(:focus):invalid]/input:[&>span:nth-child(2)]:inline
+      peer-[&:not(:placeholder-shown):not(:focus):invalid]/input:text-red-500"
+  >
+    <span>{label}</span>
+    <span class="truncate text-ellipsis">{errorText || "Invalid field"}</span>
+  </label>
+  <div
+    class={classnames(
+      `absolute
+      w-full 
+      rounded-[6px]
+      bg-[#424c6d50]
+      flex
+      overflow-hidden
+      items-center
+      justify-center
+      peer-focus/input:after:scale-[25]
+      after:h-5
+      after:w-5
+      after:rounded-full
+      after:bg-[#67a807]
+      after:scale-0
+      after:transition-transform
+      after:duration-[400ms]
+      peer-[&:not(:placeholder-shown):not(:focus):invalid]/input:bg-red-500`,
+      {
+        "h-[48px] top-[23px]": !Astro.props.isTextArea,
+        "h-[142px] top-[23px]": Astro.props.isTextArea,
+      },
+    )}
+  >
+  </div>
+</div>
