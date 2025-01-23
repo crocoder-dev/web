@@ -176,6 +176,7 @@ import "../styles/loader.css";
         }
 
         showLoader();
+        console.log("KAJJJ", import.meta.env.CONTACT_URL);
         const response = await fetch(`${import.meta.env.CONTACT_URL}`, {
           method: "POST",
           mode: "cors",
