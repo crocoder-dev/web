@@ -1,3 +1,10 @@
 {
-  "extends": "../../tsconfig.json"
+  "compilerOptions": {
+    "module": "ESNext", // or "Node16", "ES2020"
+    "target": "ESNext", // Set target to ESNext for modern JavaScript features
+    "moduleResolution": "Node", // Ensures module resolution works as expected
+    "esModuleInterop": true, // Allows for better interop with CommonJS modules
+    "strict": true, // Optional but recommended for better type safety
+    "skipLibCheck": true // Optionally skip library checks for faster builds
+  }
 }

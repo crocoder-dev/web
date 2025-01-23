@@ -27,7 +27,7 @@ const {
   UPSTASH_REDIS_REST_URL,
   UPSTASH_REDIS_REST_TOKEN,
   IS_OFFLINE,
-} = import.meta.env.DEV ? import.meta.env : process.env;
+} = process.env;
 
 const notion = new Client({ auth: NOTION_TOKEN });
 
@@ -141,7 +141,7 @@ const getMentions = () => {
     const ids = MENTION_IDS.split(",");
 
     if (emails.length && ids.length) {
-      return ids.map((id: any, i: string | number) => ({
+      return ids.map((id: any, i: number) => ({
         id,
         email: emails[i],
       }));
