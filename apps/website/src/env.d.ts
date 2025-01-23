@@ -2,7 +2,7 @@
 /// <reference types="astro/client" />
 
 interface ImportMetaEnv {
-  readonly CONTACT_URL: string;
+  readonly VITE_CONTACT_URL: string;
 }
 
 interface ImportMeta {
