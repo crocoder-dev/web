@@ -141,7 +141,7 @@ const getMentions = () => {
     const ids = MENTION_IDS.split(",");
 
     if (emails.length && ids.length) {
-      return ids.map((id: any, i: string | number) => ({
+      return ids.map((id: any, i: number) => ({
         id,
         email: emails[i],
       }));
