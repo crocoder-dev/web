@@ -8,9 +8,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
-    "tailwindcss": "3.4.17",
     "turbo": "2.3.3",
-    "typescript": "5.7.2"
   },
   "engines": {
     "bun": ">=1.1.18"
@@ -21,8 +19,6 @@
     "packages/*"
   ],
   "dependencies": {
-    "@astrojs/react": "^3.6.2",
-    "classnames": "^2.5.1",
     "prettier": "^3.4.2",
     "prettier-plugin-astro": "^0.14.1"
   }
