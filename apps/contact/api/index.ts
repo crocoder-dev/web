@@ -291,7 +291,19 @@ const allowRequest = async (request: VercelRequest & { ip?: string }) => {
 };
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  const allowedOrigins = [
+    "https://company-website-git-feat-web-27-add-contact-us-project-crocoder.vercel.app",
+    "https://company-website-crocoder.vercel.app",
+    "https://company-website-git-main-crocoder.vercel.app",
+  ];
+  const origin = req.headers.origin;
+
+  if (origin && allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  } else {
+    res.setHeader("Access-Control-Allow-Origin", "");
+  }
+
   res.setHeader("Access-Control-Allow-Methods", "POST");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
   res.setHeader("Access-Control-Allow-Credentials", "true");
