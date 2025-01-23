@@ -16,6 +16,8 @@ const bodyValidationSchema = z.object({
   hasConsent: z.boolean().optional(),
 });
 
+type RequestBody = z.infer<typeof bodyValidationSchema>;
+
 const {
   NOTION_TOKEN,
   SLACK_CHANNEL,
@@ -26,7 +28,7 @@ const {
   UPSTASH_REDIS_REST_URL,
   UPSTASH_REDIS_REST_TOKEN,
   IS_OFFLINE,
-} = import.meta.env.DEV ? import.meta.env : process.env;
+} = process.env;
 
 const notion = new Client({ auth: NOTION_TOKEN });
 
@@ -35,7 +37,7 @@ const redis = new Redis({
   token: UPSTASH_REDIS_REST_TOKEN,
 });
 
-const createPayload = (name, email, url) => ({
+const createPayload = (name: string, email: string, url: string) => ({
   channel: SLACK_CHANNEL,
   blocks: [
     {
@@ -78,9 +80,9 @@ const createPayload = (name, email, url) => ({
 });
 
 const notifyContactCreated = async (
-  name,
-  email,
-  url,
+  name: string,
+  email: string,
+  url: string,
 ) => {
   const payload = createPayload(name, email, url);
   const payloadStringify = JSON.stringify(payload);
@@ -114,7 +116,7 @@ const notifyContactCreated = async (
   }
 };
 
-const mentionPerson = ({ id, email }) => [
+const mentionPerson = ({ id, email }: { id: string; email: string }) => [
   {
     mention: {
       user: {
@@ -154,10 +156,10 @@ const mentionPeople = () => {
 };
 
 const createContactObject = (
-  id,
-  email,
-  name,
-  content,
+  id: string,
+  email: string,
+  name: string,
+  content: string,
 ) => ({
   parent: {
     database_id: NOTION_DATABASE_ID || "",
@@ -211,10 +213,10 @@ const createContactObject = (
 });
 
 const createContact = async (
-  id,
-  email,
-  name,
-  content,
+  id: string,
+  email: string,
+  name: string,
+  content: string,
 ) => {
   try {
     const response = await notion.pages.create(
@@ -234,7 +236,12 @@ const createContact = async (
   }
 };
 
-const processContact = async (event) => {
+const processContact = async (event: {
+  id: string;
+  email: string;
+  name: string;
+  message: string;
+}) => {
   try {
     const { id, email, name, message } = event;
 
@@ -258,7 +265,7 @@ const processContact = async (event) => {
   }
 };
 
-const allowRequest = async (request) => {
+const allowRequest = async (request: Request & { ip?: string }) => {
   try {
     const ip = request.ip ?? "127.0.0.1";
 
@@ -284,10 +291,10 @@ const allowRequest = async (request) => {
   }
 };
 
-export const POST = async (request) => {
+export const POST = async (request: Request) => {
   if (request.headers.get("Content-Type") === "application/json") {
     try {
-      const body = await request.json();
+      const body = (await request.json()) as RequestBody;
       const bodyValidationResult = bodyValidationSchema.safeParse(body);
 
       if (!body || bodyValidationResult.error) {
@@ -352,7 +359,14 @@ export const POST = async (request) => {
         },
       );
     } catch (error) {
-      const customError = error;
+      const customError = error as Error & {
+        statusCode?: number;
+        body?: {
+          message?: string;
+        };
+        headers?: HeadersInit;
+      };
+
       console.error("Error - api/contacts", customError);
 
       return new Response(
