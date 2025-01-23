@@ -7,7 +7,7 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL + (prefix === "/" ? "" : prefix)
 export function GET() {
   const posts = [
     ...markdownPosts.map((post: any) => ({
-      url: `${siteUrl}${prefix !== "/" ? "" : prefix}${post.slug}`,
+      url: `${siteUrl}/${post.slug}`,
       createdAt: post.data.createdAt
         ? new Date(post.data.createdAt)
         : new Date(),
