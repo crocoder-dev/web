@@ -176,7 +176,7 @@ import "../styles/loader.css";
         }
 
         showLoader();
-        const response = await fetch("/contact.json", {
+        const response = await fetch(`${import.meta.env.CONTACT_URL}`, {
           method: "POST",
           mode: "cors",
           headers: {
