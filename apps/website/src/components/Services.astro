@@ -19,10 +19,8 @@ const servicesCollection = await getCollection("services");
 const services = [];
 
 for (const service of servicesCollection) {
-  const data = await service.render();
-
   services[service.data.idx - 1] = {
-    content: data.Content,
+    content: service.rendered,
     title: service.data.title,
     img: {
       path: service.data.imgPath,
@@ -67,6 +65,7 @@ for (const service of servicesCollection) {
 </Section>
 
 <script is:inline>
+  console.log("Hello from Services.astro");
   let animationThresholds = [];
   let animationFieldHeight = 0;
   let handleAnimationOnScroll = null;

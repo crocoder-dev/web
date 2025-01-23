@@ -1,0 +1,94 @@
+---
+import Base from "../../layouts/base-blog.astro";
+import { getCollection } from "astro:content";
+import { Picture } from "astro:assets";
+import formatDate from "../..//format-date";
+import Meta from "../../layouts/base-meta-tags.astro";
+
+const markdownPosts = await getCollection("posts");
+
+const authorsCollection = await getCollection("authors");
+
+const pages = (await Astro.glob("../blog/**/*.astro")).filter(
+  (page) => !page.url?.includes("[") && !page.url?.includes("index.astro"),
+);
+
+const prefix = "/blog";
+
+const authorMap = authorsCollection.reduce(
+  (acc, author) => {
+    acc[author.slug] = author.data.name;
+    return acc;
+  },
+  {} as { [slug: string]: string },
+);
+
+const posts = [
+  ...markdownPosts.map((post) => ({
+    url: `${prefix}/${post.slug}`,
+    title: post.data.title,
+    createdAt: new Date(post.data.createdAt),
+    image: post.data.image,
+    authors: post.data.authors || [],
+    category: (post as any).data.category,
+  })),
+  ...pages.map((page) => ({
+    url: `${page.url}`,
+    title: (page as any).data.title,
+    createdAt: new Date((page as any).data.createdAt),
+    image: (page as any).data.image,
+    authors: (page as any).data.authors.map((e: any) => e.slug) || [],
+    category: (page as any).data.category,
+  })),
+].map((post) => {
+  return {
+    ...post,
+    authors: post.authors.map((slug: string) => authorMap[slug] || slug),
+  };
+});
+
+posts.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+---
+
+<Base>
+  <Meta slot={"head"} {...Astro.props} />
+  <section class="py-20">
+    <div class="container max-w-[1000px] px-4 md:px-8">
+      <ol class="grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2">
+        {
+          posts.map(
+            ({ url, title, image, authors, category, createdAt }, i) => (
+              <li class={i === 0 ? "col-span-1 sm:col-span-2" : ""}>
+                <a class="flex flex-col gap-4" href={url}>
+                  <div class="overflow-hidden rounded-lg">
+                    {image && (
+                      <Picture
+                        src={image}
+                        alt={title}
+                        width={1024}
+                        loading={i < 3 ? "eager" : "lazy"}
+                        decoding="auto"
+                      />
+                    )}
+                  </div>
+                  <ul class="flex gap-5 list-none">
+                    {authors.length > 0 && <li>{authors[0]}</li>}
+                    <li>
+                      {createdAt && (
+                        <time datetime={new Date(createdAt).toISOString()}>
+                          {formatDate(createdAt)}
+                        </time>
+                      )}
+                    </li>
+                    {category && <li>{category}</li>}
+                  </ul>
+                  <h3 class="text-3xl">{title}</h3>
+                </a>
+              </li>
+            ),
+          )
+        }
+      </ol>
+    </div>
+  </section>
+</Base>

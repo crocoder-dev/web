@@ -12,7 +12,6 @@ interface Props {
 }
 
 const { idx, title, content, img, styles, onDark } = Astro.props;
-const Content = content;
 ---
 
 <section
@@ -20,7 +19,7 @@ const Content = content;
 >
   <span class="font-medium text-[28px] leading-8">{`{${idx}}`}</span>
   <h3 class="font-medium text-[28px] leading-8">{title}</h3>
-  <p class="text-base leading-7"><Content /></p>
+  <p set:html={content.html} class="text-base leading-7" />
 
   <img class="mt-auto" src={img.path} alt={img.alt} />
 </section>

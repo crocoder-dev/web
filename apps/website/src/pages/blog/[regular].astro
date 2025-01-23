@@ -1,0 +1,36 @@
+---
+import Post from "../../layouts/post-markdown.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = (await getCollection("posts")).filter(
+    (p) => !p.slug.includes("/"),
+  );
+
+  console.log(posts[0]);
+
+  const paths = posts.map((page) => ({
+    params: {
+      regular: page.slug,
+    },
+    props: { page },
+  }));
+
+  return paths;
+}
+
+const authorCollection = await getCollection("authors");
+
+const { page } = Astro.props;
+const { authors: authorIds, editors: editorIds } = page.data;
+
+const authors = authorCollection.filter((author) =>
+  authorIds.includes(author.slug),
+);
+
+const editors = authorCollection.filter((editor) =>
+  editorIds.includes(editor.slug),
+);
+---
+
+<Post post={page} slug={page.slug} editor={editors[0]} author={authors[0]} />
