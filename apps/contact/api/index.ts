@@ -1,10 +1,9 @@
-export const runtime = 'nodejs';
-
 import { Client, isFullPage } from "@notionhq/client";
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 import { nanoid } from "nanoid";
 import z from "zod";
+import type { VercelRequest, VercelResponse } from "@vercel/node";
 
 const bodyValidationSchema = z.object({
   name: z
@@ -17,8 +16,6 @@ const bodyValidationSchema = z.object({
   message: z.string().min(1, { message: "Required field" }),
   hasConsent: z.boolean().optional(),
 });
-
-type RequestBody = z.infer<typeof bodyValidationSchema>;
 
 const {
   NOTION_TOKEN,
@@ -144,7 +141,7 @@ const getMentions = () => {
     const ids = MENTION_IDS.split(",");
 
     if (emails.length && ids.length) {
-      return ids.map((id, i) => ({
+      return ids.map((id: any, i: string | number) => ({
         id,
         email: emails[i],
       }));
@@ -267,7 +264,7 @@ const processContact = async (event: {
   }
 };
 
-const allowRequest = async (request: Request & { ip?: string }) => {
+const allowRequest = async (request: VercelRequest & { ip?: string }) => {
   try {
     const ip = request.ip ?? "127.0.0.1";
 
@@ -293,96 +290,84 @@ const allowRequest = async (request: Request & { ip?: string }) => {
   }
 };
 
-export const POST = async (request: Request) => {
-  if (request.headers.get("Content-Type") === "application/json") {
-    try {
-      const body = (await request.json()) as RequestBody;
-      const bodyValidationResult = bodyValidationSchema.safeParse(body);
+export default async function handler(req: VercelRequest, res: VercelResponse) {
+  try {
+    const body = req.body;
+    const bodyValidationResult = bodyValidationSchema.safeParse(body);
 
-      if (!body || bodyValidationResult.error) {
-        throw {
-          statusCode: 400,
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Credentials": true,
-          },
-          body: {
-            message: bodyValidationResult.error?.message || "No body was found",
-          },
-        };
-      }
+    if (!body || bodyValidationResult.error) {
+      const headers = new Map([
+        ["Access-Control-Allow-Origin", "*"],
+        ["Access-Control-Allow-Credentials", "true"],
+      ]);
 
-      const { name, email, message, hasConsent } = body;
-
-      if (!hasConsent) {
-        throw {
-          statusCode: 403,
-          body: {
-            message: "No consent by user",
-          },
-        };
-      }
-
-      const { success, limit, reset, remaining } = await allowRequest(request);
-
-      if (!success) {
-        throw {
-          statusCode: 429,
-          body: {
-            message: "Too many requests. Please try again in a minute",
-          },
-        };
-      }
-
-      try {
-        await processContact({
-          id: nanoid(),
-          email,
-          name,
-          message,
-        });
-      } catch (error) {
-        throw error;
-      }
-
-      return new Response(
-        JSON.stringify({
-          message: "Success",
-        }),
-        {
-          status: 200,
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Credentials": "true",
-            "X-RateLimit-Limit": limit.toString(),
-            "X-RateLimit-Remaining": remaining.toString(),
-            "X-RateLimit-Reset": reset.toString(),
-          },
+      throw {
+        statusCode: 400,
+        headers: headers,
+        body: {
+          message: bodyValidationResult.error?.message || "No body was found",
         },
-      );
-    } catch (error) {
-      const customError = error as Error & {
-        statusCode?: number;
-        body?: {
-          message?: string;
-        };
-        headers?: HeadersInit;
       };
-
-      console.error("Error - api/contacts", customError);
-
-      return new Response(
-        JSON.stringify({
-          message:
-            customError?.body?.message || "Issue while processing request",
-        }),
-        {
-          status: customError.statusCode || 501,
-          headers: customError?.headers,
-        },
-      );
     }
-  }
 
-  return new Response(null, { status: 400 });
-};
+    const { name, email, message, hasConsent } = body;
+
+    if (!hasConsent) {
+      throw {
+        statusCode: 403,
+        body: {
+          message: "No consent by user",
+        },
+      };
+    }
+
+    const { success, limit, reset, remaining } = await allowRequest(req);
+
+    if (!success) {
+      throw {
+        statusCode: 429,
+        body: {
+          message: "Too many requests. Please try again in a minute",
+        },
+      };
+    }
+
+    try {
+      await processContact({
+        id: nanoid(),
+        email,
+        name,
+        message,
+      });
+    } catch (error) {
+      throw error;
+    }
+
+    const headers = new Map([
+      ["Access-Control-Allow-Origin", "*"],
+      ["Access-Control-Allow-Credentials", "true"],
+      ["X-RateLimit-Limit", limit.toString()],
+      ["X-RateLimit-Remaining", remaining.toString()],
+      ["X-RateLimit-Reset", reset.toString()],
+    ]);
+
+    return res.status(200).json({ message: "Success" }).setHeaders(headers);
+  } catch (error) {
+    const customError = error as Error & {
+      statusCode?: number;
+      body?: {
+        message?: string;
+      };
+      headers?: Headers;
+    };
+
+    console.error("Error - api/contacts", customError);
+
+    return res
+      .status(customError.statusCode || 501)
+      .json({
+        message: customError?.body?.message || "Issue while processing request",
+      })
+      .setHeaders(customError?.headers || new Map());
+  }
+}

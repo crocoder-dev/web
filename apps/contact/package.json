@@ -9,6 +9,11 @@
     "nanoid": "^5.0.9",
     "zod": "^3.24.1"
   },
+  "devDependencies": {
+    "@types/node": "^17.0.42",
+    "@vercel/node": "^2.9.6",
+    "typescript": "^4.7.3"
+  },
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
@@ -17,6 +22,5 @@
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {},
   "description": ""
 }
