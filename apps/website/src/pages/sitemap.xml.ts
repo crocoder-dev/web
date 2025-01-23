@@ -1,5 +1,5 @@
-const siteUrl = process.env.SITE_URL;
-const blogUrl = process.env.BLOG_URL;
+const siteUrl = import.meta.env.PUBLIC_SITE_URL;
+const blogUrl = import.meta.env.PUBLIC_BLOG_URL;
 
 export async function GET() {
 

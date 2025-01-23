@@ -50,7 +50,7 @@ const allPartialsPlainText = (
 
 const sufix = import.meta.env.DEV ? "" : "blog/";
 
-const siteUrl = import.meta.env.SITE_URL + sufix;
+const siteUrl = import.meta.env.PUBLIC_SITE_URL + sufix;
 
 const posts = await getCollection("posts");
 const currentPost = posts.find((post) => post.slug === slug);
