@@ -103,10 +103,10 @@ const notifyContactCreated = async (
       if (result.status !== 200) {
         throw {
           statusCode: result.status,
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Credentials": true,
-          },
+          headers: [
+            { name: "Access-Control-Allow-Origin", value: "*" },
+            { name: "Access-Control-Allow-Credentials", value: "true" },
+          ],
         };
       }
     } catch (error) {
@@ -301,14 +301,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const bodyValidationResult = bodyValidationSchema.safeParse(body);
 
     if (!body || bodyValidationResult.error) {
-      const headers = new Map([
-        ["Access-Control-Allow-Origin", "*"],
-        ["Access-Control-Allow-Credentials", "true"],
-      ]);
-
       throw {
         statusCode: 400,
-        headers: headers,
+        headers: [
+          { name: "Access-Control-Allow-Origin", value: "*" },
+          { name: "Access-Control-Allow-Credentials", value: "true" },
+        ],
         body: {
           message: bodyValidationResult.error?.message || "No body was found",
         },
@@ -348,31 +346,32 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       throw error;
     }
 
-    const headers = new Map([
-      ["Access-Control-Allow-Origin", "*"],
-      ["Access-Control-Allow-Credentials", "true"],
-      ["X-RateLimit-Limit", limit.toString()],
-      ["X-RateLimit-Remaining", remaining.toString()],
-      ["X-RateLimit-Reset", reset.toString()],
-    ]);
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.setHeader("X-RateLimit-Limit", limit.toString());
+    res.setHeader("X-RateLimit-Remaining", remaining.toString());
+    res.setHeader("X-RateLimit-Reset", reset.toString());
 
-    return res.setHeaders(headers).status(200).json({ message: "Success" });
+    return res.status(200).json({ message: "Success" });
   } catch (error) {
     const customError = error as Error & {
       statusCode?: number;
       body?: {
         message?: string;
       };
-      headers?: Headers;
+      headers?: Array<{ name: string; value: string }>;
     };
 
     console.error("Error - api/contacts", customError);
 
-    return res
-      .setHeaders(customError?.headers || new Map())
-      .status(customError.statusCode || 501)
-      .json({
-        message: customError?.body?.message || "Issue while processing request",
+    if (customError && customError.headers) {
+      customError.headers.forEach((header) => {
+        res.setHeader(header.name, header.value);
       });
+    }
+
+    return res.status(customError.statusCode || 501).json({
+      message: customError?.body?.message || "Issue while processing request",
+    });
   }
 }
