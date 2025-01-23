@@ -351,7 +351,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       ["X-RateLimit-Reset", reset.toString()],
     ]);
 
-    return res.status(200).json({ message: "Success" }).setHeaders(headers);
+    return res.setHeaders(headers).status(200).json({ message: "Success" });
   } catch (error) {
     const customError = error as Error & {
       statusCode?: number;
@@ -364,10 +364,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     console.error("Error - api/contacts", customError);
 
     return res
+      .setHeaders(customError?.headers || new Map())
       .status(customError.statusCode || 501)
       .json({
         message: customError?.body?.message || "Issue while processing request",
-      })
-      .setHeaders(customError?.headers || new Map());
+      });
   }
 }
