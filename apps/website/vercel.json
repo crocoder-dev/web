@@ -29,9 +29,6 @@
       "destination": "https://crocoder-company-blog.vercel.app/sitemap.xml"
     }
   ],
-  "build": {
-    "outputDirectory": "dist"
-  },
   "redirects": [
     {
       "source": "/sitemap",
