@@ -108,6 +108,7 @@ import "../styles/loader.css";
   </div>
   <script>
     import * as notification from "../content/contact/notification.md";
+    console.log("KAJJJ", import.meta.env.VITE_CONTACT_URL);
 
     const messageField = document.getElementById("form-message");
     const charCounter = document.getElementById("char-counter");
@@ -177,7 +178,7 @@ import "../styles/loader.css";
 
         showLoader();
         console.log("KAJJJ", process.env.CONTACT_URL);
-        const response = await fetch(`${process.env.CONTACT_URL}`, {
+        /* const response = await fetch(`${process.env.CONTACT_URL}`, {
           method: "POST",
           mode: "cors",
           headers: {
@@ -203,7 +204,7 @@ import "../styles/loader.css";
           notificationElem.innerHTML = notification.frontmatter.success;
           hideLoader();
           clearForm();
-        }
+        } */
       });
     }
   </script>
