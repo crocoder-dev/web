@@ -108,9 +108,7 @@ import "../styles/loader.css";
   </div>
   <script>
     import * as notification from "../content/contact/notification.md";
-    const apiUrl =
-      import.meta.env.VITE_CONTACT_URL ||
-      (process && process.env.VITE_CONTACT_URL);
+    const apiUrl = import.meta.env.VITE_CONTACT_URL;
     console.log("API URL from Env Variable:", apiUrl);
 
     const messageField = document.getElementById("form-message");
