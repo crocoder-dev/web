@@ -1,15 +1,24 @@
 {
   "tasks": {
     "build": {
-      "dependsOn": ["^build"],
-      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        ".env*"
+      ],
       "outputs": []
     },
     "apps/website#build": {
-      "outputs": ["apps/website/dist/**"]
+      "outputs": [
+        "apps/website/dist/**"
+      ]
     },
     "lint": {
-      "dependsOn": ["^lint"]
+      "dependsOn": [
+        "^lint"
+      ]
     },
     "dev": {
       "cache": false,
@@ -25,6 +34,7 @@
     "NOTION_TOKEN",
     "SLACK_BOT_TOKEN",
     "NOTION_DATABASE_ID",
-    "SITE_URL"
+    "SITE_URL",
+    "VITE_CONTACT_URL"
   ]
 }
