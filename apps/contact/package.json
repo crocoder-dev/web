@@ -1,7 +1,8 @@
 {
   "name": "@crocoder-dev/contact",
   "version": "0.0.1",
-  "main": "index.ts",
+  "main": "api/index.ts",
+  "type": "module",
   "dependencies": {
     "@notionhq/client": "^2.2.15",
     "@upstash/ratelimit": "^2.0.5",
@@ -10,9 +11,17 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/node": "^17.0.42",
+    "@vercel/node": "^2.9.6",
+    "typescript": "^4.7.3"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
-  }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }

@@ -1,27 +1,10 @@
 {
   "compilerOptions": {
-    // Enable latest features
-    "lib": ["ESNext", "DOM"],
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleDetection": "force",
-    "jsx": "react-jsx",
-    "allowJs": true,
-
-    // Bundler mode
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "verbatimModuleSyntax": true,
-    "noEmit": true,
-
-    // Best practices
-    "strict": true,
-    "skipLibCheck": true,
-    "noFallthroughCasesInSwitch": true,
-
-    // Some stricter flags (disabled by default)
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "noPropertyAccessFromIndexSignature": false
+    "module": "ESNext", // or "Node16", "ES2020"
+    "target": "ESNext", // Set target to ESNext for modern JavaScript features
+    "moduleResolution": "Node", // Ensures module resolution works as expected
+    "esModuleInterop": true, // Allows for better interop with CommonJS modules
+    "strict": true, // Optional but recommended for better type safety
+    "skipLibCheck": true // Optionally skip library checks for faster builds
   }
 }

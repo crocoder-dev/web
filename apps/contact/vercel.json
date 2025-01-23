@@ -1,21 +1,18 @@
 {
-  "version": 1,
-  "installCommand": "curl -fsSL https://bun.sh/install | bash && ~/.bun/bin/bun install --frozen-lockfile",
-  "buildCommand": "~/.bun/bin/bun run build",
+  "version": 2,
   "functions": {
-    "index.ts": {
+    "api/index.ts": {
       "memory": 256,
-      "maxDuration": 5,
-      "runtime": "vercel/bun"
+      "maxDuration": 5
     }
   },
   "routes": [
     {
-      "src": "/",
+      "src": "/api/index.ts",
       "methods": [
         "POST"
       ],
-      "dest": "index.ts"
+      "dest": "/"
     }
   ]
 }

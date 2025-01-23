@@ -3,6 +3,7 @@ import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 import { nanoid } from "nanoid";
 import z from "zod";
+import type { VercelRequest, VercelResponse } from "@vercel/node";
 
 const bodyValidationSchema = z.object({
   name: z
@@ -16,8 +17,6 @@ const bodyValidationSchema = z.object({
   hasConsent: z.boolean().optional(),
 });
 
-type RequestBody = z.infer<typeof bodyValidationSchema>;
-
 const {
   NOTION_TOKEN,
   SLACK_CHANNEL,
@@ -28,7 +27,7 @@ const {
   UPSTASH_REDIS_REST_URL,
   UPSTASH_REDIS_REST_TOKEN,
   IS_OFFLINE,
-} = import.meta.env.DEV ? import.meta.env : process.env;
+} = process.env;
 
 const notion = new Client({ auth: NOTION_TOKEN });
 
@@ -104,10 +103,10 @@ const notifyContactCreated = async (
       if (result.status !== 200) {
         throw {
           statusCode: result.status,
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Credentials": true,
-          },
+          headers: [
+            { name: "Access-Control-Allow-Origin", value: "*" },
+            { name: "Access-Control-Allow-Credentials", value: "true" },
+          ],
         };
       }
     } catch (error) {
@@ -142,7 +141,7 @@ const getMentions = () => {
     const ids = MENTION_IDS.split(",");
 
     if (emails.length && ids.length) {
-      return ids.map((id, i) => ({
+      return ids.map((id: any, i: number) => ({
         id,
         email: emails[i],
       }));
@@ -265,7 +264,7 @@ const processContact = async (event: {
   }
 };
 
-const allowRequest = async (request: Request & { ip?: string }) => {
+const allowRequest = async (request: VercelRequest & { ip?: string }) => {
   try {
     const ip = request.ip ?? "127.0.0.1";
 
@@ -291,96 +290,105 @@ const allowRequest = async (request: Request & { ip?: string }) => {
   }
 };
 
-export const POST = async (request: Request) => {
-  if (request.headers.get("Content-Type") === "application/json") {
-    try {
-      const body = (await request.json()) as RequestBody;
-      const bodyValidationResult = bodyValidationSchema.safeParse(body);
+export default async function handler(req: VercelRequest, res: VercelResponse) {
+  const allowedOrigins = [
+    "https://company-website-git-feat-web-27-add-contact-us-project-crocoder.vercel.app",
+    "https://company-website-crocoder.vercel.app",
+    "https://company-website-git-main-crocoder.vercel.app",
+  ];
+  const origin = req.headers.origin;
 
-      if (!body || bodyValidationResult.error) {
-        throw {
-          statusCode: 400,
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Credentials": true,
-          },
-          body: {
-            message: bodyValidationResult.error?.message || "No body was found",
-          },
-        };
-      }
-
-      const { name, email, message, hasConsent } = body;
-
-      if (!hasConsent) {
-        throw {
-          statusCode: 403,
-          body: {
-            message: "No consent by user",
-          },
-        };
-      }
-
-      const { success, limit, reset, remaining } = await allowRequest(request);
-
-      if (!success) {
-        throw {
-          statusCode: 429,
-          body: {
-            message: "Too many requests. Please try again in a minute",
-          },
-        };
-      }
-
-      try {
-        await processContact({
-          id: nanoid(),
-          email,
-          name,
-          message,
-        });
-      } catch (error) {
-        throw error;
-      }
-
-      return new Response(
-        JSON.stringify({
-          message: "Success",
-        }),
-        {
-          status: 200,
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Credentials": "true",
-            "X-RateLimit-Limit": limit.toString(),
-            "X-RateLimit-Remaining": remaining.toString(),
-            "X-RateLimit-Reset": reset.toString(),
-          },
-        },
-      );
-    } catch (error) {
-      const customError = error as Error & {
-        statusCode?: number;
-        body?: {
-          message?: string;
-        };
-        headers?: HeadersInit;
-      };
-
-      console.error("Error - api/contacts", customError);
-
-      return new Response(
-        JSON.stringify({
-          message:
-            customError?.body?.message || "Issue while processing request",
-        }),
-        {
-          status: customError.statusCode || 501,
-          headers: customError?.headers,
-        },
-      );
-    }
+  if (origin && allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  } else {
+    res.setHeader("Access-Control-Allow-Origin", "");
   }
 
-  return new Response(null, { status: 400 });
-};
+  res.setHeader("Access-Control-Allow-Methods", "POST");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+
+  if (req.method === "OPTIONS") {
+    res.status(204).end();
+    return;
+  }
+
+  try {
+    const body = req.body;
+    const bodyValidationResult = bodyValidationSchema.safeParse(body);
+
+    if (!body || bodyValidationResult.error) {
+      throw {
+        statusCode: 400,
+        headers: [
+          { name: "Access-Control-Allow-Origin", value: "*" },
+          { name: "Access-Control-Allow-Credentials", value: "true" },
+        ],
+        body: {
+          message: bodyValidationResult.error?.message || "No body was found",
+        },
+      };
+    }
+
+    const { name, email, message, hasConsent } = body;
+
+    if (!hasConsent) {
+      throw {
+        statusCode: 403,
+        body: {
+          message: "No consent by user",
+        },
+      };
+    }
+
+    const { success, limit, reset, remaining } = await allowRequest(req);
+
+    if (!success) {
+      throw {
+        statusCode: 429,
+        body: {
+          message: "Too many requests. Please try again in a minute",
+        },
+      };
+    }
+
+    try {
+      await processContact({
+        id: nanoid(),
+        email,
+        name,
+        message,
+      });
+    } catch (error) {
+      throw error;
+    }
+
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.setHeader("X-RateLimit-Limit", limit.toString());
+    res.setHeader("X-RateLimit-Remaining", remaining.toString());
+    res.setHeader("X-RateLimit-Reset", reset.toString());
+
+    return res.status(200).json({ message: "Success" });
+  } catch (error) {
+    const customError = error as Error & {
+      statusCode?: number;
+      body?: {
+        message?: string;
+      };
+      headers?: Array<{ name: string; value: string }>;
+    };
+
+    console.error("Error - api/contacts", customError);
+
+    if (customError && customError.headers) {
+      customError.headers.forEach((header) => {
+        res.setHeader(header.name, header.value);
+      });
+    }
+
+    return res.status(customError.statusCode || 501).json({
+      message: customError?.body?.message || "Issue while processing request",
+    });
+  }
+}
