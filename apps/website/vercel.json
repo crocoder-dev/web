@@ -26,7 +26,7 @@
     },
     {
       "source": "/api/contact",
-      "destination": "https://web-contact.vercel.app/api/contact".
+      "destination": "https://web-contact.vercel.app/api/contact"
     },
   ]
 }
