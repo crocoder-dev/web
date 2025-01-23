@@ -16,8 +16,6 @@ const bodyValidationSchema = z.object({
   hasConsent: z.boolean().optional(),
 });
 
-type RequestBody = z.infer<typeof bodyValidationSchema>;
-
 const {
   NOTION_TOKEN,
   SLACK_CHANNEL,
@@ -37,7 +35,7 @@ const redis = new Redis({
   token: UPSTASH_REDIS_REST_TOKEN,
 });
 
-const createPayload = (name: string, email: string, url: string) => ({
+const createPayload = (name, email, url) => ({
   channel: SLACK_CHANNEL,
   blocks: [
     {
@@ -80,9 +78,9 @@ const createPayload = (name: string, email: string, url: string) => ({
 });
 
 const notifyContactCreated = async (
-  name: string,
-  email: string,
-  url: string,
+  name,
+  email,
+  url,
 ) => {
   const payload = createPayload(name, email, url);
   const payloadStringify = JSON.stringify(payload);
@@ -116,7 +114,7 @@ const notifyContactCreated = async (
   }
 };
 
-const mentionPerson = ({ id, email }: { id: string; email: string }) => [
+const mentionPerson = ({ id, email }) => [
   {
     mention: {
       user: {
@@ -156,10 +154,10 @@ const mentionPeople = () => {
 };
 
 const createContactObject = (
-  id: string,
-  email: string,
-  name: string,
-  content: string,
+  id,
+  email,
+  name,
+  content,
 ) => ({
   parent: {
     database_id: NOTION_DATABASE_ID || "",
@@ -213,10 +211,10 @@ const createContactObject = (
 });
 
 const createContact = async (
-  id: string,
-  email: string,
-  name: string,
-  content: string,
+  id,
+  email,
+  name,
+  content,
 ) => {
   try {
     const response = await notion.pages.create(
@@ -236,12 +234,7 @@ const createContact = async (
   }
 };
 
-const processContact = async (event: {
-  id: string;
-  email: string;
-  name: string;
-  message: string;
-}) => {
+const processContact = async (event) => {
   try {
     const { id, email, name, message } = event;
 
@@ -265,7 +258,7 @@ const processContact = async (event: {
   }
 };
 
-const allowRequest = async (request: Request & { ip?: string }) => {
+const allowRequest = async (request) => {
   try {
     const ip = request.ip ?? "127.0.0.1";
 
@@ -291,10 +284,10 @@ const allowRequest = async (request: Request & { ip?: string }) => {
   }
 };
 
-export const POST = async (request: Request) => {
+export const POST = async (request) => {
   if (request.headers.get("Content-Type") === "application/json") {
     try {
-      const body = (await request.json()) as RequestBody;
+      const body = await request.json();
       const bodyValidationResult = bodyValidationSchema.safeParse(body);
 
       if (!body || bodyValidationResult.error) {
@@ -359,14 +352,7 @@ export const POST = async (request: Request) => {
         },
       );
     } catch (error) {
-      const customError = error as Error & {
-        statusCode?: number;
-        body?: {
-          message?: string;
-        };
-        headers?: HeadersInit;
-      };
-
+      const customError = error;
       console.error("Error - api/contacts", customError);
 
       return new Response(

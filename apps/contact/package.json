@@ -1,7 +1,7 @@
 {
   "name": "@crocoder-dev/contact",
   "version": "0.0.1",
-  "main": "index.ts",
+  "main": "api/contact.ts",
   "dependencies": {
     "@notionhq/client": "^2.2.15",
     "@upstash/ratelimit": "^2.0.5",
