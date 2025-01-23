@@ -23,6 +23,10 @@
     {
       "source": "/feed",
       "destination": "https://crocoder-company-blog.vercel.app/rss.xml"
+    },
+    {
+      "source": "/api",
+      "destination": "https://web-contact-gloria-crocoderdev-crocoder.vercel.app/api"
     }
   ]
 }
