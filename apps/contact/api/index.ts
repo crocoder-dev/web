@@ -291,10 +291,15 @@ const allowRequest = async (request: VercelRequest & { ip?: string }) => {
 };
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  res.setHeader("Access-Control-Allow-Origin", "*"); // Allow all origins (or specify your frontend domain)
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST");
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
   res.setHeader("Access-Control-Allow-Credentials", "true");
+
+  if (req.method === "OPTIONS") {
+    res.status(204).end();
+    return;
+  }
 
   try {
     const body = req.body;
