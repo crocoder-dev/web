@@ -176,7 +176,8 @@ import "../styles/loader.css";
         }
 
         showLoader();
-        const response = await fetch("/api/contact", {
+
+        const response = await fetch(`/api`, {
           method: "POST",
           mode: "cors",
           headers: {

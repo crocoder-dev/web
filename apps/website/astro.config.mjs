@@ -9,4 +9,11 @@ export default defineConfig({
     imageService: true,
   }),
   integrations: [tailwind(), react()],
+  vite: {
+    server: {
+      proxy: {
+        '/api': 'https://web-contact-gloria-crocoderdev-crocoder.vercel.app/api', // Proxy API requests to your backend
+      },
+    },
+  },
 });
