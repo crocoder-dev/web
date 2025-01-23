@@ -24,7 +24,7 @@ export function GET() {
       <loc>${post.url}</loc>
       <lastmod>${post.createdAt}</lastmod>
       ${
-        post.image
+        post.imageUrl
           ? `
           <image:image>
             <image:loc>${post.imageUrl}</image:loc>
