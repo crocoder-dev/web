@@ -39,7 +39,6 @@
     "NOTION_TOKEN",
     "SLACK_BOT_TOKEN",
     "NOTION_DATABASE_ID",
-    "SITE_URL",
-    "VITE_CONTACT_URL"
+    "SITE_URL"
   ]
 }
