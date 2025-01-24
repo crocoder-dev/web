@@ -23,10 +23,6 @@
     {
       "source": "/feed",
       "destination": "https://crocoder-company-blog.vercel.app/rss.xml"
-    },
-    {
-      "source": "/sitemap",
-      "destination": "https://crocoder-company-blog.vercel.app/sitemap.xml"
     }
   ],
   "redirects": [
