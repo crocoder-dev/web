@@ -24,11 +24,5 @@
       "source": "/feed",
       "destination": "https://crocoder-company-blog.vercel.app/rss.xml"
     }
-  ],
-  "redirects": [
-    {
-      "source": "/sitemap",
-      "destination": "/sitemap.xml"
-    }
   ]
 }
