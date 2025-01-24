@@ -3,6 +3,8 @@ const blogUrl = import.meta.env.PUBLIC_BLOG_URL;
 
 export async function GET() {
 
+  console.log(blogUrl);
+
   const urls = [
     `<url>
       <loc>${siteUrl}</loc>
