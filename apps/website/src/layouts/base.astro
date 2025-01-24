@@ -3,7 +3,6 @@ import theme from "@crocoder-dev/tailwind/theme.json";
 import "../styles/main.css";
 import Meta from "../layouts/meta-tags.astro";
 import { AstroFont } from "astro-font";
-import { ViewTransitions } from "astro:transitions";
 
 const pf = theme.fonts.font_family.primary;
 const sf = theme.fonts.font_family.secondary;
@@ -52,7 +51,6 @@ if (theme.fonts.font_family.secondary) {
         },
       ]}
     />
-    <ViewTransitions />
   </head>
   <body
     class="flex flex-col font-primary items-center justify-center min-h-screen bg-gray-100"

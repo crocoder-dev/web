@@ -1,21 +1,6 @@
 {
   "rewrites": [
     {
-      "source": "/images/:path*",
-      "destination": "https://crocoder-company-blog.vercel.app/images/:path*"
-    },
-    {
-      "source": "/_vercel/:path*",
-      "destination": "https://crocoder-company-blog.vercel.app/_vercel/:path*"
-    },
-    {
-      "source": "/_astro/:path*",
-      "destination": "https://crocoder-company-blog.vercel.app/_astro/:path*"
-    },
-    {
-      "source": "/blog/:path*",
-      "destination": "https://crocoder-company-blog.vercel.app/:path*"
-    },
     {
       "source": "/rss.xml",
       "destination": "https://crocoder-company-blog.vercel.app/rss.xml"
@@ -23,10 +8,6 @@
     {
       "source": "/feed",
       "destination": "https://crocoder-company-blog.vercel.app/rss.xml"
-    },
-    {
-      "source": "/api/contact",
-      "destination": "https://web-contact.vercel.app/api/contact"
     }
   ]
 }

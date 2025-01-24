@@ -7,8 +7,6 @@ export async function getStaticPaths() {
     (p) => !p.slug.includes("/"),
   );
 
-  console.log(posts[0]);
-
   const paths = posts.map((page) => ({
     params: {
       regular: page.slug,

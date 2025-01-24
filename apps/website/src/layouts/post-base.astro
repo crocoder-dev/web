@@ -18,11 +18,11 @@ const {
 
 const markdownPosts = await getCollection("posts");
 
-const prefix = import.meta.env.DEV ? "/" : "/blog";
+const prefix = "/blog";
 
 const posts = [
   ...markdownPosts.map((post) => ({
-    url: `${prefix}${prefix === "/" ? "" : "/"}${post.slug}`,
+    url: `${prefix}/${post.slug}`,
     title: post.data.title,
     createdAt: new Date(post.data.createdAt),
     image: post.data.image,
@@ -43,7 +43,10 @@ const dateObj = new Date(createdAt);
     <div class="container max-w-[1000px] px-4 md:px-8">
       <article class="row justify-center">
         <div class="md:col-10 text-center">
-          <h1 class="text-h1-sm md:text-h1" set:html={markdownify(title)} />
+          <h1
+            class="text-h1-sm md:text-h1 font-primary font-semibold leading-tight text-dark"
+            set:html={markdownify(title)}
+          />
           <ul class="mt-4 flex flex-wrap items-center justify-center text-text">
             <li class="mx-3 flex items-center flex-wrap font-medium">
               <span class="mr-2">By</span>
