@@ -5,9 +5,9 @@ import vercel from "@astrojs/vercel/static";
 
 // https://astro.build/config
 export default defineConfig({
-  redirects: {
-    '/sitemap': '/sitemap.xml',
-  },
+  // redirects: {
+  //   '/sitemap': '/sitemap.xml',
+  // },
   output: "static",
   adapter: vercel({
     imageService: true,
