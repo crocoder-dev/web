@@ -3,10 +3,8 @@ import { getCollection } from "astro:content";
 
 const markdownPosts = await getCollection("posts");
 
-const prefix = import.meta.env.DEV ? "/" : "/blog";
-
 const posts = markdownPosts.map((post) => ({
-  url: `${prefix}${prefix === "/" ? "" : "/"}${post.slug}`,
+  url: `/blog/${post.slug}`,
   title: post.data.title,
   createdAt: new Date(post.data.createdAt),
   description: post.data.description || "",

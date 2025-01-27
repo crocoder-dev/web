@@ -22,7 +22,8 @@ export default defineConfig({
     },
   }),
   redirects: {
-    '/feed': '/rss.xml'
+    '/feed': '/rss.xml',
+    '/sitemap': '/sitemap.xml'
   },
   integrations: [tailwind(), react()],
   markdown: {
