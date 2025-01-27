@@ -1,6 +1,6 @@
 import { getCollection } from "astro:content";
 
-const siteUrl = import.meta.env.PUBLIC_SITE_URL;
+const siteUrl = import.meta.env.SITE_URL;
 const markdownPosts = await getCollection("posts");
 
 export async function GET() {
