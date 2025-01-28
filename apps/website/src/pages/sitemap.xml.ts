@@ -3,19 +3,28 @@ import { getCollection } from "astro:content";
 const siteUrl = import.meta.env.SITE_URL;
 const markdownPosts = await getCollection("posts");
 
+const postImportResult = import.meta.glob("./blog/**/*.astro", { eager: true });
+const pages = Object.values(postImportResult).filter(
+  (page: any) =>
+    !page.url?.includes("[") &&
+    !page.url?.includes("index.astro") &&
+    !(page.url === "/blog"),
+);
+
 export async function GET() {
   const currentDate = new Date();
 
   const generateUrlEntry = (
-    url: string, 
-    lastmod: Date, 
-    priority: number, 
-    imageUrl?: string
+    url: string,
+    lastmod: Date,
+    priority: number,
+    imageUrl?: string,
   ) => `
     <url>
       <loc>${url}</loc>
-      <lastmod>${lastmod}</lastmod>
+      <lastmod>${lastmod.toISOString().slice(0, 10)}</lastmod>
       <priority>${priority}</priority>
+      <changefreq>monthly</changefreq>
       ${
         imageUrl
           ? `
@@ -27,13 +36,22 @@ export async function GET() {
     </url>
   `;
 
-  const posts = markdownPosts.map((post: any) => ({
-    url: `${siteUrl}/blog/${post.slug}`,
-    updatedAt: post.data.updatedAt
-      ? new Date(post.data.updatedAt)
-      : currentDate,
-    imageUrl: post.data.image ? `${siteUrl}${post.data.image}` : null,
-  }));
+  const posts = [
+    ...markdownPosts.map((post: any) => ({
+      url: `${siteUrl}/blog/${post.slug}`,
+      updatedAt: post.data.updatedAt
+        ? new Date(post.data.updatedAt)
+        : currentDate,
+      imageUrl: post.data.image ? `${siteUrl}${post.data.image}` : null,
+    })),
+    ...pages.map((post: any) => ({
+      url: `${siteUrl}${post.url}`,
+      updatedAt: post.data.updatedAt
+        ? new Date(post.data.updatedAt)
+        : currentDate,
+      imageUrl: post.data.image ? `${siteUrl}${post.data.image}` : null,
+    })),
+  ];
 
   const staticUrls = [
     { path: "/", priority: 1 },
@@ -44,10 +62,10 @@ export async function GET() {
 
   const sitemapEntries = [
     ...staticUrls.map((item) =>
-      generateUrlEntry(`${siteUrl}${item.path}`, currentDate, item.priority)
+      generateUrlEntry(`${siteUrl}${item.path}`, currentDate, item.priority),
     ),
     ...posts.map((post: any) =>
-      generateUrlEntry(post.url, post.updatedAt, 1, post.imageUrl)
+      generateUrlEntry(post.url, post.updatedAt, 1, post.imageUrl),
     ),
   ];
 
