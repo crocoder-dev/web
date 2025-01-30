@@ -175,6 +175,11 @@
 
   function handleBookACall() {
     navMenuToggle.checked = false;
+    window.navScroll = true;
+
+    setTimeout(() => {
+      window.navScroll = false;
+    }, 1500);
   }
 
   window.addEventListener("scroll", onScroll, { passive: true });
