@@ -42,14 +42,17 @@ Pull requests don’t stop coming in just because deployments pause. Instead, th
 
 The only significant dip occurs in Week 52 (Dec 23 – Dec 29), but activity rebounds the following week, more than making up for it. 
 
-### Cycle Times Spike
+### Deploy Times Spike
+
 Since PRs aren’t being merged and deployed, the time from PR creation to deployment explodes. What was once a smooth, continuous flow turns into a backlog nightmare.
 
-::iframe metrics.dxta.dev/getsentry/sentry?chart=CycleTime&team=1&width=776&height=360&lines=median&theme=light&dashboard=sentry-feature-freeze
+::iframe metrics.dxta.dev/getsentry/sentry?chart=DeployTime&team=1&width=776&height=360&lines=median&theme=light&dashboard=sentry-feature-freeze
 
-Before Week 50 (Dec 9 - Dec 15), things were smooth, PRs got merged and deployed quickly. But once the freeze kicked in, cycle times shot up, peaking in Week 51 (Dec 16 - Dec 22). Since nothing was getting deployed, PRs just sat there, waiting.
+Before Week 50 (Dec 9 - Dec 15), deployments were steady, and PRs moved through the pipeline quickly. But once the freeze kicked in, deploy times spiked, peaking in Week 51 (Dec 16 - Dec 22). With deployments stalled, PRs sat idle, waiting to go live.
 
-Digging deeper into the data, my team have found that about half of the PRs from Weeks 51 (Dec 16 - Dec 22) and 52 (Dec 23 - Dec 29) didn’t get deployed until Weeks 02 (Jan 6 - Jan 12) or 03 (Jan 13 - Jan 19), and some are still stuck. That’s a long time for code to sit idle, which means more merge conflicts, rework, and potential bugs creeping in.
+Digging deeper into the data, my team has found that about half of the PRs from Weeks 51 (Dec 16 - Dec 22) and 52 (Dec 23 - Dec 29) didn’t get deployed until Weeks 02 (Jan 6 - Jan 12) or 03 (Jan 13 - Jan 19), and some are still stuck. This prolonged delay increases the risk of merge conflicts, rework, and bugs creeping into production, making it harder to maintain stability.
+
+The backlog didn’t clear up as expected—new spikes in Weeks 02, 03, and 04 indicate that deployment bottlenecks persisted well into January. This suggests a cascading effect where delayed deployments compounded over time, creating ongoing disruptions in the development workflow.
 
 ### The Big Bang Deployment Effect
 Once the freeze lifts, everything hits production at once. Instead of small, iterative changes, you get a flood of deployments, increasing the risk of failures.
