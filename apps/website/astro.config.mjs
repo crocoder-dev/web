@@ -8,7 +8,7 @@ const classes = {
   titleClass: 'font-bold text-[1.25rem] mt-[2.5rem]',
   summaryClass: 'cursor-pointer font-bold text-[1.25rem]',
   detailsClass: 'mt-[2.5rem]',
-  iframeClass: 'border-none w-full overflow-y-hidden'
+  iframeClass: 'border-none w-full h-[380px] overflow-y-hidden'
 }
 
 const remarkPlugin = createRemarkPlugin(classes);

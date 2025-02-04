@@ -112,7 +112,7 @@ function remark({
           const iframeSrc = textNode.value.substring('::iframe '.length);
           const iframeNode = {
             type: 'html',
-            value: `<iframe height="360" src="https://${iframeSrc}" class="${iframeClass}"></iframe>`
+            value: `<iframe src="https://${iframeSrc}" class="${iframeClass}"></iframe>`
           };
           parent.children.splice(index, 1, iframeNode);
         }
