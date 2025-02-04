@@ -6,10 +6,12 @@ function remark({
   titleClass,
   detailsClass,
   summaryClass,
+  iframeClass
 }: {
   titleClass: string,
   detailsClass: string,
-  summaryClass: string
+  summaryClass: string,
+  iframeClass: string,
 }) {
   return () => {
 
@@ -97,12 +99,22 @@ function remark({
           };
           parent.children.splice(index, 1, node);
         }
+
         if (textNode.type === 'text' && textNode.value.startsWith('::enddetails')) {
           const node = {
             type: 'html',
             value: `</details>`
           };
           parent.children.splice(index, 1, node);
+        }
+        
+        if (textNode.type === 'text' && textNode.value.startsWith('::iframe ')) {
+          const iframeSrc = textNode.value.substring('::iframe '.length);
+          const iframeNode = {
+            type: 'html',
+            value: `<iframe height="360" src="${iframeSrc}" class="${iframeClass}"></iframe>`
+          };
+          parent.children.splice(index, 1, iframeNode);
         }
       });
 
