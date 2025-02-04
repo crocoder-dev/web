@@ -111,3 +111,5 @@ Sentry’s engineering team demonstrates how a mature, well-structured team can 
 The key takeaway? **Even the best teams feel the effects of a freeze, but the best teams also know how to minimize the damage.**
 
 If your company enforces a feature freeze, take a close look at your post-freeze metrics. If you’re seeing long cycle times, rushed reviews, or deployment spikes, it might be time to rethink your strategy.
+
+P.S. We’re building an open-source app called [DXTA](https://dxta.dev) to help companies gain deeper insights into their developer metrics, team tempo, and organizational alignment. If you're curious to see how this works in action, check out [Sentry’s metrics in DXTA](https://metrics.dxta.dev/getsentry/sentry).
