@@ -35,3 +35,20 @@ body:has(nav #nav-menu-toggle:checked) {
     transform: translateY(0);
   }
 }
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  @apply font-primary font-semibold leading-tight text-dark;
+}
+
+.prose h2 {
+  margin-top: 3rem;
+}
+
+.prose h3 {
+  margin-top: 2.4rem;
+}

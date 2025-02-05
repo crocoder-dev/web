@@ -1,5 +1,5 @@
 ---
-import Post from "../layouts/post-markdown.astro";
+import Post from "../../layouts/post-markdown.astro";
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
@@ -7,7 +7,7 @@ export async function getStaticPaths() {
     (p) => !p.slug.includes("/"),
   );
 
-  const paths = posts.map((page: any) => ({
+  const paths = posts.map((page) => ({
     params: {
       regular: page.slug,
     },

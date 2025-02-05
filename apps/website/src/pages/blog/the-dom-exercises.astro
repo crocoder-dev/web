@@ -1,10 +1,10 @@
 ---
 import { getEntry } from "astro:content";
-import Post from "../layouts/post.astro";
+import Post from "../../layouts/post.astro";
 import { getCollection } from "astro:content";
-import Content, { type ContentItem } from "../layouts/content.astro";
-import ListOfItemsDemo from "../content/partials/the-dom-exercises/demos/ListOfItems/demo";
-import CroCoderLogoDemo from "../content/partials/the-dom-exercises/demos/CroCoderLogo/demo";
+import Content, { type ContentItem } from "../../layouts/content.astro";
+import ListOfItemsDemo from "../../content/partials/the-dom-exercises/demos/ListOfItems/demo";
+import CroCoderLogoDemo from "../../content/partials/the-dom-exercises/demos/CroCoderLogo/demo";
 
 export async function getData() {
   const authorCollection = await getCollection("authors");
@@ -33,23 +33,17 @@ export async function getData() {
     abstract:
       "It's really hard to test your programming knowledge after you have completed a tutorial or a lecture. We have prepared some exercises to help out beginner devs to solidify their understanding of the DOM. Every exercise has a brief description of the problem, starting code, links to relevant MDN docs, and expected results. Try to solve the problems without taking a peek at the solution.",
     category: "Learn Javascript",
-  }
+  };
 }
 
 export const data = await getData();
 
 const slug = "/the-dom-exercises.astro";
 
-const intro = await getEntry(
-  "partials",
-  "the-dom-exercises/10-intro",
-);
+const intro = await getEntry("partials", "the-dom-exercises/10-intro");
 const { Content: Intro } = await intro!.render();
 
-const fruitList = await getEntry(
-  "partials",
-  "the-dom-exercises/20-fruit-list",
-);
+const fruitList = await getEntry("partials", "the-dom-exercises/20-fruit-list");
 const { Content: FruitList } = await fruitList!.render();
 
 const crocoderLogo = await getEntry(
@@ -85,20 +79,20 @@ const { Content: ListOfItemsSolution } = await listOfItemsSolution!.render();
 const contentList: ContentItem[] = [
   {
     title: "Fruit list",
-    href: "#fruit-list"
+    href: "#fruit-list",
   },
   {
     title: "CroCoder logo",
-    href: "#crocoder-logo"
+    href: "#crocoder-logo",
   },
   {
     title: "Change first and last item from an unordered list",
-    href: "#change-first-and-last-item-from-an-unordered-list"
+    href: "#change-first-and-last-item-from-an-unordered-list",
   },
   {
     title: "List of items",
-    href: "#list-of-items"
-  }
+    href: "#list-of-items",
+  },
 ];
 ---
 

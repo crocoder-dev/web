@@ -1,19 +1,19 @@
 ---
-import Base from "../layouts/base.astro";
+import Base from "../../layouts/base-blog.astro";
 import { getCollection } from "astro:content";
 import { Picture } from "astro:assets";
-import formatDate from "../format-date";
-import Meta from "../layouts/base-meta-tags.astro";
+import formatDate from "../..//format-date";
+import Meta from "../../layouts/base-meta-tags.astro";
 
 const markdownPosts = await getCollection("posts");
 
 const authorsCollection = await getCollection("authors");
 
-const pages = (await Astro.glob("../pages/**/*.astro")).filter(
+const pages = (await Astro.glob("../blog/**/*.astro")).filter(
   (page) => !page.url?.includes("[") && !page.url?.includes("index.astro"),
 );
 
-const prefix = import.meta.env.DEV ? "/" : "/blog";
+const prefix = "/blog";
 
 const authorMap = authorsCollection.reduce(
   (acc, author) => {
@@ -25,7 +25,7 @@ const authorMap = authorsCollection.reduce(
 
 const posts = [
   ...markdownPosts.map((post) => ({
-    url: `${prefix}${prefix === "/" ? "" : "/"}${post.slug}`,
+    url: `${prefix}/${post.slug}`,
     title: post.data.title,
     createdAt: new Date(post.data.createdAt),
     image: post.data.image,
@@ -33,7 +33,7 @@ const posts = [
     category: (post as any).data.category,
   })),
   ...pages.map((page) => ({
-    url: `${prefix === "/" ? "" : prefix}${page.url}`,
+    url: `${page.url}`,
     title: (page as any).data.title,
     createdAt: new Date((page as any).data.createdAt),
     image: (page as any).data.image,
@@ -82,7 +82,9 @@ posts.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
                     </li>
                     {category && <li>{category}</li>}
                   </ul>
-                  <h3 class="text-3xl">{title}</h3>
+                  <h2 class="text-3xl font-primary font-semibold leading-tight text-dark">
+                    {title}
+                  </h2>
                 </a>
               </li>
             ),

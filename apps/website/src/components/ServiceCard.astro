@@ -14,8 +14,6 @@ interface Props {
 
 const { idx, title, content, styles, imgPath, imgAlt, onDark, classNames } =
   Astro.props;
-
-const Content = content;
 ---
 
 <div
@@ -25,12 +23,12 @@ const Content = content;
     rounded-2xl
     max-lg:col-span-6
     md:gap-x-7
-    w-full   
+    w-full
     lg:absolute
     lg:opacity-0
     lg:h-screen
     overflow-hidden
-    will-change-transform	
+    will-change-transform
     `,
     styles,
   )}
@@ -42,7 +40,7 @@ const Content = content;
       h-full
       lg:h-screen
       p-7
-      lg:p-12 
+      lg:p-12
       grid
       grid-cols-6
       grid-rows-[min-content_min-content_auto]
@@ -79,8 +77,7 @@ const Content = content;
     </div>
     <div
       class="flex flex-col lg:flex-col col-span-6 row-start-2 lg:col-span-1 lg:col-start-2 lg:row-span-2 lg:[&_p]:text-[22px] [&_p]:leading-8"
-    >
-      <Content />
-    </div>
+      set:html={content.html}
+    />
   </section>
 </div>

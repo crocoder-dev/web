@@ -1,13 +1,13 @@
 ---
 import { getEntry } from "astro:content";
-import Post from "../layouts/post.astro";
+import Post from "../../layouts/post.astro";
 import { getCollection } from "astro:content";
-import Content, { type ContentItem } from "../layouts/content.astro";
-import SimpleMouseTracker from "../content/partials/how-to-write-custom-react-hooks/demos/SimpleMouseTracker/demo";
-import SimpleButtonClickTracker from "../content/partials/how-to-write-custom-react-hooks/demos/SimpleButtonClickTracker/demo";
-import NextLevelButtonClickTracker from "../content/partials/how-to-write-custom-react-hooks/demos/NextLevelButtonClickTracker/demo";
-import UseFetchDataDemo from "../content/partials/how-to-write-custom-react-hooks/demos/useFetchData/demo";
-import UseDebouncedSearchDemo from "../content/partials/how-to-write-custom-react-hooks/demos/useDebouncedSearch/demo";
+import Content, { type ContentItem } from "../../layouts/content.astro";
+import SimpleMouseTracker from "../../content/partials/how-to-write-custom-react-hooks/demos/SimpleMouseTracker/demo";
+import SimpleButtonClickTracker from "../../content/partials/how-to-write-custom-react-hooks/demos/SimpleButtonClickTracker/demo";
+import NextLevelButtonClickTracker from "../../content/partials/how-to-write-custom-react-hooks/demos/NextLevelButtonClickTracker/demo";
+import UseFetchDataDemo from "../../content/partials/how-to-write-custom-react-hooks/demos/useFetchData/demo";
+import UseDebouncedSearchDemo from "../../content/partials/how-to-write-custom-react-hooks/demos/useDebouncedSearch/demo";
 
 export async function getData() {
   const authorCollection = await getCollection("authors");
