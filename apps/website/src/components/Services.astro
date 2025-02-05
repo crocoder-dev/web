@@ -186,7 +186,9 @@ for (const service of servicesCollection) {
             }
 
             if (fromTop > endAt + 200 && i === cards.length - 1) {
-              endDiv.scrollIntoView({ behavior: "smooth" });
+              if (!window.navScroll) {
+                endDiv.scrollIntoView({ behavior: "smooth" });
+              }
             }
           });
         } else {
