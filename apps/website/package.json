@@ -5,7 +5,7 @@
   "dependencies": {
     "@astrojs/react": "^4.1.2",
     "@astrojs/rss": "^4.0.11",
-    "@astrojs/tailwind": "^5.1.4",
+    "@astrojs/tailwind": "^6.0.0",
     "@astrojs/vercel": "^8.0.1",
     "@crocoder-dev/tailwind": "*",
     "astro": "5.1.2",
