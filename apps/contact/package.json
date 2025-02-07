@@ -2,6 +2,8 @@
   "name": "contact",
   "version": "0.1.0",
   "private": true,
+  "main": "api/index.ts",
+  "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",

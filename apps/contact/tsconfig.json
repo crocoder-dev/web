@@ -1,40 +1,10 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
-    "paths": {
-      "@/*": [
-        "./*"
-      ]
-    }
-  },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "module": "ESNext", // or "Node16", "ES2020"
+    "target": "ESNext", // Set target to ESNext for modern JavaScript features
+    "moduleResolution": "Node", // Ensures module resolution works as expected
+    "esModuleInterop": true, // Allows for better interop with CommonJS modules
+    "strict": true, // Optional but recommended for better type safety
+    "skipLibCheck": true // Optionally skip library checks for faster builds
+  }
 }
