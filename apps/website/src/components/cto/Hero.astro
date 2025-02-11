@@ -1,0 +1,76 @@
+---
+import { grid_classes } from "../_grid";
+import Pill from "../Pill.astro";
+import Section from "../Section.astro";
+---
+
+<Section className="!pt-[75px] bg-white md:!pb-12 lg:!pb-24">
+  <div class={`${grid_classes} `}>
+    <div
+      class="row-start-1
+      col-start-1
+      col-span-6
+      md:col-span-12
+      lg:col-span-6
+      grid
+      gap-7
+      text-text
+      my-auto
+      pt-[60px]
+      md:py-11"
+    >
+      <div class="grid gap-4">
+        <Pill>Integrated solutions for CTOs</Pill>
+        <h2
+          class="text-h1-sm sm:text-[54px] leading-9 sm:leading-[59.4px] font-medium tracking-tight"
+        >
+          Your Tech Strategy. Delivered, Scaled, and Sustained.
+        </h2>
+      </div>
+      <p
+        class="font-normal leading-7 md:text-[22px] md:leading-8 tracking-normal"
+      >
+        a web development consultancy helping CTOs Minimise their Hands-on
+        Involvement in Daily Operations
+      </p>
+
+      <a
+        id="book-a-call-action-hero"
+        href="#book-a-call-section"
+        class="inline-block bg-[#FEC343] rounded-md px-[25px] py-4 text-center text-[#1E1A1A] text-base font-medium hover:opacity-90 uppercase w-fit"
+      >
+        Get started
+      </a>
+    </div>
+    <div
+      class="flex
+      row-start-2
+      col-start-1
+      col-span-6
+      md:col-span-12
+      lg:col-span-6
+      self-center
+      justify-center
+      relative
+      lg:col-start-7
+      lg:row-start-1"
+    >
+      <img src="/cto-hero.png" alt="" class="" />
+    </div>
+  </div>
+</Section>
+
+<script is:inline>
+  const bookACallActionHero = document.getElementById(
+    "book-a-call-action-hero"
+  );
+
+  function handleBookACallHero() {
+    window.navScroll = true;
+    setTimeout(() => {
+      window.navScroll = false;
+    }, 1500);
+  }
+
+  bookACallActionHero.addEventListener("click", handleBookACallHero);
+</script>
