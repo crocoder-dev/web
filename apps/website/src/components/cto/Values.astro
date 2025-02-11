@@ -1,0 +1,57 @@
+---
+import { grid_classes } from "../_grid";
+import Pill from "../Pill.astro";
+import Section from "../Section.astro";
+import InfoBlock from "./InfoBlock.astro";
+---
+
+<Section
+  idx="values-wrapper"
+  contentClassName={grid_classes}
+  className="bg-contrast"
+>
+  <div
+    class="grid gap-4 col-span-6 md:col-span-10 md:col-start-2 text-center justify-items-center"
+  >
+    <Pill>We’re 100% Focused on results</Pill>
+    <h1
+      class="text-[44px] leading-[48px] md:text-[74px] md:leading-[81px] font-medium tracking-tight text-white"
+    >
+      Be Confident Knowing Your Strategy <span class="text-crocoder-yellow">
+        Gets Implemented
+      </span>
+    </h1>
+  </div>
+  <div id="values-grid" class="grid col-span-6 md:col-span-12">
+    <div class="bg-[#5362DBE5]/[0.9] p-12">
+      <InfoBlock
+        icon="/target-streamline-core.svg"
+        title="Transform Vision into Reality"
+        description="Close the gap between strategy and execution with a partner who ensures your big-picture goals translate into measurable outcomes"
+      />
+    </div>
+    <div class="bg-[#3C3843E5]/90 p-12">
+      <InfoBlock
+        icon="/management-streamline-ultimate.svg"
+        title="Build High-Performing Teams Without Micromanagement"
+        description="Empower your teams to operate independently by introducing sustainable processes and bringing in specialized expertise only where it’s needed"
+      />
+    </div>
+    <div class="bg-[#424C6DE5]/90 p-12">
+      <InfoBlock
+        icon="/calendar-add-streamline-core.svg"
+        title="Drive Operational Efficiency Across the Board"
+        description="Eliminate redundancies, reduce inefficiencies, and accelerate timelines with repeatable systems tailored to your organization’s unique needs."
+      />
+    </div>
+    <div class="backdrop-blur-xl bg-white p-7">
+      <p>
+        We were impressed by the proactive attitude [of CroCoder] and capacity
+        to turn theory into practice. Their support and assistance was very
+        timely and precise, always followed by concrete implementing steps. The
+        small team has a strong multidisciplinary background and proved a good
+        attitude to work in team with other consultants
+      </p>
+    </div>
+  </div>
+</Section>

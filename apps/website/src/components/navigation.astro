@@ -108,8 +108,8 @@
       <ul class="flex md:ml-0 md:mx-0">
         <li>
           <a
-          id="book-a-call-action"
-          class="flex max-sm:ml-7 mr-4 w-fit font-medium h-[45px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-[#545664] text-[#ffffff] hover:opacity-90
+            id="book-a-call-action"
+            class="flex max-sm:ml-7 mr-4 w-fit font-medium h-[45px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-[#545664] text-[#ffffff] hover:opacity-90
           md:[&[data-navhidden='false']]:opacity-0
           md:[&[data-navhidden='']]:opacity-100
           md:[&[data-navhidden='']]:delay-100
@@ -118,13 +118,13 @@
             md:[&[data-navhidden='false']]:!px-0"
             data-navhidden="false"
             href="#book-a-call-section">Book a call</a
-            >
-          </li>
-          <li data-navhidden>
-            <a
-            class="flex font-medium w-fit h-[45px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-[#FEC343] text-[#1E1A1A] hover:opacity-90"
+          >
+        </li>
+        <li data-navhidden>
+          <a
+            class="flex font-medium w-fit h-[45px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-crocoder-yellow text-contrast hover:opacity-90"
             href="/contact"
-            >
+          >
             Contact us
           </a>
         </li>
@@ -176,14 +176,13 @@
   }
 
   function invertDataAttributte(dataHiddenNodes) {
-  dataHiddenNodes.forEach((node) => {
-    if (node.closest("li")?.textContent?.includes("Contact us")) return;
+    dataHiddenNodes.forEach((node) => {
+      if (node.closest("li")?.textContent?.includes("Contact us")) return;
 
-    const currentVal = node.getAttribute("data-navhidden");
-    node.setAttribute("data-navhidden", currentVal === "" ? "false" : "");
-  });
-}
-
+      const currentVal = node.getAttribute("data-navhidden");
+      node.setAttribute("data-navhidden", currentVal === "" ? "false" : "");
+    });
+  }
 
   function handleBookACall() {
     navMenuToggle.checked = false;
