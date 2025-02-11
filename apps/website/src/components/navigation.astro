@@ -31,7 +31,7 @@
       md:overflow-hidden
       relative
       gap-24
-      md:has-[[data-navhidden]]:gap-7
+      md:has-[img[data-navhidden='false']]:gap-7
       max-md:has-[input:checked]:bg-[#3c3843]"
   >
     <a class="sm:flex sm:items-center" href="/" aria-label="Crocoder Logo">
@@ -82,11 +82,11 @@
     </label>
 
     <div
-      class="max-md:absolute max-md:hidden max-md:peer-checked/menu-toggle:flex max-md:flex-col max-md:gap-4 max-md:top-[74px] max-md:w-full max-md:py-7 bg-[#3c3843] max-md:h-[calc(100vh-74px)] max-md:right-0 md:bg-transparent md:flex md:items-center"
+      class="max-md:absolute max-md:hidden max-md:peer-checked/menu-toggle:flex max-md:flex-col max-md:gap-4 max-md:top-[71px] max-md:w-full max-md:py-7 bg-[#3c3843] max-md:h-[calc(100vh-71px)] max-md:right-0 md:bg-transparent md:flex md:items-center"
     >
       <ul
         data-navhidden
-        class="flex flex-col md:flex-row gap-4 mx-7 md:mx-0 md:w-auto relative"
+        class="flex flex-col md:flex-row gap-4 mx-7 md:mx-0 md:w-auto relative md:mr-24"
       >
         <li>
           <a
@@ -105,30 +105,26 @@
           </a>
         </li>
       </ul>
-    </div>
-    <div
-    class="max-md:absolute max-md:hidden max-md:peer-checked/menu-toggle:flex max-md:flex-col max-md:gap-4 max-md:top-[74px] max-md:w-full max-md:py-7 bg-[#3c3843] max-md:h-[calc(100vh-74px)] max-md:right-0 md:bg-transparent md:flex md:items-center"
-  >
-      <ul class="flex gap-4 md:ml-0 md:mx-0">
+      <ul class="flex md:ml-0 md:mx-0">
         <li>
           <a
-            id="book-a-call-action"
-            class="flex w-fit font-medium h-[45px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-[#545664] text-[#ffffff] hover:opacity-90
-            md:[&[data-navhidden='false']]:opacity-0
-            md:[&[data-navhidden='']]:opacity-100
-            md:[&[data-navhidden='']]:delay-100
-            md:[&[data-navhidden='false']]:!w-0
-            md:[&[data-navhidden='false']]:overflow-hidden
+          id="book-a-call-action"
+          class="flex mr-4 w-fit font-medium h-[45px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-[#545664] text-[#ffffff] hover:opacity-90
+          md:[&[data-navhidden='false']]:opacity-0
+          md:[&[data-navhidden='']]:opacity-100
+          md:[&[data-navhidden='']]:delay-100
+          md:[&[data-navhidden='false']]:!w-0
+          md:[&[data-navhidden='false']]:overflow-hidden
             md:[&[data-navhidden='false']]:!px-0"
             data-navhidden="false"
             href="#book-a-call-section">Book a call</a
-          >
-        </li>
-        <li data-navhidden>
-          <a
+            >
+          </li>
+          <li data-navhidden>
+            <a
             class="flex font-medium w-fit h-[45px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-[#FEC343] text-[#1E1A1A] hover:opacity-90"
             href="/contact"
-          >
+            >
             Contact us
           </a>
         </li>
