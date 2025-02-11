@@ -89,6 +89,14 @@
         <li>
           <a
             class="font-medium text-2xl md:text-lg text-[#E8E8E8] hover:text-white"
+            href="#"
+          >
+            For CTOs
+          </a>
+        </li>
+        <li>
+          <a
+            class="font-medium text-2xl md:text-lg text-[#E8E8E8] hover:text-white"
             href="/blog"
           >
             Blog
@@ -96,29 +104,30 @@
         </li>
       </ul>
       <ul class="flex gap-4 mx-7 md:ml-4 md:mx-4">
-        <ul class="flex gap-4 mx-7 md:ml-4 md:mx-4">
-          <li data-navhidden>
-            <a
-              class="flex font-medium w-fit h-[45px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-[#FEC343] text-[#1E1A1A] hover:opacity-90"
-              href="/contact"
-            >
-              Contact us
-            </a>
-          </li>
-          <li>
-            <a
-              id="book-a-call-action"
-              class="flex w-fit font-medium h-[45px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-[#545664] text-[#ffffff] hover:opacity-90
-              md:[&[data-navhidden='false']]:!w-auto
-              md:[&[data-navhidden='false']]:!px-4
-              md:[&[data-navhidden='false']]:opacity-0
-              md:[&[data-navhidden='']]:opacity-100
-              md:[&[data-navhidden='']]:delay-100"
-              data-navhidden="false"
-              href="#book-a-call-section">Book a call</a
-            >
-          </li>
-        </ul>
+        <li>
+          <a
+            id="book-a-call-action"
+            class="flex w-fit font-medium h-[45px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-[#545664] text-[#ffffff] hover:opacity-90
+            md:[&[data-navhidden='false']]:!w-auto
+            md:[&[data-navhidden='false']]:!px-4
+            md:[&[data-navhidden='false']]:opacity-0
+            md:[&[data-navhidden='']]:opacity-100
+            md:[&[data-navhidden='']]:delay-100
+            md:[&[data-navhidden='false']]:!w-0
+            md:[&[data-navhidden='false']]:overflow-hidden
+            md:[&[data-navhidden='false']]:!px-0"
+            data-navhidden="false"
+            href="#book-a-call-section">Book a call</a
+          >
+        </li>
+        <li data-navhidden>
+          <a
+            class="flex font-medium w-fit h-[45px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-[#FEC343] text-[#1E1A1A] hover:opacity-90"
+            href="/contact"
+          >
+            Contact us
+          </a>
+        </li>
       </ul>
     </div>
   </nav>
@@ -167,11 +176,14 @@
   }
 
   function invertDataAttributte(dataHiddenNodes) {
-    dataHiddenNodes.forEach((node) => {
-      const currentVal = node.getAttribute("data-navhidden");
-      node.setAttribute("data-navhidden", currentVal === "" ? "false" : "");
-    });
-  }
+  dataHiddenNodes.forEach((node) => {
+    if (node.closest("li")?.textContent?.includes("Contact us")) return;
+
+    const currentVal = node.getAttribute("data-navhidden");
+    node.setAttribute("data-navhidden", currentVal === "" ? "false" : "");
+  });
+}
+
 
   function handleBookACall() {
     navMenuToggle.checked = false;
