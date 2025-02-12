@@ -34,7 +34,7 @@ export default defineConfig({
     server: {
       proxy: {
         "/api":
-          "https://web-contact.vercel.app/api", // Proxy API requests to your backend
+          "https://web-contact.vercel.app", // Proxy API requests to your backend
       },
     },
     define: {
