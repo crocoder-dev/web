@@ -1,0 +1,105 @@
+---
+import { grid_classes } from "../_grid";
+import Pill from "../Pill.astro";
+import Section from "../Section.astro";
+import InfoBlock from "./InfoBlock.astro";
+---
+
+<Section
+  idx="values-wrapper"
+  contentClassName={grid_classes}
+  className="bg-contrast"
+>
+  <div
+    class="grid gap-4 col-span-6 md:col-span-10 md:col-start-2 text-center justify-items-center"
+  >
+    <Pill>We’re 100% Focused on results</Pill>
+    <h1
+      class="text-[44px] leading-[48px] md:text-[74px] md:leading-[81px] font-medium tracking-tight text-white"
+    >
+      Be Confident Knowing Your Strategy <span class="text-crocoder-yellow">
+        Gets Implemented
+      </span>
+    </h1>
+  </div>
+  <div
+    id="values-grid"
+    class="grid lg:auto-cols-auto col-span-6 md:col-span-12 gap-2"
+  >
+    <div
+      class="bg-[#5362DBE5]/[0.9] lg:col-span-2 lg:row-start-1 rounded-2xl grid md:grid-cols-2 auto-rows-min"
+    >
+      <div class="flex flex-col gap-7 p-7 pb-0 md:py-12 md:pl-12">
+        <InfoBlock
+          icon="/target-streamline-core.svg"
+          title="Transform Vision into Reality"
+          description="Close the gap between strategy and execution with a partner who ensures your big-picture goals translate into measurable outcomes"
+        />
+        <div class="flex w-max gap-[10px]">
+          <a
+            id="book-a-call-action-hero"
+            href="#book-a-call-section"
+            class="inline-block bg-crocoder-yellow rounded-md px-[25px] py-4 text-center text-contrast text-base font-medium hover:opacity-90"
+          >
+            Book a call
+          </a>
+          <a
+            href="/contact"
+            class="inline-block bg-white px-[25px] py-4 text-center text-contrast hover:text-gray-700 rounded-md text-base font-medium hover:opacity-90"
+          >
+            Contact us
+          </a>
+        </div>
+      </div>
+      <div>
+        <img src="/vision.png" class="object-cover h-full object-left" />
+      </div>
+    </div>
+    <div
+      class="bg-[#3C3843E5]/90 lg:col-span-1 lg:row-span-2 rounded-2xl grid md:gap-7"
+    >
+      <InfoBlock
+        className="md:pl-12 md:pt-12 p-7"
+        icon="/management-streamline-ultimate.svg"
+        title="Build High-Performing Teams Without Micromanagement"
+        description="Empower your teams to operate independently by introducing sustainable processes and bringing in specialized expertise only where it’s needed"
+      />
+      <div class="h-56 lg:h-full flex items-end">
+        <img src="/teams.png" class="h-full lg:object-cover" />
+      </div>
+    </div>
+    <div
+      class="bg-[#424C6DE5]/90 p-7 md:p-12 lg:col-span-1 lg:col-start-2 lg:row-start-2 rounded-2xl"
+    >
+      <InfoBlock
+        icon="/calendar-add-streamline-core.svg"
+        title="Drive Operational Efficiency Across the Board"
+        description="Eliminate redundancies, reduce inefficiencies, and accelerate timelines with repeatable systems tailored to your organization’s unique needs."
+      />
+    </div>
+    <div
+      class="backdrop-blur-xl bg-white p-7 lg:col-span-1 lg:col-start-2 lg:row-start-3 rounded-2xl grid auto-cols-auto auto-rows-min gap-y-7 gap-x-4"
+    >
+      <p class="text-base leading-[26px] tracking-normal text-secondary">
+        We were impressed by the proactive attitude [of CroCoder] and capacity
+        to turn theory into practice. Their support and assistance was very
+        timely and precise, always followed by concrete implementing steps. The
+        small team has a strong multidisciplinary background and proved a good
+        attitude to work in team with other consultants
+      </p>
+      <img src="/quotes.svg" class="" />
+      <div class="flex gap-3 col-span-2">
+        <img
+          src="/michele-rattotti.png"
+          class="h-[72px] w-[72px]"
+          alt="Michele Rattotti"
+        />
+        <p class="text-xl text-secondary">
+          <strong>Michele Rattotti</strong>
+          <br />
+          <span class="underline">4evergreen </span>Project Manager
+        </p>
+      </div>
+    </div>
+  </div>
+</Section>

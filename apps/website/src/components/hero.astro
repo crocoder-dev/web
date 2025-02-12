@@ -5,7 +5,7 @@ import Section from "./Section.astro";
 
 <Section className="!py-0 !px-0">
   <div
-    class={`${grid_classes} bg-[#3C3843] xl:rounded-b-2xl overflow-hidden pt-[75px]`}
+    class={`${grid_classes} bg-secondary xl:rounded-b-2xl overflow-hidden pt-[75px]`}
   >
     <div
       class="row-start-1
@@ -45,13 +45,13 @@ import Section from "./Section.astro";
         <a
           id="book-a-call-action-hero"
           href="#book-a-call-section"
-          class="inline-block bg-[#FEC343] rounded-md px-[25px] py-4 text-center text-[#1E1A1A] text-base font-medium hover:opacity-90"
+          class="inline-block bg-crocoder-yellow rounded-md px-[25px] py-4 text-center text-contrast text-base font-medium hover:opacity-90"
         >
           Book a call
         </a>
         <a
           href="/contact"
-          class="inline-block bg-white px-[25px] py-4 text-center text-[#1E1A1A] hover:text-gray-700 rounded-md text-base font-medium hover:opacity-90"
+          class="inline-block bg-white px-[25px] py-4 text-center text-contrast hover:text-gray-700 rounded-md text-base font-medium hover:opacity-90"
         >
           Contact us
         </a>
@@ -93,7 +93,9 @@ import Section from "./Section.astro";
 </Section>
 
 <script is:inline>
-  const bookACallActionHero = document.getElementById("book-a-call-action-hero");
+  const bookACallActionHero = document.getElementById(
+    "book-a-call-action-hero"
+  );
 
   function handleBookACallHero() {
     window.navScroll = true;
@@ -104,5 +106,3 @@ import Section from "./Section.astro";
 
   bookACallActionHero.addEventListener("click", handleBookACallHero);
 </script>
-
-

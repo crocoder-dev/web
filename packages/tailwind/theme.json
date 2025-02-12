@@ -7,7 +7,9 @@
         "border": "#D5D5D5",
         "theme_light": "#FAFAFA",
         "theme_dark": "#152035",
-        "secondary": "#3C3843"
+        "secondary": "#3C3843",
+        "crocoder_yellow": "#FEC343",
+        "contrast": "#1E1A1A"
       },
       "text_color": {
         "default": "#747577",

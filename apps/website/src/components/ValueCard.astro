@@ -15,7 +15,7 @@ const { idx, title, content, img, styles, onDark } = Astro.props;
 ---
 
 <section
-  class={`col-span-6 rounded-2xl p-7 max-md:max-w-[470px] mx-auto xl:p-12 xl:pb-0 pb-0 flex flex-col gap-7 overflow-hidden lg:h-fit md:col-span-6 lg:col-span-4 ${styles} ${onDark ? "text-[#ffff]" : "text-[#3C3843]"}`}
+  class={`col-span-6 rounded-2xl p-7 max-md:max-w-[470px] mx-auto xl:p-12 xl:pb-0 pb-0 flex flex-col gap-7 overflow-hidden lg:h-fit md:col-span-6 lg:col-span-4 ${styles} ${onDark ? "text-[#ffff]" : "text-secondary"}`}
 >
   <span class="font-medium text-[28px] leading-8">{`{${idx}}`}</span>
   <h3 class="font-medium text-[28px] leading-8">{title}</h3>
