@@ -3,35 +3,33 @@ const { image, iconFirst, iconSecond, sectionTitle, titleFirst, titleSecond, des
 ---
 
 
-<div class="grid grid-cols-2 gap-7 px-12 pt-24">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-7 px-6 sm:px-12 pt-16 sm:pt-24">
   <div class="rounded-2xl gap-7">
-    <h2 class="text-[54px] leading-[60px] tracking-tight">
+    <h2 class="font-medium text-[28px] leading-[30px] md:text-4xl md:leading-10 xl:text-[54px] xl:leading-[60px]">
       {sectionTitle}
     </h2>
   </div>
-  <div class="rounded-2x grid grid-cols-2 gap-x-7 items-start">
-    <div class="grid grid-cols-1 gap-y-4">
-      <img src={iconFirst} alt="" />
-      <h4
-        class="text-[28px] leading-[30px] md:text-4xl tracking-tight"
-      >
+  <div class="rounded-2xl grid grid-cols-1 lg:grid-cols-2 gap-x-7 items-start">
+    <div class="grid grid-cols-1 gap-y-4 text-left sm:text-left">
+      <img src={iconFirst} alt="" class="w-16 h-16 sm:mx-0" />
+      <h4 class="font-medium text-xl leading-[22px] md:text-[28px] md:leading-[30px] tracking-tight">
         {titleFirst}
       </h4>
-      <span class="text-[16px] leading-[26px]"
-        >{descriptionFirst}</span
-      >
+      <span class="font-normal text-4 leading-[26px]">
+        {descriptionFirst}
+      </span>
     </div>
-    <div class="grid grid-cols-1 gap-y-4">
-      <img src={iconSecond} alt="" />
-      <h4
-        class="text-[28px] leading-[30px] md:text-4xl tracking-tight"
-      >
-      {titleSecond}
-    </h4>
-      <span class="text-[16px] leading-[26px]"
-        >{descriptionSecond}</span
-      >
+
+    <div class="grid grid-cols-1 gap-y-4 text-left sm:text-left">
+      <img src={iconSecond} alt="" class="w-16 h-16 sm:mx-0" />
+      <h4 class="font-medium text-xl leading-[22px] md:text-[28px] md:leading-[30px] tracking-tight">
+        {titleSecond}
+      </h4>
+      <span class="font-normal text-base leading-[26px]">
+        {descriptionSecond}
+      </span>
     </div>
   </div>
-  <img src={image} class="h-[323px] w-[346px]" />
+  <img src={image}
+    class="h-40 sm:h-56 lg:h-80 max-w-xs sm:max-w-md sm:mt-22 md:-mt-56 lg:-mt-16" />
 </div>
