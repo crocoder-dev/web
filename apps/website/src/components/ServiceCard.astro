@@ -8,11 +8,10 @@ interface Props {
   styles: string;
   imgPath: string;
   imgAlt: string;
-  onDark?: boolean;
   classNames?: string | string[];
 }
 
-const { idx, title, content, styles, imgPath, imgAlt, onDark, classNames } =
+const { idx, title, content, styles, imgPath, imgAlt, classNames } =
   Astro.props;
 ---
 
@@ -30,13 +29,13 @@ const { idx, title, content, styles, imgPath, imgAlt, onDark, classNames } =
     overflow-hidden
     will-change-transform
     `,
-    styles,
+    styles
   )}
   data-show=""
 >
   <section
     class={classnames(
-      `text-neutral-50
+      `text-white
       h-full
       lg:h-screen
       p-7
@@ -52,11 +51,7 @@ const { idx, title, content, styles, imgPath, imgAlt, onDark, classNames } =
       lg:grid-rows-[min-content_auto]
       backdrop-blur-[30px]
       `,
-      classNames,
-      {
-        "text-neutral-50": onDark,
-        "text-[#3C3843]": !onDark,
-      },
+      classNames
     )}
   >
     <div
