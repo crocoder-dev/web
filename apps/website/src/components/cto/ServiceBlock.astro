@@ -1,0 +1,37 @@
+---
+const { image, iconFirst, iconSecond, sectionTitle, titleFirst, titleSecond, descriptionFirst, descriptionSecond } = Astro.props;
+---
+
+
+<div class="grid grid-cols-2 gap-7 px-12 pt-24">
+  <div class="rounded-2xl gap-7">
+    <h2 class="text-[54px] leading-[60px] tracking-tight">
+      {sectionTitle}
+    </h2>
+  </div>
+  <div class="rounded-2x grid grid-cols-2 gap-x-7 items-start">
+    <div class="grid grid-cols-1 gap-y-4">
+      <img src={iconFirst} alt="" />
+      <h4
+        class="text-[28px] leading-[30px] md:text-4xl tracking-tight"
+      >
+        {titleFirst}
+      </h4>
+      <span class="text-[16px] leading-[26px]"
+        >{descriptionFirst}</span
+      >
+    </div>
+    <div class="grid grid-cols-1 gap-y-4">
+      <img src={iconSecond} alt="" />
+      <h4
+        class="text-[28px] leading-[30px] md:text-4xl tracking-tight"
+      >
+      {titleSecond}
+    </h4>
+      <span class="text-[16px] leading-[26px]"
+        >{descriptionSecond}</span
+      >
+    </div>
+  </div>
+  <img src={image} class="h-[323px] w-[346px]" />
+</div>

@@ -50,6 +50,7 @@ module.exports = {
         "theme-dark": theme.colors.default.theme_color.theme_dark,
         "crocoder-yellow": theme.colors.default.theme_color.crocoder_yellow,
         contrast: theme.colors.default.theme_color.contrast,
+        "crocoder-green": theme.colors.default.theme_color.crocoder_green,
       },
       fontSize: {
         base: font_base + "px",
