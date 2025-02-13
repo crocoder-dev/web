@@ -1,0 +1,32 @@
+---
+import { grid_classes } from "../_grid";
+import Section from "../Section.astro";
+---
+
+<Section className="bg-white" contentClassName={grid_classes}>
+  <div
+    class="bg-[#F4F4F4] rounded-2xl col-span-6 md:col-span-12 lg:col-span-10 lg:col-start-2 p-12 md:pt-0 md:pr-0 gap-7 grid relative text-secondary md:grid-cols-[auto_1fr_auto]"
+  >
+    <img src="/quotes.svg" class="pb-11 md:pt-12" />
+    <div class="md:pt-12 flex flex-col gap-7">
+      <p
+        class="text-base leading-[26px] tracking-normal md:font-medium md:text-xl md:leading-[30px]"
+      >
+        CroCoder is one of the most trusted partners in my network. We have
+        successfully completed multiple projects in the past. I highly recommend
+        CroCoder - their team is exceptional and they will offer you outstanding
+        support for your projects. I look forward to future collaborations with
+        CroCoder!
+      </p>
+      <p class="text-[22px] leading-8 md:col-start-2">
+        <strong>Raphael Bauer</strong>
+        <br />
+        <span class="underline">Interim CTO</span>
+      </p>
+    </div>
+    <img
+      src="/raphael-bauer.png"
+      class="absolute top-0 right-0 h-[152px] md:relative md:col-start-3 md:row-start-1 xl:h-72"
+    />
+  </div>
+</Section>
