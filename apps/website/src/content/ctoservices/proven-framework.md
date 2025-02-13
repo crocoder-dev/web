@@ -1,7 +1,7 @@
 ---
 image: "/pic-boy-schedule.png"
-iconFirst: "/shield-check-1-streamline-ultimate.svg"
-iconSecond: "/stopwatch-streamline-ultimate.svg"
+iconFirst: "/shield-check-bw.svg"
+iconSecond: "/stopwatch-bw.svg"
 sectionTitle: "Leading Complex Migrations"
 titleFirst: "A proven framework"
 titleSecond: "Less downtime guaranteed"
