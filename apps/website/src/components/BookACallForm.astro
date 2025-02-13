@@ -1,25 +1,37 @@
 ---
 import CalcomEmbedInline from "../components/CalcomEmbedInline.astro";
 import { grid_classes } from "./_grid";
+import Pill from "./Pill.astro";
 import Section from "./Section.astro";
-import SectionTitle from "./SectionTitle.astro";
 ---
 
 <!-- YELLOW-1 = #FEB534 -->
 <Section
   idx="book-a-call-section"
-  className="bg-[#FEB534] !py-16 md:!py-24"
+  className="bg-secondary !pb-16 md:!pb-24 !pt-0 overflow-visible mt-[220px] xl:mt-[300px]"
   contentClassName={`${grid_classes} items-center`}
 >
-  <SectionTitle className="col-span-6 md:col-span-10 md:!col-start-2 ">
-    Build Your Business <br class="xl:hidden sm:block" />With Us
-    <p
-      class="leading-normal text-base font-normal text-left text-secondary mt-4"
+  <div
+    class="col-span-6 md:col-span-8 md:col-start-3 -translate-y-1/2 -mb-20 md:-mb-36 xl:col-span-6 xl:col-start-4 xl:-mb-56"
+  >
+    <img src="/meeting-croc.png" class="object-cover xl:p-6" />
+  </div>
+  <div
+    class="col-span-6 grid gap-4 md:col-span-12 md:text-center md:justify-items-center text-white xl:col-span-8 xl:col-start-3"
+  >
+    <Pill>Book your call today</Pill>
+    <h1
+      class="text-[44px] leading-[48px] tracking-tight font-medium md:text-[74px] md:leading-[82px]"
     >
-      Our software development services helped clients big and small build
-      solutions with a lasting impact.
+      <slot name="title" />
+    </h1>
+    <p class="text-base leading-[26px] pt-3">
+      Stop wasting time caught in operational bottlenecks. Schedule your free
+      call today, and let’s help you deliver on your strategic vision with
+      confidence. Select a date below or
+      <a class="bold underline" href="/contact"> contact us here.</a>
     </p>
-  </SectionTitle>
+  </div>
 
   <div
     class="relative col-span-6 md:col-span-10 md:col-start-2 overflow-hidden flex flex-col justify-center bg-white rounded"
