@@ -1,4 +1,5 @@
 ---
+import { Fragment } from "astro/jsx-runtime";
 import BookACallForm from "../components/BookACallForm.astro";
 import Hero from "../components/cto/Hero.astro";
 import Services from "../components/cto/Services.astro";
@@ -16,7 +17,11 @@ import "../styles/main.css";
   <Values />
   <Services />
   <Testimonial />
-
-  <BookACallForm />
+  <BookACallForm>
+    <span slot="title">
+      Everything <span class="text-crocoder-yellow"> Kicks-off </span>
+      with One Call
+    </span>
+  </BookACallForm>
   <Footer />
 </Base>
