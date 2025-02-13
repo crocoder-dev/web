@@ -1,0 +1,55 @@
+---
+import Pill from "../Pill.astro";
+import Section from "../Section.astro";
+import ServiceBlock from "./ServiceBlock.astro";
+import { getCollection } from "astro:content";
+
+const servicesCtoCollections = await getCollection("ctoservices");
+
+const services = [];
+
+for (const service of servicesCtoCollections) {
+  services[service.data.idx - 1] = {
+    image: service.data.image,
+    iconFirst: service.data.iconFirst,
+    iconSecond: service.data.iconSecond,
+    sectionTitle: service.data.sectionTitle,
+    titleFirst: service.data.titleFirst,
+    titleSecond: service.data.titleSecond,
+    descriptionFirst: service.data.descriptionFirst,
+    descriptionSecond: service.data.descriptionSecond,
+    bgColor: service.data.bgColor,
+    textColor: service.data.textColor,
+    rounded: service.data.rounded,
+  };
+}
+---
+
+
+<Section className="bg-whtie">
+  <div class="grid gap-4 col-span-6 md:col-span-10 md:col-start-2 text-center font-bold justify-items-center">
+    <Pill>What we can do for you</Pill>
+    <h1 class="text-[44px] leading-[48px] md:text-[74px] md:leading-[81px] font-medium tracking-tight mb-12 md:mb-18 lg:mb-24 text-[#3C3843]">
+      Discover our <span class="text-crocoder-green"> Services </span>
+    </h1>
+  </div>
+  <div class="m-auto grid grid-cols-1">
+    {
+      services.map((service) => (
+        <div class={`${service.bgColor} ${service.textColor} ${service.rounded}`}>
+          <ServiceBlock
+            image={service.image}
+            iconFirst={service.iconFirst}
+            iconSecond={service.iconSecond}
+            sectionTitle={service.sectionTitle}
+            titleFirst={service.titleFirst}
+            titleSecond={service.titleSecond}
+            descriptionFirst={service.descriptionFirst}
+            descriptionSecond={service.descriptionSecond}
+          />
+        </div>
+      ))
+    }
+  </div>
+</Section>
+
