@@ -2,56 +2,54 @@
 import Pill from "../Pill.astro";
 import Section from "../Section.astro";
 import ServiceBlock from "./ServiceBlock.astro";
+import { getCollection } from "astro:content";
+
+const servicesCtoCollections = await getCollection("ctoservices");
+
+const services = [];
+
+for (const service of servicesCtoCollections) {
+  services[service.data.idx - 1] = {
+    image: service.data.image,
+    iconFirst: service.data.iconFirst,
+    iconSecond: service.data.iconSecond,
+    sectionTitle: service.data.sectionTitle,
+    titleFirst: service.data.titleFirst,
+    titleSecond: service.data.titleSecond,
+    descriptionFirst: service.data.descriptionFirst,
+    descriptionSecond: service.data.descriptionSecond,
+    bgColor: service.data.bgColor,
+    textColor: service.data.textColor,
+    rounded: service.data.rounded,
+  };
+}
 ---
 
+
 <Section className="bg-whtie">
-  <div
-    class="grid gap-4 col-span-6 md:col-span-10 md:col-start-2 text-center font-bold justify-items-center"
-  >
+  <div class="grid gap-4 col-span-6 md:col-span-10 md:col-start-2 text-center font-bold justify-items-center">
     <Pill>What we can do for you</Pill>
-    <h1
-      class="text-[44px] leading-[48px] md:text-[74px] md:leading-[81px] font-medium tracking-tight mb-12 md:mb-18 lg:mb-24 text-[#3C3843]"
-    >
+    <h1 class="text-[44px] leading-[48px] md:text-[74px] md:leading-[81px] font-medium tracking-tight mb-12 md:mb-18 lg:mb-24 text-[#3C3843]">
       Discover our <span class="text-crocoder-green"> Services </span>
     </h1>
   </div>
   <div class="m-auto grid grid-cols-1">
-    <div class="bg-[#FEB534] text-[#3C3843] rounded-t-2xl">
-    <ServiceBlock
-      image="/pic-boy-schedule.png"
-      iconFirst="/shield-check-1-streamline-ultimate.svg"
-      iconSecond="/stopwatch-streamline-ultimate.svg"
-      sectionTitle="Leading Complex Migrations"
-      titleFirst="A proven framework"
-      titleSecond="Less downtime guaranted"
-      descriptionFirst="Simplify your journey to modern platforms with a proven migration framework that reduces risks and ensures operational continuity."
-      descriptionSecond="From cloud transitions to technology upgrades, we minimize downtime, safeguard data integrity, and position your systems to scale with your business."
-      >
-    </div>
-    <div class="bg-crocoder-green text-[#FFFFFF]">
-      <ServiceBlock
-        image="/pic-people-collaborating.png"
-        iconFirst="/module-hands-puzzle-streamline-ultimate.svg"
-        iconSecond="/performance-increase-streamline-ultimate.svg"
-        sectionTitle="Expert-driven Team Augmentation"
-        titleFirst="Seamless integration"
-        titleSecond="Scalable solution"
-        descriptionFirst="Build a self-sufficient team without overloading your internal resources. Our experts seamlessly integrate with your teams, filling critical skill gaps, accelerating delivery, and ensuring alignment with your long-term strategy."
-        descriptionSecond="Scale dynamically to meet current needs without committing to long-term overhead."
-        >
-      </div>
-      <div class="bg-[#F6FCFD] text-[#3C3843] rounded-b-2xl">
-        <ServiceBlock
-        classNames="[&>img]:max-md:top-0"
-          image="/crocoder-ill-9-1.png"
-          iconFirst="/check-badge-streamline-ultimate.svg"
-          iconSecond="/seo-search-graph-streamline-ultimate.svg"
-          sectionTitle="Improve Development Tempo"
-          titleFirst="Improve speed & quality"
-          titleSecond="Optimize your workflow"
-          descriptionFirst="Solve inefficiencies in workflows and processes to achieve measurable improvements in delivery speed and quality."
-          descriptionSecond="We help streamline development pipelines, optimize team collaboration, and implement repeatable systems that ensure deadlines are consistently met."
-          >
+    {
+      services.map((service) => (
+        <div class={`${service.bgColor} ${service.textColor} ${service.rounded}`}>
+          <ServiceBlock
+            image={service.image}
+            iconFirst={service.iconFirst}
+            iconSecond={service.iconSecond}
+            sectionTitle={service.sectionTitle}
+            titleFirst={service.titleFirst}
+            titleSecond={service.titleSecond}
+            descriptionFirst={service.descriptionFirst}
+            descriptionSecond={service.descriptionSecond}
+          />
         </div>
+      ))
+    }
   </div>
 </Section>
+
