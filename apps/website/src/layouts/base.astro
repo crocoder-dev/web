@@ -3,6 +3,7 @@ import theme from "@crocoder-dev/tailwind/theme.json";
 import "../styles/main.css";
 import Meta from "../layouts/meta-tags.astro";
 import { AstroFont } from "astro-font";
+import classNames from "classnames";
 
 const pf = theme.fonts.font_family.primary;
 const sf = theme.fonts.font_family.secondary;
@@ -18,6 +19,8 @@ if (theme.fonts.font_family.secondary) {
     .replace(/\+/g, " ")
     .replace(/:[ital,]*[ital@]*[wght@]*[0-9,;]+/gi, "");
 }
+
+const { className } = Astro.props;
 ---
 
 <!doctype html>
@@ -54,7 +57,10 @@ if (theme.fonts.font_family.secondary) {
     />
   </head>
   <body
-    class="flex flex-col font-primary items-center justify-center min-h-screen bg-gray-100"
+    class={classNames(
+      "flex flex-col font-primary items-center justify-center min-h-screen bg-gray-100",
+      className
+    )}
   >
     <slot />
   </body>
