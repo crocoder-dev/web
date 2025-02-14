@@ -61,56 +61,79 @@ body:has(nav #nav-menu-toggle:checked) {
   margin-top: 2.4rem;
 }
 
-.animation-container {
-  overflow-y: scroll;
-  background-color: #f0f0f0;
-  position: relative;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+@media (min-width: 1024px) {
+  .animation-container {
+    overflow-y: scroll;
+    height: 100vh;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .animation-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .animation-card {
+    width: 100%;
+    height: 100px;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease;
+  }
+
+  .animation-card:nth-child(1) {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+
+  .animation-card:nth-child(2) {
+    position: sticky;
+    top: 120px;
+    z-index: 2;
+  }
+
+  .animation-card:nth-child(3) {
+    position: sticky;
+    top: 240px;
+    z-index: 3;
+  }
+
+  .animation-card:nth-child(4) {
+    position: sticky;
+    top: 360px;
+    z-index: 4;
+    height: 933px;
+  }
+
+  .animation-card:nth-child(4) > section {
+    height: 933px;
+  }
 }
 
-.animation-container::-webkit-scrollbar {
-  display: none;
-}
+@media not all and (min-width: 1024px) {
+  .animation-container {
+    height: 2540px;
+  }
 
-.animation-card {
-  width: 100%;
-  height: 100px;
-  position: relative;
-  z-index: 1;
-  transition: transform 0.3s ease;
-}
+  .stacked-card {
+    position: absolute;
+    height: 710px;
+  }
 
-.animation-card:nth-child(1) {
-  position: sticky;
-  top: 0;
-}
+  .stacked-card:nth-child(1) {
+    top: 0;
+  }
 
-.animation-card:nth-child(1) {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-}
+  .stacked-card:nth-child(2) {
+    top: calc(710px - 100px);
+  }
 
-.animation-card:nth-child(2) {
-  position: sticky;
-  top: 120px;
-  z-index: 2;
-}
+  .stacked-card:nth-child(3) {
+    top: calc(1420px - 200px);
+  }
 
-.animation-card:nth-child(3) {
-  position: sticky;
-  top: 240px;
-  z-index: 3;
-}
-
-.animation-card:nth-child(4) {
-  position: sticky;
-  top: 360px;
-  z-index: 4;
-  height: 933px;
-}
-
-.animation-card:nth-child(4) > section {
-  height: 933px;
+  .stacked-card:nth-child(4) {
+    top: calc(2130px - 300px);
+  }
 }

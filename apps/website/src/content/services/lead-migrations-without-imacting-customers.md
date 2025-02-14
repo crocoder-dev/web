@@ -1,5 +1,5 @@
 ---
-title: "Lead migrations without impacting customers"
+title: "Lead Migrations Without Impacting Customers"
 imgPath: "/pic-boy-schedule.png"
 imgAlt: "Illustration of a video meeting with Crocoder team member"
 idx: 1

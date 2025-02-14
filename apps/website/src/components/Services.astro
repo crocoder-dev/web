@@ -31,20 +31,17 @@ for (const service of servicesCollection) {
   contentClassName={classNames(grid_classes, "!gap-y-0 lg:pt-12")}
 >
   <div
-    class="grid gap-4 col-span-6 md:col-span-10 md:col-start-2 text-center font-bold justify-items-center"
+    class="grid gap-4 col-span-6 md:col-span-10 md:col-start-2 md:text-center font-bold md:justify-items-center"
   >
     <Pill>What we can do for you</Pill>
     <h1
-      class="text-[44px] leading-[48px] md:text-[74px] md:leading-[81px] font-medium tracking-tight mb-12 md:mb-18 lg:mb-24 text-[#3C3843]"
+      class="text-[44px] leading-[48px] md:text-[74px] md:leading-[81px] font-medium tracking-tight mb-12 md:mb-[72px] lg:mb-24 text-[#3C3843]"
     >
       Discover our <span class="text-crocoder-green"> Services </span>
     </h1>
   </div>
   <div id="services-wrapper" class="col-span-6 md:col-span-12">
-    <div
-      id="animation-wrapper"
-      class="animation-container max-lg:grid max-md:grid-cols-6 max-lg:grid-cols-12 max-lg:gap-7 lg:h-screen lg:overflow-y-scroll lg:relative"
-    >
+    <div id="animation-wrapper" class="animation-container relative">
       {
         services.map((value, idx) => (
           <ServiceCard
@@ -62,27 +59,3 @@ for (const service of servicesCollection) {
     <div id="end" class="absolute bottom-0"></div>
   </div>
 </Section>
-
-<!-- <script is:inline>
-  const container = document.querySelector(".animation-container");
-  const cards = document.querySelectorAll(".animation-card");
-
-  // Get the initial positions of the cards
-  const initialTopPositions = Array.from(cards).map((card) => card.offsetTop);
-
-  container.addEventListener("scroll", () => {
-    const scrollTop = container.scrollTop;
-
-    // Adjust the position of each card based on the scroll position
-    cards.forEach((card, index) => {
-      const offset = initialTopPositions[index] - scrollTop;
-      const maxOffset = 100 * index; // Allow each card to cover the previous one as it scrolls
-
-      if (offset < maxOffset) {
-        card.style.transform = `translateY(${Math.min(offset, maxOffset)}px)`;
-      } else {
-        card.style.transform = `translateY(0px)`;
-      }
-    });
-  });
-</script> -->
