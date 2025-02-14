@@ -45,9 +45,10 @@ import Section from "./Section.astro";
         </div>
         <div class="flex flex-col sm:flex-row gap-[10px]">
           <a
+            id="book-a-call-action-hero"
             class="flex font-medium w-fit h-[61px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-crocoder-yellow text-contrast hover:opacity-90"
-            href="/contact"
-          >
+            href="#book-a-call-section"
+            >
             Book a call
           </a>
           <a
@@ -83,16 +84,14 @@ import Section from "./Section.astro";
 </Section>
 
 <script is:inline>
-  const discoverOurSolutionsActionHero = document.getElementById(
-    "discover-our-solutions-action-hero",
-  );
-
-  function handleDiscoverOurSolutionsHero() {
+  function handleActionHeroClick() {
     window.navScroll = true;
     setTimeout(() => {
       window.navScroll = false;
     }, 1500);
   }
 
-  discoverOurSolutionsActionHero.addEventListener("click", handleDiscoverOurSolutionsHero);
+  document
+    .querySelectorAll("#discover-our-solutions-action-hero, #book-a-call-action-hero")
+    .forEach((element) => element.addEventListener("click", handleActionHeroClick));
 </script>
