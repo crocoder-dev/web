@@ -52,7 +52,7 @@ import Section from "./Section.astro";
           </a>
           <a
             id="discover-our-solutions-action-hero"
-            href="#discover-our-solutions-section"
+            href="#discover-our-services"
             class="flex font-medium w-fit h-[61px] items-center px-4 py-2 bg-white rounded-md text-base text-center whitespace-nowrap text-contrast hover:text-gray-700 hover:opacity-90"
           >
             Discover our solutions
@@ -87,12 +87,12 @@ import Section from "./Section.astro";
     "discover-our-solutions-action-hero",
   );
 
-  function handleBookACallHero() {
+  function handleDiscoverOurSolutionsHero() {
     window.navScroll = true;
     setTimeout(() => {
       window.navScroll = false;
     }, 1500);
   }
 
-  discoverOurSolutionsActionHero.addEventListener("click", handleBookACallHero);
+  discoverOurSolutionsActionHero.addEventListener("click", handleDiscoverOurSolutionsHero);
 </script>
