@@ -4,6 +4,7 @@ import Section from "./Section.astro";
 import SectionTitle from "./SectionTitle.astro";
 import { grid_classes } from "./_grid";
 import Pill from "./Pill.astro";
+import Avatar from "./Avatar.astro";
 
 const testimonialCollections = await getCollection("testimonials");
 
@@ -19,22 +20,26 @@ for (const testimonial of testimonialCollections) {
 }
 ---
 
-<Section contentClassName={`${grid_classes} items-baseline gap-y-12`}>
-  <div class="col-span-6 md:col-span-10 md:col-start-2">
+<Section className={`!px-0`}>
+  <div class="px-4 sm:px-7">
     <Pill>Testimonials</Pill>
     <SectionTitle className="pt-4">
       What Our <span class="text-crocoder-green">Clients</span> Say
     </SectionTitle>
   </div>
-  {
-    testimonials.map(({ name, content, title }) => (
-      <article class="col-span-6 lg:col-span-4 bg-[#F4F4F4] rounded-2xl p-7 gap-7">
-        <p set:html={content?.html} class="leading-7 text-black" />
-        <div class="pt-7 rounded-lg">
-          <h3 class="text-xl font-bold">{name}</h3>
-          <p class="text-xl">{title}</p>
-        </div>
-      </article>
-    ))
-  }
+  <div
+    class="px-4 sm:px-7 no-scrollbar flex overflow-x-auto w-full gap-2 pt-12"
+  >
+    {
+      testimonials.map(({ name, content, title, imageUrl }) => (
+        <article class=" bg-[#F4F4F4] rounded-2xl p-7 min-w-[318px] md:min-w-[474px] xl:min-w-0 max-w-full [&_p]:leading-7 [&_p]:text-black [&_p]:w-full">
+          <p set:html={content?.html} class="" />
+
+          <div class="pt-7">
+            <Avatar name={name} role={title} imagePath={imageUrl} />
+          </div>
+        </article>
+      ))
+    }
+  </div>
 </Section>

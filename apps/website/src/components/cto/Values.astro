@@ -27,25 +27,25 @@ import InfoBlock from "./InfoBlock.astro";
     class="grid lg:auto-cols-auto col-span-6 md:col-span-12 gap-2"
   >
     <div
-      class="bg-[#5362DBE5]/[0.9] lg:col-span-2 lg:row-start-1 rounded-2xl grid md:grid-cols-2 auto-rows-min"
+      class="bg-[#5362DBE5]/[0.9] lg:col-span-2 lg:row-start-1 rounded-2xl grid md:grid-cols-2 overflow-hidden"
     >
-      <div class="flex flex-col gap-7 p-7 pb-0 md:py-12 md:pl-12">
+      <div class="grid gap-7 p-7 pb-0 md:py-12 md:pl-12 auto-rows-min">
         <InfoBlock
           icon="/target-streamline-core.svg"
           title="Transform Vision into Reality"
           description="Close the gap between strategy and execution with a partner who ensures your big-picture goals translate into measurable outcomes"
         />
-        <div class="flex w-max gap-[10px]">
+        <div class="grid grid-cols-2 w-max gap-[10px] h-fit">
           <a
             id="book-a-call-action-hero"
             href="#book-a-call-section"
-            class="inline-block bg-crocoder-yellow rounded-md px-[25px] py-4 text-center text-contrast text-base font-medium hover:opacity-90"
+            class="bg-crocoder-yellow rounded-md px-[25px] py-4 text-center text-contrast text-base font-medium hover:opacity-90"
           >
             Book a call
           </a>
           <a
             href="/contact"
-            class="inline-block bg-white px-[25px] py-4 text-center text-contrast hover:text-gray-700 rounded-md text-base font-medium hover:opacity-90"
+            class="bg-white px-[25px] py-4 text-center text-contrast hover:text-gray-700 rounded-md text-base font-medium hover:opacity-90"
           >
             Contact us
           </a>
@@ -81,23 +81,20 @@ import InfoBlock from "./InfoBlock.astro";
       class="backdrop-blur-xl bg-white p-7 lg:col-span-1 lg:col-start-2 lg:row-start-3 rounded-2xl grid auto-cols-auto auto-rows-min gap-y-7 gap-x-4"
     >
       <p class="text-base leading-[26px] tracking-normal text-secondary">
-        We were impressed by the proactive attitude [of CroCoder] and capacity
-        to turn theory into practice. Their support and assistance was very
-        timely and precise, always followed by concrete implementing steps. The
-        small team has a strong multidisciplinary background and proved a good
-        attitude to work in team with other consultants
+        CroCoder have been an important partner in the early growth of Submix.
+        Their team has great technical depth, and we have a lot of trust in both
+        their judgement and their commitment to quality. We really value their
+        input, and their feedback has become an important part of our decision
+        making process. Working with them is easy. They are organised,
+        communicative, and have a great internal culture.
       </p>
       <img src="/quotes.svg" class="hidden md:block" />
       <div class="flex gap-3 col-span-2">
-        <img
-          src="/michele-rattotti.png"
-          class="h-[72px] w-[72px]"
-          alt="Michele Rattotti"
-        />
+        <img src="/" class="h-[72px] w-[72px]" alt="Douglas Barr" />
         <p class="text-xl text-secondary">
-          <strong>Michele Rattotti</strong>
+          <strong>Douglas Barr</strong>
           <br />
-          <span class="underline">4evergreen</span> Project Manager
+          <span class="underline">Submix</span> co-founder & CTO
         </p>
       </div>
     </div>
