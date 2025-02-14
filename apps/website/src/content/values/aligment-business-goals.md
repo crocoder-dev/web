@@ -1,6 +1,6 @@
 ---
 title: "Ensuring Alignment with business goals"
-imgPath: "/values-1.png"
+imgPath: "/values-1-cro.png"
 imgAlt: "Illustration of a video meeting with Crocoder team member"
 ---
 
