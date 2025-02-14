@@ -8,7 +8,7 @@ import Pill from "./Pill.astro";
 
 const styles = [
   "bg-[#FEB534]",
-  "bg-[#607A1A] [&_img]:max-w-[calc(100%+56px)] [&_img]:-ml-7 xl:[&_img]:max-w-[calc(100%+96px)] xl:[&_img]:-ml-12",
+  "bg-[#607A1A]",
   "bg-[#F6FCFD]",
 ];
 
@@ -24,6 +24,7 @@ for (const value of valueCollection) {
       path: value.data.imgPath,
       alt: value.data.imgAlt,
     },
+    icon: value.data.icon
   });
 }
 ---
@@ -47,6 +48,7 @@ for (const value of valueCollection) {
             styles={styles[idx]}
             onDark={idx === 1}
             img={value.img}
+            icon={value.icon}
             />
       );
     })
