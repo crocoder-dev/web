@@ -1,8 +1,8 @@
 ---
 idx: 3
 image: "/crocoder-ill-9-1.png"
-iconFirst: "/check-badge-streamline-ultimate.svg"
-iconSecond: "/seo-search-graph-streamline-ultimate.svg"
+iconFirst: "/check-badge.svg"
+iconSecond: "/seo-search-graph.svg"
 sectionTitle: "Improve Development Tempo"
 titleFirst: "Improve speed & quality"
 titleSecond: "Optimize your workflow"
