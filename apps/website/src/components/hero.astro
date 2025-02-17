@@ -48,7 +48,7 @@ import Section from "./Section.astro";
             id="book-a-call-action-hero"
             class="flex font-medium w-fit h-[61px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-crocoder-yellow text-contrast hover:opacity-90"
             href="#book-a-call-section"
-            >
+          >
             Book a call
           </a>
           <a
@@ -62,25 +62,40 @@ import Section from "./Section.astro";
       </h1>
     </div>
   </div>
-  <h4 class="text-base text-start md:text-center mx-4 md:mx-7 font-bold uppercase mt-[72px]">Trusted By:</span>
-    <div class="overflow-x-auto whitespace-nowrap px-4 no-scrollbar">
-      <div class="flex gap-7 justify-center my-8 lg:my-10 min-w-max">
-        <img src="/conductor.svg" alt="" class="grayscale opacity-50 w-[200px]" />
-        <img
-          src="/lynes.svg"
-          alt=""
-          class="grayscale opacity-50 w-[200px] md:hidden xl:block"
-        />
-        <img
-          src="/submix.svg"
-          alt=""
-          class="grayscale invert opacity-50 w-[200px]"
-        />
-        <img src="/sevdesk.svg" alt="" class="grayscale opacity-50 w-[200px]" />
-        <img src="/misterspex.svg" alt="" class="grayscale opacity-50 w-[200px]" />
-      </div>
+  <h4
+    class="text-base text-start md:text-center mx-4 md:mx-7 font-bold uppercase mt-[72px]"
+  >
+    Trusted By:
+  </h4>
+  <div class="overflow-x-auto whitespace-nowrap px-4 no-scrollbar">
+    <div class="flex gap-7 justify-center my-8 lg:my-10 min-w-max">
+      <img src="/conductor.svg" alt="" class="grayscale opacity-50 w-[200px]" />
+      <img
+        src="/lynes.svg"
+        alt=""
+        class="grayscale opacity-50 w-[200px] md:hidden xl:block"
+      />
+      <img
+        src="/submix.svg"
+        alt=""
+        class="grayscale invert opacity-50 w-[200px]"
+      />
+      <img src="/sevdesk.svg" alt="" class="grayscale opacity-50 w-[200px]" />
+      <img
+        src="/misterspex.svg"
+        alt=""
+        class="grayscale opacity-50 w-[200px]"
+      />
     </div>
+  </div>
 
+  <div class="text-[#3C3843] md:text-center text-2xl leading-9 md:text-4xl md:leading-[54px] font-medium px-4 md:px-7 xl:px-60 py-[72px] md:pt-32  md:pb-[138px]">
+    Our tailored software services bridge the gap between the big-picture
+    <span class="text-[#3C384380]">
+      strategy and day-to-day operations, turning ambitious goals into concrete,
+    actionable steps that drive results.
+    </span>
+  </div>
 </Section>
 
 <script is:inline>
@@ -92,6 +107,10 @@ import Section from "./Section.astro";
   }
 
   document
-    .querySelectorAll("#discover-our-solutions-action-hero, #book-a-call-action-hero")
-    .forEach((element) => element.addEventListener("click", handleActionHeroClick));
+    .querySelectorAll(
+      "#discover-our-solutions-action-hero, #book-a-call-action-hero",
+    )
+    .forEach((element) =>
+      element.addEventListener("click", handleActionHeroClick),
+    );
 </script>
