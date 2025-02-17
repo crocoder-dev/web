@@ -13,8 +13,8 @@
   }
   /* Hide scrollbar for IE, Edge and Firefox */
   .no-scrollbar {
-      -ms-overflow-style: none;  /* IE and Edge */
-      scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
   }
 }
 
@@ -65,6 +65,7 @@ body:has(nav #nav-menu-toggle:checked) {
   .animation-container {
     overflow-y: scroll;
     height: 100vh;
+    max-height: 900px;
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
@@ -103,11 +104,13 @@ body:has(nav #nav-menu-toggle:checked) {
     position: sticky;
     top: 360px;
     z-index: 4;
-    height: 933px;
+    height: 100vh;
+    max-height: 900px;
   }
 
   .animation-card:nth-child(4) > section {
-    height: 933px;
+    height: 100vh;
+    max-height: 900px;
   }
 }
 
