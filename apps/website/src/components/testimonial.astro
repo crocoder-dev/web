@@ -20,15 +20,17 @@ for (const testimonial of testimonialCollections) {
 }
 ---
 
-<Section className={`!px-0`}>
-  <div class="px-4 sm:px-7">
+<Section className={`!px-0 !py-24`}>
+  <div
+    class="px-4 sm:px-7 sm:items-center sm:text-center sm:justify-items-center"
+  >
     <Pill>Testimonials</Pill>
-    <SectionTitle className="pt-4">
+    <SectionTitle className="pt-4 md:text-[74px] md:leading-[80px]">
       What Our <span class="text-crocoder-green">Clients</span> Say
     </SectionTitle>
   </div>
   <div
-    class="px-4 sm:px-7 no-scrollbar flex overflow-x-auto w-full gap-2 pt-12"
+    class="px-4 sm:px-7 no-scrollbar flex overflow-x-auto w-full gap-2 pt-12 md:pt-16 lg:pt-24"
   >
     {
       testimonials.map(({ name, content, title, imageUrl }) => (
