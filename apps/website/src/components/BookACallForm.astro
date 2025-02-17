@@ -7,17 +7,17 @@ import Section from "./Section.astro";
 
 <!-- YELLOW-1 = #FEB534 -->
 <Section
-  idx="book-a-call-section"
   className="bg-secondary !pb-16 md:!pb-24 !pt-0 overflow-visible mt-[220px] xl:mt-[300px]"
   contentClassName={`${grid_classes} items-center`}
 >
   <div
-    class="col-span-6 md:col-span-8 md:col-start-3 -translate-y-1/2 -mb-20 md:-mb-36 xl:col-span-6 xl:col-start-4 xl:-mb-56"
+    class="col-span-6 md:col-span-8 md:col-start-3 -translate-y-1/2 -mb-40 xl:col-span-6 xl:col-start-4 lg:-mb-60"
   >
     <img src="/meeting-croc.png" class="object-cover xl:p-6" />
   </div>
   <div
-    class="col-span-6 grid gap-4 md:col-span-12 md:text-center md:justify-items-center text-white xl:col-span-8 xl:col-start-3"
+    id="book-a-call-section"
+    class="col-span-6 grid gap-4 md:col-span-12 md:text-center md:justify-items-center text-white xl:col-span-8 xl:col-start-3 pt-20"
   >
     <Pill>Book your call today</Pill>
     <h1
