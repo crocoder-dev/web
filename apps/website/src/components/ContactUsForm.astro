@@ -176,19 +176,23 @@ import "../styles/loader.css";
         }
 
         showLoader();
-        const response = await fetch("/contact.json", {
-          method: "POST",
-          mode: "cors",
-          headers: {
-            "Content-Type": "application/json",
+
+        const response = await fetch(
+          `https://web-contact.vercel.app`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+            body: JSON.stringify({
+              name,
+              email,
+              message,
+              hasConsent: consent ? true : false,
+            }),
           },
-          body: JSON.stringify({
-            name,
-            email,
-            message,
-            hasConsent: consent ? true : false,
-          }),
-        });
+        );
 
         if (response.status !== 200 && notificationElem) {
           notificationElem.classList.add("text-red-500");
