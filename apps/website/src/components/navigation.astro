@@ -30,7 +30,8 @@
       md:rounded-r-lg
       md:overflow-hidden
       relative
-      gap-24
+      gap:12
+      md:gap-24
       md:has-[img[data-navhidden='false']]:gap-7
       max-md:has-[input:checked]:bg-secondary"
   >
@@ -53,6 +54,17 @@
         data-navhidden
       />
     </a>
+    <ul id="mobile-contact" class="flex 2max-md:flex max-md:ml-auto max-md:mr-4 md:hidden">
+      <li>
+        <a class="flex font-medium w-fit h-[45px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-crocoder-yellow text-contrast hover:opacity-90"
+           href="/contact">
+          Contact us
+        </a>
+      </li>
+    </ul>
+
+
+
     <input
       id="nav-menu-toggle"
       type="checkbox"
@@ -140,6 +152,8 @@
   const allDataHidden = document.querySelectorAll("[data-navhidden]");
   const bookACallAction = document.getElementById("book-a-call-action");
   const navMenuToggle = document.getElementById("nav-menu-toggle");
+  const mobileContact = document.getElementById("mobile-contact");
+
 
   function onScroll() {
     const currentScrollTop =
@@ -183,6 +197,10 @@
       node.setAttribute("data-navhidden", currentVal === "" ? "false" : "");
     });
   }
+
+  navMenuToggle.addEventListener("change", () => {
+  mobileContact.classList.toggle("hidden", navMenuToggle.checked);
+});
 
   function handleBookACall() {
     navMenuToggle.checked = false;
