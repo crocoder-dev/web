@@ -3,6 +3,8 @@ import { getCollection } from "astro:content";
 import Section from "./Section.astro";
 import SectionTitle from "./SectionTitle.astro";
 import { grid_classes } from "./_grid";
+import Pill from "./Pill.astro";
+import Avatar from "./Avatar.astro";
 
 const testimonialCollections = await getCollection("testimonials");
 
@@ -14,23 +16,38 @@ for (const testimonial of testimonialCollections) {
     name: testimonial.data.name,
     title: testimonial.data.title,
     imageUrl: testimonial.data.imageUrl,
+    company: testimonial.data.company,
   });
 }
 ---
 
-<Section contentClassName={`${grid_classes} items-baseline`}>
-  <SectionTitle className="col-span-6 md:col-span-10 md:col-start-2">
-    What Our Clients Say
-  </SectionTitle>
-  {
-    testimonials.map(({ name, content, title }) => (
-      <article class="col-span-6 lg:col-span-4 bg-[#E8E8E8] rounded-2xl p-7 gap-7">
-        <p set:html={content?.html} class="leading-7 text-black" />
-        <div class="pt-7 rounded-lg">
-          <h3 class="text-xl font-bold">{name}</h3>
-          <p class="text-xl">{title}</p>
-        </div>
-      </article>
-    ))
-  }
+<Section className={`!px-0 !py-24`}>
+  <div
+    class="px-4 sm:px-7 sm:items-center sm:text-center sm:justify-items-center"
+  >
+    <Pill>Testimonials</Pill>
+    <SectionTitle className="pt-4 md:text-[74px] md:leading-[80px]">
+      What Our <span class="text-crocoder-green">Clients</span> Say
+    </SectionTitle>
+  </div>
+  <div
+    class="px-4 sm:px-7 no-scrollbar flex overflow-x-auto w-full gap-2 pt-12 md:pt-16 lg:pt-24
+  xl:flex-wrap xl:justify-between xl:overflow-hidden"
+  >
+    {
+      testimonials.map(({ name, content, title, imageUrl, company }) => (
+        <article class="flex-1 bg-[#F4F4F4] rounded-2xl p-7 min-w-[318px] md:min-w-[474px] xl:min-w-0 max-h-fit max-w-full [&_p]:leading-7 [&_p]:text-black [&_p]:w-full">
+          <p set:html={content?.html} class="text-base leading-[26px]" />
+          <div class="pt-7">
+            <Avatar
+              name={name}
+              role={title}
+              imagePath={imageUrl}
+              company={company}
+            />
+          </div>
+        </article>
+      ))
+    }
+  </div>
 </Section>

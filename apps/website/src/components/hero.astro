@@ -77,32 +77,6 @@ import Section from "./Section.astro";
       </div>
     </div>
   </div>
-  <h4
-    class="text-base text-start md:text-center mx-4 md:mx-7 font-bold uppercase mt-[72px]"
-  >
-    Trusted By:
-  </h4>
-  <div class="overflow-x-auto whitespace-nowrap px-4 no-scrollbar">
-    <div class="flex gap-7 justify-center my-8 lg:my-10 min-w-max">
-      <img src="/conductor.svg" alt="" class="grayscale opacity-50 w-[200px]" />
-      <img
-        src="/lynes.svg"
-        alt=""
-        class="grayscale opacity-50 w-[200px] md:hidden xl:block"
-      />
-      <img
-        src="/submix.svg"
-        alt=""
-        class="grayscale invert opacity-50 w-[200px]"
-      />
-      <img src="/sevdesk.svg" alt="" class="grayscale opacity-50 w-[200px]" />
-      <img
-        src="/misterspex.svg"
-        alt=""
-        class="grayscale opacity-50 w-[200px]"
-      />
-    </div>
-  </div>
 </Section>
 
 <script is:inline>
@@ -115,9 +89,9 @@ import Section from "./Section.astro";
 
   document
     .querySelectorAll(
-      "#discover-our-solutions-action-hero, #book-a-call-action-hero"
+      "#discover-our-solutions-action-hero, #book-a-call-action-hero",
     )
     .forEach((element) =>
-      element.addEventListener("click", handleActionHeroClick)
+      element.addEventListener("click", handleActionHeroClick),
     );
 </script>

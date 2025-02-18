@@ -1,0 +1,12 @@
+---
+const { imagePath, name, company, role } = Astro.props;
+---
+
+<div class="flex gap-3 col-span-2">
+  <img src={imagePath} class="h-[72px] w-[72px]" />
+  <span class="text-xl leading-7">
+    <strong>{name}</strong><br />
+    <span class="underline">{company}</span>
+    {role}
+  </span>
+</div>
