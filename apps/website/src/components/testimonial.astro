@@ -16,6 +16,7 @@ for (const testimonial of testimonialCollections) {
     name: testimonial.data.name,
     title: testimonial.data.title,
     imageUrl: testimonial.data.imageUrl,
+    company: testimonial.data.company,
   });
 }
 ---
@@ -30,15 +31,20 @@ for (const testimonial of testimonialCollections) {
     </SectionTitle>
   </div>
   <div
-    class="px-4 sm:px-7 no-scrollbar flex overflow-x-auto w-full gap-2 pt-12 md:pt-16 lg:pt-24"
+    class="px-4 sm:px-7 no-scrollbar flex overflow-x-auto w-full gap-2 pt-12 md:pt-16 lg:pt-24
+  xl:flex-wrap xl:justify-between xl:overflow-hidden"
   >
     {
-      testimonials.map(({ name, content, title, imageUrl }) => (
-        <article class=" bg-[#F4F4F4] rounded-2xl p-7 min-w-[318px] md:min-w-[474px] xl:min-w-0 max-w-full [&_p]:leading-7 [&_p]:text-black [&_p]:w-full">
-          <p set:html={content?.html} class="" />
-
+      testimonials.map(({ name, content, title, imageUrl, company }) => (
+        <article class="flex-1 bg-[#F4F4F4] rounded-2xl p-7 min-w-[318px] md:min-w-[474px] xl:min-w-0 max-h-fit max-w-full [&_p]:leading-7 [&_p]:text-black [&_p]:w-full">
+          <p set:html={content?.html} class="text-base leading-[26px]" />
           <div class="pt-7">
-            <Avatar name={name} role={title} imagePath={imageUrl} />
+            <Avatar
+              name={name}
+              role={title}
+              imagePath={imageUrl}
+              company={company}
+            />
           </div>
         </article>
       ))
