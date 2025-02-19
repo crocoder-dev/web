@@ -14,52 +14,67 @@ import Section from "./Section.astro";
       <img src="/croco-13.png" alt="" class="" />
     </div>
     <div
-      class="row-start-3 md:row-start-2
-    col-start-1 md:col-start-1 md:col-span-12
+      class="text-white my-auto
+    col-start-1
     col-span-6
+    row-start-3
+    md:col-start-1
+    md:col-span-12
+    md:row-start-2
     xl:row-start-1
-    xl:col-start-1 xl:col-span-6
-    text-white my-auto
-    px-12 pb-12 xl:pl-[104px] mx-0 z-10 xl:pr-0 xl:mt-0 xl:py-24"
+    xl:col-start-1
+    xl:col-span-6
+    p-7
+    !pt-0
+    md:p-12
+    xl:pl-[104px]
+    mx-0 z-10
+    xl:pr-0
+    xl:mt-0
+    xl:py-24"
     >
-      <div
-        class="text-[16px] leading-4 w-full text-center pb-2 lg:pb-4 xl:pt-[92px] md:py-0 lg:px-0 z-10"
-      >
-        <Pill>More than a developer agency</Pill>
+      <div class="w-full pb-2 lg:pb-4 xl:pt-[92px] md:py-0 lg:px-0 z-10">
+        <Pill className="max-md:text-sm">More than a developer agency</Pill>
       </div>
       <h1
-        class="font-normal text-3xl leading-9 md:text-[54px] md:leading-[60px]"
+        class="font-normal text-[32px] leading-9 md:text-[54px] md:leading-[60px] tracking-tight"
       >
-        <span class="fadeInUp" style="animation-delay: 100ms;"
-          >Building Software That Builds Your Business</span
+        <span class="fadeInUp" style="animation-delay: 100ms;">
+          Building Software</span
         >
-        <div
-          class="text-[16px] leading-[26px] md:text-[22px] md:leading-8 sm:text-xl lg:text-2xl py-7 font-light"
+        <span
+          class="fadeInUp"
+          style="animation-delay: 500ms;animation-fill-mode: backwards;"
         >
-          <span
-            class="fadeInUp"
-            style="animation-delay: 900ms;animation-fill-mode: backwards;"
-            >Experienced tech consultancy delivering enterprise-grade web
-            development</span
-          >
-        </div>
-        <div class="flex flex-col sm:flex-row gap-[10px]">
-          <a
-            id="book-a-call-action-hero"
-            class="flex font-medium w-fit h-[61px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-crocoder-yellow text-contrast hover:opacity-90"
-            href="#book-a-call-section"
-            >
-            Book a call
-          </a>
-          <a
-            id="discover-our-solutions-action-hero"
-            href="#discover-our-services"
-            class="flex font-medium w-fit h-[61px] items-center px-4 py-2 bg-white rounded-md text-base text-center whitespace-nowrap text-contrast hover:text-gray-700 hover:opacity-90"
-          >
-            Discover our solutions
-          </a>
-        </div>
+          That Builds Your Business</span
+        >
       </h1>
+      <div
+        class="text-[16px] leading-[26px] md:text-[22px] md:leading-8 sm:text-xl lg:text-2xl py-7 font-light tracking-normal"
+      >
+        <span
+          class="fadeInUp"
+          style="animation-delay: 900ms;animation-fill-mode: backwards;"
+          >Experienced tech consultancy delivering enterprise-grade web
+          development</span
+        >
+      </div>
+      <div class="flex flex-col sm:flex-row gap-[10px]">
+        <a
+          id="book-a-call-action-hero"
+          class="flex font-medium w-fit h-[61px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-crocoder-yellow text-contrast hover:opacity-90"
+          href="#book-a-call-section"
+        >
+          Book a call
+        </a>
+        <a
+          id="discover-our-solutions-action-hero"
+          href="#discover-our-services"
+          class="flex font-medium w-fit h-[61px] items-center px-4 py-2 bg-white rounded-md text-base text-center whitespace-nowrap text-contrast hover:text-gray-700 hover:opacity-90"
+        >
+          Discover our solutions
+        </a>
+      </div>
     </div>
   </div>
 </Section>
@@ -79,5 +94,4 @@ import Section from "./Section.astro";
     .forEach((element) =>
       element.addEventListener("click", handleActionHeroClick),
     );
-
 </script>

@@ -1,5 +1,14 @@
+---
+import classNames from "classnames";
+
+const { className } = Astro.props;
+---
+
 <div
-  class="bg-white py-2 px-4 gap-2.5 border border-[rgb(60,56,67)]/[0.2] rounded-full uppercase font-bold text-base w-fit leading-none tracking-normal text-secondary"
+  class={classNames(
+    "bg-white py-2 px-4 gap-2.5 border border-[rgb(60,56,67)]/[0.2] rounded-full uppercase font-bold text-base w-fit leading-none tracking-normal text-secondary",
+    className
+  )}
 >
   <slot />
 </div>
