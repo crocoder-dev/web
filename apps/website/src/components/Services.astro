@@ -42,9 +42,10 @@ for (const service of servicesCollection) {
   </div>
   <div id="services-wrapper" class="col-span-6 md:col-span-12">
     <div id="animation-wrapper" class="animation-container relative">
-      {
-        services.map((value, idx) => (
-          <ServiceCard
+      <div class="animation-container-child">
+        {
+          services.map((value, idx) => (
+            <ServiceCard
             idx={idx + 1}
             title={value.title}
             content={value.content}
@@ -52,10 +53,11 @@ for (const service of servicesCollection) {
             imgAlt={value.img.alt}
             iconPath={value.icon}
             styles={classNames("will-change-transform", value.background)}
-          />
-        ))
-      }
+            />
+          ))
+        }
     </div>
+  </div>
     <div id="end" class="absolute bottom-0"></div>
   </div>
 </Section>
