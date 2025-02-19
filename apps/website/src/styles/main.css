@@ -61,118 +61,33 @@ body:has(nav #nav-menu-toggle:checked) {
   margin-top: 2.4rem;
 }
 
-@media (max-width: 767px) {
-  .animation-container {
-    margin-left: -16px;
-    margin-right: -16px;
-  }
-
-  .animation-container-child {
-    margin-left: 16px;
-    margin-right: 16px;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1335px) {
-  .animation-container {
-    margin-left: -28px;
-    margin-right: -28px;
-  }
-
-  .animation-container-child {
-    margin-left: 28px;
-    margin-right: 28px;
-  }
-}
-
-@media (min-width: 1336px) {
-  .animation-container {
-    margin-left: calc((100vw - 1280px) * -1 - 28px);
-    margin-right: calc((100vw - 1280px) * -1 - 28px);
-  }
-
-  .animation-container-child {
-    margin-left: calc((100vw - 1280px) + 28px);
-    margin-right: calc((100vw - 1280px) + 28px);
-  }
-}
-
 @media (min-width: 320px) {
   .animation-container {
-    overflow-y: scroll;
-    height: 100vh;
-    max-height: 710px;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-
-  .animation-container::-webkit-scrollbar {
-    display: none;
+    /* 4 x card height - 3 x negative margin top */
+    height: calc((4 * 710px) - (3 * 50));
   }
 
   .animation-card {
+    position: sticky;
     width: 100%;
-    position: relative;
-    z-index: 1;
-    transition: transform 0.3s ease;
+    max-height: 710px;
+    margin-top: -50px;
   }
 
   .animation-card:nth-child(1) {
-    position: sticky;
-    box-sizing: border-box;
     top: 0;
-    z-index: 1;
+    margin-top: 0;
   }
 
   .animation-card:nth-child(2) {
-    position: sticky;
     top: 80px;
-    z-index: 2;
   }
 
   .animation-card:nth-child(3) {
-    position: sticky;
     top: 160px;
-    z-index: 3;
   }
 
   .animation-card:nth-child(4) {
-    position: sticky;
-    top: 240px;
-    z-index: 4;
-    height: 100vh;
-    max-height: 710px;
-  }
-
-  .animation-card:nth-child(4) > section {
-    height: 100vh;
-    max-height: 710px;
-  }
-}
-
-@media not all and (min-width: 320px) {
-  .animation-container {
-    height: 2540px;
-  }
-
-  .stacked-card {
-    position: absolute;
-    height: 710px;
-  }
-
-  .stacked-card:nth-child(1) {
-    top: 0;
-  }
-
-  .stacked-card:nth-child(2) {
-    top: calc(710px - 100px);
-  }
-
-  .stacked-card:nth-child(3) {
-    top: calc(1420px - 135px);
-  }
-
-  .stacked-card:nth-child(4) {
-    top: calc(2130px - 140px);
+    top: 220px;
   }
 }
