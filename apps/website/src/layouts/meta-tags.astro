@@ -1,11 +1,12 @@
 ---
 import siteManifest from "../../public/site-manifest.json";
 
-const { meta = {} } = Astro.props;
+interface Props {
+  imageUrl: string;
+}
 
-const {
-  image = `https://company-website-git-feat-og-metadata-crocoder.vercel.app/homepage-metadata-img.png`,
-} = meta;
+const { imageUrl = `https://company-website-git-feat-og-metadata-crocoder.vercel.app/homepage-metadata-img.png` } = Astro.props;
+
 
 const { street, city, region, postalCode, country } = siteManifest.company;
 const { twitter, linkedin, github, youtube, instagram } = siteManifest.social;
@@ -15,7 +16,7 @@ const schema = {
   "@type": "Organization",
   name: siteManifest.name,
   description: siteManifest.description,
-  logo: image,
+  logo: imageUrl,
   url: siteManifest.url,
   address: {
     "@type": "PostalAddress",
@@ -56,7 +57,7 @@ const schema = {
 <meta property="og:type" content="website" />
 <meta property="og:title" content={siteManifest.name} />
 <meta property="og:description" content={siteManifest.description} />
-<meta property="og:image" content={image} />
+<meta property="og:image" content={imageUrl} />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
@@ -64,4 +65,4 @@ const schema = {
 <meta property="twitter:url" content={siteManifest.url} />
 <meta name="twitter:title" content={siteManifest.name} />
 <meta name="twitter:description" content={siteManifest.description} />
-<meta name="twitter:image" content={image} />
+<meta name="twitter:image" content={imageUrl} />
