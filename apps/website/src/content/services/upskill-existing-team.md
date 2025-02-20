@@ -1,6 +1,6 @@
 ---
 title: "Up-Skill existing teams "
-imgPath: "/pic-people-collaborating.png"
+imgPath: "/croco-group.png"
 imgAlt: "Illustration of a video meeting with Crocoder team member"
 idx: 4
 iconPath: "/management.svg"
