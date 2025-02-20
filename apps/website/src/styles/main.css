@@ -60,3 +60,34 @@ body:has(nav #nav-menu-toggle:checked) {
 .prose h3 {
   margin-top: 2.4rem;
 }
+
+@media (min-width: 320px) {
+  .animation-container {
+    /* 4 x card height - 3 x negative margin top */
+    height: calc((4 * 710px) - (3 * 50));
+  }
+
+  .animation-card {
+    position: sticky;
+    width: 100%;
+    max-height: 710px;
+    margin-top: -50px;
+  }
+
+  .animation-card:nth-child(1) {
+    top: 100px;
+    margin-top: 0;
+  }
+
+  .animation-card:nth-child(2) {
+    top: 220px;
+  }
+
+  .animation-card:nth-child(3) {
+    top: 340px;
+  }
+
+  .animation-card:nth-child(4) {
+    top: 460px;
+  }
+}

@@ -1,8 +1,8 @@
 ---
 idx: 2
 image: "/pic-people-collaborating.png"
-iconFirst: "/module-hands-puzzle-streamline-ultimate.svg"
-iconSecond: "/performance-increase-streamline-ultimate.svg"
+iconFirst: "/hands-puzzle.svg"
+iconSecond: "/performance-increase.svg"
 sectionTitle: "Expert-driven Team Augmentation"
 titleFirst: "Seamless integration"
 titleSecond: "Scalable solution"
