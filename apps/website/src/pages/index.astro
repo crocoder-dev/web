@@ -8,10 +8,14 @@ import Services from "../components/Services.astro";
 import Testimonial from "../components/testimonial.astro";
 import Values from "../components/Values.astro";
 import Base from "../layouts/base.astro";
+import MetaTags from "../layouts/meta-tags.astro";
 import "../styles/main.css";
+
+const image = `https://company-website-git-feat-og-metadata-crocoder.vercel.app/homepage-metadata-img.png`
 ---
 
 <Base className="bg-white">
+  <MetaTags  meta={image}/>
   <Navigation />
   <Hero />
   <Clients />

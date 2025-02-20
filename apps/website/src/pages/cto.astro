@@ -9,9 +9,14 @@ import Footer from "../components/footer.astro";
 import Navigation from "../components/navigation.astro";
 import Base from "../layouts/base.astro";
 import "../styles/main.css";
+import MetaTags from "../layouts/meta-tags.astro";
+
+const image = `https://company-website-git-feat-og-metadata-crocoder.vercel.app/cto-metadata-img.png`
+
 ---
 
 <Base className="bg-white">
+  <MetaTags meta={image} />
   <Navigation />
   <Hero />
   <Values />
