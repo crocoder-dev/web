@@ -1,6 +1,6 @@
 ---
 title: "Improve Engineering tempo"
-imgPath: "/crocoder-ill-9-1.png"
+imgPath: "/croco-charts.png"
 imgAlt: "Illustration of a video meeting with Crocoder team member"
 idx: 3
 iconPath: "/stopwatch-gold.svg"
