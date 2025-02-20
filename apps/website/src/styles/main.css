@@ -75,19 +75,19 @@ body:has(nav #nav-menu-toggle:checked) {
   }
 
   .animation-card:nth-child(1) {
-    top: 0;
+    top: 100px;
     margin-top: 0;
   }
 
   .animation-card:nth-child(2) {
-    top: 80px;
+    top: 220px;
   }
 
   .animation-card:nth-child(3) {
-    top: 160px;
+    top: 340px;
   }
 
   .animation-card:nth-child(4) {
-    top: 220px;
+    top: 460px;
   }
 }
