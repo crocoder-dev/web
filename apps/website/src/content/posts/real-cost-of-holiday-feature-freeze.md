@@ -38,7 +38,7 @@ Sentry is a great example of a mature engineering team with strong CI/CD process
 ### Work Queues Up
 Pull requests don’t stop coming in just because deployments pause. Instead, they pile up, waiting for the freeze to lift.
 
-::iframe metrics.dxta.dev/getsentry/sentry?chart=MRsOpened&team=1&width=776&height=360&lines=value&theme=light&dashboard=sentry-feature-freeze
+::iframe metrics.dxta.dev/getsentry/sentry?chart=MRsOpened&team=1&weeks=2024-W48,2024-W49,2024-W50,2024-W51,2024-W52,2025-W01,2025-W02,2025-W03,2025-W04,2025-W05,2025-W06,2025-W07&width=776&height=360&lines=value&theme=light&dashboard=sentry-feature-freeze
 
 The only significant dip occurs in Week 52 (Dec 23 – Dec 29), but activity rebounds the following week, more than making up for it. 
 
@@ -46,7 +46,7 @@ The only significant dip occurs in Week 52 (Dec 23 – Dec 29), but activity reb
 
 Since PRs aren’t being merged and deployed, the time from PR creation to deployment explodes. What was once a smooth, continuous flow turns into a backlog nightmare.
 
-::iframe metrics.dxta.dev/getsentry/sentry?chart=DeployTime&team=1&width=776&height=360&lines=median&theme=light&dashboard=sentry-feature-freeze
+::iframe metrics.dxta.dev/getsentry/sentry?chart=DeployTime&team=1&weeks=2024-W48,2024-W49,2024-W50,2024-W51,2024-W52,2025-W01,2025-W02,2025-W03,2025-W04,2025-W05,2025-W06,2025-W07&width=776&height=360&lines=median&theme=light&dashboard=sentry-feature-freeze
 
 Before Week 50 (Dec 9 - Dec 15), deployments were steady, and PRs moved through the pipeline quickly. But once the freeze kicked in, deploy times spiked, peaking in Week 51 (Dec 16 - Dec 22). With deployments stalled, PRs sat idle, waiting to go live.
 
@@ -57,7 +57,7 @@ The backlog didn’t clear up as expected—new spikes in Weeks 02, 03, and 04 i
 ### The Big Bang Deployment Effect
 Once the freeze lifts, everything hits production at once. Instead of small, iterative changes, you get a flood of deployments, increasing the risk of failures.
 
-::iframe metrics.dxta.dev/getsentry/sentry?chart=DeployFreq&team=1&width=776&height=360&lines=value&theme=light&dashboard=sentry-feature-freeze
+::iframe metrics.dxta.dev/getsentry/sentry?chart=DeployFreq&team=1&weeks=2024-W48,2024-W49,2024-W50,2024-W51,2024-W52,2025-W01,2025-W02,2025-W03,2025-W04,2025-W05,2025-W06,2025-W07&width=776&height=360&lines=value&theme=light&dashboard=sentry-feature-freeze
 
 The deployment frequency chart perfectly illustrates the "Big Bang" effect of a feature freeze. Deployments drop sharply in Week 52 (Dec 23 - Dec 29) as the freeze takes hold, but once it lifts, everything rushes to production at once.
 
@@ -72,7 +72,7 @@ Now, the team is dealing with the aftermath; stabilizing, fixing issues, and get
 ### Merge Without Review Increases
 When pressure mounts, teams are more likely to merge PRs without full reviews. This is a natural reaction to large backlogs but introduces long-term quality concerns.
 
-::iframe metrics.dxta.dev/getsentry/sentry?chart=MRsWoReview&team=1&width=776&height=360&lines=value&theme=light&dashboard=sentry-feature-freeze
+::iframe metrics.dxta.dev/getsentry/sentry?chart=MRsWoReview&team=1&weeks=2024-W48,2024-W49,2024-W50,2024-W51,2024-W52,2025-W01,2025-W02,2025-W03,2025-W04,2025-W05,2025-W06,2025-W07&width=776&height=360&lines=value&theme=light&dashboard=sentry-feature-freeze
 
 Week 50 (Dec 9 - Dec 15) is a classic "let’s get this in before the freeze" moment. You can see the spike in PRs merged without review, some changes were probably rushed in to avoid being stuck for weeks. Totally understandable, but skipping reviews means more risk down the road.
 
