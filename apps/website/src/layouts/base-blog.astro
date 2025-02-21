@@ -1,6 +1,7 @@
 ---
 import theme from "@crocoder-dev/tailwind/theme.json";
 import Footer from "../components/footer.astro";
+import Posthog from "../components/posthog.astro";
 import Header from "./header.astro";
 import "../styles/main.css";
 import { AstroFont } from "astro-font";
@@ -60,5 +61,6 @@ if (theme.fonts.font_family.secondary) {
       <slot />
     </main>
     <Footer />
+    <Posthog />
   </body>
 </html>

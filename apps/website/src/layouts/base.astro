@@ -5,6 +5,8 @@ import Meta from "../layouts/meta-tags.astro";
 import { AstroFont } from "astro-font";
 import classNames from "classnames";
 
+import Posthog from "../components/posthog.astro";
+
 const pf = theme.fonts.font_family.primary;
 const sf = theme.fonts.font_family.secondary;
 
@@ -32,7 +34,7 @@ const { className, ogImage } = Astro.props;
       content="width=device-width, initial-scale=1, maximum-scale=5"
     />
     <link rel="sitemap" href="/sitemap.xml" />
-    <Meta imageUrl={ogImage}/>
+    <Meta imageUrl={ogImage} />
     <AstroFont
       config={[
         {
@@ -59,9 +61,10 @@ const { className, ogImage } = Astro.props;
   <body
     class={classNames(
       "flex flex-col font-primary items-center justify-center min-h-screen bg-gray-100",
-      className
+      className,
     )}
   >
     <slot />
+    <Posthog />
   </body>
 </html>
