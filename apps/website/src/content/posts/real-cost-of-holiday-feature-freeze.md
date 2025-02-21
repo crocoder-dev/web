@@ -57,7 +57,7 @@ The backlog didn’t clear up as expected—new spikes in Weeks 02, 03, and 04 i
 ### The Big Bang Deployment Effect
 Once the freeze lifts, everything hits production at once. Instead of small, iterative changes, you get a flood of deployments, increasing the risk of failures.
 
-::iframe metrics.dxta.dev/getsentry/sentry?chart=DeployFreq&team=1&width=776&height=360&lines=value&theme=light&dashboard=sentry-feature-freeze
+::iframe metrics.dxta.dev/getsentry/sentry?chart=DeployFreq&team=1&weeks=2024-W48,2024-W49,2024-W50,2024-W51,2024-W52,2025-W01,2025-W02,2025-W03,2025-W04,2025-W05,2025-W06,2025-W07&width=776&height=360&lines=value&theme=light&dashboard=sentry-feature-freeze
 
 The deployment frequency chart perfectly illustrates the "Big Bang" effect of a feature freeze. Deployments drop sharply in Week 52 (Dec 23 - Dec 29) as the freeze takes hold, but once it lifts, everything rushes to production at once.
 
