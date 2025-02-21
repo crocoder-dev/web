@@ -52,6 +52,8 @@ const sufix = import.meta.env.DEV ? "" : "blog/";
 
 const siteUrl = import.meta.env.SITE_URL + sufix;
 
+const baseSiteUrl = import.meta.env.SITE_URL
+
 const posts = await getCollection("posts");
 const currentPost = posts.find((post) => post.slug === slug);
 
@@ -107,7 +109,7 @@ const schema = {
 <meta property="og:title" content={title} />
 <meta property="og:name" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={siteUrl + "/public" + image} />
+<meta property="og:image" content={baseSiteUrl + image} />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta property="twitter:domain" content="crocoder.dev" />
@@ -115,4 +117,4 @@ const schema = {
 <meta name="twitter:title" content={title} />
 <meta name="twitter:text:title" content={title} />
 <meta name="twitter:description" content={description} />
-<meta name="twitter:image" content={siteUrl + "/public" + image} />
+<meta name="twitter:image" content={baseSiteUrl + image} />
