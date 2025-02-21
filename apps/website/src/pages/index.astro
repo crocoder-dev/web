@@ -9,9 +9,13 @@ import Testimonial from "../components/testimonial.astro";
 import Values from "../components/Values.astro";
 import Base from "../layouts/base.astro";
 import "../styles/main.css";
+
+const { ogImage = "https://crocoder-company-website.vercel.app/homepage-metadata-img.png" } = Astro.props;
+
+
 ---
 
-<Base className="bg-white">
+<Base className="bg-white" ogImage={ogImage}>
   <Navigation />
   <Hero />
   <Clients />
