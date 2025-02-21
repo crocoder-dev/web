@@ -291,57 +291,81 @@ const allowRequest = async (request: Request & { ip?: string }) => {
   }
 };
 
-export const POST = async (request: Request) => {
+export async function OPTIONS() {
+  return new Response(null, {
+    status: 200,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "OPTIONS, POST",
+      "Access-Control-Allow-Headers": "Content-Type, Authorization",
+    },
+  });
+}
+
+export async function POST(request: Request) {
+  const corsHeaders = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Credentials": "true",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization",
+  };
+
   if (request.headers.get("Content-Type") === "application/json") {
     try {
       const body = (await request.json()) as RequestBody;
       const bodyValidationResult = bodyValidationSchema.safeParse(body);
 
       if (!body || bodyValidationResult.error) {
-        throw {
-          statusCode: 400,
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Credentials": true,
+        return new Response(
+          JSON.stringify({
+            message:
+              bodyValidationResult.error?.message || "No body was found",
+          }),
+          {
+            status: 400,
+            headers: {
+              ...corsHeaders,
+            },
           },
-          body: {
-            message: bodyValidationResult.error?.message || "No body was found",
-          },
-        };
+        );
       }
 
       const { name, email, message, hasConsent } = body;
 
       if (!hasConsent) {
-        throw {
-          statusCode: 403,
-          body: {
-            message: "No consent by user",
+        return new Response(
+          JSON.stringify({ message: "No consent by user" }),
+          {
+            status: 403,
+            headers: {
+              ...corsHeaders,
+            },
           },
-        };
+        );
       }
 
       const { success, limit, reset, remaining } = await allowRequest(request);
 
       if (!success) {
-        throw {
-          statusCode: 429,
-          body: {
+        return new Response(
+          JSON.stringify({
             message: "Too many requests. Please try again in a minute",
+          }),
+          {
+            status: 429,
+            headers: {
+              ...corsHeaders,
+            },
           },
-        };
+        );
       }
 
-      try {
-        await processContact({
-          id: nanoid(),
-          email,
-          name,
-          message,
-        });
-      } catch (error) {
-        throw error;
-      }
+      await processContact({
+        id: nanoid(),
+        email,
+        name,
+        message,
+      });
 
       return new Response(
         JSON.stringify({
@@ -350,8 +374,7 @@ export const POST = async (request: Request) => {
         {
           status: 200,
           headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Credentials": "true",
+            ...corsHeaders,
             "X-RateLimit-Limit": limit.toString(),
             "X-RateLimit-Remaining": remaining.toString(),
             "X-RateLimit-Reset": reset.toString(),
@@ -359,28 +382,20 @@ export const POST = async (request: Request) => {
         },
       );
     } catch (error) {
-      const customError = error as Error & {
-        statusCode?: number;
-        body?: {
-          message?: string;
-        };
-        headers?: HeadersInit;
-      };
+      console.error("Error - api/contacts", error);
 
-      console.error("Error - api/contacts", customError);
+      const statusCode = (error as any).statusCode || 501;
+      const message =
+        (error as any)?.body?.message || "Issue while processing request";
 
-      return new Response(
-        JSON.stringify({
-          message:
-            customError?.body?.message || "Issue while processing request",
-        }),
-        {
-          status: customError.statusCode || 501,
-          headers: customError?.headers,
+      return new Response(JSON.stringify({ message }), {
+        status: statusCode,
+        headers: {
+          ...corsHeaders,
         },
-      );
+      });
     }
   }
 
-  return new Response(null, { status: 400 });
-};
+  return new Response(null, { status: 400, headers: corsHeaders });
+}
