@@ -3,7 +3,7 @@ import siteManifest from "../../public/site-manifest.json";
 
 const { street, city, region, postalCode, country } = siteManifest.company;
 const { twitter, linkedin, github, youtube, instagram } = siteManifest.social;
-const socialImage = `https://company-website-git-feat-og-metadata-crocoder.vercel.app/homepage-metadata-img.png`;
+const socialImage = `https://company-website-git-feat-og-metadata-crocoder.vercel.app/blogs-meta-img.png`;
 
 const schema = {
   "@context": "https://schema.org",
@@ -50,6 +50,7 @@ const schema = {
 <meta property="og:url" content={`${siteManifest.url}/blog`} />
 <meta property="og:type" content="website" />
 <meta property="og:title" content={siteManifest.name} />
+<meta property="og:site_name" content={siteManifest.name} />
 <meta property="og:description" content={siteManifest.description} />
 <meta property="og:image" content={socialImage} />
 
@@ -57,6 +58,7 @@ const schema = {
 <meta name="twitter:card" content="summary_large_image" />
 <meta property="twitter:domain" content="crocoder.dev" />
 <meta property="twitter:url" content={`${siteManifest.url}/blog`} />
+<meta property="twitter:site" content={siteManifest.name} />
 <meta name="twitter:title" content={siteManifest.name} />
 <meta name="twitter:description" content={siteManifest.description} />
 <meta name="twitter:image" content={socialImage} />
