@@ -1,6 +1,6 @@
 import { getCollection } from "astro:content";
 
-const siteUrl = import.meta.env.SITE_URL;
+const siteUrl = "https://www.crocoder.dev";
 const markdownPosts = await getCollection("posts");
 
 const postImportResult = import.meta.glob("./blog/**/*.astro", { eager: true });
@@ -25,14 +25,13 @@ export async function GET() {
       <lastmod>${lastmod.toISOString().slice(0, 10)}</lastmod>
       <priority>${priority}</priority>
       <changefreq>monthly</changefreq>
-      ${
-        imageUrl
-          ? `
+      ${imageUrl
+      ? `
           <image:image>
             <image:loc>${imageUrl}</image:loc>
           </image:image>`
-          : ""
-      }
+      : ""
+    }
     </url>
   `;
 
