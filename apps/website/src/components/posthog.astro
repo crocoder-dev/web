@@ -1,8 +1,7 @@
 ---
-
+const isProd = import.meta.env.PROD;
 ---
-
-<script is:raw is:inline>
+{isProd && <script is:raw is:inline>
   !(function (t, e) {
     var o, n, p, r;
     e.__SV ||
@@ -58,4 +57,4 @@
     person_profiles: "always",
     persistence: "memory",
   });
-</script>
+</script>}
