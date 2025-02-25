@@ -129,7 +129,7 @@ double(value)
 ::title Result
 
 ```javascript
-40
+60
 ```
 
 ::details Show Solution
@@ -320,11 +320,12 @@ function createCancellationToken() {
 
 function fetchData(cancellationToken) {
     return new Promise((resolve, reject) => {
-        setTimeout(() => {
+        const timerID = setTimeout(() => {
             resolve("Data fetched");
         }, 3000);
 
         cancellationToken.token.catch(() => {
+            clearTimeout(timerID)
             reject(new Error('Operation cancelled'));
         });
     });

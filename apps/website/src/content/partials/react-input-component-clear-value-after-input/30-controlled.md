@@ -7,7 +7,7 @@ The most obvious solution to this problem is to transform the Input component in
 /*
     Input component that is exported from component library
     
-    Controlled component's input element should recieve 
+    Controlled component's input element should receive 
     value and onChange props for Input component to function properly
     
     The inputValue should be stored in the parent's component state 
