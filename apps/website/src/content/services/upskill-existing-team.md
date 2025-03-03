@@ -1,5 +1,5 @@
 ---
-title: "Up-Skill existing teams "
+title: "Upskill Existing Teams "
 imgPath: "/croco-group.png"
 imgAlt: "Illustration of a video meeting with Crocoder team member"
 idx: 4
