@@ -1,12 +1,12 @@
 ---
 title: "Microsoft's TypeScript Compiler Rewrite in Go is About More Than Speed"
-description: ""
+description: "Microsoft is rewriting the TypeScript compiler in Go, optimizing for simplicity, maintainability, and concurrency, shaping a more sustainable and developer-friendly future for TypeScript."
 createdAt: 1741731756996
 updatedAt: 1741731756996
 authors: ["david"]
 category: "AFTER WORK TALKS"
 editors: ["velimir"]
-abstract: ""
+abstract: "Microsoft’s decision to rewrite the TypeScript compiler in Go (Golang) has sparked discussion among developers. This shift isn’t just about performance—it’s about long-term maintainability, clarity, and developer experience. Go’s simplicity, strong concurrency model, and supportive ecosystem make it a natural fit for a project as critical as TypeScript. By choosing Go, Microsoft aims to create a more sustainable and approachable compiler, ensuring TypeScript remains efficient and accessible for years to come."
 image: "/images/copy-paste-copilot.png"
 draft: false
 ---
