@@ -2,7 +2,7 @@
 title: "Microsoft's TypeScript Compiler Rewrite in Go is About More Than Speed"
 description: "Microsoft is rewriting the TypeScript compiler in Go, optimizing for simplicity, maintainability, and concurrency, shaping a more sustainable and developer-friendly future for TypeScript."
 createdAt: 1741731756996
-updatedAt: 1741731756996
+updatedAt: 1741972914283
 authors: ["david"]
 category: "AFTER WORK TALKS"
 editors: ["velimir"]
@@ -13,7 +13,9 @@ draft: false
 
 Microsoft's recent decision to [rewrite the TypeScript compiler using Go](https://devblogs.microsoft.com/typescript/typescript-native-port/) (Golang) got a lot of us talking, and honestly, for good reason. We, developers, are pretty attached to our tools, and whenever a big change is announced, we naturally wonder if this is really the best move?
 
-First off, let's briefly acknowledge the obvious: **rewriting a compiler is no small feat.** It's like rebuilding a plane while still in flight. But Microsoft isn't just chasing trendy tech here. There's method behind the madness, and Go makes a surprisingly good fit for something like TypeScript.
+On paper, a faster compiler sounds great. Faster type checking, snappier language server, quicker CI runs. Who wouldn’t want that? If you’ve spent time on a larger TypeScript project, you’ve probably had to restart the language server more times than you’d like. Will this completely fix that? Hard to say. But it’s at least promising. And hey, maybe it’ll chew through those massive type definitions without breaking a sweat.
+
+Of course, rewriting a compiler isn’t exactly a weekend project. It’s more like trying to rebuild an airplane while it’s mid-flight. But Microsoft isn’t just chasing trendy tech here. There’s method behind the madness, and Go makes a surprisingly good fit for something like TypeScript.
 
 Go isn't flashy. It's **simple, straightforward, and practical**. Go means choosing simplicity, clarity, and maintainability. For a compiler, especially one as widely used as TypeScript, clarity and maintainability are everything. Go’s minimalist syntax and clear structures mean contributors old and new can jump into the codebase faster and with less friction.
 
