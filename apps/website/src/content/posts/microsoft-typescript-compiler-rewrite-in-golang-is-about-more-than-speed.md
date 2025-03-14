@@ -10,7 +10,7 @@ abstract: "Microsoft’s decision to rewrite the TypeScript compiler in Go (Gola
 image: "/images/golang-compiler.png"
 draft: false
 ---
-
+ 
 Microsoft's recent decision to [rewrite the TypeScript compiler using Go](https://devblogs.microsoft.com/typescript/typescript-native-port/) (Golang) got a lot of us talking, and honestly, for good reason. We, developers, are pretty attached to our tools, and whenever a big change is announced, we naturally wonder if this is really the best move?
 
 First off, let's briefly acknowledge the obvious: **rewriting a compiler is no small feat.** It's like rebuilding a plane while still in flight. But Microsoft isn't just chasing trendy tech here. There's method behind the madness, and Go makes a surprisingly good fit for something like TypeScript.
