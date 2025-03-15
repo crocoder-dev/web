@@ -30,6 +30,9 @@ So, of course, no serious developer would suggest we just turn off our brains an
 
 Right? RIGHT? Well...
 
+
+## Vibe Coding
+
 ![Tweet](/images/vibe-coding-or-why-is-this-the-best-time-to-learn-coding/tweet.png)
 
 Oh.
@@ -51,8 +54,6 @@ And that’s the real issue. Again, writing code is the easy part. The hard part
 So yeah, LLMs are great tools, but they don’t replace experience. They don’t replace critical thinking. They don’t replace understanding.
 
 Use them. But don’t let them turn you into a human autocomplete button.
-
-
 
 ---
 
