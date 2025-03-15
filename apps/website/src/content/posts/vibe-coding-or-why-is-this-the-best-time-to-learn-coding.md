@@ -18,11 +18,11 @@ The only reason I can tackle them is because I’ve spent years running into wal
 
 Even though I’m a software developer, I don't just write code. I spend time explaining technology and our team’s work to stakeholders, figuring out how to scale the system and make it more reliable, and planning architecture changes. All of this is still very much software development, but my main focus isn’t cranking out code. Instead, it’s reducing the amount of code we *need* to write in the future by designing the system smartly and making sure the team is aligned on that vision.
 
-That means a lot of my work happens in conversations, design docs, and whiteboard sessions rather than just in a code editor. It’s about making decisions that will save us from unnecessary complexity down the road. Writing code is easy, but maintaining and evolving a system over time is the real challenge.  
+That means a lot of my work happens in conversations, design docs, and whiteboard sessions rather than just in an IDE. It’s about making decisions that will save us from unnecessary complexity down the road. Writing code is easy, but maintaining and evolving a system over time is the real challenge.  
 
 While I think LLMs are great for brainstorming, debugging, or acting as a rubber duck, I don’t rely on them to solve the hardest problems. Instead, I rely on my own experience: years of dealing with edge cases, learning from past mistakes, and understanding how different technologies fit together. LLMs can suggest code, but they don’t understand *why* a system needs to be designed a certain way, and that’s where experience makes all the difference.
 
-That’s why I’ve already written about [the dangers of accepting every Copilot suggestion blindly](https://www.crocoder.dev/blog/copilot-copy-paste). Developers should already know that mindlessly accepting AI-generated code duplicates logic, makes refactoring a nightmare, introduce nonsensical code, and breaks flow with unnecessary context switches. 
+That’s why I’ve already written about [the dangers of accepting every Copilot suggestion blindly.](https://www.crocoder.dev/blog/copilot-copy-paste) Developers should already know that mindlessly accepting AI-generated code duplicates logic, makes refactoring a nightmare, introduce nonsensical code, and breaks flow with unnecessary context switches. 
 
 And yet… I still see it happen. Code that clearly wasn’t written with long-term maintainability in mind, complexity that didn’t need to exist, and decisions made without understanding why the system needs to be designed a certain way. 
 
@@ -46,7 +46,7 @@ I get it, there’s a thrill in seeing something just work without fully graspin
 
 I’ve seen this play out before: teams shipping fragile, hard-to-maintain systems because they optimized for shipping fast instead of building sustainably. If you accept every AI-generated diff without reading it, copy-paste error messages without thinking, and blindly tweak things until it stops breaking… well, you might be able to build something, but maintaining it will be a nightmare.
 
-And that’s the real issue. Again, writing code is the easy part. The hard part—the part that makes great developers valuable—is understanding why the system works the way it does, designing it so it remains simple and scalable, and being able to debug it when things inevitably go wrong.
+And that’s the real issue. Again, writing code is the easy part. The hard part, the part that makes great developers valuable, is understanding why the system works the way it does, designing it so it remains simple and scalable, and being able to debug it when things inevitably go wrong.
 
 So yeah, LLMs are great tools, but they don’t replace experience. They don’t replace critical thinking. They don’t replace understanding.
 
