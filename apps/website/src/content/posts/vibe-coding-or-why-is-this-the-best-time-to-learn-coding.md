@@ -84,7 +84,7 @@ Firstly, let's listen to our favourite ex-Netflix developer turned [unhinged SSH
   </iframe>
 </div>
 
-> Seriously, this is really scary. It’s projected that about every five years, the number of software engineers doubles. That implies that more than half of all developers soon will have fewer than six years of experience. In the next two to three years, we’re going to see more ‘vibe coders’—people who don’t fully understand what the software does—than seasoned professionals. It’s never been a better time to learn to code.
+> Seriously, this is really scary. It’s projected that about every five years, the number of software engineers doubles. More than half of all developers soon will have fewer than six years of experience. In the next two to three years, we’re going to see more ‘vibe coders’—people who don’t fully understand what the software does—than seasoned professionals. It’s never been a better time to learn to code.
 
 ---
 

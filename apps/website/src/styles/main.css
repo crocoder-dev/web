@@ -120,6 +120,10 @@ body:has(nav #nav-menu-toggle:checked) {
   }
 }
 
+.prose blockquote {
+  border-color: #607A1A;
+}
+
 @media (min-width: 320px) {
   .animation-container {
     /* 4 x card height - 3 x negative margin top */
