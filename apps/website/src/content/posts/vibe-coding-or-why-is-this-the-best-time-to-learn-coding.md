@@ -12,6 +12,8 @@ draft: false
 ---
 <script client:load src="/chart.min.js"></script>
 
+<script client:load async src="/tex-chtml.js"></script>
+
 I've been a software developer for 15 years now, and what keeps me hooked is solving hard, complex problems. The trickiest issues I run into are the ones that LLMs (or even Google) can’t really help with, problems that are barely documented and rarely come up.  
 
 The only reason I can tackle them is because I’ve spent years running into walls, breaking things, and digging deep to understand how different technologies and patterns actually work. If I hadn’t hit those walls over and over again, I wouldn’t have the experience I need to solve the problems I face today.
@@ -85,6 +87,9 @@ Firstly, let's listen to our favourite ex-Netflix developer turned [unhinged SSH
 </div>
 
 > Seriously, this is really scary. It’s projected that about every five years, the number of software engineers doubles. More than half of all developers soon will have fewer than six years of experience. In the next two to three years, we’re going to see more ‘vibe coders’—people who don’t fully understand what the software does—than seasoned professionals. It’s never been a better time to learn to code.
+
+
+
 
 ---
 
