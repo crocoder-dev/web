@@ -55,6 +55,37 @@ So yeah, LLMs are great tools, but they don’t replace experience. They don’t
 
 Use them. But don’t let them turn you into a human autocomplete button.
 
+
+## Vibe Coding Junior Developers
+
+Vibe Coding an feel like a rocket booster for beginners. You can skip straight to building cool things without wrestling with syntax or memorizing APIs. 
+
+That’s undeniably appealing. Why spend hours digging into documentation when ChatGPT or Copilot can spit out the code you need in seconds?
+
+But here’s the hidden cost: you miss out on the foundational struggles that make you a better developer in the long run. Struggling with a tricky bug or an unfamiliar framework isn’t just a headache, it’s where you build intuition and learn how everything fits together. 
+
+It’s like skipping all your scales and jumping right into playing [Primus' Tommy the Cat](https://www.youtube.com/watch?v=r4OhIU-PmB8) in a concert hall; sure, it’s fun at first, but it catches up with you. 
+
+Eventually, you’ll be stuck on a difficult passage without the fundamentals to push through.
+
+The journey from junior to mid to senior is partly about leveling up your technical chops (knowing the language, frameworks, architectural patterns), but it’s also about learning to communicate and collaborate. Seniors have to explain the “why” behind the “what,” and they often do that in high-level conversations with non-technical stakeholders. If you haven’t seen how systems evolve over time, what patterns make them robust or what pitfalls cause them to fall apart, it’s hard to give valuable input in these conversations.
+
+
+## It's a Great Time to Become a Dev
+
+Firstly, let's listen to our favourite ex-Netflix developer turned [unhinged SSH-coffee salesman](https://www.terminal.shop/): ThePrimeagen.
+
+<div style="display: flex; justify-content: center; width: 100%">
+  <iframe width="270" height="480" 
+    src="https://www.youtube.com/embed/42S4YPUK8N4" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen>
+  </iframe>
+</div>
+
+> Seriously, this is really scary. It’s projected that about every five years, the number of software engineers doubles. That implies that more than half of all developers soon will have fewer than six years of experience. In the next two to three years, we’re going to see more ‘vibe coders’—people who don’t fully understand what the software does—than seasoned professionals. It’s never been a better time to learn to code.
+
 ---
 
 ## STUFF
@@ -64,16 +95,8 @@ Use them. But don’t let them turn you into a human autocomplete button.
 
 There's a new kind of coding I call "vibe coding", where you fully give in to the vibes, embrace exponentials, and forget that the code even exists. It's possible because the LLMs (e.g. Cursor Composer w Sonnet) are getting too good. Also I just talk to Composer with SuperWhisper so I barely even touch the keyboard. I ask for the dumbest things like "decrease the padding on the sidebar by half" because I'm too lazy to find it. I "Accept All" always, I don't read the diffs anymore. When I get error messages I just copy paste them in with no comment, usually that fixes it. The code grows beyond my usual comprehension, I'd have to really read through it for a while. Sometimes the LLMs can't fix a bug so I just work around it or ask for random changes until it goes away. It's not too bad for throwaway weekend projects, but still quite amusing. I'm building a project or webapp, but it's not really coding - I just see stuff, say stuff, run stuff, and copy paste stuff, and it mostly works.
 
-<div style="display: flex; justify-content: center; width: 100%">
-<iframe width="270" height="480" 
-    src="https://www.youtube.com/embed/42S4YPUK8N4" 
-    frameborder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-    allowfullscreen>
-</iframe>
-</div>
 
-Seriously, this is really scary. It is projected that approximately every five years the amount of software engineers that are in the field doubles. That usually means that somewhere between six years or less is more than the median amount of experience levels. Meaning that more than half the people are on this side than the other side. Which means within the next two to three years, more people that are software engineers will be vibe coders, that don't actually know what software does, then there will be actual engineers it's never been a better time to learn to code.
+seriously, this is really scary. it is projected that approximately every five years the amount of software engineers that are in the field doubles. that usually means that somewhere between six years or less is more than the median amount of experience levels. meaning that more than half the people are on this side than the other side. which means within the next two to three years, more people that are software engineers will be vibe coders, that don't actually know what software does, then there will be actual engineers it's never been a better time to learn to code.
 
 
 Yes, AI is here. You're going to be screwed unless you take action. Don't sell your early years fro for productivity instead of learning. If you sell your early years to like you are productive, your mid years are going to be filled with sadness because you never got anywhere past whatever the can do right? So if you offload your technical expertise to a model when you're good or when you're learning this is how good you are. You won't be able to exceed this unless uf you go beyond. So my recommendation yes, students AI is out and it is here, and it's likely going to be here forever. I don't see it changing anytime soon. I think we're just going to constantly be inundated with this. You're screwed unless you take action. Do not let your skill ceiling be dictated by a model
