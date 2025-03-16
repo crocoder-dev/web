@@ -12,7 +12,7 @@ draft: false
 ---
 <script client:load src="/chart.min.js"></script>
 
-<script client:load async src="/tex-chtml.js"></script>
+<script client:load async src="/tex-mml-chtml.js"></script>
 
 I've been a software developer for 15 years now, and what keeps me hooked is solving hard, complex problems. The trickiest issues I run into are the ones that LLMs (or even Google) can’t really help with, problems that are barely documented and rarely come up.  
 
@@ -73,7 +73,7 @@ Eventually, you’ll be stuck on a difficult passage without the fundamentals to
 The journey from junior to mid to senior is partly about leveling up your technical chops (knowing the language, frameworks, architectural patterns), but it’s also about learning to communicate and collaborate. Seniors have to explain the “why” behind the “what,” and they often do that in high-level conversations with non-technical stakeholders. If you haven’t seen how systems evolve over time, what patterns make them robust or what pitfalls cause them to fall apart, it’s hard to give valuable input in these conversations.
 
 
-## It's a Great Time to Become a Dev
+## Should You Become a Dev?
 
 Firstly, let's listen to our favourite ex-Netflix developer turned [unhinged SSH-coffee salesman](https://www.terminal.shop/): ThePrimeagen.
 
@@ -88,29 +88,21 @@ Firstly, let's listen to our favourite ex-Netflix developer turned [unhinged SSH
 
 > Seriously, this is really scary. It’s projected that about every five years, the number of software engineers doubles. More than half of all developers soon will have fewer than six years of experience. In the next two to three years, we’re going to see more ‘vibe coders’—people who don’t fully understand what the software does—than seasoned professionals. It’s never been a better time to learn to code.
 
+That’s a pretty interesting take, and it aligns with some of my own thoughts. But before I fully buy into any claim, I like to check the numbers.
 
+Primeagen’s video makes a few key assumptions:
 
+1. The number of software engineers doubles every five years.
 
----
+2. A majority of developers soon will have fewer than six years of experience.
 
-## STUFF
+3. In the next two to three years, we’re going to see more "vibe coders" than seasoned professionals.
 
----
+4. It’s never been a better time to learn to code.
 
+Whenever someone drops numbers like these, I like to dig into the data. 
 
-There's a new kind of coding I call "vibe coding", where you fully give in to the vibes, embrace exponentials, and forget that the code even exists. It's possible because the LLMs (e.g. Cursor Composer w Sonnet) are getting too good. Also I just talk to Composer with SuperWhisper so I barely even touch the keyboard. I ask for the dumbest things like "decrease the padding on the sidebar by half" because I'm too lazy to find it. I "Accept All" always, I don't read the diffs anymore. When I get error messages I just copy paste them in with no comment, usually that fixes it. The code grows beyond my usual comprehension, I'd have to really read through it for a while. Sometimes the LLMs can't fix a bug so I just work around it or ask for random changes until it goes away. It's not too bad for throwaway weekend projects, but still quite amusing. I'm building a project or webapp, but it's not really coding - I just see stuff, say stuff, run stuff, and copy paste stuff, and it mostly works.
-
-
-seriously, this is really scary. it is projected that approximately every five years the amount of software engineers that are in the field doubles. that usually means that somewhere between six years or less is more than the median amount of experience levels. meaning that more than half the people are on this side than the other side. which means within the next two to three years, more people that are software engineers will be vibe coders, that don't actually know what software does, then there will be actual engineers it's never been a better time to learn to code.
-
-
-Yes, AI is here. You're going to be screwed unless you take action. Don't sell your early years fro for productivity instead of learning. If you sell your early years to like you are productive, your mid years are going to be filled with sadness because you never got anywhere past whatever the can do right? So if you offload your technical expertise to a model when you're good or when you're learning this is how good you are. You won't be able to exceed this unless uf you go beyond. So my recommendation yes, students AI is out and it is here, and it's likely going to be here forever. I don't see it changing anytime soon. I think we're just going to constantly be inundated with this. You're screwed unless you take action. Do not let your skill ceiling be dictated by a model
-
-
-
-I did some digging and I have found data about worlds and found this data:
-
-[aaa](https://www.statista.com/statistics/627312/worldwide-developer-population/)
+So I looked at some [global developer population statistics from Statista.com](https://www.statista.com/statistics/627312/worldwide-developer-population/), and here's what I found:
 
 
 | Year | Number of Developers (in millions) |
@@ -122,7 +114,7 @@ I did some digging and I have found data about worlds and found this data:
 | 2022 | 26.9 |
 | 2024 | 28.7 |
 
-I have done some linear regression, and here are the projected numbers
+I ran a linear regression on this data, and the projected numbers for the coming years look like this:
 
 | Year | Projected Number of Developers (in millions)  |
 |------|--------|
@@ -133,16 +125,156 @@ I have done some linear regression, and here are the projected numbers
 | 2029 | 33.16  |
 | 2030 | 34.05  |
 
-
-with some guess work today the median years of experience is about 6~7 years, and it won't change in the next 5 years with my projections
+And I have plotted the data to a chart:
 
 <div>
   <canvas id="developers"></canvas>
 </div>
 
+As you can see, the global developer population isn’t doubling every five years, it’s increasing at a rate of about 8% year-over-year. At that pace, it will take somewhere between eight and nine years for the total number of developers to double. So while the field is growing rapidly, it’s not quite as fast as the video suggests.
+
+Now, what about experience levels? From my own experience, it feels true that a growing portion of developers have under six years of experience, but what does the math say?
+
+To keep things simple, I assumed a global retirement rate of 6% and rounded the developer growth rate down to 8%. With those parameters, I built a rough model assuming a constant retirement probability. 
+Feel free to review my "napkin math," and please don’t hesitate to reach out if you have a better way to model this.
+
+::details SHOW THE NAPKIN MATH
+
+<p>
+  Suppose world's developer population grows at a continuous rate 
+  <span>\(r\)</span> per year. This means the total number of developers
+  at time <span>\(t\)</span> can be approximated by 
+  <span>\(N(t) = N(0)\,e^{r\,t}\)</span>.
+</p>
+
+<p>
+  At the same time, each individual developer retires at a constant 
+  “separation” or “hazard” rate <span>\(\lambda\)</span>. That is, 
+  once becomes a professional, a developer has a probability <span>\(\lambda\,dt\)</span> 
+  of leaving in a small time interval <span>\(dt\)</span>.
+</p>
+
+<p>
+  Consider developers who started working exactly <span>\(T\)</span> years ago, 
+  i.e., at time <span>\(t - T\)</span>. The size of that year's “cohort” 
+  was proportional to the world developer popupation at that time, which is
+</p>
+
+<p style="text-align: center;">
+  <span>\(N(t - T) \propto e^{r\,(t - T)}.\)</span>
+</p>
+
+<p>
+  Since each developer retires at rate <span>\(\lambda\)</span>, 
+  the fraction of a given cohort still remaining after 
+  <span>\(T\)</span> years is <span>\(e^{-\lambda\,T}\)</span>.
+</p>
+
+<p>
+  At the current time <span>\(t\)</span>, the number of 
+  still-working developers from that cohort is proportional to
+</p>
+
+<p style="text-align: center;">
+  <span>\(e^{r(t - T)} \times e^{-\lambda\,T} = e^{r\,t}\;e^{-T(\lambda + r)}.\)</span>
+</p>
+
+<p>
+  The total number of the developers at time <span>\(t\)</span> is 
+  <span>\(\propto e^{r\,t}\)</span>. Thus, the fraction of the entire 
+  population who have exactly <span>\(T\)</span> years of experience and still working is
+</p>
+
+<p style="text-align: center;">
+  <span>\(\displaystyle
+    \frac{e^{r\,t}\;e^{-T(\lambda + r)}}{e^{r\,t}} 
+    = e^{-\,(\lambda + r)\,T}.
+  \)</span>
+</p>
+
+<p>
+  This is the survival function of an exponential distribution 
+  with parameter <span>\(\lambda + r\)</span>. Therefore, in the 
+  steady state, a developer randomly chosen from the global developer population 
+  has years-of-experience distribution
+</p>
+
+<p style="text-align: center;">
+  <span>\(\displaystyle
+    T \sim \text{Exponential}(\lambda + r).
+  \)</span>
+</p>
+
+<p>
+  For an exponential distribution with rate 
+  <span>\(\alpha\)</span>:
+</p>
+
+<ul>
+  <li><span>\(\text{Mean} = \frac{1}{\alpha}\)</span></li>
+  <li><span>\(\text{Median} = \frac{\ln(2)}{\alpha}\)</span></li>
+</ul>
+
+<p>
+  In our case, 
+  <span>\(\alpha = \lambda + r\)</span>, 
+  so the median years of experience is
+</p>
+
+<p style="text-align: center;">
+  <span>\(\displaystyle 
+    \text{Median} = \frac{\ln(2)}{\lambda + r}.
+  \)</span>
+</p>
+
+<p>
+  If the annual separation rate is 6% (<span>\(\lambda = 0.06\)</span>) 
+  and the annual growth rate is 8% (<span>\(r = 0.08\)</span>), 
+  then
+</p>
+
+<p style="text-align: center;">
+  <span>\(\lambda + r = 0.06 + 0.08 = 0.14.\)</span>
+</p>
+
+<p>
+  Therefore, the median number of years of experience in the steady-state is
+</p>
+
+<p style="text-align: center;">
+  <span>\(\displaystyle
+    \frac{\ln(2)}{0.14} \approx 4.95 \text{ years}.
+  \)</span>
+</p>
+
+::enddetails
+
+The median experience level of all developers worldwide is currently around five years (probably closer to 6, because of my conservative math assumtions) and it won't change at least until 2030.
+
+For the sake of this discussion, let’s assume that "vibe coding" is more common among newer developers—those who started coding professionally within the last six years. That would mean a significant portion of the new developer population relies heavily on LLMs, Copilot, or pure "vibe coding."
+
+If we split developers into "seasoned professionals" (6+ years of experience) and "vibe coders" (less than 6 years), and we use the projected numbers for developer growth and retirement, the distribution looks like this by 2030:
+
+- Seasoned developers (6+ years experience): ~19.8 million
+
+- Vibe coders (<6 years experience): ~14.25 million
+
+That’s a ratio of about 0.72 to 1, not exactly a 1:1 ratio like Primeagen suggested, but pretty close.
+
 <div>
   <canvas id="vibe"></canvas>
 </div>
+
+
+
+
+## It’s Never Been a Better Time to Learn to Code
+
+
+
+
+
+
 
 <script client:load>
   (() => {
