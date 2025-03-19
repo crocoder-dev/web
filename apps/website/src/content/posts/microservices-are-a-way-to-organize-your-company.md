@@ -8,7 +8,7 @@ category: "DEVELOPER EXPERIENCE"
 editors: ["velimir"]
 draft: false
 abstract: "Microservices are often praised for boosting team autonomy and enabling rapid development—but are they always the right architectural choice? This article explores the real implications of adopting microservices beyond just technology. It emphasizes that successful microservices architectures align closely with organizational structures, empowering small, autonomous teams to own and deploy services independently. However, without clear boundaries and proper organizational readiness, microservices can quickly turn into fragmented monoliths, introducing unnecessary complexity and operational overhead. Ultimately, choosing microservices involves balancing technical solutions with organizational needs, understanding trade-offs, and critically examining whether you're solving genuine problems or simply following architectural trends."
-image: "/images/crowdstrike-microsoft-incident-breakdown.jpg"
+image: "/images/microservices-are-a-way-to-organize-your-company.png"
 ---
 
 Microservices remind me a bit of Crocs; you either find them practical and comfortable or see them as a questionable fashion choice that somehow became acceptable. 
@@ -50,6 +50,6 @@ In short, microservices aren’t inherently good or bad, they’re just a tool. 
 
 Microservices are great, but they are not for everyone. And that's perfectly okay. 
 
-Done well, they make teams ship independently, scale easier, break complex systems into more managable domains. But if your team structure isn't ready for microservices, you will introduce complexity instead of reducing it.
+Done well, they make teams ship independently, scale easier, break complex systems into more manageable domains. But if your team structure isn't ready for microservices, you will introduce complexity instead of reducing it.
 
 The one question I want you to think about before jumping into migrating the entire system to a new architecture is: am I solving a technical problem or an organizational one?
