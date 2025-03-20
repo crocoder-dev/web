@@ -54,16 +54,19 @@
         data-navhidden
       />
     </a>
-    <ul id="mobile-contact" class="flex 2max-md:flex max-md:ml-auto max-md:mr-4 md:hidden">
+    <ul
+      id="mobile-contact"
+      class="flex 2max-md:flex max-md:ml-auto max-md:mr-4 md:hidden"
+    >
       <li>
-        <a class="flex font-medium w-fit h-[45px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-crocoder-yellow text-contrast hover:opacity-90"
-           href="/contact">
+        <a
+          class="flex font-medium w-fit h-[45px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-crocoder-yellow text-contrast hover:opacity-90"
+          href="/contact"
+        >
           Contact us
         </a>
       </li>
     </ul>
-
-
 
     <input
       id="nav-menu-toggle"
@@ -103,7 +106,7 @@
         <li>
           <a
             class="font-medium text-2xl md:text-lg text-[#E8E8E8] hover:text-white"
-            href="/cto"
+            href="/for-ctos"
           >
             For CTOs
           </a>
@@ -154,7 +157,6 @@
   const navMenuToggle = document.getElementById("nav-menu-toggle");
   const mobileContact = document.getElementById("mobile-contact");
 
-
   function onScroll() {
     const currentScrollTop =
       window.scrollY || document.documentElement.scrollTop;
@@ -194,8 +196,8 @@
   }
 
   navMenuToggle.addEventListener("change", () => {
-  mobileContact.classList.toggle("hidden", navMenuToggle.checked);
-});
+    mobileContact.classList.toggle("hidden", navMenuToggle.checked);
+  });
 
   function handleBookACall() {
     navMenuToggle.checked = false;

@@ -9,7 +9,7 @@ Fortunately, there is a hook called [useImperativeHandle](https://reactjs.org/do
 
 By using useImperativeHandle we can create a ‘custom component API’ which can be used in the parent component by accessing `ref.current` thanks to `forwardRef`.
 
-Using the combination of both, we control what's exposed as the reference for our Input component. In our case we decided to expose a function `setInputValue` to set the value of the HTML `input` component, a function `clearInputValue` to clear it and a function`getInputValue` to retreive it.
+Using the combination of both, we control what's exposed as the reference for our Input component. In our case we decided to expose a function `setInputValue` to set the value of the HTML `input` component, a function `clearInputValue` to clear it and a function`getInputValue` to retrieve it.
 
 Check out the code below:
 
@@ -17,7 +17,7 @@ Check out the code below:
 /*
   Input component that is exported from component library
   
-  ref is passed by forwardRef to the componentx
+  ref is passed by forwardRef to the component
 */
 const InputComponent = forwardRef(({ label }, ref) => {
   const inputRef = useRef(null);
@@ -98,6 +98,6 @@ When implementing forms in React, using controlled components is always the pref
 
 The uncontrolled component approach without `forwardRef` / `useImperativeHandle` can lead to your DOM getting changed by accident and/or outside purview of React.
 
-Although we have reinvented the Input component as an uncontrolled component using forwardRef and useImperativeHandle, I wouldn't suggest taking this approach unless you are implementing that component as part of a component library. Missuse of refs could lead you to pass refs through multiple components and a confusing data flow.
+Although we have reinvented the Input component as an uncontrolled component using forwardRef and useImperativeHandle, I wouldn't suggest taking this approach unless you are implementing that component as part of a component library. Misuse of refs could lead you to pass refs through multiple components and a confusing data flow.
 
 We are actively working on expanding our internal component library, always striving to create neat and tidy component APIs. That is why long term thinking and reusability are key factors in our decision making when it comes to logic building of our components. We hope you found our solution helpful, and of course, feel free to comment or contact us about any ambiguities you might encounter while going through this post.

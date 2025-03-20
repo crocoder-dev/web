@@ -6,11 +6,7 @@ import Section from "./Section.astro";
 import { grid_classes } from "./_grid";
 import Pill from "./Pill.astro";
 
-const styles = [
-  "bg-[#FEB534]",
-  "bg-[#607A1A]",
-  "bg-[#F6FCFD]",
-];
+const styles = ["bg-[#FEB534]", "bg-[#607A1A]", "bg-[#F6FCFD]"];
 
 const valueCollection = await getCollection("values");
 
@@ -24,32 +20,39 @@ for (const value of valueCollection) {
       path: value.data.imgPath,
       alt: value.data.imgAlt,
     },
-    icon: value.data.icon
+    icon: value.data.icon,
   });
 }
 ---
 
-<Section idx="values-wrapper" contentClassName={grid_classes} className="bg-contrast bg-[url(/values-main-image.png)] bg-no-repeat bg-top bg-[auto_320px]">
-  <div class="col-span-6 md:col-span-12 flex flex-col gap-4 pt-[148px] md:pt-48 md:items-center pb-5 md:pb-11 xl:pb-12">
-    <Pill>We’re 100% Focused on results</Pill>
-    <SectionTitle className="col-span-6 md:text-center text-[44px] leading-[48px] md:text-[74px] md:leading-[81px] md:max-w-[712px] xl:max-w-[848px] text-white">
-      <span class="text-[#FEB534]">
-        Creating Value
-      </span>Through The Power Of Software
+<Section
+  idx="values-wrapper"
+  contentClassName={grid_classes}
+  className="bg-contrast bg-[url(/values-main-image.png)] bg-no-repeat bg-top bg-[auto_320px]"
+>
+  <div
+    class="col-span-6 md:col-span-12 flex flex-col gap-4 pt-[148px] md:pt-48 md:items-center pb-5 md:pb-11 xl:pb-12"
+  >
+    <Pill>We’re 100% focused on results</Pill>
+    <SectionTitle
+      className="col-span-6 md:text-center text-[44px] leading-[48px] md:text-[74px] md:leading-[81px] md:max-w-[712px] xl:max-w-[848px] text-white"
+    >
+      <span class="text-[#FEB534]"> Creating Value </span>Through The Power Of
+      Software
     </SectionTitle>
   </div>
   {
     values.map((value, idx) => {
       return (
-          <ValueCard
-            idx={idx + 1}
-            title={value.title}
-            content={value.content}
-            styles={styles[idx]}
-            onDark={idx === 1}
-            img={value.img}
-            icon={value.icon}
-            />
+        <ValueCard
+          idx={idx + 1}
+          title={value.title}
+          content={value.content}
+          styles={styles[idx]}
+          onDark={idx === 1}
+          img={value.img}
+          icon={value.icon}
+        />
       );
     })
   }

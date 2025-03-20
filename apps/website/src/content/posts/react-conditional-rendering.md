@@ -111,7 +111,7 @@ There are a few ways to fix this problem. The first (and the best) way is to use
 
 ## Convert falsy values to Boolean
 
-Alternatively, we can cast all our falsly values to Boolean or use the **`!!`** operator. 
+Alternatively, we can cast all our falsy values to Boolean or use the **`!!`** operator. 
 The **`!!`** operator is used to convert a value to a Boolean. It is essentially a shorthand way of converting a truthy or falsy value to true or false.
 
 ```tsx

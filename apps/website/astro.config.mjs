@@ -14,6 +14,7 @@ const classes = {
 const remarkPlugin = createRemarkPlugin(classes);
 
 export default defineConfig({
+  prefetch: true,
   output: 'static',
   adapter: vercel({
     imageService: true,

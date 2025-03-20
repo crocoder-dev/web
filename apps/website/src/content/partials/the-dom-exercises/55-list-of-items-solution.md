@@ -4,7 +4,7 @@
 const app = document.getElementById("list-app");
 
 // Create the necessary elements
-const list = document.createElemeent("ul");
+const list = document.createElement("ul");
 const input = document.createElement("input");
 input.setAttribute("type", "text");
 const addButton = document.createElement("button");

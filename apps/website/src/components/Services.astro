@@ -1,7 +1,6 @@
 ---
 import { getCollection } from "astro:content";
 import Section from "./Section.astro";
-import SectionTitle from "./SectionTitle.astro";
 import ServiceCard from "./ServiceCard.astro";
 import { grid_classes } from "./_grid";
 import classNames from "classnames";
@@ -34,11 +33,11 @@ for (const service of servicesCollection) {
     class="grid gap-4 col-span-6 md:col-span-10 md:col-start-2 md:text-center font-bold md:justify-items-center"
   >
     <Pill>What we can do for you</Pill>
-    <h1
+    <h2
       class="text-[44px] leading-[48px] md:text-[74px] md:leading-[81px] font-medium tracking-tight mb-12 md:mb-[72px] lg:mb-24 text-[#3C3843]"
     >
-      Discover our <span class="text-crocoder-green"> Services </span>
-    </h1>
+      Discover Our <span class="text-crocoder-green"> Services </span>
+    </h2>
   </div>
   <div id="services-wrapper" class="col-span-6 md:col-span-12">
     <div id="animation-wrapper" class="animation-container relative">
@@ -46,18 +45,18 @@ for (const service of servicesCollection) {
         {
           services.map((value, idx) => (
             <ServiceCard
-            idx={idx + 1}
-            title={value.title}
-            content={value.content}
-            imgPath={value.img.path}
-            imgAlt={value.img.alt}
-            iconPath={value.icon}
-            styles={classNames("will-change-transform", value.background)}
+              idx={idx + 1}
+              title={value.title}
+              content={value.content}
+              imgPath={value.img.path}
+              imgAlt={value.img.alt}
+              iconPath={value.icon}
+              styles={classNames("will-change-transform", value.background)}
             />
           ))
         }
+      </div>
     </div>
-  </div>
     <div id="end" class="absolute bottom-0"></div>
   </div>
 </Section>

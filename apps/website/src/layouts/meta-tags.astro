@@ -5,8 +5,9 @@ interface Props {
   imageUrl: string;
 }
 
-const { imageUrl = `https://crocoder-company-website.vercel.app/homepage-metadata-img.png` } = Astro.props;
-
+const {
+  imageUrl = `https://crocoder-company-website.vercel.app/homepage-metadata-img.png`,
+} = Astro.props;
 
 const { street, city, region, postalCode, country } = siteManifest.company;
 const { twitter, linkedin, github, youtube, instagram } = siteManifest.social;

@@ -80,7 +80,7 @@ posts.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
                         </time>
                       )}
                     </li>
-                    {category && <li>{category}</li>}
+                    {category && <li>{category.toUpperCase()}</li>}
                   </ul>
                   <h2 class="text-3xl font-primary font-semibold leading-tight text-dark">
                     {title}

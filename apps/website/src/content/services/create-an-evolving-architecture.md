@@ -1,5 +1,5 @@
 ---
-title: "Create an evolving architecture to withstand trends"
+title: "Create an Evolving Architecture to Withstand Trends"
 imgPath: "/pic-web-dev-topics.png"
 imgAlt: "Illustration of a video meeting with Crocoder team member"
 idx: 2

@@ -6,7 +6,7 @@ But what if you want to keep your Input component uncontrolled? Another solution
 /*
   Input component that is exported from component library
   
-  Uncontrolled component's input element should recieve 
+  Uncontrolled component's input element should receive 
   ref prop for Input component to function properly
 */
 const InputComponent = ({ label, inputRef }) => {
