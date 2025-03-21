@@ -2,7 +2,7 @@
 title: "Create React App is dead! What are the alternatives?"
 description: 'CRA may be "dead", but there are many alternative tools available for building React applications that offer superior performance, faster development times and extensive plugin compatibility.'
 createdAt: 1674342628465
-updatedAt: 1679077320886
+updatedAt: 1742551099986
 authors: ["david"]
 category: "Learn Javascript"
 editors: ["velimir"]

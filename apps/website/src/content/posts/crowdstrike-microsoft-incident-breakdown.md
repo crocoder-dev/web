@@ -2,7 +2,7 @@
 title: "The CrowdStrike and Microsoft Incident"
 description: "CrowdStrike's Falcon Sensor update caused \"blue screens of death\" on millions of Windows systems."
 createdAt: 1721473493000
-updatedAt: 1721554208034
+updatedAt: 1742551099986
 authors: ["david"]
 category: "AWS"
 editors: ["velimir"]

@@ -2,7 +2,7 @@
 title: "Callbacks - Code Exercises"
 description: "Callbacks are so common in JavaScript, you certainly used callbacks without knowing they're called that. Let's try to solve some exercises that will help you learn callbacks in JavaScript."
 createdAt: 1619463600000
-updatedAt: 1619463600000
+updatedAt: 1742551099986
 authors: ["david"]
 category: "Learn Javascript"
 editors: ["velimir"]
