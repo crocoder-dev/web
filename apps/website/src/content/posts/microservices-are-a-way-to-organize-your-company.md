@@ -1,8 +1,8 @@
 ---
 title: "Microservices Are a Way to Organize Your Company"
 description: "Are microservices practical or just fashionable? Discover when they're the right choice and how they impact team autonomy and complexity."
-createdAt: 1740307629165
-updatedAt: 1740307629165
+createdAt: 1742551099986
+updatedAt: 1742551099986
 authors: ["david"]
 category: "DEVELOPER EXPERIENCE"
 editors: ["velimir"]
