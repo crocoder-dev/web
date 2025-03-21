@@ -9,7 +9,7 @@ editors: ["velimir"]
 draft: false
 abstract: "On July 19, 2024, CrowdStrike's Falcon Sensor update caused widespread disruptions on millions of Windows systems, leading to \"blue screens of death\" and boot loops. The issue, an erorr in the C++ code of a system driver, impacted aviation, media, banking, and healthcare sectors, grounding flights and disrupting emergency services. This incident highlights a failure in CrowdStrike's development and deployment processes, as such errors should be caught by automated code sanitization tools. It underscores the importance of rigorous testing, CI/CD practices, and phased rollouts to prevent widespread disruptions in critical systems. Robust testing and deployment strategies are essential, even with memory-safe programming languages."
 image: "/images/crowdstrike-microsoft-incident-breakdown.png"
-
+---
 
 
 On July 19th, 2024, CrowdStrike released a critical update for their Falcon Sensor vulnerability scanner, which led to widespread disruptions across millions of Microsoft Windows systems.
