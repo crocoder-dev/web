@@ -18,11 +18,11 @@ I've been a software developer for 15 years now, and what keeps me hooked is sol
 
 The only reason I can tackle them is because I’ve spent years running into walls, breaking things, and digging deep to understand how different technologies and patterns actually work. If I hadn’t hit those walls over and over again, I wouldn’t have the experience I need to solve the problems I face today.
 
-Even though I’m a software developer, I don't just write code. I spend time explaining technology and our team’s work to stakeholders, figuring out how to scale the system and make it more reliable, and planning architecture changes. All of this is still very much software development, but my main focus isn’t cranking out code. Instead, it’s reducing the amount of code we *need* to write in the future by designing the system smartly and making sure the team is aligned on that vision.
+I’m a software developer, but I don't exclusively write code. I spend time explaining technology and our team’s work to stakeholders, figuring out how to scale the system and make it more reliable, and planning architecture changes. All of this is still very much software development, but my main focus isn’t cranking out code. Instead, it’s reducing the amount of code we *need* to write in the future by designing the system smartly and making sure the team is aligned on that vision.
 
 That means a lot of my work happens in conversations, design docs, and whiteboard sessions rather than just in an IDE. It’s about making decisions that will save us from unnecessary complexity down the road. Writing code is easy, but maintaining and evolving a system over time is the real challenge.  
 
-While I think LLMs are great for brainstorming, debugging, or acting as a rubber duck, I don’t rely on them to solve the hardest problems. Instead, I rely on my own experience: years of dealing with edge cases, learning from past mistakes, and understanding how different technologies fit together. LLMs can suggest code, but they don’t understand *why* a system needs to be designed a certain way, and that’s where experience makes all the difference.
+While I think LLMs are great for brainstorming, debugging, writing boilerplate code or acting as a rubber duck, I don’t rely on them to solve the hardest problems. Instead, I rely on my own experience: years of dealing with edge cases, learning from past mistakes, and understanding how different technologies fit together. LLMs can suggest code, but they don’t understand *why* a system needs to be designed a certain way, and that’s where experience makes all the difference.
 
 That’s why I’ve already written about [the dangers of accepting every Copilot suggestion blindly.](https://www.crocoder.dev/blog/copilot-copy-paste) Developers should already know that mindlessly accepting AI-generated code duplicates logic, makes refactoring a nightmare, introduce nonsensical code, and breaks flow with unnecessary context switches. 
 
@@ -249,7 +249,7 @@ Feel free to review my "napkin math," and please don’t hesitate to reach out i
 
 ::enddetails
 
-The median experience level of all developers worldwide is currently around five years (probably closer to 6, because of my conservative math assumtions) and it won't change at least until 2030.
+The median experience level of all developers worldwide is currently around five years (probably closer to 6, because of my conservative math assumtions about both developer population growth and retirment rate) and it won't change at least until 2030.
 
 For the sake of this discussion, let’s assume that "vibe coding" is more common among newer developers—those who started coding professionally within the last six years. That would mean a significant portion of the new developer population relies heavily on LLMs, Copilot, or pure "vibe coding."
 
@@ -259,18 +259,54 @@ If we split developers into "seasoned professionals" (6+ years of experience) an
 
 - Vibe coders (<6 years experience): ~14.25 million
 
-That’s a ratio of about 0.72 to 1, not exactly a 1:1 ratio like Primeagen suggested, but pretty close.
+That’s a ratio of about 0.72:1, not exactly a 1:1 ratio like Primeagen suggested, but pretty close.
 
 <div>
   <canvas id="vibe"></canvas>
 </div>
 
+If current trends continue, nearly half of all developers by 2030 will have fewer than six years of experience, and a huge portion of those will be heavily relying or completely dependant on AI. That’s not just "using Copilot to autocomplete some boilerplate." We’re talking about developers who are building entire features, services, and systems without fully understanding what’s going on under the hood.
 
+That means around 42 out of every 100 developers will be working with tools they don’t deeply understand, shipping code they didn’t fully write, and debugging systems they never actually designed.
 
+And that should scare us a little.
+
+Not because junior developers are bad, they’re not. We were all junior once. But because we’re unintentionally setting up a generation of developers to skip the pain that leads to understanding, and that pain matters.
 
 ## It’s Never Been a Better Time to Learn to Code
 
+Yes, AI is here. And yes, it’s insanely powerful. If it helps you build full-stack apps in a weekend, write unit tests in seconds, and ship features faster than ever, that’s amazing.
 
+But here’s the part nobody wants to say out loud: you’re going to be screwed unless you take action.
+
+If you’re early in your career, this next part is for you.
+
+Do not sell your early years for the illusion of productivity. Don’t trade learning for speed. Because if you spend your foundational years copying what the model spits out and optimizing for "looking productive," you’re going to hit a wall in your mid-career and it’s going to hurt.
+
+Offloading your technical thinking to a model while you’re learning sets your ceiling. If the AI thinks for you now, don’t be surprised when you can’t outthink it later.
+
+You’ll look around one day and realize you’ve been coding for five years, but you still don’t really understand how things work. You’ve built a bunch of stuff, but you don’t know how to scale it. You’ve shipped features, but you can’t debug production. You’ve "learned fast," but you haven’t learned deeply.
+
+And that’s the trap.
+
+LLMs make it easy to feel like a senior engineer long before you’ve actually built the experience. But you can’t fake understanding. You can’t bluff your way through a system outage or an architectural review. When real complexity hits, and it will, you either know how to handle it, or you don’t.
+
+AI is here, and it’s not going anywhere. We’re not going back. The landscape has changed forever. And in that landscape, it’s never been easier to build, but it’s also never been easier to stunt your own growth without realizing it.
+
+Use the tools. Just don’t let them use you.
+Let them accelerate your learning. Just don’t let them replace it.
+
+Because your long-term value as a developer isn’t in how quickly you can generate code. It’s in how well you can understand, design, debug, and think.
+
+So if you want to be great at this you have to go beyond what the models can do. That means reading the docs. Understanding the internals. Sitting with a broken system until you know why it broke. Asking "why" five times. Learning the fundamentals the hard way.
+
+That’s the path. There are no shortcuts. Not even the AI can give you those.
+
+And the good news?
+
+That path still exists. It’s still open. And if you take it, if you resist the urge to vibe code your way through the early years, you’ll be one of the few who actually gets it.
+
+And that will make you invaluable.
 
 
 
