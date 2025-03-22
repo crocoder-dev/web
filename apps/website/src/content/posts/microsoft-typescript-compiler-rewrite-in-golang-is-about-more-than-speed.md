@@ -10,7 +10,7 @@ abstract: "Microsoft’s decision to rewrite the TypeScript compiler in Go (Gola
 image: "/images/golang-compiler.png"
 draft: false
 ---
-
+ 
 Microsoft's recent decision to [rewrite the TypeScript compiler using Go](https://devblogs.microsoft.com/typescript/typescript-native-port/) (Golang) got a lot of us talking, and honestly, for good reason. We, developers, are pretty attached to our tools, and whenever a big change is announced, we naturally wonder if this is really the best move?
 
 On paper, a faster compiler sounds great. Faster type checking, snappier language server, quicker CI runs. Who wouldn’t want that? If you’ve spent time on a larger TypeScript project, you’ve probably had to restart the language server more times than you’d like. Will this completely fix that? Hard to say. But it’s at least promising. And hey, maybe it’ll chew through those massive type definitions without breaking a sweat.
