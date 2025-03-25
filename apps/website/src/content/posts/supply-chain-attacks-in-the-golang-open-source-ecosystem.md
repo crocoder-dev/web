@@ -1,13 +1,13 @@
 ---
 title: "Supply Chain Attacks in the Golang Open-Source Ecosystem"
 description: "Learn how a typo-squatted supply chain attack silently compromised Golang packages for years, and discover essential tips to secure your open-source dependencies."
-createdAt: 1740318687267
-updatedAt: 1740318687267
+createdAt: 1742942499926
+updatedAt: 1742942499926
 authors: ["david"]
 category: "After Work Talks"
 editors: ["velimir"]
 abstract: "Supply chain attacks pose an escalating threat within the open-source software ecosystem, as illustrated vividly by the recent compromise of the Golang module proxy. For over three years, attackers exploited a typo-squatted Golang package—boltdb-go/bolt—to infiltrate countless development projects undetected. Leveraging weaknesses in Go's module mirror caching mechanisms, malicious actors embedded harmful code, rebased repositories to conceal their tracks, and persisted invisibly in widely-used software stacks. This incident underscores critical vulnerabilities stemming from developers' implicit trust in package managers and official mirrors optimized primarily for speed and reliability rather than security. The attack not only exposed severe shortcomings in dependency management but also serves as a stark reminder that widely-used packages are not inherently secure. This article delves into the anatomy of the Golang supply chain attack, exploring how attackers executed their strategy, why it went unnoticed for so long, and what systemic weaknesses made this compromise possible. Additionally, it outlines actionable steps developers can take immediately—such as leveraging dependency auditing tools, enforcing strict version control, and adopting checksum verification—to significantly reduce exposure to similar threats. Ultimately, addressing the rising threat of supply chain attacks requires a collective shift towards proactive security practices across the software development lifecycle, reaffirming that security vigilance remains paramount in an open-source-dependent industry."
-image: "/images/stop-bikeshedding.png"
+image: "/images/golang-supply-chain-attacks.png"
 draft: false
 ---
 
