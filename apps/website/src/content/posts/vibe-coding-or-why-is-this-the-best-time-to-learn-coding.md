@@ -1,8 +1,8 @@
 ---
 title: "Vibe Coding, or Why It's the Best Time to Learn Coding"
 description: ""
-createdAt: 1741983734185
-updatedAt: 1741983734185
+createdAt: 1743697609140
+updatedAt: 1743697609140
 authors: ["david"]
 category: "AFTER WORK TALKS"
 editors: ["velimir"]
