@@ -7,7 +7,7 @@ authors: ["david"]
 category: "AFTER WORK TALKS"
 editors: ["velimir"]
 abstract: ""
-image: "/images/copy-paste-copilot.png"
+image: "/images/vibe-coding-or-why-is-this-the-best-time-to-learn-coding.png"
 draft: false
 ---
 <script client:load src="/chart.min.js"></script>
