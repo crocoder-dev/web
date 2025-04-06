@@ -47,7 +47,7 @@ While this approach keeps things simple, you’ll still want to steer clear of c
 
 ## Some Targets Go Wrong
 
-A friend told me about a company they worked for that set a hard but a hidden from engineers target of "X pull request (PR) per week" per engineer. As soon as this was found out, PR count skyrocketed, yet output quality plummeted. People took normal-sized PRs and split them into tiny PRs just to meet the quota. The metric was reached, but the actual velocity of meaningful work tanked.
+- **Story time:** A friend told me about a company they worked for that set a hard but a hidden from engineers target of "X pull request (PR) per week" per engineer. As soon as this was found out, PR count skyrocketed, yet output quality plummeted. People took normal-sized PRs and split them into tiny PRs just to meet the quota. The metric was reached, but the actual velocity of meaningful work tanked.
 
 This is the classic pitfall of using a lagging indicator, an end-result metric that doesn’t tie back to the cause. I covered this in more detail in my post ["No, you shouldn't measure developer productivity.."](https://www.crocoder.dev/blog/you-should-not-measure-developer-productivity-response-to-mckinsey).  
 
