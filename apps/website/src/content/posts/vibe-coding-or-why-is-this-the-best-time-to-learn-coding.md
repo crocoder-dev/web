@@ -322,7 +322,7 @@ And that will make you invaluable.
       labels: Array.from({ length: 2030 - 2024 + 1 }, (_, i) => (2024 + i).toString()),
       datasets: [
         {
-          label: 'the rest of developers',
+          label: 'Seasoned developers',
           data: [28.70, 26.98, 25.36, 23.84, 22.41, 21.06, 19.80],        
           borderWidth: 2,
           segment: {
@@ -334,7 +334,7 @@ And that will make you invaluable.
           },
         },
         {
-            label: 'vibe coders',
+            label: '"Vibe coders"',
             data: [
               0, 2.62, 5.13, 7.54, 9.86, 12.10, 14.25
             ],
