@@ -1,13 +1,13 @@
 ---
 title: "Turning Metrics into Direction for Your Team"
 description: "Discover why real software engineering goes beyond AI-generated code. This in-depth article explores the rise of \"vibe coding,\" the risks of skipping foundational learning, and why experience, critical thinking, and deep system understanding still matter in the age of LLMs like ChatGPT and Copilot."
-createdAt: 1743797373628
-updatedAt: 1743797373628
+createdAt: 1744672322325
+updatedAt: 1744672322325
 authors: ["david"]
 category: "DEVELOPER EXPERIENCE"
 editors: ["velimir"]
 abstract: "This article explores the growing tension between AI-assisted software development and the deep, experiential knowledge required to build and maintain sustainable systems. Drawing from over 15 years of experience, the author reflects on the value of struggling through complex, undocumented problems—the kind that can’t be solved by LLMs or Google alone—and emphasizes that real expertise is forged through repeated failure, critical thinking, and architectural insight.As tools like GitHub Copilot and ChatGPT become ubiquitous, many developers—especially those early in their careers—are embracing “vibe coding,” a workflow where code is generated with minimal understanding. While this approach can be productive for quick hacks or prototyping, it poses serious risks when applied to long-term, production-grade systems. The article cautions against letting AI tools short-circuit the learning process, warning that skipping the foundational struggles can lead to shallow expertise and brittle codebases. Through a mix of personal narrative, data analysis, and industry observations, the piece argues that while AI is a powerful accelerator, it cannot replace the human judgment, experience, and design thinking that define great software engineering. The call to action is clear: use the tools, but don’t let them think for you. True mastery comes not from generating code quickly, but from understanding why things work—and how to fix them when they don’t."
-image: "/images/typescript-enums-good-bad-and-ugly.png"
+image: "/images/turning-metrics-into-direction-for-your-team.png"
 draft: false
 ---
 
@@ -47,7 +47,7 @@ While this approach keeps things simple, you’ll still want to steer clear of c
 
 ## Some Targets Go Wrong
 
-A friend told me about a company they worked for that set a hard but a hidden from engineers target of "X pull request (PR) per week" per engineer. As soon as this was found out, PR count skyrocketed, yet output quality plummeted. People took normal-sized PRs and split them into tiny PRs just to meet the quota. The metric was reached, but the actual velocity of meaningful work tanked.
+A friend told me about a company they worked for that set a secret target of "X pull request (PR) per week" per engineer. As soon as this was found out, PR count skyrocketed, yet output quality plummeted. People took normal-sized PRs and split them into tiny PRs just to meet the quota. The metric was reached, but the actual velocity of meaningful work tanked.
 
 This is the classic pitfall of using a lagging indicator, an end-result metric that doesn’t tie back to the cause. I covered this in more detail in my post ["No, you shouldn't measure developer productivity.."](https://www.crocoder.dev/blog/you-should-not-measure-developer-productivity-response-to-mckinsey).  
 
@@ -61,15 +61,15 @@ Many teams still rely on a quarterly or bi-annual survey to gather what people t
 
 That’s where real-time feedback comes in. Some teams now use mini-surveys that pop up when, say, a developer merges a PR or completes a deploy: “How smooth was this for you?” or “Did you run into any unexpected obstacles?” These micro check-ins capture context in the moment.
 
-- **Story time:** We tried this in a team by integrating a lightweight bot right in the Slack. Every time someone merged a PR, the bot asked, "On a scale of 1 to 7, how painful was the review process?". After a few merges, we started noticing patterns. We had a lot of six and sevens whenever a particular service was involved. That feedback pointed us to a problematic serrvice we probably would have missed in an quaterly survey.
+- **Story time:** We tried this in a team by integrating a lightweight bot right in the Slack. Every time someone merged a PR, the bot asked, "On a scale of 1 to 7, how painful was the review process?". After a few merges, we started noticing patterns. We had a lot of six and sevens whenever a particular service was involved. That feedback pointed us to a problematic service we probably would have missed in an quarterly survey.
 
 It’s like checking your heart rate immediately after a run, instead of waiting until the next day when you can barely remember how you felt.
 
 ## Making Metrics Actionable
 
-Let’s say you notice that your **Cycle Time** is inching upwards every week. If you do nothing, it’ll just keep climbing while frustration grows.. 
+Let’s say you notice that your **Cycle Time** is inching upwards every week. If you do nothing, it’ll just keep climbing while frustration grows.
 
-If you declare, "We need to reduce **Cycle Time** by half!” you might be missing context, maybe the project scope just got bigger, or reviewers are out on vacation.
+It’s tempting to declare, "We need to reduce **Cycle Time** by half!”, but you might be missing context, maybe the project scope just got bigger, or reviewers are out on vacation.
 
 Instead, reflect and respond in stages. 
 
