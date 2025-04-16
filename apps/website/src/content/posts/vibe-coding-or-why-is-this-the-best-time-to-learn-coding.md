@@ -1,12 +1,12 @@
 ---
 title: "Vibe Coding, or Why It's the Best Time to Learn Coding"
-description: ""
+description: "Discover why real software engineering goes beyond AI-generated code. This in-depth article explores the rise of \"vibe coding,\" the risks of skipping foundational learning, and why experience, critical thinking, and deep system understanding still matter in the age of LLMs like ChatGPT and Copilot."
 createdAt: 1743697609140
 updatedAt: 1743697609140
 authors: ["david"]
 category: "AFTER WORK TALKS"
 editors: ["velimir"]
-abstract: ""
+abstract: "This article explores the growing tension between AI-assisted software development and the deep, experiential knowledge required to build and maintain sustainable systems. Drawing from over 15 years of experience, the author reflects on the value of struggling through complex, undocumented problems—the kind that can’t be solved by LLMs or Google alone—and emphasizes that real expertise is forged through repeated failure, critical thinking, and architectural insight.As tools like GitHub Copilot and ChatGPT become ubiquitous, many developers—especially those early in their careers—are embracing “vibe coding,” a workflow where code is generated with minimal understanding. While this approach can be productive for quick hacks or prototyping, it poses serious risks when applied to long-term, production-grade systems. The article cautions against letting AI tools short-circuit the learning process, warning that skipping the foundational struggles can lead to shallow expertise and brittle codebases. Through a mix of personal narrative, data analysis, and industry observations, the piece argues that while AI is a powerful accelerator, it cannot replace the human judgment, experience, and design thinking that define great software engineering. The call to action is clear: use the tools, but don’t let them think for you. True mastery comes not from generating code quickly, but from understanding why things work—and how to fix them when they don’t."
 image: "/images/vibe-coding-or-why-is-this-the-best-time-to-learn-coding.png"
 draft: false
 ---
@@ -75,7 +75,7 @@ The journey from junior to mid to senior is partly about leveling up your techni
 
 ## Should You Become a Dev?
 
-Firstly, let's listen to our favourite ex-Netflix developer turned [unhinged SSH-coffee salesman](https://www.terminal.shop/): ThePrimeagen.
+Firstly, let's listen to our favorite ex-Netflix developer turned [unhinged SSH-coffee salesman](https://www.terminal.shop/): ThePrimeagen.
 
 <div style="display: flex; justify-content: center; width: 100%">
   <iframe width="270" height="480" 
@@ -157,7 +157,7 @@ Feel free to review my "napkin math," and please don’t hesitate to reach out i
 <p>
   Consider developers who started working exactly <span>\(T\)</span> years ago, 
   i.e., at time <span>\(t - T\)</span>. The size of that year's “cohort” 
-  was proportional to the world developer popupation at that time, which is
+  was proportional to the world developer population at that time, which is
 </p>
 
 <p style="text-align: center;">
@@ -249,7 +249,7 @@ Feel free to review my "napkin math," and please don’t hesitate to reach out i
 
 ::enddetails
 
-The median experience level of all developers worldwide is currently around five years (probably closer to 6, because of my conservative math assumtions about both developer population growth and retirment rate) and it won't change at least until 2030.
+The median experience level of all developers worldwide is currently around five years (probably closer to 6, because of my conservative math assumptions about both developer population growth and retirement rate) and it won't change at least until 2030.
 
 For the sake of this discussion, let’s assume that "vibe coding" is more common among newer developers—those who started coding professionally within the last six years. That would mean a significant portion of the new developer population relies heavily on LLMs, Copilot, or pure "vibe coding."
 
