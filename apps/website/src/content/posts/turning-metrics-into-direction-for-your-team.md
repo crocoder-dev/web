@@ -11,8 +11,11 @@ image: "/images/turning-metrics-into-direction-for-your-team.png"
 draft: false
 ---
 
-I’ve seen this many times: Company spends weeks, maybe months or even quarters, implementing new tooling, integrating dashboards, and setting up analytics. Finally, they had real data about our engineering process. The engineering metrics dashboards are ready. The numbers were all there, but suddenly they realize the real challenge...
+I’ve seen this many times: Company spends weeks, maybe months or even quarters, implementing new tooling, integrating dashboards, and setting up analytics. 
 
+Finally, they had real data about our engineering process. The engineering metrics dashboards are ready. 
+
+The numbers were all there, but suddenly they realize the real challenge...
 
 *What do you actually do with all this information?*
 
