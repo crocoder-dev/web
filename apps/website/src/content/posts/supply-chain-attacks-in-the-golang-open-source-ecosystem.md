@@ -2,7 +2,7 @@
 title: "Supply Chain Attacks in the Golang Open-Source Ecosystem"
 description: "Learn how a typo-squatted supply chain attack silently compromised Golang packages for years, and discover essential tips to secure your open-source dependencies."
 createdAt: 1742942499926
-updatedAt: 1742942499926
+updatedAt: 1747492883872
 authors: ["david"]
 category: "After Work Talks"
 editors: ["velimir"]
@@ -11,7 +11,39 @@ image: "/images/golang-supply-chain-attacks.png"
 draft: false
 ---
 
-## A Wake-Up Call for Go Developers: Supply Chain Attacks in the Open-Source Ecosystem
+### Update: New Disk-Wiping Malware Found in Go Modules
+
+Unfortunately, we’re seeing more and more supply chain attacks in the Go ecosystem, and the latest batch is especially nasty. Recently, [security researchers](https://socket.dev/blog/wget-to-wipeout-malicious-go-modules-fetch-destructive-payload) uncovered a few Go modules that contain disk-wiping malware. Yep, you read that right: malicious code that can completely erase the main storage device on your Linux system, wiping out all data and leaving you with a dead server.
+
+The modules **prototransform**, **go-mcp**, and **tlsproxy** are not just simple backdoors or spyware. They use clever obfuscation to hide a destructive shell script that runs a command like:
+
+```bash
+dd if=/dev/zero of=/dev/sda bs=1M conv=fsync
+```
+
+In plain English: this command zeroes out your entire primary disk. 
+
+That means all your files, your OS, your databases... gone. No backups, no recovery.
+
+So how did this happen? Well, Go’s module system is very open. Anyone can publish a module on GitHub and have it pulled into your project without any central approval or cryptographic signing. This openness is great for flexibility but also a playground for attackers. They create modules with names that look legit or similar to popular libraries, tricking developers into using them.
+
+The takeaway? Supply chain attacks aren’t just about sneaky backdoors anymore, now they can completely destroy your system.
+
+What can you do right now?
+
+* Always check who’s publishing the module you want to use. If it looks suspicious or doesn’t have a solid community behind it, don’t use it.
+* Stick to trusted libraries that many people use and audit.
+* Develop inside virtual machines or containers. That way, if something bad happens, you can wipe and reset without risking your whole machine.
+* Use automated tools like govulncheck or Socket’s scanners to analyze dependencies.
+* Enforce checksum and signature verification when possible.
+
+This new threat is a wake-up call. The open-source ecosystem is amazing, but you can’t trust everything blindly. Even a widely used module could hide something dangerous.
+
+Stay alert, check your dependencies carefully, and keep your builds secure.
+
+---
+
+## A Wake-Up Call for Go Developers
 
 If you've been paying attention to software security news lately, you've probably heard about the [Go Module Mirror](https://proxy.golang.org/) serving a backdoored package for over three years. 
 

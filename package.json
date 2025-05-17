@@ -19,7 +19,6 @@
     "packages/*"
   ],
   "dependencies": {
-    "posthog-js": "^1.222.0",
     "prettier": "^3.4.2",
     "prettier-plugin-astro": "^0.14.1"
   }
