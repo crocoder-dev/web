@@ -1,12 +1,12 @@
 ---
-title: "Work on Big Problems"
-description: ""
+title: "Work on Big Problems!"
+description: "Tackling hard, messy problems is the key to real growth in product engineering. This reflection explores how to spot big challenges, navigate uncertainty, and create lasting impact: for yourself, your users, and your team."
 createdAt: 1744839849772
 updatedAt: 1744839849772
 authors: ["david"]
 category: "AFTER WORK TALKS"
 editors: ["velimir"]
-abstract: ""
+abstract: "Some of the most rewarding experiences in product engineering come from tackling big, messy problems, the kind that stretch your technical, organizational, and product thinking muscles. In this reflection, I explore why it is worth seeking out these challenges, how to recognize problems that truly matter, and what it takes to stay focused and effective when the path forward is uncertain. From connecting your work to broader impact to building a team culture that embraces bold goals, this piece offers practical insights and encouragement for engineers who want to do work that drives meaningful change."
 image: "/images/what-should-be-included-in-an-internal-component-library.jpg"
 draft: false
 ---
