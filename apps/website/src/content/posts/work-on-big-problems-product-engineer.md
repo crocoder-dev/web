@@ -11,7 +11,7 @@ image: "/images/what-should-be-included-in-an-internal-component-library.jpg"
 draft: false
 ---
 
-Some of the most satisfying projects I’ve worked on were also the messiest and least certain. They weren’t on any "quick win" list; they were the problems that made me stop and think, wow, this is going to be a stretch. And that stretch, technical, product, or organizational, ended up teaching me more than anything.
+Some of the most satisfying projects I’ve worked on were also the messiest and least certain. They weren’t on any "quick win" list; they were the problems that made me stop and think, f*ck, this is going to be a stretch. And that stretch, technical, product, or organizational, ended up teaching me more than anything.
 
 This post is a short reflection on why it’s worth picking those bigger challenges, what "big" really means in day‑to‑day product engineering, and a few tactics for steering yourself toward them without getting overwhelmed.
 
@@ -19,16 +19,17 @@ This post is a short reflection on why it’s worth picking those bigger challen
 
 ## What Does It Mean to Work on a "Big Problem"?
 
-Working on a "big problem" doesn’t always mean curing world hunger or putting a man on Mars. In the context of product engineering, a big problem is any challenge that is ambitious in scope, significance, or difficulty. It could be a technical moonshot, for example, rearchitecting a core system to handle 100x more load, or it could be a product-defining quest, like redesigning an onboarding flow to completely eliminate a major pain point for users. The common thread is thatit’s a problem that stretches your skills and has outsized impact if solved.
+Working on a "big problem" doesn’t always mean curing world hunger or putting a man on Mars. In the context of product engineering, a big problem is any challenge that is ambitious in scope, significance, or difficulty. It could be a technical moonshot, for example, rearchitecting a core system to handle 100x more load, or it could be a product-defining, like redesigning an onboarding flow to completely eliminate a major pain point for users. The common thread is that it’s a problem that stretches your skills and has towering impact if solved.
 
-Big problems are often characterized by uncertainty and novelty. They might not have a clear solution at the outset. In fact, they can feel insurmountable at first, the kind of challenges that can’t be solved by following a known recipe.
+Big problems are often characterized by uncertainty. They might not have a clear solution at the outset. In fact, they can feel insurmountable at first, the kind of challenges that can’t be solved by following a known recipe.
+
+It’s worth noting that "big" doesn’t necessarily mean glamorous or widely celebrated. Sometimes the most impactful problems are behind the scenes. For example, reducing the checkout flow from five steps to one might seem less flashy than working with the latest LLM, but if that simplification is a game changer for users and drives up conversion rates, it’s absolutely a big problem worth solving. The essence is that it really matters. 
+
+As engineers, we often know in our gut when a problem is substantive, it’s the kind of problem where, if you don't step up to tackle it, it might never get solved properly. In fact, things that simply won’t happen if you don’t do them are your biggest opportunity to work on something that matters. In other words, when you spot a critical issue or bold idea that everyone else is ignoring or afraid to touch, you may have found your next big problem.
 
 
-It’s worth noting that "big" doesn’t necessarily mean glamorous or widely celebrated. Sometimes the most impactful problems are behind the scenes. For example, reducing the checkout flow from five steps to one might seem less flashy than working with the latest AI model, but if that simplification is a game-changer for users and drives up conversion rates, it’s absolutely a big problem worth solving. The essence is that it really matters. As engineers, we often know in our gut when a problem is substantive, it’s the kind of problem where, if you don't step up to tackle it, it might never get solved properly. In fact, things that simply won’t happen if you don’t do them are your biggest opportunity to work on something that matters. In other words, when you spot a critical issue or bold idea that everyone else is ignoring or afraid to touch, you may have found your next big problem.
 
-### Aiming at Big Problems Matters
-
-Why voluntarily choose the harder road? Why not just stick to the comfortable backlog of small tasks?
+But, why voluntarily choose the harder road? Why not just stick to the comfortable backlog of small tasks?
 
 When you aim at a genuinely hard problem, you can’t help but grow. New tech, weird edge cases, and plenty of "wait, how do we do this?" Every tough win boosts your confidence and sets you up to tackle even bigger challenges next time.
 
@@ -36,23 +37,20 @@ Big problems also move real numbers for the business. Instead of just shipping a
 
 Users feel the difference too. They don’t rave about tiny tweaks, but slash their page‑load time or remove an unecessary workflow step and they’ll thank you with loyalty. Solving the pains that actually keep people up at night beats polishing minor annoyances every time.
 
-Finally, there’s the spark of meaning. A bold goal turns a job into a mission, rallying your team through the inevitable rough patches and giving you stories you’ll be proud to tell later. Hard problems are harder, but they’re also what make the work worth doing.
+There is also the spark of meaning, there. A bold goal turns a job into a mission, rallying your team through the inevitable rough patches and giving you stories you’ll be proud to tell later. Hard problems are harder, but they’re also what make the work worth doing.
 
-Importantly, a big problem in our work is high-impact by nature. Solving it would meaningfully change something for our users, our product, or our business. It might be an ambitious new feature that defines the product’s future, a massive performance improvement that saves the company, or an overhaul of an error-prone process that hugely improves customer experience. These are the kinds of challenges that, if left unsolved, hold back progress, and if solved, open up new possibilities.
+Choosing to work on big problems accelerates your personal development, creates a greater impact on your company, and delivers higher value to users, all while infusing your work with a greater sense of purpose. It’s a win-win scenario for your career and for the people benefiting from your work.
 
-In summary, choosing to work on big problems accelerates your personal development, creates a greater impact on your company, and delivers higher value to users, all while infusing your work with a greater sense of purpose. It’s a win-win scenario for your career and for the people benefiting from your work.
 
-### Orient Yourself Toward Bigger challenges
+## Seek Problems
 
 Okay, big problems are great, but how can we actually integrate this mindset into our day-to-day work as engineers? It’s one thing to philosophize about ambitious goals, and another to act on them when you have sprint tasks and bug backlogs looming.
-
-### Seek Problems
 
 One of the most valuable habits you can build is stepping back to ask: What’s the actual problem here? Not just the task in front of you, but the real pain or opportunity behind it. Sometimes the ticket in Jira is just the surface of something deeper. So zoom out. What’s hurting the team or the product the most right now?
 
 And hey, if you spot something important that no one else seems to be talking about, like a bug users keep running into or some tech debt that’s slowing down every sprint, say something. Or better yet, start poking at it. A lot of high-impact work doesn’t show up in your backlog; you have to go looking for it. Be the kind of teammate who sees those things and says, “I’ve got this.” It might mean pitching a project that wasn’t on the roadmap, or jumping on the thing everyone’s been quietly avoiding. That kind of initiative is what separates people doing work from people doing the right work.
 
-### Connect Your Work to the Bigger Picture
+## Connect Your Work to the Bigger Picture
 
 It’s easy to get lost in implementation details. You’re fixing bugs, building features, merging PRs... but at some point it helps to stop and ask: Why does this even matter?
 
@@ -60,7 +58,7 @@ If you don’t have a good answer, that’s a flag. Either the task doesn’t co
 
 And when that starts happening regularly, you’ll find yourself naturally leaning toward the stuff that actually moves the needle. You’ll know what’s worth your time and what you can either skip or hand off.
 
-### Be Uncomfortable
+## Be Uncomfortable
 
 Let’s be honest, big problems are scary. It’s totally normal to feel a little imposter-y when you’re staring down something messy, undefined, or with a lot riding on it. That’s fine. In fact, that discomfort is usually a sign that you’re about to grow.
 
@@ -68,7 +66,8 @@ If everything you’re doing feels easy, you’re probably playing it too safe. 
 
 Give yourself permission to mess up or take longer when working on hard things. The payoff won’t always be instant. But over time, the stuff that once seemed impossible? It’ll be just another Tuesday.
 
-### Focus on What Matters
+## Focus on What Matters
+
 You don’t have infinite time or energy. Nobody does. So you’ve got to be deliberate about what you say yes to.
 
 That might mean ignoring some Slack messages for a bit, or not fixing every tiny bug the moment it appears. It might feel weird, like you’re dropping the ball, but here’s the thing: doing great work on the right stuff often means letting the less important things go. That’s not failure. That’s prioritization.
@@ -77,7 +76,7 @@ Protect your time. Carve out space for deep work. Big problems don’t get solve
 
 Solving one big problem well usually beats solving ten small ones in a hurry.
 
-### Cultivate a Big-Problems Culture
+## Cultivate a Big-Problems Culture
 
 You’re not in this alone. One of the best ways to have a lasting impact is to help your team adopt this mindset too. Talk openly about the problems that actually matter. Ask in retros or planning: What’s the most important thing we could work on right now?
 
