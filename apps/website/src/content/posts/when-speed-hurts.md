@@ -1,13 +1,13 @@
 ---
 title: "When Speed Hurts"
-description: ""
-createdAt: 1747505127591
-updatedAt: 1747505127591
+description: "Some developers ship fast and test well—but leave teams cleaning up behind them. This post explores how to lead with empathy, model good habits, and create space for growth without sacrificing quality or team trust."
+createdAt: 1747927414802
+updatedAt: 1747927414802
 authors: ["david"]
 category: "DEVELOPER EXPERIENCE"
 editors: ["velimir"]
-abstract: ""
-image: "/images/what-should-be-included-in-an-internal-component-library.jpg"
+abstract: "High-velocity developers can be both impressive and disruptive. While their code moves fast and comes with plenty of tests, it often reveals deeper issues: unnecessary complexity, bugs that escape into production, and resistance to feedback. This post unpacks the hidden cost of unchecked speed and what it means for team health and trust. It advocates for pair programming as a tool for modeling thoughtful engineering—not micromanagement—and shares guidance on when to coach, when to scope work differently, and when to escalate. By anchoring accountability in empathy and clarity, teams can maintain high standards without creating fear or resentment. Ultimately, great engineering isn’t just about speed—it’s about how well we build together."
+image: "/images/when-speed-hurts.png"
 draft: false
 ---
 
