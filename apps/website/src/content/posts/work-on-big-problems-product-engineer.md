@@ -1,13 +1,13 @@
 ---
 title: "Work on Big Problems!"
 description: "Tackling hard, messy problems is the key to real growth in product engineering. This reflection explores how to spot big challenges, navigate uncertainty, and create lasting impact: for yourself, your users, and your team."
-createdAt: 1744839849772
-updatedAt: 1744839849772
+createdAt: 1747928692304
+updatedAt: 1747928692304
 authors: ["david"]
 category: "AFTER WORK TALKS"
 editors: ["velimir"]
 abstract: "Some of the most rewarding experiences in product engineering come from tackling big, messy problems, the kind that stretch your technical, organizational, and product thinking muscles. In this reflection, I explore why it is worth seeking out these challenges, how to recognize problems that truly matter, and what it takes to stay focused and effective when the path forward is uncertain. From connecting your work to broader impact to building a team culture that embraces bold goals, this piece offers practical insights and encouragement for engineers who want to do work that drives meaningful change."
-image: "/images/what-should-be-included-in-an-internal-component-library.jpg"
+image: "/images/work-on-big-problems-product-engineer.png"
 draft: false
 ---
 
@@ -35,7 +35,7 @@ When you aim at a genuinely hard problem, you can’t help but grow. New tech, w
 
 Big problems also move real numbers for the business. Instead of just shipping another ticket, you’re fixing the bottleneck that bleeds money or launching the feature that unlocks a new revenue stream. Leadership notices work that bends the curve, and suddenly you’re the person they trust with the hairy projects.
 
-Users feel the difference too. They don’t rave about tiny tweaks, but slash their page‑load time or remove an unecessary workflow step and they’ll thank you with loyalty. Solving the pains that actually keep people up at night beats polishing minor annoyances every time.
+Users feel the difference too. They don’t rave about tiny tweaks, but slash their page‑load time or remove an unnecessary workflow step and they’ll thank you with loyalty. Solving the pains that actually keep people up at night beats polishing minor annoyances every time.
 
 There is also the spark of meaning, there. A bold goal turns a job into a mission, rallying your team through the inevitable rough patches and giving you stories you’ll be proud to tell later. Hard problems are harder, but they’re also what make the work worth doing.
 
