@@ -58,10 +58,10 @@ function remark({
         }
 
         if (node.depth < lastNodeDepth) {
+          contentsHtml += '</ul>'.repeat(lastNodeDepth - node.depth);
           contentsHtml += '<li>';
           contentsHtml += `<a href="#${id}">${textNode.value}</a>`;
           contentsHtml += '</li>';
-          contentsHtml += '</ul>'.repeat(lastNodeDepth - node.depth);
           lastNodeDepth = node.depth;
         }
       });
@@ -107,7 +107,7 @@ function remark({
           };
           parent.children.splice(index, 1, node);
         }
-        
+
         if (textNode.type === 'text' && textNode.value.startsWith('::iframe ')) {
           const iframeSrc = textNode.value.substring('::iframe '.length);
           const iframeNode = {
