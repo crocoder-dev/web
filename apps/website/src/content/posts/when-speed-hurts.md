@@ -1,8 +1,8 @@
 ---
 title: "When Speed Hurts"
 description: "Some developers ship fast and test well—but leave teams cleaning up behind them. This post explores how to lead with empathy, model good habits, and create space for growth without sacrificing quality or team trust."
-createdAt: 1747927414802
-updatedAt: 1747927414802
+createdAt: 1749117509543
+updatedAt: 1749117509543
 authors: ["david"]
 category: "DEVELOPER EXPERIENCE"
 editors: ["velimir"]
