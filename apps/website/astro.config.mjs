@@ -32,6 +32,7 @@ export default defineConfig({
         decoding: 'async',
         format: 'auto',
         quality: 75,
+        inferRemoteSize: true,
       },
     }),
   ],

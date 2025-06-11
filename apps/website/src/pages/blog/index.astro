@@ -1,7 +1,7 @@
 ---
 import Base from "../../layouts/base-blog.astro";
 import { getCollection } from "astro:content";
-import { Picture } from "astro:assets";
+import { Image } from "astro:assets";
 import formatDate from "../..//format-date";
 import Meta from "../../layouts/base-meta-tags.astro";
 
@@ -62,10 +62,11 @@ posts.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
                 <a class="flex flex-col gap-4" href={url}>
                   <div class="overflow-hidden rounded-lg">
                     {image && (
-                      <Picture
+                      <Image
                         src={image}
                         alt={title}
-                        width={1024}
+                        width={1000}
+                        height={500}
                         loading={i < 3 ? "eager" : "lazy"}
                         decoding="auto"
                       />

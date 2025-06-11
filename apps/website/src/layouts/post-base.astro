@@ -1,7 +1,7 @@
 ---
 import Base from "../layouts/base-blog.astro";
 import Head from "../layouts/head.astro";
-import { Picture } from "astro:assets";
+import { Image } from "astro:assets";
 import { markdownify } from "../ify";
 import { getCollection } from "astro:content";
 import formatDate from "../format-date";
@@ -67,7 +67,7 @@ const dateObj = new Date(createdAt);
         <div class="col-12 mt-8 mb-8">
           {
             image && (
-              <Picture
+              <Image
                 src={image}
                 height={500}
                 width={1000}
@@ -92,9 +92,10 @@ const dateObj = new Date(createdAt);
             >
               {
                 authorImage && (
-                  <Picture
+                  <Image
                     src={authorImage}
                     width={215}
+                    height={215}
                     alt={title}
                     loading="lazy"
                     decoding="auto"
@@ -122,10 +123,11 @@ const dateObj = new Date(createdAt);
               <a class="flex flex-col gap-4" href={url}>
                 <div class="overflow-hidden rounded-lg">
                   {image && (
-                    <Picture
+                    <Image
                       src={image}
                       alt={title}
-                      width={1024}
+                      width={500}
+                      height={250}
                       loading="lazy"
                       decoding="auto"
                     />
