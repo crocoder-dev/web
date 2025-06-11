@@ -17,7 +17,9 @@ const remarkPlugin = createRemarkPlugin(classes);
 export default defineConfig({
   prefetch: true,
   output: 'static',
-  adapter: vercel(),
+  adapter: vercel({
+    imageService: true,
+  }),
   redirects: {
     '/feed': '/rss.xml',
     '/sitemap': '/sitemap.xml'
@@ -25,7 +27,7 @@ export default defineConfig({
   integrations: [
     tailwind(),
     react(),
-     image({
+    image({
       serviceEntryPoint: '@astrojs/image/sharp',
       defaultImageDirectives: {
         loading: 'lazy',
