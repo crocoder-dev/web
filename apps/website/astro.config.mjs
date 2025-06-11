@@ -3,6 +3,7 @@ import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
 import vercel from '@astrojs/vercel/static';
 import createRemarkPlugin from '@crocoder-dev/remark-plugin';
+import image from '@astrojs/image';
 
 const classes = {
   titleClass: 'font-bold text-[1.25rem] mt-[2.5rem]',
@@ -16,18 +17,24 @@ const remarkPlugin = createRemarkPlugin(classes);
 export default defineConfig({
   prefetch: true,
   output: 'static',
-  adapter: vercel({
-    imageService: true,
-    imagesConfig: {
-      sizes: [640, 936],
-      domains: ['*'],
-    },
-  }),
+  adapter: vercel(),
   redirects: {
     '/feed': '/rss.xml',
     '/sitemap': '/sitemap.xml'
   },
-  integrations: [tailwind(), react()],
+  integrations: [
+    tailwind(),
+    react(),
+     image({
+      serviceEntryPoint: '@astrojs/image/sharp',
+      defaultImageDirectives: {
+        loading: 'lazy',
+        decoding: 'async',
+        format: 'auto',
+        quality: 75,
+      },
+    }),
+  ],
   markdown: {
     remarkPlugins: [remarkPlugin],
   },

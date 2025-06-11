@@ -2,6 +2,7 @@
 import { grid_classes } from "../_grid";
 import Pill from "../Pill.astro";
 import Section from "../Section.astro";
+import { Image } from "astro:assets";
 ---
 
 <Section className="!pt-[75px] bg-white md:!pb-12 lg:!pb-24">
@@ -55,14 +56,20 @@ import Section from "../Section.astro";
       lg:col-start-7
       lg:row-start-1"
     >
-      <img src="/cto-hero.png" alt="" class="" />
+      <Image
+        src="/cto-hero.png"
+        alt="CroCoder Hero"
+        width={1024}
+        height={768}
+        loading="eager"
+      />
     </div>
   </div>
 </Section>
 
 <script is:inline>
   const bookACallActionHero = document.getElementById(
-    "book-a-call-action-hero"
+    "book-a-call-action-hero",
   );
 
   function handleBookACallHero() {

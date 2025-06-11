@@ -1,5 +1,6 @@
 ---
 import Section from "./Section.astro";
+import { Image } from 'astro:assets';
 ---
 
 <Section>
@@ -10,22 +11,40 @@ import Section from "./Section.astro";
   </h4>
   <div class="overflow-x-auto whitespace-nowrap px-4 no-scrollbar">
     <div class="flex gap-7 justify-center my-8 lg:my-10 min-w-max">
-      <img src="/conductor.svg" alt="" class="grayscale opacity-50 w-[200px]" />
-      <img
-        src="/lynes.svg"
-        alt=""
-        class="grayscale opacity-50 w-[200px] md:hidden xl:block"
-      />
-      <img
-        src="/submix.svg"
-        alt=""
-        class="grayscale invert opacity-50 w-[200px]"
-      />
-      <img src="/sevdesk.svg" alt="" class="grayscale opacity-50 w-[200px]" />
-      <img
-        src="/misterspex.svg"
-        alt=""
+      <Image
+        src="/conductor.svg"
+        alt="conductor logo"
         class="grayscale opacity-50 w-[200px]"
+        width={200}
+        height={46}
+      />
+      <Image
+        src="/lynes.svg"
+        alt="lynes logo"
+        class="grayscale opacity-50 w-[200px] md:hidden xl:block"
+        width={200}
+        height={82}
+      />
+      <Image
+        src="/submix.svg"
+        alt="submix logo"
+        class="grayscale invert opacity-50 w-[200px]"
+        width={200}
+        height={82}
+      />
+      <Image
+        src="/sevdesk.svg"
+        alt="sevdesk logo"
+        class="grayscale opacity-50 w-[200px]"
+        width={200}
+        height={82}
+      />
+      <Image
+        src="/misterspex.svg"
+        alt="misterspex logo"
+        class="grayscale opacity-50 w-[200px]"
+        width={200}
+        height={82}
       />
     </div>
   </div>

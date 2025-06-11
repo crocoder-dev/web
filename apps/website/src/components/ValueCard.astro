@@ -6,6 +6,8 @@ interface Props {
   img: {
     path: string;
     alt: string;
+    width?: number;
+    height?: number;
   };
   styles?: string | string[];
   onDark?: boolean;
@@ -13,19 +15,33 @@ interface Props {
 }
 
 const { title, content, img, styles, onDark, icon } = Astro.props;
+
+import { Image } from 'astro:assets';
 ---
 
 <section
   class={`col-span-6 rounded-2xl p-7 md:p-12 md:pb-0 max-md:max-w-[470px] mx-auto xl:p-12 xl:pb-0 pb-0 flex flex-col overflow-hidden lg:h-fit md:col-span-12 xl:col-span-4 ${styles} ${onDark ? "text-[#ffff]" : "text-secondary"}`}
 >
   <div class="flex gap-7 flex-col md:flex-row xl:flex-col mb-5 xl:mb-[61px]">
-    <img class="h-[72px] w-[72px] xl:h-[90px] xl:w-[90px]" src={icon} alt={icon}>
+    <Image
+      class="h-[72px] w-[72px] xl:h-[90px] xl:w-[90px]"
+      width={90}
+      height={90}
+      src={icon}
+      alt="icon"
+    />
     <div>
       <h3 class="font-medium text-[28px] md:text-4xl leading-[30px] md:leading-10 mb-7">{title}</h3>
       <div class="text-base leading-7 antialiased" set:html={content.html}></div>
     </div>
   </div>
   <div class="flex justify-center">
-    <img class="mt-auto max-w-[466px] w-full" src={img.path} alt={img.alt} />
+    <Image
+      class="mt-auto max-w-[466px] w-full"
+      src={img.path}
+      alt={img.alt}
+      width={img.width || 466}
+      height={img.height || 300}
+    />
   </div>
 </section>
