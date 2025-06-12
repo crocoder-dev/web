@@ -59,8 +59,9 @@ import { Image } from "astro:assets";
       <Image
         src="/cto-hero.png"
         alt="CroCoder Hero"
-        width={1024}
-        height={768}
+        width={626}
+        inferSize={true}
+        widths={[626, 1024]}
         loading="eager"
       />
     </div>

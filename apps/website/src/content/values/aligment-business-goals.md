@@ -3,8 +3,6 @@ title: "Ensuring alignment with business goals"
 imgPath: "/values-1-cro.png"
 imgAlt: "Illustration of a video meeting with Crocoder team member"
 icon: "/target-black.svg"
-imgWidth: 466
-imgHeight: 176
 ---
 
 We don’t just build software, we build solutions that drive real impact. Every feature we create serves a purpose, aligning seamlessly with your business strategy.  

@@ -16,7 +16,7 @@ interface Props {
 
 const { title, content, img, styles, onDark, icon } = Astro.props;
 
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 ---
 
 <section
@@ -31,8 +31,12 @@ import { Image } from 'astro:assets';
       alt="icon"
     />
     <div>
-      <h3 class="font-medium text-[28px] md:text-4xl leading-[30px] md:leading-10 mb-7">{title}</h3>
-      <div class="text-base leading-7 antialiased" set:html={content.html}></div>
+      <h3
+        class="font-medium text-[28px] md:text-4xl leading-[30px] md:leading-10 mb-7"
+      >
+        {title}
+      </h3>
+      <div class="text-base leading-7 antialiased" set:html={content.html} />
     </div>
   </div>
   <div class="flex justify-center">
@@ -40,8 +44,8 @@ import { Image } from 'astro:assets';
       class="mt-auto max-w-[466px] w-full"
       src={img.path}
       alt={img.alt}
-      width={img.width || 466}
-      height={img.height || 300}
+      inferSize={true}
+      width={466}
     />
   </div>
 </section>

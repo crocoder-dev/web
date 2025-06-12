@@ -65,8 +65,8 @@ posts.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
                       <Image
                         src={image}
                         alt={title}
-                        width={1000}
-                        height={500}
+                        width={936}
+                        widths={[936, 452]}
                         loading={i < 3 ? "eager" : "lazy"}
                         decoding="auto"
                       />

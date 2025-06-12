@@ -38,7 +38,7 @@ import { Image } from 'astro:assets';
     <a class="sm:flex sm:items-center" href="/" aria-label="Crocoder Logo">
       <Image
         width={63}
-        height={51}
+        inferSize={true}
         alt="Crocoder Crocodile Logo"
         src="/images/crocoder-logo.png"
         class="h-[51px] w-auto"
@@ -46,7 +46,7 @@ import { Image } from 'astro:assets';
       />
       <Image
         width={153}
-        height={24}
+        inferSize={true}
         alt="Crocoder Text Logo"
         src="/images/crocoder-text.svg"
         class="pl-[14px] hidden h-6 w-auto md:block md:[&[data-navhidden='false']]:opacity-0 md:[&[data-navhidden='']]:opacity-100"
