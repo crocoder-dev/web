@@ -32,9 +32,10 @@ export default defineConfig({
       defaultImageDirectives: {
         loading: 'lazy',
         decoding: 'async',
-        format: 'auto',
+        format: 'webp',
         quality: 75,
         inferRemoteSize: true,
+
       },
     }),
   ],
