@@ -1,4 +1,6 @@
 ---
+import { Picture } from "@astrojs/image/components";
+
 interface Props {
   idx: number;
   title: string;
@@ -13,6 +15,14 @@ interface Props {
 }
 
 const { title, content, img, styles, onDark, icon } = Astro.props;
+
+
+const images = import.meta.glob("../assets/*.*");
+const src = images[`../assets${img.path}`] as any as () => Promise<{
+  default: ImageMetadata;
+}>;
+
+const image = await src();
 ---
 
 <section
@@ -26,6 +36,12 @@ const { title, content, img, styles, onDark, icon } = Astro.props;
     </div>
   </div>
   <div class="flex justify-center">
-    <img class="mt-auto max-w-[466px] w-full" src={img.path} alt={img.alt} />
+    <Picture
+      class="mt-auto max-w-[466px] w-full"
+      src={image.default}
+      alt={img.alt}
+      widths={[466, 342, 312]}
+      loading="lazy"
+    />
   </div>
 </section>
