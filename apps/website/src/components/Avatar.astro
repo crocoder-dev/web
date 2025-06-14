@@ -1,9 +1,15 @@
 ---
-const { imagePath, name, company, role } = Astro.props;
+import { Picture } from "@astrojs/image/components";
+const { image, name, company, role } = Astro.props;
 ---
 
 <div class="flex gap-3 col-span-2">
-  <img src={imagePath} class="h-[72px] w-[72px]" />
+  <Picture
+    src={image.default}
+    alt={name}
+    widths={[72]}
+    class="h-[72px] w-[72px]"
+  />
   <span class="text-xl leading-7">
     <strong>{name}</strong><br />
     <span class="underline">{company}</span>

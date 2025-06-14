@@ -5,6 +5,8 @@ import SectionTitle from "./SectionTitle.astro";
 import Section from "./Section.astro";
 import { grid_classes } from "./_grid";
 import Pill from "./Pill.astro";
+import { getImage } from "@astrojs/image";
+import bgImage from "../assets/values-main-image.png";
 
 const styles = ["bg-[#FEB534]", "bg-[#607A1A]", "bg-[#F6FCFD]"];
 
@@ -23,12 +25,20 @@ for (const value of valueCollection) {
     icon: value.data.icon,
   });
 }
+
+const { src } = await getImage({
+  src: bgImage,
+  alt: "",
+  width: 1920,
+  format: 'avif',
+});
 ---
 
 <Section
   idx="values-wrapper"
   contentClassName={grid_classes}
-  className="bg-contrast bg-[url(/values-main-image.png)] bg-no-repeat bg-top bg-[auto_320px]"
+  className="bg-contrast bg-no-repeat bg-top bg-[auto_320px]"
+  style={`background-image: url('${src}');`}
 >
   <div
     class="col-span-6 md:col-span-12 flex flex-col gap-4 pt-[148px] md:pt-48 md:items-center pb-5 md:pb-11 xl:pb-12"

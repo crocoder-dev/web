@@ -9,12 +9,24 @@ const testimonialCollections = await getCollection("testimonials");
 
 const testimonials = [];
 
+const images = import.meta.glob("../assets/*.*");
+
+console.log(images);
+
 for (const testimonial of testimonialCollections) {
+  console.log(testimonial.data.imageUrl);
+  const src = images[
+    `../assets${testimonial.data.imageUrl}`
+  ] as any as () => Promise<{
+    default: ImageMetadata;
+  }>;
+  const image = await src();
+
   testimonials.push({
     content: testimonial.rendered,
     name: testimonial.data.name,
     title: testimonial.data.title,
-    imageUrl: testimonial.data.imageUrl,
+    image: image,
     company: testimonial.data.company,
   });
 }
@@ -34,14 +46,14 @@ for (const testimonial of testimonialCollections) {
   xl:flex-wrap xl:justify-between xl:overflow-hidden"
   >
     {
-      testimonials.map(({ name, content, title, imageUrl, company }) => (
+      testimonials.map(({ name, content, title, image, company }) => (
         <article class="flex-1 bg-[#F4F4F4] rounded-2xl p-7 min-w-[318px] md:min-w-[474px] xl:min-w-0 max-h-fit max-w-full [&_p]:leading-7 [&_p]:text-black [&_p]:w-full">
           <p set:html={content?.html} class="text-base leading-[26px]" />
           <div class="pt-7">
             <Avatar
               name={name}
               role={title}
-              imagePath={imageUrl}
+              image={image}
               company={company}
             />
           </div>

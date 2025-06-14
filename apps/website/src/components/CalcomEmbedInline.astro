@@ -27,6 +27,7 @@ const {
     eventType,
   }}
 >
+const loadCalEmbed = () => {
   (function (C, A, L) {
     let p = function (a, ar) {
       a.q.push(ar);
@@ -90,4 +91,11 @@ const {
     hideEventTypeDetails,
     layout,
   });
+}
+
+if ("requestIdleCallback" in window) {
+ requestIdleCallback(loadCalEmbed);
+} else {
+  window.addEventListener("load", loadCalEmbed);
+}
 </script>
