@@ -2,8 +2,8 @@
 import { grid_classes } from "./_grid";
 import Pill from "./Pill.astro";
 import Section from "./Section.astro";
-import { Image } from '@astrojs/image/components';
-import heroImage from '../assets/croco-13.png';
+import { Image } from "@astrojs/image/components";
+import heroImage from "../assets/croco-13.png";
 ---
 
 <Section className="!py-0 !px-0">
@@ -15,10 +15,13 @@ import heroImage from '../assets/croco-13.png';
     >
       <Image
         src={heroImage}
-        alt="Croco-13"
-        class="w-full h-full object-cover object-center"
+        alt="CroCoder Hero Image"
         loading="eager"
-    />
+        width={598}
+        height={1196/2}
+        decoding="auto"
+        format="webp"
+      />
     </div>
     <div
       class="text-white my-auto
@@ -46,7 +49,9 @@ import heroImage from '../assets/croco-13.png';
       <h1
         class="font-normal text-[32px] leading-9 md:text-[54px] md:leading-[60px] tracking-tight"
       >
-        <span class="fadeInUp" style="animation-delay: 100ms;">Building Software</span>
+        <span class="fadeInUp" style="animation-delay: 100ms;"
+          >Building Software</span
+        >
         <span
           class="fadeInUp"
           style="animation-delay: 500ms;animation-fill-mode: backwards;"
@@ -61,7 +66,8 @@ import heroImage from '../assets/croco-13.png';
           class="fadeInUp"
           style="animation-delay: 900ms;animation-fill-mode: backwards;"
         >
-          A web development consultancy delivering scalable solutions that drive real business impact.
+          A web development consultancy delivering scalable solutions that drive
+          real business impact.
         </span>
       </div>
       <div class="flex flex-col sm:flex-row gap-[10px]">
