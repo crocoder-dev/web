@@ -1,8 +1,9 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
-import vercel from '@astrojs/vercel/static';
+import vercel from '@astrojs/vercel/serverless'
 import createRemarkPlugin from '@crocoder-dev/remark-plugin';
+import image from '@astrojs/image';
 
 const classes = {
   titleClass: 'font-bold text-[1.25rem] mt-[2.5rem]',
@@ -15,19 +16,14 @@ const remarkPlugin = createRemarkPlugin(classes);
 
 export default defineConfig({
   prefetch: true,
-  output: 'static',
+  output: 'server',
   adapter: vercel({
-    imageService: true,
-    imagesConfig: {
-      sizes: [640, 936],
-      domains: ['*'],
-    },
   }),
   redirects: {
     '/feed': '/rss.xml',
     '/sitemap': '/sitemap.xml'
   },
-  integrations: [tailwind(), react()],
+  integrations: [tailwind(), react(), image()],
   markdown: {
     remarkPlugins: [remarkPlugin],
   },

@@ -3,19 +3,21 @@ interface Props {
   idx?: string;
   className?: string;
   contentClassName?: string;
+  style?: string;
 }
 
-const { idx, className, contentClassName } = Astro.props;
+const { idx, className, contentClassName, style } = Astro.props;
 ---
 
 <section
   id={idx}
   class={`
    w-full
-   px-4 sm:px-7 
-   py-12  lg:py-16 
+   px-4 sm:px-7
+   py-12  lg:py-16
    overflow-hidden
    ${className} `}
+  style={style}
 >
   <div
     class={`max-w-[100vw] md:max-w-[var(--max-width)] m-auto  ${contentClassName}`}

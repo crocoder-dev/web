@@ -1,5 +1,5 @@
 ---
-imageUrl: "/Paul-Jeszenszky.png"
+imageUrl: "/paul-jeszenszky.png"
 name: "Paul Jeszenszky"
 title: "co-founder & CEO"
 company: "Submix"

@@ -2,6 +2,8 @@
 import { grid_classes } from "../_grid";
 import Pill from "../Pill.astro";
 import Section from "../Section.astro";
+import { Picture } from "@astrojs/image/components";
+import heroImage from "../../assets/cto-hero.png";
 ---
 
 <Section className="!pt-[75px] bg-white md:!pb-12 lg:!pb-24">
@@ -55,7 +57,12 @@ import Section from "../Section.astro";
       lg:col-start-7
       lg:row-start-1"
     >
-      <img src="/cto-hero.png" alt="" class="" />
+      <Picture
+        src={heroImage}
+        alt="CroCoder Hero Image"
+        widths={[1412, 626, 470, 398]}
+        loading="eager"
+      />
     </div>
   </div>
 </Section>

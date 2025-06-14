@@ -3,6 +3,8 @@ import CalcomEmbedInline from "../components/CalcomEmbedInline.astro";
 import { grid_classes } from "./_grid";
 import Pill from "./Pill.astro";
 import Section from "./Section.astro";
+import { Picture } from "@astrojs/image/components";
+import meetingImage from "../assets/meeting-croc.png";
 ---
 
 <!-- YELLOW-1 = #FEB534 -->
@@ -13,7 +15,13 @@ import Section from "./Section.astro";
   <div
     class="col-span-6 md:col-span-8 md:col-start-3 -translate-y-1/2 -mb-40 xl:col-span-6 xl:col-start-4 lg:-mb-60"
   >
-    <img src="/meeting-croc.png" class="object-cover xl:p-6" />
+    <Picture
+      class="object-cover xl:p-6"
+      src={meetingImage}
+      alt=""
+      widths={[636, 626, 398]}
+      loading="lazy"
+    />
   </div>
   <div
     id="book-a-call-section"
