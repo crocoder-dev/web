@@ -29,12 +29,6 @@ export default defineConfig({
     react(),
     image({
       serviceEntryPoint: '@astrojs/image/sharp',
-      defaultImageDirectives: {
-        loading: 'lazy',
-        decoding: 'async',
-        format: 'webp',
-        quality: 75,
-      },
     }),
   ],
   markdown: {
