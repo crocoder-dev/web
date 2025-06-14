@@ -20,7 +20,7 @@ export default defineConfig({
     imageService: true,
     devImageService: 'sharp',
     imagesConfig: {
-      sizes: [320, 640, 750, 936, 1080, 1196, 1200],
+      sizes: [320, 600, 640, 900, 1200],
       domains: [],
     }
   }),
