@@ -11,10 +11,7 @@ const testimonials = [];
 
 const images = import.meta.glob("../assets/*.*");
 
-console.log(images);
-
 for (const testimonial of testimonialCollections) {
-  console.log(testimonial.data.imageUrl);
   const src = images[
     `../assets${testimonial.data.imageUrl}`
   ] as any as () => Promise<{
