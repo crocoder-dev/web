@@ -10,7 +10,7 @@
     "@astrojs/vercel": "^8.1.5",
     "@crocoder-dev/remark-plugin": "*",
     "@crocoder-dev/tailwind": "*",
-    "astro": "5.7.13",
+    "astro": "5.12.0",
     "astro-font": "^1.1.0",
     "classnames": "^2.5.1",
     "date-fns": "^4.1.0",
