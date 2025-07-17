@@ -14,7 +14,7 @@
     "astro-font": "^1.1.0",
     "classnames": "^2.5.1",
     "date-fns": "^4.1.0",
-    "marked": "^15.0.5",
+    "marked": "^16.1.0",
     "posthog-js": "^1.222.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
