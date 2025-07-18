@@ -3,7 +3,7 @@ import CalcomEmbedInline from "../components/CalcomEmbedInline.astro";
 import { grid_classes } from "./_grid";
 import Pill from "./Pill.astro";
 import Section from "./Section.astro";
-import { Picture } from "@astrojs/image/components";
+import { Image } from "astro:assets";
 import meetingImage from "../assets/meeting-croc.png";
 ---
 
@@ -15,11 +15,12 @@ import meetingImage from "../assets/meeting-croc.png";
   <div
     class="col-span-6 md:col-span-8 md:col-start-3 -translate-y-1/2 -mb-40 xl:col-span-6 xl:col-start-4 lg:-mb-60"
   >
-    <Picture
+    <Image
       class="object-cover xl:p-6"
       src={meetingImage}
       alt=""
-      widths={[636, 626, 398]}
+      widths={[320, 480, 640, 800]}
+      sizes="(max-width: 767px) 100vw, (max-width: 1279px) 67vw, 50vw"
       loading="lazy"
     />
   </div>

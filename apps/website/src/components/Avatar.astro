@@ -1,13 +1,14 @@
 ---
-import { Picture } from "@astrojs/image/components";
+import { Image } from "astro:assets";
 const { image, name, company, role } = Astro.props;
 ---
 
 <div class="flex gap-3 col-span-2">
-  <Picture
+  <Image
     src={image.default}
     alt={name}
-    widths={[72]}
+    width={72}
+    height={72}
     class="h-[72px] w-[72px]"
   />
   <span class="text-xl leading-7">

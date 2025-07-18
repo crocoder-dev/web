@@ -67,10 +67,10 @@ const dateObj = new Date(createdAt);
         <div class="col-12 mt-8 mb-8">
           {
             image && (
-              <Picture
+              <Image
                 src={image}
-                height={500}
-                width={1000}
+                widths={[320, 480, 640, 800, 1000]}
+                sizes="(max-width: 767px) 100vw, 1000px"
                 alt={title}
                 class="rounded-lg"
                 loading="eager"
@@ -94,10 +94,10 @@ const dateObj = new Date(createdAt);
             >
               {
                 authorImage && (
-                  <Picture
+                  <Image
                     src={authorImage}
-                    width={215}
-                    height={215}
+                    widths={[155, 215]}
+                    sizes="(max-width: 767px) 155px, 215px"
                     alt={title}
                     loading="lazy"
                     decoding="auto"
@@ -131,12 +131,11 @@ const dateObj = new Date(createdAt);
               <a class="flex flex-col gap-4" href={url}>
                 <div class="overflow-hidden rounded-lg">
                   {image && (
-                    <Picture
+                    <Image
                       src={image}
                       alt={title}
-                      width={300}
-                      height={200}
-                      inferSize={true}
+                      widths={[200, 300]}
+                      sizes="(max-width: 767px) 100vw, 33vw"
                       loading="lazy"
                       decoding="auto"
                     />

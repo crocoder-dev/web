@@ -62,11 +62,11 @@ posts.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
                 <a class="flex flex-col gap-4" href={url}>
                   <div class="overflow-hidden rounded-lg">
                     {image && (
-                      <Picture
+                      <Image
                         src={image}
                         alt={title}
-                        width={936}
-                        height={528}
+                        widths={[320, 480, 640, 936]}
+                        sizes={i === 0 ? "(max-width: 639px) 100vw, 936px" : "(max-width: 639px) 100vw, 50vw"}
                         loading={i < 3 ? "eager" : "lazy"}
                         decoding="auto"
                       />

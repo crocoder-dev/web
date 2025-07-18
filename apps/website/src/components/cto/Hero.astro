@@ -2,7 +2,7 @@
 import { grid_classes } from "../_grid";
 import Pill from "../Pill.astro";
 import Section from "../Section.astro";
-import { Picture } from "@astrojs/image/components";
+import { Image } from "astro:assets";
 import heroImage from "../../assets/cto-hero.png";
 ---
 
@@ -57,10 +57,11 @@ import heroImage from "../../assets/cto-hero.png";
       lg:col-start-7
       lg:row-start-1"
     >
-      <Picture
+      <Image
         src={heroImage}
         alt="CroCoder Hero Image"
-        widths={[1412, 626, 470, 398]}
+        widths={[320, 480, 640, 800]}
+        sizes="(max-width: 767px) 100vw, (max-width: 1023px) 100vw, 50vw"
         loading="eager"
       />
     </div>

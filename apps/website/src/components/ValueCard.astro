@@ -1,5 +1,5 @@
 ---
-import { Picture } from "@astrojs/image/components";
+import { Image } from "astro:assets";
 
 interface Props {
   idx: number;
@@ -36,11 +36,12 @@ const image = await src();
     </div>
   </div>
   <div class="flex justify-center">
-    <Picture
+    <Image
       class="mt-auto max-w-[466px] w-full"
       src={image.default}
       alt={img.alt}
-      widths={[466, 342, 312]}
+      widths={[320, 400, 466]}
+      sizes="(max-width: 767px) 100vw, (max-width: 1279px) 100vw, 33vw"
       loading="lazy"
     />
   </div>
