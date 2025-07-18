@@ -1,5 +1,6 @@
 ---
 title: "Lead Migrations Without Impacting Customers"
+subtitle: "Legacy System Migrations | Architecture Refactoring"
 imgPath: "/pic-boy-schedule.png"
 imgAlt: "Developer working on migration planning and scheduling"
 idx: 1

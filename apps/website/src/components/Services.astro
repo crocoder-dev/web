@@ -14,6 +14,7 @@ for (const service of servicesCollection) {
   services[service.data.idx - 1] = {
     content: service.rendered,
     title: service.data.title,
+    subtitle: service.data.subtitle,
     img: {
       path: service.data.imgPath,
       alt: service.data.imgAlt,
@@ -47,6 +48,7 @@ for (const service of servicesCollection) {
             <ServiceCard
               idx={idx + 1}
               title={value.title}
+              subtitle={value.subtitle}
               content={value.content}
               imgPath={value.img.path}
               imgAlt={value.img.alt}
