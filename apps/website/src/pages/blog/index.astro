@@ -1,7 +1,7 @@
 ---
 import Base from "../../layouts/base-blog.astro";
 import { getCollection } from "astro:content";
-import { Picture } from "astro:assets";
+import { Image } from "astro:assets";
 import formatDate from "../..//format-date";
 import Meta from "../../layouts/base-meta-tags.astro";
 
@@ -69,6 +69,7 @@ posts.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
                         sizes={i === 0 ? "(max-width: 639px) 100vw, 936px" : "(max-width: 639px) 100vw, 50vw"}
                         loading={i < 3 ? "eager" : "lazy"}
                         decoding="auto"
+                        inferSize={true}
                       />
                     )}
                   </div>
