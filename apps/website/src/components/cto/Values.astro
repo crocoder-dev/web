@@ -11,8 +11,7 @@ import douglasIcon from "../../assets/douglas-icon.png";
 const optimizedDouglasIcon = await getImage({
   src: douglasIcon,
   width: 72,
-  height: 72,
-  format: 'webp'
+  height: 72
 });
 ---
 
@@ -121,11 +120,10 @@ const optimizedDouglasIcon = await getImage({
           class="h-[72px] w-[72px]"
           loading="lazy"
         />
-        <p class="text-xl text-secondary">
-          <strong>Douglas Barr</strong>
-          <br />
+        <span class="text-xl text-secondary">
+          <strong>Douglas Barr</strong><br />
           <span class="underline">Submix</span> co-founder & CTO
-        </p>
+        </span>
       </div>
     </div>
   </div>
