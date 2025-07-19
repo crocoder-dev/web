@@ -65,9 +65,8 @@ module.exports = {
         h6: h6 + "rem",
       },
       fontFamily: {
-        primary: [fontPrimary, fontPrimaryType],
-        secondary: [fontSecondary, fontSecondaryType],
-        poppins: ["Poppins", fontPrimaryType],
+        primary: 'var(--font-primary)',
+        secondary: 'var(--font-secondary)',
       },
     },
   },
