@@ -1,7 +1,7 @@
 ---
 title: "Improve Engineering Tempo"
 imgPath: "/croco-charts.png"
-imgAlt: "Illustration of a video meeting with Crocoder team member"
+imgAlt: "Charts and graphs showing engineering performance metrics and improvements"
 idx: 3
 iconPath: "/stopwatch-gold.svg"
 bgColor: "bg-[#3C3843E5]/[0.9]"

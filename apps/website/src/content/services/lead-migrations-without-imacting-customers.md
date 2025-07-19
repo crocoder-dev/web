@@ -1,7 +1,7 @@
 ---
 title: "Lead Migrations Without Impacting Customers"
 imgPath: "/pic-boy-schedule.png"
-imgAlt: "Illustration of a video meeting with Crocoder team member"
+imgAlt: "Developer working on migration planning and scheduling"
 idx: 1
 iconPath: "/shield-check-gold.svg"
 bgColor: "bg-[#5362DBE5]/[0.9]"

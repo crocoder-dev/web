@@ -1,7 +1,7 @@
 ---
 title: "Upskill Existing Teams "
 imgPath: "/croco-group.png"
-imgAlt: "Illustration of a video meeting with Crocoder team member"
+imgAlt: "Team of developers collaborating and learning together"
 idx: 4
 iconPath: "/management.svg"
 bgColor: "bg-[#1E1A1AE5]/[0.9]"
