@@ -1,6 +1,6 @@
 ---
 import classnames from "classnames";
-import { Picture } from "astro:assets";
+import { Image } from "astro:assets";
 
 interface Props {
   idx: number;
@@ -75,11 +75,12 @@ const image = await src();
       <div
         class="flex flex-col justify-center items-center row-start-3 lg:justify-start lg:col-span-1 lg:row-start-2"
       >
-        <Picture
+        <Image
           class="object-cover xl:p-6"
           src={image.default}
           alt={imgAlt}
-          widths={[578]}
+          widths={[320, 480, 578, 640]}
+          sizes="(max-width: 1024px) calc(100vw - 56px), calc(50vw - 28px)"
           loading="lazy"
         />
       </div>
