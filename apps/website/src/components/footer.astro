@@ -1,4 +1,7 @@
 ---
+import { Image } from "astro:assets";
+import crocoderLogo from "../assets/crocoder-logo.png";
+
 const copyright = `
  ${new Date().getFullYear()} CroCoder, Inc. All rights reserved.
 `;
@@ -17,11 +20,11 @@ const copyright = `
     >
       <div class="w-[225px] col-span-2 lg:col-span-1">
         <a class="sm:flex sm:items-center" href="/" aria-label="Crocoder Logo">
-          <img
-            width={64}
-            height={30}
+          <Image
+            src={crocoderLogo}
             alt="Crocoder Crocodile Logo"
-            src="/images/crocoder-logo.png"
+            widths={[64, 128]}
+            sizes="64px"
             class="h-[48px] w-auto"
           />
           <img

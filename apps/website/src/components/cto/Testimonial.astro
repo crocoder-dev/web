@@ -1,6 +1,8 @@
 ---
 import { grid_classes } from "../_grid";
 import Section from "../Section.astro";
+import { Image } from "astro:assets";
+import raphaelBauerBubble from "../../assets/raphael-bauer-bubble.png";
 ---
 
 <Section className="bg-white" contentClassName={grid_classes}>
@@ -24,8 +26,11 @@ import Section from "../Section.astro";
         <span class="underline">Interim CTO</span>
       </p>
     </div>
-    <img
-      src="/raphael-bauer-bubble.png"
+    <Image
+      src={raphaelBauerBubble}
+      alt="Raphael Bauer testimonial portrait"
+      widths={[152, 288, 320]}
+      sizes="(max-width: 768px) 152px, 288px"
       class="absolute top-0 right-0 h-[152px] md:relative md:col-start-3 md:row-start-1 xl:h-72"
     />
   </div>

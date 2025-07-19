@@ -1,3 +1,8 @@
+---
+import { Image } from "astro:assets";
+import crocoderLogo from "../assets/crocoder-logo.png";
+---
+
 <header
   class="fixed
     m-auto
@@ -36,11 +41,11 @@
       max-md:has-[input:checked]:bg-secondary"
   >
     <a class="sm:flex sm:items-center" href="/" aria-label="Crocoder Logo">
-      <img
-        width={63}
-        height={51}
+      <Image
+        src={crocoderLogo}
         alt="Crocoder Crocodile Logo"
-        src="/images/crocoder-logo.png"
+        widths={[63, 126]}
+        sizes="63px"
         class="h-[51px] w-auto"
       />
       <img
