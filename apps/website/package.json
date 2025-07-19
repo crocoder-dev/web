@@ -11,6 +11,7 @@
     "@tailwindcss/vite": "^4.1.11",
     "astro": "5.7.13",
     "astro-font": "^1.1.0",
+    "autoprefixer": "^10.4.21",
     "classnames": "^2.5.1",
     "date-fns": "^4.1.0",
     "marked": "^15.0.5",
