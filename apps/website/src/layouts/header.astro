@@ -1,6 +1,13 @@
 ---
-import { Image } from "astro:assets";
+import { getImage } from "astro:assets";
 import crocoderLogo from "../assets/crocoder-logo.png";
+
+const optimizedLogo = await getImage({
+  src: crocoderLogo,
+  width: 63,
+  height: 51,
+  format: 'webp'
+});
 ---
 
 <header
@@ -37,14 +44,13 @@ import crocoderLogo from "../assets/crocoder-logo.png";
       max-md:has-[input:checked]:bg-secondary"
   >
     <a class="sm:flex sm:items-center" href="/" aria-label="Crocoder Logo">
-      <Image
-        src={crocoderLogo}
+      <img
+        src={optimizedLogo.src}
         alt="Crocoder Crocodile Logo"
-        width={63}
-        height={51}
-        widths={[63, 126, 609]}
-        sizes="63px"
+        width="63"
+        height="51"
         class="h-[51px] w-auto"
+        loading="eager"
       />
       <img
         width={153}

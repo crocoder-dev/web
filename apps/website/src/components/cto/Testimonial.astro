@@ -1,8 +1,15 @@
 ---
 import { grid_classes } from "../_grid";
 import Section from "../Section.astro";
-import { Image } from "astro:assets";
+import { getImage } from "astro:assets";
 import raphaelBauerBubble from "../../assets/raphael-bauer-bubble.png";
+
+const optimizedTestimonial = await getImage({
+  src: raphaelBauerBubble,
+  width: 288,
+  height: 277,
+  format: 'webp'
+});
 ---
 
 <Section className="bg-white" contentClassName={grid_classes}>
@@ -26,14 +33,13 @@ import raphaelBauerBubble from "../../assets/raphael-bauer-bubble.png";
         <span class="underline">Interim CTO</span>
       </p>
     </div>
-    <Image
-      src={raphaelBauerBubble}
+    <img
+      src={optimizedTestimonial.src}
       alt="Raphael Bauer testimonial portrait"
-      width={288}
-      height={277}
-      widths={[152, 288, 320, 569]}
-      sizes="(max-width: 768px) 152px, 288px"
+      width="288"
+      height="277"
       class="absolute top-0 right-0 h-[152px] md:relative md:col-start-3 md:row-start-1 xl:h-72"
+      loading="lazy"
     />
   </div>
 </Section>
