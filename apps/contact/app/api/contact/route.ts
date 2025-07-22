@@ -137,16 +137,25 @@ const mentionPerson = ({ id, email }: { id: string; email: string }) => [
 ];
 
 const getMentions = () => {
-  if (MENTION_EMAILS && MENTION_IDS) {
-    const emails = MENTION_EMAILS.split(",");
-    const ids = MENTION_IDS.split(",");
+  try {
+    if (
+      MENTION_EMAILS &&
+      MENTION_IDS &&
+      typeof MENTION_EMAILS === "string" &&
+      typeof MENTION_IDS === "string"
+    ) {
+      const emails = MENTION_EMAILS.split(",").filter(Boolean);
+      const ids = MENTION_IDS.split(",").filter(Boolean);
 
-    if (emails.length && ids.length) {
-      return ids.map((id, i) => ({
-        id,
-        email: emails[i],
-      }));
+      if (emails.length && ids.length) {
+        return ids.map((id, i) => ({
+          id: id.trim(),
+          email: emails[i]?.trim() || "",
+        }));
+      }
     }
+  } catch (error) {
+    console.error("Error in getMentions:", error);
   }
   return [];
 };
@@ -318,8 +327,7 @@ export async function POST(request: Request) {
       if (!body || bodyValidationResult.error) {
         return new Response(
           JSON.stringify({
-            message:
-              bodyValidationResult.error?.message || "No body was found",
+            message: bodyValidationResult.error?.message || "No body was found",
           }),
           {
             status: 400,
@@ -333,15 +341,12 @@ export async function POST(request: Request) {
       const { name, email, message, hasConsent } = body;
 
       if (!hasConsent) {
-        return new Response(
-          JSON.stringify({ message: "No consent by user" }),
-          {
-            status: 403,
-            headers: {
-              ...corsHeaders,
-            },
+        return new Response(JSON.stringify({ message: "No consent by user" }), {
+          status: 403,
+          headers: {
+            ...corsHeaders,
           },
-        );
+        });
       }
 
       const { success, limit, reset, remaining } = await allowRequest(request);
