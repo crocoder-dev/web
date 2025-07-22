@@ -1,6 +1,5 @@
 import { Client, isFullPage } from "@notionhq/client";
-import { Ratelimit } from "@upstash/ratelimit";
-import { Redis } from "@upstash/redis";
+
 import { nanoid } from "nanoid";
 import z from "zod";
 
@@ -25,17 +24,11 @@ const {
   MENTION_EMAILS,
   MENTION_IDS,
   NOTION_DATABASE_ID,
-  UPSTASH_REDIS_REST_URL,
-  UPSTASH_REDIS_REST_TOKEN,
+
   IS_OFFLINE,
 } = process.env;
 
 const notion = new Client({ auth: NOTION_TOKEN });
-
-const redis = new Redis({
-  url: UPSTASH_REDIS_REST_URL,
-  token: UPSTASH_REDIS_REST_TOKEN,
-});
 
 const createPayload = (name: string, email: string, url: string) => ({
   channel: SLACK_CHANNEL,
@@ -274,32 +267,6 @@ const processContact = async (event: {
   }
 };
 
-const allowRequest = async (request: Request & { ip?: string }) => {
-  try {
-    const ip = request.ip ?? "127.0.0.1";
-
-    const ratelimit = new Ratelimit({
-      limiter: Ratelimit.fixedWindow(1, "30 s"),
-      /** Use fromEnv() to automatically load connection secrets from your environment
-       * variables. For instance when using the Vercel integration.
-       *
-       * This tries to load `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` from
-       * your environment using `import.meta.env`.
-       */
-      redis,
-    });
-
-    const response = await ratelimit.limit(ip);
-    return response;
-  } catch (error) {
-    throw {
-      body: {
-        message: error,
-      },
-    };
-  }
-};
-
 export async function OPTIONS() {
   return new Response(null, {
     status: 200,
@@ -349,22 +316,6 @@ export async function POST(request: Request) {
         });
       }
 
-      const { success, limit, reset, remaining } = await allowRequest(request);
-
-      if (!success) {
-        return new Response(
-          JSON.stringify({
-            message: "Too many requests. Please try again in a minute",
-          }),
-          {
-            status: 429,
-            headers: {
-              ...corsHeaders,
-            },
-          },
-        );
-      }
-
       await processContact({
         id: nanoid(),
         email,
@@ -380,9 +331,6 @@ export async function POST(request: Request) {
           status: 200,
           headers: {
             ...corsHeaders,
-            "X-RateLimit-Limit": limit.toString(),
-            "X-RateLimit-Remaining": remaining.toString(),
-            "X-RateLimit-Reset": reset.toString(),
           },
         },
       );
