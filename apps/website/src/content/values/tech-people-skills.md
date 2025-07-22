@@ -1,6 +1,6 @@
 ---
 title: "Complementing technical with people skills"
-imgPath: "/values-2.png"
+imgPath: "/values-3.png"
 imgAlt: "Software developers accompanied by a crocodile"
 icon: "/pie-chart.svg"
 ---

@@ -1,6 +1,6 @@
 ---
 title: "Balancing today's priorities with tomorrow's expectations"
-imgPath: "/values-img-crocodile-3.png"
+imgPath: "/values-img-crocodile-4.png"
 imgAlt: "Crocodile presenting some cool slides."
 icon: "/line-chart-waves.svg"
 ---

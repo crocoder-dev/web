@@ -1,7 +1,7 @@
 ---
 title: "Workflow & Release Optimization"
 subtitle: "Shaping Developer Experience | Development Process Refinement"
-imgPath: "/croco-charts.png"
+imgPath: "/croco-charts-2.png"
 imgAlt: "Charts and graphs showing engineering performance metrics and improvements"
 idx: 3
 iconPath: "/stopwatch-gold.svg"
