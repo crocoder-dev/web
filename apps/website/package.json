@@ -16,7 +16,7 @@
     "autoprefixer": "^10.4.21",
     "classnames": "^2.5.1",
     "date-fns": "^4.1.0",
-    "marked": "^15.0.5",
+    "marked": "^16.1.1",
     "posthog-js": "^1.222.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
