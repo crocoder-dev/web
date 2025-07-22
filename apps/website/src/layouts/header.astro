@@ -1,3 +1,15 @@
+---
+import { getImage } from "astro:assets";
+import crocoderLogo from "../assets/crocoder-logo.png";
+
+const optimizedLogo = await getImage({
+  src: crocoderLogo,
+  width: 63,
+  height: 51,
+  format: 'webp'
+});
+---
+
 <header
   class="m-auto
     mx:0
@@ -33,11 +45,12 @@
   >
     <a class="sm:flex sm:items-center" href="/" aria-label="Crocoder Logo">
       <img
-        width={63}
-        height={51}
+        src={optimizedLogo.src}
         alt="Crocoder Crocodile Logo"
-        src="/images/crocoder-logo.png"
+        width="63"
+        height="51"
         class="h-[51px] w-auto"
+        loading="eager"
       />
       <img
         width={153}

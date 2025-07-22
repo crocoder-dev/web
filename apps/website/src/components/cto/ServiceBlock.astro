@@ -12,7 +12,7 @@ const { image, iconFirst, iconSecond, sectionTitle, titleFirst, titleSecond, des
     </div>
     <div class="rounded-2xl grid grid-cols-1 lg:grid-cols-2 gap-7 items-start">
       <div class="grid grid-cols-1 gap-y-4 text-left sm:text-left">
-        <img src={iconFirst} alt="" class="w-16 h-16 sm:mx-0" />
+        <img src={iconFirst} alt="" class="w-16 h-16 sm:mx-0" role="presentation" />
         <h4 class="font-medium text-xl leading-[22px] md:text-[28px] md:leading-[30px] tracking-tight">
           {titleFirst}
         </h4>
@@ -21,7 +21,7 @@ const { image, iconFirst, iconSecond, sectionTitle, titleFirst, titleSecond, des
         </span>
       </div>
       <div class="grid grid-cols-1 gap-y-4 text-left sm:text-left">
-        <img src={iconSecond} alt="" class="w-16 h-16 sm:mx-0" />
+        <img src={iconSecond} alt="" class="w-16 h-16 sm:mx-0" role="presentation" />
         <h4 class="font-medium text-xl leading-[22px] md:text-[28px] md:leading-[30px] tracking-tight">
           {titleSecond}
         </h4>
@@ -32,5 +32,6 @@ const { image, iconFirst, iconSecond, sectionTitle, titleFirst, titleSecond, des
     </div>
   </div>
   <img src={image}
+  alt="CroCoder team member illustration"
   class="md:absolute bottom-0 left-0 h-40 sm:h-56 lg:h-80 max-w-xs sm:max-w-md relative max-md:top-12 max-md:mt-12" />
 </div>

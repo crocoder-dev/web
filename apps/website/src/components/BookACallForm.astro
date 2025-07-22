@@ -3,7 +3,7 @@ import CalcomEmbedInline from "../components/CalcomEmbedInline.astro";
 import { grid_classes } from "./_grid";
 import Pill from "./Pill.astro";
 import Section from "./Section.astro";
-import { Picture } from "@astrojs/image/components";
+import { Image } from "astro:assets";
 import meetingImage from "../assets/meeting-croc.png";
 ---
 
@@ -15,11 +15,12 @@ import meetingImage from "../assets/meeting-croc.png";
   <div
     class="col-span-6 md:col-span-8 md:col-start-3 -translate-y-1/2 -mb-40 xl:col-span-6 xl:col-start-4 lg:-mb-60"
   >
-    <Picture
-      class="object-cover xl:p-6"
+    <Image
+      class="object-cover xl:p-6 md:p-0 p-8"
       src={meetingImage}
-      alt=""
-      widths={[636, 626, 398]}
+      alt="CroCoder team member in a video call consultation"
+      widths={[320, 480, 640, 800, 964]}
+      sizes="(max-width: 768px) calc(100vw - 32px), (max-width: 1280px) calc(67vw - 32px), calc(50vw - 28px)"
       loading="lazy"
     />
   </div>

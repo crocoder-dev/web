@@ -24,7 +24,7 @@ if (theme.fonts.font_family.secondary) {
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./**/*.{astro,html,mjs,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
+  content: ["./src/**/*.{astro,html,mjs,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     screens: {
       sm: "540px",
@@ -65,9 +65,8 @@ module.exports = {
         h6: h6 + "rem",
       },
       fontFamily: {
-        primary: [fontPrimary, fontPrimaryType],
-        secondary: [fontSecondary, fontSecondaryType],
-        poppins: ["Poppins", fontPrimaryType],
+        primary: 'var(--font-primary)',
+        secondary: 'var(--font-secondary)',
       },
     },
   },

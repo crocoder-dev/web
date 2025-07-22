@@ -1,6 +1,6 @@
 ---
 import classnames from "classnames";
-import { Picture } from "@astrojs/image/components";
+import { Image } from "astro:assets";
 
 interface Props {
   idx: number;
@@ -65,7 +65,7 @@ const image = await src();
       class="col-span-6 grid max-lg:grid-rows-[min-content_min-content_auto] gap-7 lg:grid-cols-2 lg:col-span-2 lg:items-start justify-between"
     >
       <span class="grid md:flex gap-7 items-center">
-        <img src={iconPath} class="lg:mt-[2px] h-8 w-8 md:h-12 md:w-12" />
+        <img src={iconPath} alt="" role="presentation" class="lg:mt-[2px] h-8 w-8 md:h-12 md:w-12" />
         <h4
           class="font-medium text-xl leading-[22px] md:text-[28px] md:leading-[30px] text-left"
         >
@@ -75,11 +75,12 @@ const image = await src();
       <div
         class="flex flex-col justify-center items-center row-start-3 lg:justify-start lg:col-span-1 lg:row-start-2"
       >
-        <Picture
+        <Image
           class="object-cover xl:p-6"
           src={image.default}
           alt={imgAlt}
-          widths={[578]}
+          widths={[320, 480, 578, 640]}
+          sizes="(max-width: 1024px) calc(100vw - 56px), calc(50vw - 28px)"
           loading="lazy"
         />
       </div>

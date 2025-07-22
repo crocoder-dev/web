@@ -1,7 +1,7 @@
 ---
 title: "Create an Evolving Architecture to Withstand Trends"
 imgPath: "/pic-web-dev-topics.png"
-imgAlt: "Illustration of a video meeting with Crocoder team member"
+imgAlt: "Illustration showing web development topics and architecture planning"
 idx: 2
 iconPath: "/performance-increase.svg"
 bgColor: "bg-[#424C6DE5]/[0.9]"
