@@ -1,0 +1,466 @@
+---
+import BookACallForm from "../components/BookACallForm.astro";
+import Footer from "../components/footer.astro";
+import Navigation from "../components/navigation.astro";
+import Base from "../layouts/base.astro";
+import Section from "../components/Section.astro";
+import Pill from "../components/Pill.astro";
+import { grid_classes } from "../components/_grid";
+import { Image } from "astro:assets";
+import picPeopleCollaborating from "../assets/pic-people-collaborating.png";
+import picCrocoderTeam from "../assets/pic-crocoder-team-3362ae.png";
+import crocoderIll16 from "../assets/crocoder-ill-16-1.png";
+import paulJeszenszky from "../assets/paul-jeszenszky.png";
+import targetIconCorrect from "../assets/target-icon-correct.svg";
+import codeXmlServiceIcon from "../assets/code-xml-service-icon.svg";
+import zapServiceIcon from "../assets/zap-service-icon.svg";
+import handsPuzzleServiceIcon from "../assets/hands-puzzle-service-icon.svg";
+import crmServiceIcon from "../assets/crm-service-icon.svg";
+import circleCheckIcon from "../assets/circle-check-icon.svg";
+import quoteIcon from "../assets/quote-icon.svg";
+import "../styles/main.css";
+
+const { ogImage = "https://www.crocoder.dev/homepage-metadata-img.png" } =
+  Astro.props;
+---
+
+<Base className="bg-white" ogImage={ogImage}>
+  <Navigation />
+  
+  <!-- Hero Section -->
+  <Section className="!pt-[75px] bg-white md:!pb-12 lg:!pb-24">
+    <div class="max-w-[1470px] mx-auto px-4 sm:px-7">
+      <div class={`${grid_classes}`}>
+        <div
+          class="row-start-1
+          col-start-1
+          col-span-6
+          md:col-span-12
+          lg:col-span-6
+          grid
+          gap-7
+          text-secondary
+          my-auto
+          pt-[60px]
+          md:py-11
+          min-w-[626px]"
+        >
+          <div class="grid gap-4">
+            <Pill>Outcome-Driven Product Engineering</Pill>
+            <h1
+              class="text-h1-sm sm:text-[54px] leading-9 sm:leading-[59.4px] font-medium tracking-tight"
+            >
+              <span class="fadeInUp" style="animation-delay: 100ms;"
+                >On-Demand Talent,</span
+              >
+              <span
+                class="fadeInUp"
+                style="animation-delay: 500ms;animation-fill-mode: backwards;"
+              >
+                Working as an Extension of Your Team
+              </span>
+            </h1>
+          </div>
+          <p
+            class="font-normal leading-7 md:text-[22px] md:leading-8 tracking-normal"
+          >
+            <span
+              class="fadeInUp"
+              style="animation-delay: 900ms;animation-fill-mode: backwards;"
+            >
+              Product-minded web engineers who bring clarity, momentum, and ownership. Skip the hiring bottlenecks. Our developers integrate fast, think beyond the ticket, and help you build with purpose — from junior support to senior leadership.
+            </span>
+          </p>
+
+          <a
+            id="book-a-call-action-hero"
+            href="#book-a-call-section"
+            class="inline-block bg-crocoder-yellow rounded-md px-[25px] py-4 text-center text-contrast text-base font-medium hover:opacity-90 uppercase w-fit"
+          >
+            Let's talk
+          </a>
+        </div>
+        <div
+          class="flex
+          row-start-2
+          col-start-1
+          col-span-6
+          md:col-span-12
+          lg:col-span-6
+          self-center
+          justify-center
+          relative
+          lg:col-start-7
+          lg:row-start-1"
+        >
+          <Image
+            src={picPeopleCollaborating}
+            alt="People collaborating on software development"
+            widths={[320, 480, 640, 800, 1200, 1412]}
+            sizes="(max-width: 768px) calc(100vw - 32px), (max-width: 1024px) calc(100vw - 56px), calc(50vw - 28px)"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Main Content Section -->
+  <Section className="bg-[#1E1A1A] !py-24">
+    <div class="max-w-[1470px] mx-auto px-4 sm:px-7">
+      <!-- Section Title -->
+      <div class="flex flex-col items-center gap-4 mb-24 px-[104px] max-w-[1600px] mx-auto">
+        <Pill>We're 100% Focused on results</Pill>
+        <h2 class="text-[74px] leading-[81px] font-medium tracking-[-2%] text-center">
+          <span class="text-white block whitespace-nowrap">Flexible, Embedded Engineers,</span>
+          <span class="text-[#FEC343] block">Ready to Plug-In</span>
+        </h2>
+      </div>
+      
+      <!-- Content Container -->
+      <div class="max-w-[1440px] mx-auto pb-24">
+        <div class="grid md:grid-cols-2 gap-4">
+          <!-- Left Column -->
+          <div class="space-y-4">
+            <!-- Main Description Card -->
+            <div class="bg-[rgba(66,76,109,0.9)] rounded-2xl p-12 text-white">
+              <div class="w-[90px] h-[90px] flex items-center justify-center mb-7">
+                <Image
+                  src={targetIconCorrect}
+                  alt="Target icon"
+                  width={90}
+                  height={90}
+                  loading="lazy"
+                />
+              </div>
+              <div class="space-y-7">
+                <p class="text-[22px] leading-[32px] font-normal">
+                  We offer <b>on-demand staff augmentation</b> with web engineers who blend <b>technical excellence</b>, <b>product intuition</b>, and <b>strong communication</b>.
+                </p>
+                <p class="text-[22px] leading-[32px] font-normal">
+                  Whether you need a <b>junior developer</b> to support your team, or a <b>product-minded lead</b> to drive an initiative, we <b>match talent to your exact needs</b> and fast.
+                </p>
+                <p class="text-[22px] leading-[32px] font-normal">
+                  Our engineers <b>take initiative</b> instead of waiting on tasks. They <b>think critically</b>, <b>act independently</b>, and <b>ship with care</b>.
+                </p>
+              </div>
+            </div>
+
+            <!-- Testimonial Card -->
+            <div class="bg-white rounded-2xl p-7 backdrop-blur-[30px] flex gap-4">
+              <div class="flex-1">
+                <p class="text-base leading-[26px] text-black mb-7">
+                  We have found the perfect extension of our team with CroCoder. We operate as one team, celebrating our wins and working through the challenges together. They "own" the roadmap, deadlines and outcomes with us - from the ideation and direction stages through to post-launch optimization.
+                </p>
+                <div class="flex items-center gap-3">
+                  <div class="w-[72px] h-[72px] rounded-full overflow-hidden">
+                    <Image
+                      src={paulJeszenszky}
+                      alt="Paul Jeszenszky"
+                      width={72}
+                      height={72}
+                      class="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div>
+                    <p class="text-[20px] leading-[28px] text-black">Paul Jeszenszky</p>
+                    <p class="text-[20px] leading-[28px] text-black">Submix co-founder & CEO</p>
+                  </div>
+                </div>
+              </div>
+              <div class="w-[82px] h-[54px] opacity-20">
+                <Image
+                  src={quoteIcon}
+                  alt="Quote icon"
+                  width={82}
+                  height={54}
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column - Ideal for Teams Card -->
+          <div class="bg-[rgba(60,56,67,0.8)] rounded-2xl p-12 text-white flex flex-col justify-center">
+            <h3 class="text-[36px] leading-[40px] font-medium mb-7">Ideal for Teams who</h3>
+            
+            <div class="space-y-7 mb-7">
+          <div class="flex gap-7">
+            <div class="w-12 h-12 flex-shrink-0">
+              <Image
+                src={circleCheckIcon}
+                alt="Check icon"
+                width={48}
+                height={48}
+                loading="lazy"
+              />
+            </div>
+                <div>
+                  <p class="text-[22px] leading-[32px] h-8 flex items-center">Need to scale fast</p>
+                  <p class="text-[22px] leading-[32px]">without compromising quality</p>
+                </div>
+              </div>
+
+              <div class="flex gap-7">
+                <div class="w-12 h-12 flex-shrink-0">
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="24" cy="24" r="20" stroke="#85A32A" stroke-width="3"/>
+                    <path d="M16 24L20 28L32 16" stroke="#85A32A" stroke-width="3" fill="none"/>
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-[22px] leading-[32px] h-8 flex items-center">Have initiatives</p>
+                  <p class="text-[22px] leading-[32px]">they want to move forward but are lacking bandwidth</p>
+                </div>
+              </div>
+
+              <div class="flex gap-7">
+                <div class="w-12 h-12 flex-shrink-0">
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="24" cy="24" r="20" stroke="#85A32A" stroke-width="3"/>
+                    <path d="M16 24L20 28L32 16" stroke="#85A32A" stroke-width="3" fill="none"/>
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-[22px] leading-[32px] h-8 flex items-center">Struggle to find</p>
+                  <p class="text-[22px] leading-[32px]">Engineers with both soft skills and technical depth</p>
+                </div>
+              </div>
+
+              <div class="flex gap-7">
+                <div class="w-12 h-12 flex-shrink-0">
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="24" cy="24" r="20" stroke="#85A32A" stroke-width="3"/>
+                    <path d="M16 24L20 28L32 16" stroke="#85A32A" stroke-width="3" fill="none"/>
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-[22px] leading-[32px] h-8 flex items-center">Want talent</p>
+                  <p class="text-[22px] leading-[32px]">that can work independently and contribute meaningfully</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex justify-center">
+              <Image
+                src={picCrocoderTeam}
+                alt="CroCoder team"
+                width={625}
+                height={323}
+                loading="lazy"
+                class="w-[625px] h-[323px] object-fill"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Specialization Section -->
+  <Section className="bg-white/20 !py-24">
+    <div class={`${grid_classes} gap-16`}>
+      <div class="col-span-6 md:col-span-12 text-center">
+        <h2 class="text-[44px] leading-[48px] tracking-tight font-medium md:text-[74px] md:leading-[82px] text-secondary mb-4">
+          We Specialise in Building<br />Web Products
+        </h2>
+        <p class="text-base leading-[26px] text-secondary max-w-[704px] mx-auto">
+          Our engineers work with modern stacks like React, TypeScript, Node.js, Next.js, GraphQL, and more — but we're not dogmatic. We choose the right tools for the job.
+        </p>
+      </div>
+      
+      <div class="col-span-6 md:col-span-12 grid md:grid-cols-2 gap-4">
+        <!-- Service Cards -->
+        <!-- Top Left: Full Stack Development -->
+        <div class="bg-[rgba(254,195,67,0.9)] rounded-2xl p-12 text-secondary text-center">
+          <div class="w-[90px] h-[90px] flex items-center justify-center mx-auto mb-7">
+            <Image
+              src={codeXmlServiceIcon}
+              alt="Code XML icon"
+              width={90}
+              height={90}
+              loading="lazy"
+            />
+          </div>
+          <h3 class="text-[36px] leading-[40px] font-medium mb-7">Full Stack Development</h3>
+          <p class="text-base leading-[26px]">Frontend, backend, or complete product development</p>
+        </div>
+
+        <!-- Top Right: Scalable Architecture -->
+        <div class="bg-[rgba(78,91,200,0.9)] rounded-2xl p-12 text-white text-center">
+          <div class="w-[90px] h-[90px] flex items-center justify-center mx-auto mb-7">
+            <Image
+              src={zapServiceIcon}
+              alt="Zap icon"
+              width={90}
+              height={90}
+              loading="lazy"
+            />
+          </div>
+          <h3 class="text-[36px] leading-[40px] font-medium mb-7">Scalable Architecture</h3>
+          <p class="text-base leading-[26px]">Maintainable, future-proof system design</p>
+        </div>
+
+        <!-- Bottom Left: Feature Development -->
+        <div class="bg-[#E8E8E8] rounded-2xl p-12 text-secondary text-center">
+          <div class="w-[90px] h-[90px] bg-transparent flex items-center justify-center mx-auto mb-7">
+            <Image
+              src={handsPuzzleServiceIcon}
+              alt="Hands puzzle icon"
+              width={90}
+              height={90}
+              loading="lazy"
+            />
+          </div>
+          <h3 class="text-[36px] leading-[40px] font-medium mb-7">Feature Development</h3>
+          <p class="text-base leading-[26px]">New features, refactors, or greenfield builds</p>
+        </div>
+
+        <!-- Bottom Right: Cross-Functional Collaboration -->
+        <div class="bg-[rgba(66,76,109,0.9)] rounded-2xl p-12 text-white text-center">
+          <div class="w-[90px] h-[90px] bg-transparent flex items-center justify-center mx-auto mb-7">
+            <Image
+              src={crmServiceIcon}
+              alt="CRM icon"
+              width={90}
+              height={90}
+              loading="lazy"
+            />
+          </div>
+          <h3 class="text-[36px] leading-[40px] font-medium mb-7">Cross-Functional Collaboration</h3>
+          <p class="text-base leading-[26px]">Seamless work with product and design teams</p>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Engineers Section -->
+  <Section className="!py-20">
+    <div class={`${grid_classes} gap-20`}>
+      <div class="col-span-6 md:col-span-6">
+        <h2 class="text-[44px] leading-[48px] tracking-tight font-medium md:text-[54px] md:leading-[60px] mb-12">
+          <span class="text-secondary">Our </span><span class="text-[#607A1A]">Engineers</span>
+        </h2>
+        
+        <div class="space-y-7">
+          <div class="flex gap-7">
+            <div class="w-12 h-12 flex-shrink-0">
+              <Image
+                src={circleCheckIcon}
+                alt="Check icon"
+                width={48}
+                height={48}
+                loading="lazy"
+              />
+            </div>
+            <div>
+              <p class="text-[22px] leading-8 font-medium text-secondary">Product-minded</p>
+              <p class="text-[22px] leading-8 text-secondary">They align with your goals, not just your backlog</p>
+            </div>
+          </div>
+
+          <div class="flex gap-7">
+            <div class="w-12 h-12 flex-shrink-0">
+              <Image
+                src={circleCheckIcon}
+                alt="Check icon"
+                width={48}
+                height={48}
+                loading="lazy"
+              />
+            </div>
+            <div>
+              <p class="text-[22px] leading-8 font-medium text-secondary">Proactive</p>
+              <p class="text-[22px] leading-8 text-secondary">Self-starters who take initiative and drive work forward</p>
+            </div>
+          </div>
+
+          <div class="flex gap-7">
+            <div class="w-12 h-12 flex-shrink-0">
+              <Image
+                src={circleCheckIcon}
+                alt="Check icon"
+                width={48}
+                height={48}
+                loading="lazy"
+              />
+            </div>
+            <div>
+              <p class="text-[22px] leading-8 font-medium text-secondary">Communicative</p>
+              <p class="text-[22px] leading-8 text-secondary">Async-ready, remote-native, and highly collaborative</p>
+            </div>
+          </div>
+
+          <div class="flex gap-7">
+            <div class="w-12 h-12 flex-shrink-0">
+              <Image
+                src={circleCheckIcon}
+                alt="Check icon"
+                width={48}
+                height={48}
+                loading="lazy"
+              />
+            </div>
+            <div>
+              <p class="text-[22px] leading-8 font-medium text-secondary">Flexible</p>
+              <p class="text-[22px] leading-8 text-secondary">Short-term, long-term, or somewhere in between</p>
+            </div>
+          </div>
+
+          <div class="flex gap-7">
+            <div class="w-12 h-12 flex-shrink-0">
+              <Image
+                src={circleCheckIcon}
+                alt="Check icon"
+                width={48}
+                height={48}
+                loading="lazy"
+              />
+            </div>
+            <div>
+              <p class="text-[22px] leading-8 font-medium text-secondary">Skilled across levels</p>
+              <p class="text-[22px] leading-8 text-secondary">From promising juniors to proven engineering leads</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-span-6 md:col-span-6">
+        <Image
+          src={crocoderIll16}
+          alt="CroCoder engineering team"
+          widths={[320, 480, 640, 706]}
+          sizes="(max-width: 768px) calc(100vw - 32px), calc(50vw - 28px)"
+          loading="lazy"
+          class="w-full h-auto"
+        />
+      </div>
+    </div>
+  </Section>
+
+  <!-- CTA Section -->
+  <BookACallForm>
+    <span slot="title">
+      Let's Build Together
+    </span>
+  </BookACallForm>
+
+  <Footer />
+</Base>
+
+<script is:inline>
+  function handleActionHeroClick() {
+    window.navScroll = true;
+    setTimeout(() => {
+      window.navScroll = false;
+    }, 1500);
+  }
+
+  document
+    .querySelectorAll("#book-a-call-action-hero")
+    .forEach((element) =>
+      element.addEventListener("click", handleActionHeroClick),
+    );
+</script>
