@@ -12,4 +12,8 @@ From start to finish, we are there to design, implement, and guide you through t
 </br>
 </br>
 </br>
-<ins>[Case Study: Submix Billing System](https://www.crocoder.dev/blog/using-lago-to-create-a-flexible-billing-system)</ins>
+<a
+    class='underline underline-offset-2'
+    href="/blog/using-lago-to-create-a-flexible-billing-system">
+Case Study: Submix Billing System
+</a>
