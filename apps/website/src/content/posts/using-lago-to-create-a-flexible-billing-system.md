@@ -35,7 +35,7 @@ Initially, Submix used a **simple pay-per-call model**. Users could purchase ind
 
 This simple model suited their **B2C strategy** well, as predictability and ease of use were critical for attracting early adopters. But as the product evolved, and new features launched, it became clear that a more dynamic billing approach would be required to support their growth.
 
->💡In the fast-paced world of startups, pricing models inevitably shift. Recognizing this, the Submix team supported our vision for a billing foundation designed for adaptability from day one, understanding that it's what separates momentum from setbacks.
+>💡Before a startup finds a market fit, pricing models will inevitably shift. Recognizing this, the Submix team supported our vision for a billing foundation designed for adaptability from day one, understanding that it's what separates momentum from setbacks.
 
 As Submix gained deeper insight into the individual creator market, new opportunities emerged, reinforcing their commitment to their core user base with more flexible usage patterns and payment requirements.
 
