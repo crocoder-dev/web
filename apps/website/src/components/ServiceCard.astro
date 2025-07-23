@@ -5,6 +5,7 @@ import { Image } from "astro:assets";
 interface Props {
   idx: number;
   title: string;
+  subtitle: string;
   content: any;
   styles?: string;
   imgPath: string;
@@ -13,8 +14,16 @@ interface Props {
   classNames?: string | string[];
 }
 
-const { title, content, styles, imgPath, imgAlt, iconPath, classNames } =
-  Astro.props;
+const {
+  title,
+  subtitle,
+  content,
+  styles,
+  imgPath,
+  imgAlt,
+  iconPath,
+  classNames,
+} = Astro.props;
 
 const images = import.meta.glob("../assets/*.*");
 const src = images[`../assets${imgPath}`] as any as () => Promise<{
@@ -64,13 +73,16 @@ const image = await src();
     <div
       class="col-span-6 grid max-lg:grid-rows-[min-content_min-content_auto] gap-7 lg:grid-cols-2 lg:col-span-2 lg:items-start justify-between"
     >
-      <span class="grid md:flex gap-7 items-center">
+      <span class="grid md:flex gap-7">
         <img src={iconPath} alt="" role="presentation" class="lg:mt-[2px] h-8 w-8 md:h-12 md:w-12" />
-        <h4
-          class="font-medium text-xl leading-[22px] md:text-[28px] md:leading-[30px] text-left"
-        >
-          {title}
-        </h4>
+        <div class="gap-y-2 flex flex-col">
+          <h4
+            class="font-medium text-xl leading-[22px] md:text-[28px] md:leading-[30px] text-left"
+          >
+            {title}
+          </h4>
+          <p class="text-lg">{subtitle}</p>
+        </div>
       </span>
       <div
         class="flex flex-col justify-center items-center row-start-3 lg:justify-start lg:col-span-1 lg:row-start-2"
@@ -85,7 +97,7 @@ const image = await src();
         />
       </div>
       <div
-        class="flex flex-col lg:flex-col row-start-2 lg:col-span-1 lg:col-start-2 lg:row-span-2 [&_p]:text-base [&_p]:leading-[26px] md:[&_p]:text-[22px] md:[&_p]:font-normal md:[&_p]:leading-8 text-left"
+        class="flex flex-col lg:flex-col row-start-2 lg:col-span-1 lg:col-start-2 lg:row-span-2 [&_p]:text-base [&_p]:leading-[26px] md:[&_p]:text-[20px] md:[&_p]:font-normal md:[&_p]:leading-8 text-left"
         set:html={content.html}
       />
     </div>

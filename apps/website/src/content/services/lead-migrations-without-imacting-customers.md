@@ -1,5 +1,6 @@
 ---
-title: "Lead Migrations Without Impacting Customers"
+title: "Expert Led Digital Transformation"
+subtitle: "Legacy System Migrations | Architecture Refactoring"
 imgPath: "/pic-boy-schedule.png"
 imgAlt: "Developer working on migration planning and scheduling"
 idx: 1
@@ -7,4 +8,4 @@ iconPath: "/shield-check-gold.svg"
 bgColor: "bg-[#5362DBE5]/[0.9]"
 ---
 
-Move away from legacy systems and navigate major tech initiatives such as new framework adoptions. Our bottom-up approach helps empower your existing teams to facilitate the change.
+Move away from legacy systems and navigate major tech initiatives such as new framework adoptions, without disrupting your users. Whether you need end-to-end delivery or staff augmentation, our bottom-up approach empowers your existing teams to drive change sustainably and confidently.
