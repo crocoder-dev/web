@@ -35,7 +35,9 @@ Initially, Submix used a **simple pay-per-call model**. Users could purchase ind
 
 This simple model suited their **B2C strategy** well, as predictability and ease of use were critical for attracting early adopters. But as the product evolved, and new features launched, it became clear that a more dynamic billing approach would be required to support their growth.
 
->💡Before a startup finds a market fit, pricing models will inevitably shift. Recognizing this, the Submix team supported our vision for a billing foundation designed for adaptability from day one, understanding that it's what separates momentum from setbacks.
+<blockquote style="quotes: none;">
+<p>💡 Before a startup finds a market fit, pricing models will inevitably shift. Recognizing this, the Submix team supported our vision for a billing foundation designed for adaptability from day one, understanding that it's what separates momentum from setbacks.</p>
+</blockquote>
 
 As Submix gained deeper insight into the individual creator market, new opportunities emerged, reinforcing their commitment to their core user base with more flexible usage patterns and payment requirements.
 
@@ -43,7 +45,9 @@ To accommodate these shifts, they introduced a **fixed-price subscription model*
 
 The pricing model continued to evolve; first with **overage charges** layered onto the subscriptions, and later transitioning to a **fully usage-based, pay-as-you-go** system for individual users that offers maximum flexibility. **Free trial periods** were also introduced to lower the barrier for new users and encourage onboarding.
 
->💡  Choosing the right billing foundation early on allowed us to pivot from fixed pricing to flat-fee subscriptions, and later on to hybrid and usage-based models. All this in just days, without major rework. Our future selves were grateful.
+<blockquote style="quotes: none;">
+<p>💡  Choosing the right billing foundation early on allowed us to pivot from fixed pricing to flat-fee subscriptions, and later on to hybrid and usage-based models. All this in just days, without major rework. Our future selves were grateful.</p>
+</blockquote>
 
 ## Why We Chose Lago: Flexibility Without Lock-In
 
@@ -66,7 +70,9 @@ Lago stood out for its open-source foundation, deployment flexibility, and nativ
 
 It gave us the technical control we needed without introducing complexity, and served as a solid foundation that could support experimentation, growth, and long-term maintainability.
 
->💡 Choosing Lago gave us the freedom to build around the business, rather than forcing the business to conform to the tool.
+<blockquote style="quotes: none;">
+<p>💡 Choosing Lago gave us the freedom to build around the business, rather than forcing the business to conform to the tool.</p>
+</blockquote>
 
 ## How We Engineered the Billing Solution Around Lago
 
@@ -80,7 +86,9 @@ During live call sessions, user activity, such as entering or leaving a call, is
 
 Users can track their usage data directly within the app. This data is pulled from our processed billing records, providing clear, up-to-date feedback aligned with their subscription status.
 
->💡 Our approach at Crocoder prioritizes future-proof and adjustable solutions. This was clearly demonstrated in the system that we built for Submix, which allows them to evolve their pricing models or billing processes without major rework.
+<blockquote style="quotes: none;">
+<p>💡 Our approach at Crocoder prioritizes future-proof and adjustable solutions. This was clearly demonstrated in the system that we built for Submix, which allows them to evolve their pricing models or billing processes without major rework.</p>
+</blockquote>
 
 ## Outcomes & Benefits
 
@@ -103,7 +111,9 @@ Lago offers both robust cloud and self-hosted options. We deployed and managed t
 
 Developers can simulate billing flows locally, test quickly, and release with confidence.
 
->💡 While business change is a constant reality for startups, experience has taught us precisely why architectural flexibility yields the highest returns.
+<blockquote style="quotes: none;">
+<p>💡 While business change is a constant reality for startups, experience has taught us precisely why architectural flexibility yields the highest returns.</p>
+</blockquote>
 
 ## Final Thoughts: Billing as a Product Differentiator
 
