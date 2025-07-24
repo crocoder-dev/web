@@ -42,11 +42,10 @@ const image = await src();
     max-lg:col-span-6
     md:gap-x-7
     w-full
-    absolute
-    h-[710px]
+    [w-425px]:h-[710px]
     overflow-hidden
     `,
-    styles,
+    styles
   )}
 >
   <section
@@ -67,21 +66,26 @@ const image = await src();
       lg:grid-rows-[min-content_auto]
       backdrop-blur-[15px]
       `,
-      classNames,
+      classNames
     )}
   >
     <div
       class="col-span-6 grid max-lg:grid-rows-[min-content_min-content_auto] gap-7 lg:grid-cols-2 lg:col-span-2 lg:items-start justify-between"
     >
       <span class="grid md:flex gap-7">
-        <img src={iconPath} alt="" role="presentation" class="lg:mt-[2px] h-8 w-8 md:h-12 md:w-12" />
+        <img
+          src={iconPath}
+          alt=""
+          role="presentation"
+          class="lg:mt-[2px] h-8 w-8 md:h-12 md:w-12"
+        />
         <div class="gap-y-2 flex flex-col">
           <h4
             class="font-medium text-xl leading-[22px] md:text-[28px] md:leading-[30px] text-left"
           >
             {title}
           </h4>
-          <p class="text-lg">{subtitle}</p>
+          <p class="text-sm md:text-lg">{subtitle}</p>
         </div>
       </span>
       <div
