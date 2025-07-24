@@ -359,7 +359,7 @@ const { ogImage = "https://www.crocoder.dev/homepage-metadata-img.png" } =
   <!-- Engineers Section -->
   <Section className="!py-12 md:!py-20">
     <div class={`${grid_classes} gap-8 md:gap-20`}>
-      <div class="col-span-6 md:col-span-6">
+      <div class="col-span-6 md:col-span-12 lg:col-span-6">
         <h2 class="text-[28px] leading-[32px] md:text-[54px] md:leading-[60px] tracking-tight font-medium mb-6 md:mb-12">
           <span class="text-secondary">Our </span><span class="text-[#607A1A]">Engineers</span>
         </h2>
@@ -452,12 +452,12 @@ const { ogImage = "https://www.crocoder.dev/homepage-metadata-img.png" } =
         </div>
       </div>
       
-      <div class="col-span-6 md:col-span-6 mt-8 md:mt-0">
+      <div class="hidden lg:block col-span-6 lg:col-span-6">
         <Image
           src={crocoderIll16}
           alt="CroCoder engineering team"
           widths={[320, 480, 640, 706]}
-          sizes="(max-width: 768px) calc(100vw - 32px), calc(50vw - 28px)"
+          sizes="calc(50vw - 28px)"
           loading="lazy"
           class="w-full h-auto"
         />
