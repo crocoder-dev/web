@@ -29,7 +29,7 @@ const { ogImage = "https://www.crocoder.dev/homepage-metadata-img.png" } =
   
   <!-- Hero Section -->
   <Section className="!pt-[75px] bg-white md:!pb-12 lg:!pb-24">
-    <div class="max-w-[1470px] mx-auto px-4 sm:px-7">
+    <div class="max-w-[1470px] mx-auto px-2 sm:px-4 md:px-7">
       <div class={`${grid_classes}`}>
         <div
           class="row-start-1
@@ -38,23 +38,23 @@ const { ogImage = "https://www.crocoder.dev/homepage-metadata-img.png" } =
           md:col-span-12
           lg:col-span-6
           grid
-          gap-7
+          gap-3 md:gap-7
           text-secondary
           my-auto
-          pt-[60px]
+          pt-[30px] md:pt-[60px]
           md:py-11
           lg:min-w-[626px]"
         >
-          <div class="grid gap-4">
-            <Pill>Outcome-Driven Product Engineering</Pill>
+          <div class="grid gap-2 md:gap-4">
+            <Pill className="text-[10px] sm:text-sm md:text-base px-2 py-1 sm:px-4 sm:py-2">Outcome-Driven Product Engineering</Pill>
             <h1
-              class="text-h1-sm sm:text-[54px] leading-9 sm:leading-[59.4px] font-medium tracking-tight"
+              class="text-[16px] leading-[20px] sm:text-[24px] sm:leading-[28px] md:text-[54px] md:leading-[59.4px] font-medium tracking-tight"
             >
-              <span class="fadeInUp" style="animation-delay: 100ms;"
+              <span class="fadeInUp block" style="animation-delay: 100ms;"
                 >On-Demand Talent,</span
               >
               <span
-                class="fadeInUp"
+                class="fadeInUp block"
                 style="animation-delay: 500ms;animation-fill-mode: backwards;"
               >
                 Working as an Extension of Your Team
@@ -62,7 +62,7 @@ const { ogImage = "https://www.crocoder.dev/homepage-metadata-img.png" } =
             </h1>
           </div>
           <p
-            class="font-normal leading-7 md:text-[22px] md:leading-8 tracking-normal"
+            class="font-normal text-xs leading-4 sm:text-sm sm:leading-5 md:text-[22px] md:leading-8 tracking-normal"
           >
             <span
               class="fadeInUp"
