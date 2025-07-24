@@ -43,7 +43,7 @@ const { ogImage = "https://www.crocoder.dev/homepage-metadata-img.png" } =
           my-auto
           pt-[30px] md:pt-[60px]
           md:py-11
-          lg:min-w-[626px]"
+          lg:max-w-[580px] xl:min-w-[626px]"
         >
           <div class="grid gap-2 md:gap-4">
             <Pill className="text-[10px] sm:text-sm md:text-base px-2 py-1 sm:px-4 sm:py-2">Outcome-Driven Product Engineering</Pill>
@@ -82,7 +82,7 @@ const { ogImage = "https://www.crocoder.dev/homepage-metadata-img.png" } =
         </div>
         <div
           class="hidden
-          xl:flex
+          lg:flex
           row-start-2
           col-start-1
           col-span-6
@@ -109,11 +109,11 @@ const { ogImage = "https://www.crocoder.dev/homepage-metadata-img.png" } =
 
   <!-- Main Content Section -->
   <Section className="bg-[#1E1A1A] !py-24">
-    <div class="max-w-[1470px] mx-auto px-4 sm:px-7">
+    <div class="max-w-[1470px] mx-auto px-2 sm:px-4 xl:px-7">
       <!-- Section Title -->
-      <div class="flex flex-col items-center gap-4 mb-12 md:mb-24 px-4 md:px-[104px] max-w-[1600px] mx-auto">
+      <div class="flex flex-col items-center gap-4 mb-12 md:mb-24 px-1 md:px-2 xl:px-[104px] max-w-[1600px] mx-auto">
         <Pill>We're 100% Focused on results</Pill>
-        <h2 class="text-[32px] leading-[36px] md:text-[74px] md:leading-[81px] font-medium tracking-[-2%] text-center">
+        <h2 class="text-[32px] leading-[36px] md:text-[48px] md:leading-[52px] lg:text-[60px] lg:leading-[66px] xl:text-[74px] xl:leading-[81px] font-medium tracking-[-2%] text-center">
           <span class="text-white block md:whitespace-nowrap">Flexible, Embedded Engineers,</span>
           <span class="text-[#FEC343] block">Ready to Plug-In</span>
         </h2>
@@ -121,7 +121,7 @@ const { ogImage = "https://www.crocoder.dev/homepage-metadata-img.png" } =
       
       <!-- Content Container -->
       <div class="max-w-[1440px] mx-auto pb-12 md:pb-24">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
           <!-- Left Column -->
           <div class="space-y-4">
             <!-- Main Description Card -->
@@ -266,7 +266,7 @@ const { ogImage = "https://www.crocoder.dev/homepage-metadata-img.png" } =
                 width={625}
                 height={323}
                 loading="lazy"
-                class="w-full max-w-[625px] h-auto md:h-[323px] object-cover md:object-fill"
+                class="w-full max-w-[625px] h-auto"
               />
             </div>
           </div>
