@@ -25,8 +25,10 @@ import contactSuccessHero from "../../assets/contact-success-hero.png";
             
             <!-- Description -->
             <p class="text-lg md:text-[22px] leading-[1.45] text-secondary">
-              Your meeting is confirmed.<br>
-              A calendar invite is on its way to your inbox.<br>
+              <span id="meeting-confirmation">
+                Your meeting is confirmed.<br>
+                A calendar invite is on its way to your inbox.<br>
+              </span>
               Talk soon — we're looking forward to it.
             </p>
             
@@ -62,3 +64,15 @@ import contactSuccessHero from "../../assets/contact-success-hero.png";
     </div>
   </main>
 </Base>
+
+<script is:inline>
+  // Check if the page was accessed from Calcom
+  const urlParams = new URLSearchParams(window.location.search);
+  const src = urlParams.get('src');
+  const meetingConfirmation = document.getElementById('meeting-confirmation');
+  
+  if (src !== 'calcom' && meetingConfirmation) {
+    // Hide only the meeting-specific text if not from Calcom
+    meetingConfirmation.style.display = 'none';
+  }
+</script>

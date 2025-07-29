@@ -197,12 +197,8 @@ import "../styles/loader.css";
           return;
         }
 
-        if (notificationElem) {
-          notificationElem.classList.add("text-[#67a807]");
-          notificationElem.innerHTML = notification.frontmatter.success;
-          hideLoader();
-          clearForm();
-        }
+        // Redirect to success page
+        window.location.href = "/contact/success";
       });
     }
   </script>
