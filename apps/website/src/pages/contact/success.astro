@@ -1,0 +1,64 @@
+---
+import Base from "../../layouts/base.astro";
+import Navigation from "../../components/navigation.astro";
+import Section from "../../components/Section.astro";
+import { Image } from "astro:assets";
+import contactSuccessHero from "../../assets/contact-success-hero.png";
+---
+
+<Base>
+  <Navigation />
+  <main class="min-h-screen bg-gray-100">
+    <div class="w-full h-screen flex items-center justify-center">
+      <Section className="!py-0 !px-7 flex items-center justify-center w-full">
+        <div class="max-w-[1440px] w-full flex flex-col lg:flex-row items-center justify-center gap-7">
+        <!-- Content Column -->
+        <div class="w-full max-w-[501px] flex flex-col gap-7 text-center lg:text-left">
+          <!-- Main Content -->
+          <div class="flex flex-col gap-7">
+            <!-- Header -->
+            <div class="flex flex-col gap-4">
+              <h1 class="font-medium text-4xl md:text-[54px] leading-[1.1] text-secondary">
+                You're All Set!
+              </h1>
+            </div>
+            
+            <!-- Description -->
+            <p class="text-lg md:text-[22px] leading-[1.45] text-secondary">
+              Your meeting is confirmed.<br>
+              A calendar invite is on its way to your inbox.<br>
+              Talk soon — we're looking forward to it.
+            </p>
+            
+            <!-- Button -->
+            <div class="flex flex-col gap-[10px]">
+              <a
+                href="/"
+                class="flex items-center justify-center gap-[10px] px-[25px] py-4 bg-crocoder-yellow rounded-md font-medium text-base leading-[1.8] tracking-[0.02em] uppercase text-contrast hover:opacity-90 w-fit mx-auto lg:mx-0"
+              >
+                Back to homepage
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Image Container -->
+        <div class="hidden md:flex w-full max-w-[706px] items-center justify-center">
+          <div class="w-full h-[529px] flex items-center justify-center">
+            <Image
+              src={contactSuccessHero}
+              alt="Success illustration"
+              class="w-full h-full object-contain"
+              loading="eager"
+              fetchpriority="high"
+              width={1652}
+              height={939}
+              widths={[320, 480, 640, 800, 1200]}
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 706px"
+            />
+          </div>
+        </div>
+      </Section>
+    </div>
+  </main>
+</Base>
