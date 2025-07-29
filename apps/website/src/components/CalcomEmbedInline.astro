@@ -60,7 +60,7 @@ const loadCalEmbed = () => {
         p(cal, ar);
       };
   })(window, "https://app.cal.com/embed/embed.js", "init");
-  Cal("init", "hello", { origin: "https://cal.com" });
+  Cal("init", eventType, { origin: "https://cal.com" });
 
   Cal.ns[eventType]("inline", {
     elementOrSelector,

@@ -1,5 +1,5 @@
 ---
-import BookACallForm from "../components/BookACallForm.astro";
+import CalcomEmbedInline from "../components/CalcomEmbedInline.astro";
 import Footer from "../components/footer.astro";
 import Navigation from "../components/navigation.astro";
 import Base from "../layouts/base.astro";
@@ -18,6 +18,7 @@ import handsPuzzleServiceIcon from "../assets/hands-puzzle-service-icon.svg";
 import crmServiceIcon from "../assets/crm-service-icon.svg";
 import circleCheckIcon from "../assets/circle-check-icon.svg";
 import quoteIcon from "../assets/quote-icon.svg";
+import meetingImage from "../assets/meeting-croc.png";
 import "../styles/main.css";
 
 const { ogImage = "https://www.crocoder.dev/homepage-metadata-img.png" } =
@@ -466,11 +467,52 @@ const { ogImage = "https://www.crocoder.dev/homepage-metadata-img.png" } =
   </Section>
 
   <!-- CTA Section -->
-  <BookACallForm>
-    <span slot="title">
-      Let's Build Together
-    </span>
-  </BookACallForm>
+  <Section
+    className="bg-secondary !pb-16 md:!pb-24 !pt-0 overflow-visible mt-[220px] xl:mt-[300px]"
+    contentClassName={`${grid_classes} items-center`}
+  >
+    <div
+      class="col-span-6 md:col-span-8 md:col-start-3 -translate-y-1/2 -mb-40 xl:col-span-6 xl:col-start-4 lg:-mb-60"
+    >
+      <Image
+        class="object-cover xl:p-6 md:p-0 p-8"
+        src={meetingImage}
+        alt="CroCoder team member in a video call consultation"
+        widths={[320, 480, 640, 800, 964]}
+        sizes="(max-width: 768px) calc(100vw - 32px), (max-width: 1280px) calc(67vw - 32px), calc(50vw - 28px)"
+        loading="lazy"
+      />
+    </div>
+    <div
+      id="book-a-call-section"
+      class="col-span-6 grid gap-4 md:col-span-12 md:text-center md:justify-items-center text-white xl:col-span-8 xl:col-start-3 scroll-mt-20"
+    >
+      <Pill>Book your call today</Pill>
+      <h2
+        class="text-[44px] leading-[48px] tracking-tight font-medium md:text-[74px] md:leading-[82px]"
+      >
+        Let's Build Together
+      </h2>
+      <p class="text-base leading-[26px] pt-3">
+        Stop wasting time being caught in operational bottlenecks. Schedule your
+        free call today, and let's help you deliver on your strategic vision with
+        confidence. Select a date below or
+        <a class="bold underline" href="/contact"> contact us here.</a>
+      </p>
+    </div>
+
+    <div
+      class="relative col-span-6 md:col-span-10 md:col-start-2 overflow-hidden flex flex-col justify-center bg-white rounded"
+    >
+      <div id="book-a-call"></div>
+      <CalcomEmbedInline
+        calLink="team/crocoder/staff-augmentation-intro"
+        eventType="staff-augmentation-intro"
+        elementOrSelector="#book-a-call"
+        hideEventTypeDetails={false}
+      />
+    </div>
+  </Section>
 
   <Footer />
 </Base>
