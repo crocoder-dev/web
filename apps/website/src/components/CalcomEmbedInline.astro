@@ -60,7 +60,7 @@ const loadCalEmbed = () => {
         p(cal, ar);
       };
   })(window, "https://app.cal.com/embed/embed.js", "init");
-  Cal("init", "hello", { origin: "https://cal.com" });
+  Cal("init", eventType, { origin: "https://cal.com" });
 
   Cal.ns[eventType]("inline", {
     elementOrSelector,
@@ -90,6 +90,24 @@ const loadCalEmbed = () => {
     },
     hideEventTypeDetails,
     layout,
+  });
+
+  Cal.ns[eventType]("on", {
+    action: "bookingSuccessful",
+    callback: (e) => {
+      const {data, type, namespace} = e.detail;
+      console.log("Booking successful:", {data, type, namespace});
+      window.location.href = "/contact/success?src=calcom";
+    }
+  });
+
+  Cal("on", {
+    action: "bookingSuccessful",
+    callback: (e) => {
+      const {data, type, namespace} = e.detail;
+      console.log("Global booking successful:", {data, type, namespace});
+      window.location.href = "/contact/success?src=calcom";
+    }
   });
 }
 
