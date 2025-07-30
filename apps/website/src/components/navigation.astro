@@ -1,40 +1,28 @@
 ---
 import { getImage } from "astro:assets";
 import crocoderLogo from "../assets/crocoder-logo.png";
+import "../styles/navigation.css";
 
 const optimizedLogo = await getImage({
   src: crocoderLogo,
   width: 63,
   height: 51,
-  format: 'webp'
+  format: "webp",
 });
 ---
 
-<header
-  class="fixed
-    m-auto
-    mx:0
-    w-screen
-    max-w-screen
+<header class="fixed m-auto
     top-0
     md:mx-2
     md:top-1
-    md:[&_[data-navhidden]]:duration-700
-    md:[&_[data-navhidden]]:!overflow-hidden
-    md:[&_[data-navhidden]]:ease-in-out
-    md:[&_[data-navhidden='false']]:w-0
-    md:[&_[data-navhidden='false']]:px-0
-    md:[&_[data-navhidden='false']]:mx-0
-    md:[&_[data-navhidden='']]:max-w-48
-    z-50"
->
+    z-50">
   <nav
-    class="bg-[#3C3843E5]
-      md:w-fit
+    class="animated-navigation
+    inline-flex
+    justify-between
+    items-center
+    bg-[#3C3843E5]
       mx-auto
-      flex
-      items-center
-      justify-between
       py-[10px]
       px-7
       md:px-[15px]
@@ -43,29 +31,26 @@ const optimizedLogo = await getImage({
       md:overflow-hidden
       relative
       gap:12
-      md:gap-24
-      md:has-[img[data-navhidden='false']]:gap-7
       max-md:has-[input:checked]:bg-secondary"
+    data-navhidden="false"
   >
-    <a class="sm:flex sm:items-center" href="/" aria-label="Crocoder Logo">
+  <a class="sm:flex sm:items-center flex-none" href="/" aria-label="Crocoder Logo">
       <img
         src={optimizedLogo.src}
         alt="Crocoder Crocodile Logo"
         width="63"
         height="51"
-        class="h-[51px] w-auto"
+        class="h-[51px] w-auto "
         loading="eager"
       />
-      <img
+       <img
         width={153}
         height={24}
         alt="Crocoder Text Logo"
         src="/images/crocoder-text.svg"
-        class="pl-[14px] hidden h-6 w-auto md:block
-          md:[&[data-navhidden='false']]:hidden
-          md:[&[data-navhidden='']]:block"
-        data-navhidden
-      />
+        class="pl-[14px] h-6 w-auto animated-button"
+        data-navhidden="false"
+      /> 
     </a>
     <ul
       id="mobile-contact"
@@ -92,72 +77,56 @@ const optimizedLogo = await getImage({
       class="md:hidden
       flex
       flex-col
-      gap-1.5
-      peer-checked/menu-toggle:[&>*:nth-child(1)]:rotate-45
-      peer-checked/menu-toggle:[&>*:nth-child(1)]:translate-y-2
-      peer-checked/menu-toggle:[&>*:nth-child(2)]:opacity-0
-      peer-checked/menu-toggle:[&>*:nth-child(2)]:-translate-x-full
-      peer-checked/menu-toggle:[&>*:nth-child(3)]:-translate-y-2
-      peer-checked/menu-toggle:[&>*:nth-child(3)]:-rotate-45"
+      gap-1.5"
     >
-      <span class="h-0.5 w-6 bg-neutral-50 transition-transform duration-200"
-      ></span>
-      <span
-        class="h-0.5 w-6 bg-neutral-50 transition-[transform_opacity] duration-350"
-      ></span>
-      <span class="h-0.5 w-6 bg-neutral-50 transition-transform duration-200"
-      ></span>
-    </label>
+      <span class="h-0.5 w-6 bg-neutral-50"></span>
+      <span class="h-0.5 w-6 bg-neutral-50"></span>
+      <span class="h-0.5 w-6 bg-neutral-50"></span>
+    </label> 
 
-    <div
-      class="max-md:absolute max-md:hidden max-md:peer-checked/menu-toggle:flex max-md:flex-col max-md:gap-4 max-md:top-[71px] max-md:w-full max-md:py-7 bg-[#3c3843] max-md:h-[calc(100vh-71px)] max-md:right-0 md:bg-transparent md:flex md:items-center"
-    >
-      <ul
-        data-navhidden
-        class="flex flex-col md:flex-row gap-4 mx-7 md:mx-0 md:w-auto relative md:mr-24"
-      >
-        <li>
+    <ul class="flex items-center overflow-hidden">
+        <li data-navhidden="true" class="animated-text">
           <a
-            class="font-medium text-2xl md:text-lg text-[#E8E8E8] hover:text-white"
+            class="whitespace-nowrap font-medium text-2xl md:text-lg text-[#E8E8E8] hover:text-white"
             href="/for-ctos"
           >
             For CTOs
           </a>
         </li>
-        <li>
+        <li data-navhidden="true" class="animated-text ">
           <a
-            class="font-medium text-2xl md:text-lg text-[#E8E8E8] hover:text-white"
+            class="whitespace-nowrap  font-medium mr-7 text-2xl md:text-lg text-[#E8E8E8] hover:text-white"
             href="/blog"
           >
             Blog
           </a>
         </li>
-      </ul>
-      <ul class="flex md:ml-0 md:mx-0">
-        <li>
-          <a
+        <li class="ml-auto">
+          <a data-navhidden="true"
             id="book-a-call-action"
-            class="flex max-sm:ml-7 mr-4 w-fit font-medium h-[45px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-[#545664] text-[#ffffff] hover:opacity-90
-          md:[&[data-navhidden='false']]:opacity-0
-          md:[&[data-navhidden='']]:opacity-100
-          md:[&[data-navhidden='']]:delay-100
-          md:[&[data-navhidden='false']]:!w-0
-          md:[&[data-navhidden='false']]:overflow-hidden
-            md:[&[data-navhidden='false']]:!px-0"
-            data-navhidden="false"
+            class=" 
+            mr-2
+            w-fit font-medium h-[39px] 
+            items-center px-4 py-2 rounded-md 
+            animated-button
+            text-base text-center 
+            whitespace-nowrap
+             bg-[#545664] text-[#ffffff] hover:opacity-90"
+            
             href="#book-a-call-section">Book a call</a
           >
         </li>
-        <li data-navhidden>
+        <li  class="">
           <a
-            class="flex font-medium w-fit h-[45px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-crocoder-yellow text-contrast hover:opacity-90"
+            class="font-medium inline-block
+            w-fit !h-[39px] items-center px-4 py-2 rounded-md 
+            text-base text-center whitespace-nowrap bg-crocoder-yellow text-contrast hover:opacity-90"
             href="/contact"
           >
             Contact us
           </a>
         </li>
       </ul>
-    </div>
   </nav>
 </header>
 
@@ -186,7 +155,7 @@ const optimizedLogo = await getImage({
   function handleScroll(currentScrollTop) {
     if (
       currentScrollTop > lastScrollTop &&
-      allDataHidden[0].getAttribute("data-navhidden") === ""
+      allDataHidden[0].getAttribute("data-navhidden") === "true"
     ) {
       invertDataAttributte(allDataHidden);
     } else if (
@@ -204,7 +173,11 @@ const optimizedLogo = await getImage({
       if (node.closest("li")?.textContent?.includes("Contact us")) return;
 
       const currentVal = node.getAttribute("data-navhidden");
-      node.setAttribute("data-navhidden", currentVal === "" ? "false" : "");
+      node.setAttribute("data-navhidden", currentVal === "true" ? "false" : "true");
+
+      node.style.animationName = "none";
+      void node.offsetWidth;
+      node.style.animationName = "";
     });
   }
 

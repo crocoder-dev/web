@@ -1,0 +1,108 @@
+
+
+@keyframes navigation-animation {
+  0% {
+    width: 600px;
+  }
+  100% {
+    width: 377px;
+  }
+}
+
+@keyframes display-animation {
+  0% {
+    display: none;
+  }
+  100% {
+    display: inline-block;
+  }
+}
+
+@keyframes visible-animation {
+  0% {
+    visibility: hidden;
+    opacity: 0;
+    width: 0;
+  }
+  100% {
+    visibility: visible;
+    opacity: 1;
+    width: 100%;
+  }
+}
+
+@keyframes width-animation {
+  0% {
+    width: 0px;
+  }
+  100% {
+    width: auto;
+  }
+}
+
+
+:root {
+  --frame-duration: 700ms;
+  --frame-gap: 50ms;
+  --start-delay:0s;
+}
+
+.animated-button, .animated-navigation, .animated-text {
+  animation-delay: var(--delay);
+  animation-timing-function: ease-in;
+  animation-duration: var(--frame-duration);
+  animation-fill-mode:both;
+}
+
+.animated-navigation {
+  --delay: calc(var(--frame-duration) + var(--frame-gap) + var(--start-delay));
+  animation-name: navigation-animation;
+}
+
+.animated-text{
+  --delay: calc(var(--start-delay));
+  margin-right: 8px;
+  margin-left: 8px;
+  animation-name: visible-animation, width-animation;
+  animation-duration: var(--frame-duration), 0s;
+}
+
+/* Wide - display + visibility once width done */
+img.animated-button[data-navhidden="true"],
+.animated-text[data-navhidden="false"] {
+  --timeToFinishNav: calc(var(--frame-duration) + var(--frame-duration) + var(--frame-gap) + var(--start-delay));
+  animation-delay: var(--timeToFinishNav), var(--timeToFinishNav);
+}
+
+/* Narrow */
+img.animated-button[data-navhidden="false"],
+.animated-text[data-navhidden="true"] {
+  animation-delay: 0s, calc(var(--frame-duration) / 2);
+}
+
+.animated-button{
+--delay: calc(var(--start-delay));
+  animation-name: visible-animation, width-animation, display-animation;
+}
+
+.animated-navigation[data-navhidden="true"],
+.animated-text[data-navhidden="true"],
+.animated-button[data-navhidden="false"]{
+  animation-direction:reverse;
+}
+
+
+.animated-navigation[data-navhidden="false"],
+.animated-text[data-navhidden="false"],
+.animated-button[data-navhidden="true"]{
+  animation-direction:normal;
+}
+
+img.animated-button {
+  width: auto !important;
+  margin-right: 8px;
+  animation-name: visible-animation, display-animation;
+}
+
+
+
