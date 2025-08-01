@@ -1,0 +1,48 @@
+---
+import { getCollection } from "astro:content";
+import Section from "./Section.astro";
+import SectionTitle from "./SectionTitle.astro";
+
+const testimonialCollections = await getCollection("testimonials");
+
+const testimonials = [];
+
+const images = import.meta.glob("../assets/*.*");
+
+for (const testimonial of testimonialCollections) {
+  const src = images[
+    `../assets${testimonial.data.imageUrl}`
+  ] as any as () => Promise<{
+    default: ImageMetadata;
+  }>;
+  const image = await src();
+
+  testimonials.push({
+    content: testimonial.rendered,
+    name: testimonial.data.name,
+    title: testimonial.data.title,
+    image: image,
+    company: testimonial.data.company,
+  });
+}
+---
+
+<Section className={`!px-0 !py-24`}>
+  <SectionTitle className="pt-4 md:text-[74px] md:leading-[80px]">
+    Need to Scale Your Team Fast Without Sacrificing Quality?
+  </SectionTitle>
+  <p class="py-4 flex flex-wrap text-base leading-[26px] pt-3">
+    Our Staff Augmentation service gives you access to vetted, product-minded
+    engineers who integrate seamlessly with your team. Skip long hiring cycles, avoid
+    skill gaps, and accelerate delivery — while keeping full control over your roadmap.
+  </p>
+  <div class="flex">
+    <a
+      id="staff-augmentation"
+      class="flex font-medium w-fit h-[61px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-crocoder-yellow text-contrast hover:opacity-90"
+      href="/staff-augmentation"
+    >
+      Learn More About Staff Augmentation
+    </a>
+  </div>
+</Section>
