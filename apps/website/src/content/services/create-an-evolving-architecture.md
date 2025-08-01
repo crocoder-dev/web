@@ -10,10 +10,9 @@ bgColor: "bg-[#424C6DE5]/[0.9]"
 
 From start to finish, we are there to design, implement, and guide you through the adoption of a future-proof, flexible software architecture. Backed by strong product engineering practices and tailored to your unique needs, we aim to reduce costs and mitigate the risks of downtime, technical debt, and evolving industry demands.
 </br>
-</br>
-</br>
-<a
-    class='underline underline-offset-2'
-    href="/blog/using-lago-to-create-a-flexible-billing-system">
-Case Study: Submix Billing System
-</a>
+
+<div class="pt-6">
+    <a class='underline underline-offset-2 text-base md:text-[20px]' href="/blog/using-lago-to-create-a-flexible-billing-system">
+        Case Study: Submix Billing System
+    </a>
+</div>
