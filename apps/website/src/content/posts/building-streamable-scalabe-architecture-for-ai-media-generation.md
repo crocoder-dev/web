@@ -11,125 +11,47 @@ abstract: ""
 image: "/images/block-russia-using-cloudfront.jpg"
 ---
 
-You've built the model. It works. It's awesome! It generates audio and video that people actually want to use. That’s a huge win, and it's not easy. 
+You've trained an AI that can generate audio and video. 
 
-But there’s a gap between "we have a model" and "people are experiencing it in a product."
+You expose it through a simple API, and users are left waiting while the model runs. 
 
-That’s where things get tricky. And it's also where we come in.
+Sometimes the wait is 30 seconds. Sometimes it's 90. Tabs close, connections drop, and jobs restart. 
 
----
+What worked in development feels fragile in production.
 
-One of our clients had a serious breakthrough in generative media. Their inhouse trained AI model could generate polished, compelling audio and video. But they didn't have a way to deliver that magic to users.
+## Why a simple synchronous API call fails
 
-They weren't alone. This happens a lot. You nail the ML problem, but you're stuck on:
+What looks like the easy path, client sends a request, waits, and finally gets the result, breaks down in real usage. Media generation time varies unpredictably. That variability ties up resources, causes head-of-line blocking, and makes load balancing ineffective. The client has to stay connected the entire time; if the connection drops, the work is lost or has to be restarted, which frustrates users and wastes compute.
 
- - How to send the result to users without them waiting forever
+Because nothing is returned until the job completes, users get no feedback, which makes perceived latency feel even worse and encourages repeated retries that amplify load. Long-running jobs prevent shorter ones from getting through unless you build complex prioritization into an inherently rigid request/response model. Error handling is brittle: failures usually mean starting over, and naive retry logic can create cascading spikes. There's no straightforward way to give premium users priority, recover mid-job, or surface partial progress, so the experience feels slow, fragile, and opaque.
 
- - How to avoid users bouncing when generation feels slow or uncertain
+Here's what to do to make your model feel like a real product instead of a demo.
 
- - How to make the system stable when job times vary wildly
+## Turn each generation request into an asynchronous job
+When a user asks for media, don't block the request. Enqueue the work (we used AWS SQS; you can also use RabbitMQ, Google Pub/Sub, or another durable queue). Return a job token immediately. That token lets you resume if the connection drops, retry failures, and apply different policies for different kinds of jobs, premium users, short previews, or heavy-resolution work when load is high.
 
-The temptation? Wrap the model in an API call and call it a day.
+## Start showing progress as soon as you can
+You don't need to wait for the entire file to finish. As soon as a chunk is ready (a few seconds of audio or initial video frames), push it over a WebSocket to the client. The player starts playback, the user sees or hears something, and confidence builds. First sound or frame should appear in about five to seven seconds, while the rest continues generating in the background.
 
-But the truth is: synchronous architectures just don’t cut it for this.
+## Schedule jobs in real-time
+Not all jobs are the same. Batch smaller, fast jobs together, delay or throttle high-cost media when the system is saturated, and let important users get priority. This isn't simple round-robin; it's about balancing latency, fairness, and system pressure in real time.
 
-## Where Synchronous Architecture Breaks
+## Build in reliability and security
+Issue scoped tokens when a job is created. Sign URLs for each chunk. If a WebSocket drops, let the client reconnect and pick up where it left off. Failures should degrade gracefully—nothing should require the user to start over.
 
-It sounds simple enough: send a request, wait for the model to generate, return the result.
-
-Except:
-
- - Generating media can take 30 to 90+ seconds
-
- - If the user disconnects, the job is gone
-
- - There’s no streaming, so you wait for everything or nothing
-
- - Load balancing doesn’t help much when some jobs are 4x longer than others and it's extremely diffcult to figure what prompt will take long
-
-Even worse, any one of these issues can cause a bad experience that makes the product feel broken.
-
-## The Solution: Async and Stream-First
-
-We worked with the team to build a system that leans into what media generation really needs. Here's the core of what we set up:
-
-### Async Job Queue
-
-Every request turns into a job. It lives on the backend. That means:
-
- - You don’t lose work if the tab closes
-
- - You can retry failures
-
- - We can prioritize and schedule intelligently
-
-Progressive Streaming
-
-We don’t wait until the file is finished. As soon as we have a piece, we stream it.
-
- - Users hear or see something in ~5-7 seconds
-
- - Playback starts while the rest of the media is being generated
-
- - UX stays smooth and responsive
-
-### Smarter Scheduling
-
-Instead of treating all jobs the same, we batch and prioritize based on real needs:
-
-- Premium users
-
-- Job complexity (length, resolution, modality)
-
-- System load
-
-It’s not just round-robin, or least connections strategy, it’s fair and flexible.
-
-### Proper Authentication
-
-Every part of the flow; submit, track, stream is secured:
-
-- Scoped tokens
-
-- Signed URLs
-
-- Safe reconnections
-
-No weird hacks. Just a real authentication model that fits the async lifecycle.
-
-## What Happened Next
-
-After 10 weeks, here’s what we launched with them:
-
-- Time-to-first-frame under 7 seconds
-
-- Thousands of concurrent jobs with zero loss on reconnect
-
-- Streaming previews worked even for 99 percentile long-running jobs
-
-It felt fast. It felt responsive. And most importantly, it felt like a product, not a demo.
-
-## Why This Works
-
-We didn’t just make the model usable, we made it feel good to use.
-
-- Asynchronous architecture gives us resilience
-
-- Streaming gives users confidence
-
-- Job queues give us control
-
-- Auth gives us safety
-
-The result? A real system that meets people where they are, on flaky mobile, low-bandwidth networks, or high-concurrency days.
+## Orchestrate everything to work together
+Glue the pieces with serverless compute. You can use AWS Lambda to validate tokens, poll the queue, invoke the model, package chunks, and push them over WebSockets. Lambdas scale with demand and keep cost tied to actual work instead of idle infrastructure.
 
 
-## You Don’t Have to Build It Alone
+## We can help
 
-If you’ve got a powerful model and a vision for what it could be, but you’re stuck on turning it into a real product - talk to us.
+You could go build this yourself. The thing is: we already built it for a client.
 
-We’ve done this. We can help you go from "Look what cool stuff we made" to "Try it now."
+In ten weeks, we took their internal generative media model and turned it into a product-grade pipeline. What could have been a blocking API call with unpredictable latency is an asynchronous streaming system. They got first bits in under seven seconds. Thousands of concurrent jobs ran without losing state on reconnect, and even the 99th percentile of long-running jobs stayed smooth from start to finish. It stopped feeling like a prototype and started feeling like something real users relied on.
 
-No fragile hacks. No fake streaming. Just the right pieces, built the right way.
+**Architecture diagram (placeholder):**
 
-Let’s make it work, for real users, in the real world.
+If your media generation pipeline still feels slow, brittle, or hard to scale, you don't have to figure it all out alone. We've done this. 
+
+Let's get your system to the point where users stop waiting and start engaging.
+
