@@ -4,7 +4,7 @@ description: "Billing systems shouldn’t break when your business changes. Star
 createdAt: 1753226376766
 updatedAt: 1753226376766
 authors: ["stefan"]
-category: "CASE STUDY / SOFTWARE ARCHITECTURE"
+category: "CASE STUDY"
 editors: ["velimir"]
 abstract: "Startups thrive on agility, but their billing systems often don’t. While product roadmaps and pricing models shift rapidly in pursuit of growth and product–market fit, billing infrastructure tends to lag behind, creating friction just when flexibility is needed most. In this post, we unpack how we helped Submix, a real-time audio collaboration platform, build a future-proof billing foundation tailored to constant change. By leveraging Lago, an open-source, usage-based billing engine, we delivered a system designed for adaptability, not rigidity. The result: seamless transitions between pricing models, faster go-to-market iterations, and full ownership over billing logic and data. For fast-moving teams, treating billing as a strategic lever, not an afterthought, can unlock speed, resilience, and long-term optionality."
 image: "/images/using-lago-to-create-a-flexible-billing-system-2.png"
