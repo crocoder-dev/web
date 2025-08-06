@@ -11,7 +11,7 @@ bgColor: "bg-[#3C3843E5]/[0.9]"
 By optimizing workflows and breaking down tasks, we boost engineering tempo and support your team in delivering higher-quality software, faster. Through hands-on process coaching, placing experienced engineers directly in your team, or deploying a dedicated task force to unblock delivery, we streamline development to make releases more frequent and reduce production failures.
 </br>
 </br>
-</br>
+
 <div class="flex justify-end items-center gap-4">
   <p class="text-right">Schedule a free DevEx audit</p>
   <a id="contact-us-our-services-cta"
