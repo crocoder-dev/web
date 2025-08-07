@@ -7,7 +7,7 @@ authors: ["ante"]
 category: "Case Study"
 editors: ["velimir"]
 abstract: "Migrating a live product to a new framework isn’t just a technical challenge—it’s an organizational one. In this post, I share how we partnered with sevdesk to navigate the end of AngularJS support and transition their accounting software to React without downtime, feature freezes, or disrupting users. From introducing hybrid architectures to embedding knowledge transfer through workshops, pair programming, and team mentoring, we focused on enabling sevdesk’s developers to own the new codebase. This story highlights why successful migrations depend not only on clean code, but on shared ownership, developer motivation, and changes that stick long after the migration is done."
-iimage: "/images/from-angular-to-react.png"
+image: "/images/from-angular-to-react.png"
 draft: false
 ---
 
