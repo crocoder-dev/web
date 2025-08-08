@@ -46,7 +46,7 @@ To embed migration into the existing codebase, we built seamless bridges between
 <blockquote style="quotes: none; font-style: normal;">
   <p>
     💡 If you are interested in how we handle framework migrations, you can read about our experience migrating from Angular to React at <strong>sevdesk</strong>: 
-    <a href="/blog/from-angular-to-react" target="_blank" rel="noopener noreferrer">
+    <a href="/blog/migrating-an-enterprise-app-from-angularjs-to-react" target="_blank" rel="noopener noreferrer">
       “How We Migrated an Enterprise App from AngularJS to React Without Downtime”
     </a>.
   </p>
