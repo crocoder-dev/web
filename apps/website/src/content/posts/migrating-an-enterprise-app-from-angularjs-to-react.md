@@ -23,7 +23,7 @@ Since the end of support for AngularJS/Angular 1.6, sevdesk faced a major turnin
 
 Most third-party libraries dropped support for AngularJS, meaning that developers would have to stop updating dependencies to avoid breaking changes or maintain their own forks. This may seem like a minor inconvenience, but outdated dependencies can lead to additional security issues. On the other hand, maintaining forked libraries adds extra complexity and a risk of future incompatibilities with other libraries.
 
-Another pressing issue was the shift in the developer landscape, as knowledge of AngularJS became a *legacy skill*. Finding new developers became more difficult, raising concerns about long-term maintainability and limiting the growth of the company.
+Another pressing issue was the shift in the developer landscape, as knowledge of AngularJS became a _legacy skill_. Finding new developers became more difficult, raising concerns about long-term maintainability and limiting the growth of the company.
 
 Considering the risks of continuing with AngularJS, sevdesk decided that the migration was crucial for the future of the company and chose to adopt React instead of Angular due to its long-term advantages. Since their development team lacked experience working with React and was facing significant changes to both the product and the company, sevdesk reached out to us to help execute this large-scale migration as smoothly as possible.
 
@@ -105,7 +105,7 @@ As the number of developers who grasped the basics of React increased, the task 
 
 ## Key Takeaways
 
-When migrating from one framework to another, there’s no one-size-fits-all solution. Each project has its own unique challenges shaped by the development team, existing architecture, and long-term goals. 
+When migrating from one framework to another, there’s no one-size-fits-all solution. Each project has its own unique challenges shaped by the development team, existing architecture, and long-term goals.
 
 Key elements of a successful migration include:
 
