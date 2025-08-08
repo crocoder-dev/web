@@ -1,6 +1,6 @@
 ---
 title: "\"No Deployments on Friday\" sucks"
-description: "Explore the debate on 'no deployments on Fridays' in tech — a sign of caution or a red flag? Unpack the truth behind this rule's impact on engineering culture, team confidence, and system reliability."
+description: "Explore the debate on 'no deployments on Fridays' in tech—a sign of caution or a red flag? Unpack the truth behind this rule's impact on engineering culture, team confidence, and system reliability."
 createdAt: 1699736934343
 updatedAt: 1699736934343
 authors: ["david"]
@@ -11,7 +11,7 @@ image: "/images/no-deployments-on-friday-sucks.png"
 draft: false
 ---
 
-The common industry maxim of "no deployments on Fridays" often carries a certain prestige — seen as a hallmark of a mature, responsible engineering culture.
+The common industry maxim of "no deployments on Fridays" often carries a certain prestige—seen as a hallmark of a mature, responsible engineering culture.
 
 For many, it's a rule to avoid potential headaches when everyone wants to start their weekend. It might sound smart, but it could also be a red flag that something's not quite right with the team's confidence or their tools.
 
