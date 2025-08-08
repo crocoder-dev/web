@@ -1,10 +1,10 @@
 ---
-title: "How We Migrated an Enterprise App from AngularJS to React Without Downtime"
+title: "Migrating an Enterprise App from AngularJS to React"
 description: "Discover how we helped sevdesk migrate from AngularJS to React with zero downtime or feature freezes. Learn how incremental refactoring, team enablement, and smart process alignment led to lasting success."
-createdAt: 1754055975883
-updatedAt: 1754055975883
+createdAt: 1754595192134
+updatedAt: 1754595192134
 authors: ["ante"]
-category: "Case Study"
+category: "CASE STUDY"
 editors: ["velimir"]
 abstract: "Migrating a live product to a new framework isn’t just a technical challenge—it’s an organizational one. In this post, I share how we partnered with sevdesk to navigate the end of AngularJS support and transition their accounting software to React without downtime, feature freezes, or disrupting users. From introducing hybrid architectures to embedding knowledge transfer through workshops, pair programming, and team mentoring, we focused on enabling sevdesk’s developers to own the new codebase. This story highlights why successful migrations depend not only on clean code, but on shared ownership, developer motivation, and changes that stick long after the migration is done."
 image: "/images/from-angular-to-react.png"
@@ -21,30 +21,33 @@ Our client was **sevdesk**, a company that offers online accounting and invoicin
 
 Since the end of support for AngularJS/Angular 1.6, sevdesk faced a major turning point. Without new patches, AngularJS applications became exposed to increasing security risks, especially as new browser vulnerabilities emerged. This posed a serious problem since the app handles sensitive financial data.
 
-Most third-party libraries dropped support for AngularJS, meaning that developers would have to stop updating dependencies to avoid breaking changes or maintain their own forks. This may seem like a minor inconvenience, but outdated dependencies can lead to additional security issues. On the other hand, maintaining forked libraries adds extra complexity and a risk of future incompatibilities with other libraries. 
+Most third-party libraries dropped support for AngularJS, meaning that developers would have to stop updating dependencies to avoid breaking changes or maintain their own forks. This may seem like a minor inconvenience, but outdated dependencies can lead to additional security issues. On the other hand, maintaining forked libraries adds extra complexity and a risk of future incompatibilities with other libraries.
+
 Another pressing issue was the shift in the developer landscape, as knowledge of AngularJS became a *legacy skill*. Finding new developers became more difficult, raising concerns about long-term maintainability and limiting the growth of the company.
 
 Considering the risks of continuing with AngularJS, sevdesk decided that the migration was crucial for the future of the company and chose to adopt React instead of Angular due to its long-term advantages. Since their development team lacked experience working with React and was facing significant changes to both the product and the company, sevdesk reached out to us to help execute this large-scale migration as smoothly as possible.
 
 ## Migration Risks and the Importance of Knowledge Transfer
 
-Poorly planned migration strategies can introduce significant risks. Dividing internal resources into separate teams for maintenance and migration can stretch capacity thin, leading to slower progress on both fronts. While involving external teams may seem efficient, it can result in a disconnect between those maintaining the current system and those executing the migration. More critically, if the migration is heavily reliant upon an external team without adequate knowledge transfer, the internal team may struggle to maintain and update the new system once the external team departs. In the worst-case scenario, this leads to wasted time and resources, and a product that is harder to support than the one it replaced.
+Poorly planned migration strategies can introduce significant risks. It's important to recognize that few organizations have the luxury of completely stopping application development during a migration. Long feature freezes are rarely feasible, so successful migrations must be designed to occur incrementally and with minimal disruption to ongoing development.
 
-Moreover, it's important to recognize that few organizations have the luxury of completely stopping application development during a migration. Long feature freezes are rarely feasible, so successful migrations must be designed to occur incrementally and with minimal disruption to ongoing development. To ensure sevdesk avoided these risks, we worked hand-in-hand with their developers to execute the migration in a way that safeguarded development stability and ensured future maintainability.
+On the other hand, dividing internal resources into separate teams for maintenance and migration can stretch capacity thin, leading to slower progress on both fronts. While involving external teams may seem efficient, it can result in a disconnect between those maintaining the current system and those executing the migration. More critically, if the migration is heavily reliant upon an external team without adequate knowledge transfer, the internal team may struggle to maintain and update the new system once the external team departs. In the worst-case scenario, this leads to wasted time and resources, and a product that is harder to support than the one it replaced.
+
+To ensure sevdesk avoided these risks, we worked hand-in-hand with their developers to execute the migration in a way that safeguarded development stability and ensured future maintainability.
 
 ## Our goals and requirements
 
-Since our end goal was to ensure that the development team is equipped to maintain the app well into the future, we knew that simply delivering the migration wasn’t enough. That’s why we made knowledge transfer our top priority.
+Since our end goal was to ensure that the development team is equipped to maintain the app well into the future, we knew that simply delivering the migration wasn’t enough. That’s why we made knowledge transfer one of our top priorities.
 
 In order to minimize disruption, we needed a clear understanding of the requirements and the development team's workflow. To gain this insight and fully grasp the motivation behind the migration, we began with an introductory period to familiarize ourselves with the project and the developers.
 
-Additionally, the app needed to remain fully operational, with zero downtime, as something like that could lead to a negative user experience and potential client loss. Secondly, there would be no feature freeze, meaning feature development would continue alongside the migration process. This was something that impacted our decision regarding the migration strategy because there was a potential risk that the development team could get overwhelmed trying to keep up with everything.
+Additionally, the app needed to remain fully operational, with zero downtime, as something like that could lead to a negative user experience and potential client loss. To make things even more challenging, there would be no feature freeze, meaning feature development would continue alongside the migration process. This was something that impacted our decision regarding the migration strategy because there was a potential risk that the development team could get overwhelmed trying to keep up with everything.
 
 ## Our approach
 
 We see ourselves as the client’s teammates, partners even, and not just outsiders. We integrate into the client’s process with care and attention to their existing ways of working. We aim to be as involved as possible by familiarizing ourselves with their development team’s domain and working methods. By reviewing their roadmap, we gain insight into upcoming changes and features, ensuring we remain up to date with the status of the project.
 
-We participate in their retrospectives and planning sessions to ensure alignment and effective preparation for upcoming tasks. We also actively communicate with their developers, providing support and guidance in implementing new features and in future planning. On the technical side, we take significant measures to ensure that feature development and migration work happen on the same codebase, preventing divergences and minimizing integration risks. This helps us maintain a positive and productive collaboration with both the developers and the client.
+We participate in their retrospectives and planning sessions to ensure alignment and effective preparation for upcoming tasks. We also actively communicate with their developers, providing support and guidance in implementing new features and in future planning. On the technical side, we take significant measures to ensure that feature development and migration work happen on the same codebase, preventing divergences and minimizing integration risks. This helps us maintain a positive and productive collaboration with both the developers and all other project stakeholders.
 
 When it comes to sharing knowledge, we recognize that not everyone learns at a fixed pace. We present the developers with multiple approaches and encourage them to engage with the ones they find most helpful, including workshops, group coding sessions, and pair programming.
 
@@ -64,9 +67,17 @@ Our development started with creating a new component library and rewriting old 
 
 The Angular Wrapper is a component we created in Angular to wrap React components, allowing them to be used as if they were native Angular components. This hybrid approach allowed both frameworks to exist at the same time, enabling an incremental transition from the old framework to the new one within the existing codebase. Using this tool allowed us to continue rewriting old components and building new ones directly in the React component library. As a result, new features were built in React, reducing the need for rewrites and helping developers gradually get up to speed with React through hands-on feature development.
 
+<blockquote style="quotes: none; font-style: normal;">
+<p>💡 By enabling AngularJS and React to coexist within the same product runtime, our approach made it possible to transition incrementally. It allowed us to rewrite legacy components while building new ones directly in the React component library, all without disrupting ongoing development and without doing double the work.</p>
+</blockquote>
+
 ### Making the Shift Easier for Developers
 
 Aside from the technical changes that had to be made, we needed to focus on mentoring the developers to learn React, and quickly. To get an idea of the developers’ knowledge of React, we created a poll where they assessed how familiar they are with the framework. The results showed that not a lot of developers had any experience with React, meaning we needed to start with the basics and gradually work our way to more complex aspects. The maintenance and updates of the app made this more challenging, as it left the developers with limited time to focus on learning. This is where our approach of identifying motivated developers came into play: those eager to learn were mentored first, which enabled them to support their teammates with React-related tasks and help spread the knowledge across the organization.
+
+<blockquote style="quotes: none; font-style: normal;">
+<p>💡 By identifying developers who showed strong motivation to learn and mentoring them first, we empowered them to become catalysts for spreading React knowledge throughout their teams and the organization.</p>
+</blockquote>
 
 ### React Workshops
 
@@ -77,6 +88,8 @@ We organized a range of workshops, from React 101 to more advanced topics, repea
 At sevdesk, a company-wide decision allowed developers to take one day each month away from product work to focus on projects of their own choosing. We adopted this concept and proposed organizing group coding sessions on that day. Unlike the more theoretical workshops, these interactive sessions focused on coding in React. We covered the basics such as creating simple pages, building components, managing state, navigating between pages, etc.
 
 Other developers would follow along, try coding something on their own, and ask questions whenever something was unclear. To ensure that every part of the code was properly migrated and maintainable in the future, we made sure to invite a few developers from each team to participate.
+
+While off-product work can sometimes feel fragmented or disconnected, these group sessions were focused and intentional, contributing to long-term improvements in the product.
 
 ### Pair programming
 
@@ -102,4 +115,4 @@ Key elements of a successful migration include:
 
 By getting to know the client, the development team, and the product, we were able to plan out the migration strategy that worked for sevdesk. We helped them to carry out a smooth migration with zero downtime, no feature freezes, all while maintaining a high-quality developer and user experience. During our collaboration, we emphasized that technical excellence must go hand in hand with organizational changes and adaptations—without this alignment, improvements tend to be short-lived. Alongside the migration, we shared our knowledge of React and best practices with the development team, equipping them with the tools needed to maintain and upgrade the product well into the future.
 
-If you need support planning your own migration, feel free to <ins>[contact us](https://www.crocoder.dev/#book-a-call-section)</ins>!
+If the things we’ve discussed hit close to home, <ins>[contact us](https://www.crocoder.dev/#book-a-call-section)</ins>—we’d be happy to help you plan your migration.

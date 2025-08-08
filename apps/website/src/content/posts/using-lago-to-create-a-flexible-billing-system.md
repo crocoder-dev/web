@@ -35,7 +35,7 @@ Initially, Submix used a **simple pay-per-call model**. Users could purchase ind
 
 This simple model suited their **B2C strategy** well, as predictability and ease of use were critical for attracting early adopters. But as the product evolved, and new features launched, it became clear that a more dynamic billing approach would be required to support their growth.
 
-<blockquote style="quotes: none;">
+<blockquote style="quotes: none; font-style: normal;">
 <p>💡 Before a startup finds a market fit, pricing models will inevitably shift. Recognizing this, the Submix team supported our vision for a billing foundation designed for adaptability from day one, understanding that it's what separates momentum from setbacks.</p>
 </blockquote>
 
@@ -45,7 +45,7 @@ To accommodate these shifts, they introduced a **fixed-price subscription model*
 
 The pricing model continued to evolve; first with **overage charges** layered onto the subscriptions, and later transitioning to a **fully usage-based, pay-as-you-go** system for individual users that offers maximum flexibility. **Free trial periods** were also introduced to lower the barrier for new users and encourage onboarding.
 
-<blockquote style="quotes: none;">
+<blockquote style="quotes: none; font-style: normal;">
 <p>💡  Choosing the right billing foundation early on allowed us to pivot from fixed pricing to flat-fee subscriptions, and later on to hybrid and usage-based models. All this in just days, without major rework. Our future selves were grateful.</p>
 </blockquote>
 
@@ -54,6 +54,15 @@ The pricing model continued to evolve; first with **overage charges** layered on
 When Submix needed to introduce a subscription billing model, their marketplace was powered by Medusa v1, an open-source commerce engine that, at the time, didn’t support subscription payments out of the box or offer production ready plugins for it.
 
 That limitation, combined with our expectation of future pricing complexity, led us to explore dedicated billing platforms that could integrate with our stack and grow with the business.
+
+<blockquote>
+  <div>
+    <p>CroCoder have been a great partner during the growth of Submix, and the development of our billing system is a great example of their approach to working with us. They're proactive, anticipate our needs, and bring a wealth of knowledge and experience. We trusted their recommendation to use Lago for our billing system, which turned out to be the right call for a future-proof system.</p>
+  </div>
+  <p style="quotes: none; font-style: normal;">
+    — Douglas Barr, Co-Founder and CTO at Submix
+  </p>
+</blockquote>
 
 ### Our Evaluation Priorities
 
@@ -70,7 +79,7 @@ Lago stood out for its open-source foundation, deployment flexibility, and nativ
 
 It gave us the technical control we needed without introducing complexity, and served as a solid foundation that could support experimentation, growth, and long-term maintainability.
 
-<blockquote style="quotes: none;">
+<blockquote style="quotes: none; font-style: normal;">
 <p>💡 Choosing Lago gave us the freedom to build around the business, rather than forcing the business to conform to the tool.</p>
 </blockquote>
 
@@ -86,7 +95,7 @@ During live call sessions, user activity, such as entering or leaving a call, is
 
 Users can track their usage data directly within the app. This data is pulled from our processed billing records, providing clear, up-to-date feedback aligned with their subscription status.
 
-<blockquote style="quotes: none;">
+<blockquote style="quotes: none; font-style: normal;">
 <p>💡 Our approach at Crocoder prioritizes future-proof and adjustable solutions. This was clearly demonstrated in the system that we built for Submix, which allows them to evolve their pricing models or billing processes without major rework.</p>
 </blockquote>
 
@@ -97,7 +106,6 @@ By designing Submix’s billing solution around Lago, and integrating it with th
 ### Fast Rollout of New Billing Models
 
 Because of the architectural flexibility, Submix was able to shift from per-session purchases to fixed monthly subscriptions, and later to overage-based and fully usage-based models, all within days. When usage-based billing was introduced, no major rework was needed thanks to the broad capabilities of Lago in conjunction with our established usage tracking. Adding overage logic and reconfiguring pricing rules was fast and non-disruptive. These rapid rollouts were a direct result of  designing for change from day one.
-
 
 ### Highly Flexible Billing Adjustments
 
@@ -111,7 +119,7 @@ Lago offers both robust cloud and self-hosted options. We deployed and managed t
 
 Developers can simulate billing flows locally, test quickly, and release with confidence.
 
-<blockquote style="quotes: none;">
+<blockquote style="quotes: none; font-style: normal;">
 <p>💡 While business change is a constant reality for startups, experience has taught us precisely why architectural flexibility yields the highest returns.</p>
 </blockquote>
 
