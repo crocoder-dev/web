@@ -152,7 +152,7 @@ body:has(nav #nav-menu-toggle:checked) {
   }
 }
 
-@media (width <= 48rem) {
+@media (width < 768px) {
   .animation-container {
     /* 4 x card height - 3 x negative margin top */
     height: calc((4 * 680px) - (3 * 20));
