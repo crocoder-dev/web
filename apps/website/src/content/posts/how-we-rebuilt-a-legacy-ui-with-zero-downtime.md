@@ -1,6 +1,6 @@
 ---
-title: "How We Rebuilt a Legacy UI With Zero Downtime: A Case Study in Component Libraries and Frontend Governance"
-description: "Find out how we embedded within frontend teams to lead a zero-downtime UI migration from the inside. This case study explores our bottom-up approach to migrations using early governance to create a shared component library."
+title: "How We Rebuilt a Legacy UI With Zero Downtime: A Case Study in Component Libraries and Frontend Guidance"
+description: "Find out how we embedded within frontend teams to lead a zero-downtime UI migration from the inside. This case study explores our bottom-up approach to migrations providing early guidance to create a shared component library."
 createdAt: 1754640512840
 updatedAt: 1754640512840
 authors: ["gloria"]
@@ -46,9 +46,7 @@ To embed migration into the existing codebase, we built seamless bridges between
 <blockquote style="quotes: none; font-style: normal;">
   <p>
     💡 If you are interested in how we handle framework migrations, you can read about our experience migrating from Angular to React at <strong>sevdesk</strong>: 
-    <a href="/blog/migrating-an-enterprise-app-from-angularjs-to-react" target="_blank" rel="noopener noreferrer">
-      “How We Migrated an Enterprise App from AngularJS to React Without Downtime”
-    </a>.
+    <a href="/blog/migrating-an-enterprise-app-from-angularjs-to-react" target="_blank" rel="noopener noreferrer">“Migrating an Enterprise App from AngularJS to React”</a>.
   </p>
 </blockquote>
 
@@ -81,6 +79,15 @@ At Mister Spex, the process looked somewhat different. We built a component libr
 
 Before this, duplication was commonplace: similar UI elements were implemented in slightly different ways across teams. The new library gave them a consistent foundation to build on, improving alignment and reducing rework.
 
+<blockquote>
+  <div>
+    <p>The list of things I could praise about Danica’s work at Searchmetrics is not short. She took apart the whole design system to recreate it as an interactive component library—something we would never have time for among all the product features and improvements. And the outcome was outstanding: consistent, easy to use, and well documented. And on top of all that, it was always a joy to work with her.</p>
+  </div>
+  <p style="quotes: none; font-style: normal;">
+    — Sarah Wachs, Senior Developer and Former Chapter Lead at Searchmetrics
+  </p>
+</blockquote>
+
 ---
 
 ## Long-Term Impact
@@ -98,7 +105,7 @@ We’ve experienced firsthand that **zero-downtime migrations are possible**, bu
 Here’s what worked for us:
 
 - **Don’t pause delivery.** Integrate migration into the roadmap for better quality and long-term stability.
-- **Introduce team governance early.** A shared library is only as strong as the practices and people around it.
+- **Introduce team alignment early.** A shared library is only as strong as the practices and people around it.
 - **Build in layers.** Use hybrid patterns, wrapper bridges, and feature flags to avoid big-bang cutovers.
 - **Embed in the team.** Real change happens when you’re part of the chapter, not an external advisor.
 
