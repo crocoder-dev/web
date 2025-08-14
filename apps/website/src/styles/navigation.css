@@ -8,16 +8,6 @@
   }
 }
 
-/* @keyframes display-animation {
-  0% {
-    display: none;
-  }
-
-  100% {
-    display: inline-block;
-  }
-} */
-
 @keyframes visible-animation {
   0% {
     visibility: hidden;
