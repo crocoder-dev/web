@@ -212,22 +212,16 @@ const optimizedLogo = await getImage({
       containerElement.classList.add("pr-2");
       handleClassChanges(allDataHidden);
     }
-    console.log("currentScrollTop", currentScrollTop);
-    console.log("lastScrollTop", lastScrollTop);
-    console.log("MEMEME", allDataHidden[0].getAttribute("id"));
-    console.log("MEMEME", allDataHidden[0].getAttribute("data-navhidden"));
     if (
       currentScrollTop > lastScrollTop &&
       allDataHidden[0].getAttribute("data-navhidden") === "true"
     ) {
-      console.log("DOWNNNNNNNNNNNNN");
       invertDataAttributte(allDataHidden);
       handleClassChanges(allDataHidden);
     } else if (
       currentScrollTop <= lastScrollTop &&
       allDataHidden[0].getAttribute("data-navhidden") === "false"
     ) {
-      console.log("UPPPPPPPPPPPPPP", currentScrollTop, lastScrollTop);
       invertDataAttributte(allDataHidden);
     }
 
@@ -291,7 +285,6 @@ const optimizedLogo = await getImage({
       event.animationName === "navigation-animation" &&
       allDataHidden[0].getAttribute("data-navhidden") === "true"
     ) {
-      console.log("NAV FINISHED");
       handleClassChanges(allDataHidden);
     }
   });
