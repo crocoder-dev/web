@@ -11,7 +11,7 @@
     "@tailwindcss/postcss": "^4.1.11",
     "@tailwindcss/typography": "^0.5.16",
     "@tailwindcss/vite": "^4.1.11",
-    "astro": "5.12.9",
+    "astro": "5.13.1",
     "astro-font": "^1.1.0",
     "autoprefixer": "^10.4.21",
     "classnames": "^2.5.1",
