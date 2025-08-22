@@ -9,6 +9,8 @@ const optimizedLogo = await getImage({
   height: 51,
   format: "webp",
 });
+
+const isContact = Astro.url.pathname === "/contact"
 ---
 
 <header
@@ -110,8 +112,8 @@ const optimizedLogo = await getImage({
           data-navhidden="true"
           id="book-a-call-action"
           class="invisible w-fit font-medium h-[39px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-[#545664] text-[#ffffff] hover:opacity-90"
-          href="/#book-a-call-section"
-        >
+          href={isContact ? "/#book-a-call-section" : "#book-a-call-section"}
+          >
           Book a call
         </a>
       </li>
@@ -153,7 +155,8 @@ const optimizedLogo = await getImage({
             text-base text-center
             whitespace-nowrap
              bg-[#545664] text-[#ffffff] hover:opacity-90"
-      href="/#book-a-call-section">Book a call</a
+             href={isContact ? "/#book-a-call-section" : "#book-a-call-section"}
+             >Book a call</a
     >
     <a
       class="font-medium
