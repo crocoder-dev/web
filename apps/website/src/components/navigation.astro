@@ -1,40 +1,32 @@
 ---
 import { getImage } from "astro:assets";
 import crocoderLogo from "../assets/crocoder-logo.png";
+import "../styles/navigation.css";
 
 const optimizedLogo = await getImage({
   src: crocoderLogo,
   width: 63,
   height: 51,
-  format: 'webp'
+  format: "webp",
 });
 ---
 
 <header
-  class="fixed
-    m-auto
-    mx:0
-    w-screen
-    max-w-screen
+  class="fixed m-auto
     top-0
     md:mx-2
     md:top-1
-    md:[&_[data-navhidden]]:duration-700
-    md:[&_[data-navhidden]]:!overflow-hidden
-    md:[&_[data-navhidden]]:ease-in-out
-    md:[&_[data-navhidden='false']]:w-0
-    md:[&_[data-navhidden='false']]:px-0
-    md:[&_[data-navhidden='false']]:mx-0
-    md:[&_[data-navhidden='']]:max-w-48
-    z-50"
+    z-50
+    w-full flex flex-col"
 >
   <nav
-    class="bg-[#3C3843E5]
-      md:w-fit
-      mx-auto
-      flex
-      items-center
+    id="nav-bar"
+    class="inline-flex
+      w-full
       justify-between
+      items-center
+      bg-[#3C3843E5]
+      mx-auto
       py-[10px]
       px-7
       md:px-[15px]
@@ -43,11 +35,15 @@ const optimizedLogo = await getImage({
       md:overflow-hidden
       relative
       gap:12
-      md:gap-24
-      md:has-[img[data-navhidden='false']]:gap-7
-      max-md:has-[input:checked]:bg-secondary"
+      max-md:has-[input:checked]:bg-secondary
+      md:w-[600px]"
+    data-navhidden="false"
   >
-    <a class="sm:flex sm:items-center" href="/" aria-label="Crocoder Logo">
+    <a
+      class="sm:flex sm:items-center flex-none"
+      href="/"
+      aria-label="Crocoder Logo"
+    >
       <img
         src={optimizedLogo.src}
         alt="Crocoder Crocodile Logo"
@@ -57,14 +53,13 @@ const optimizedLogo = await getImage({
         loading="eager"
       />
       <img
+        id="logo"
         width={153}
         height={24}
         alt="Crocoder Text Logo"
         src="/images/crocoder-text.svg"
-        class="pl-[14px] hidden h-6 w-auto md:block
-          md:[&[data-navhidden='false']]:hidden
-          md:[&[data-navhidden='']]:block"
-        data-navhidden
+        class="pl-[14px] h-6 w-auto hidden md:flex"
+        data-navhidden="false"
       />
     </a>
     <ul
@@ -81,84 +76,95 @@ const optimizedLogo = await getImage({
       </li>
     </ul>
 
-    <input
-      id="nav-menu-toggle"
-      type="checkbox"
-      readonly
-      class="hidden peer/menu-toggle"
-    />
-    <label
-      for="nav-menu-toggle"
-      class="md:hidden
-      flex
-      flex-col
-      gap-1.5
-      peer-checked/menu-toggle:[&>*:nth-child(1)]:rotate-45
-      peer-checked/menu-toggle:[&>*:nth-child(1)]:translate-y-2
-      peer-checked/menu-toggle:[&>*:nth-child(2)]:opacity-0
-      peer-checked/menu-toggle:[&>*:nth-child(2)]:-translate-x-full
-      peer-checked/menu-toggle:[&>*:nth-child(3)]:-translate-y-2
-      peer-checked/menu-toggle:[&>*:nth-child(3)]:-rotate-45"
-    >
-      <span class="h-0.5 w-6 bg-neutral-50 transition-transform duration-200"
-      ></span>
-      <span
-        class="h-0.5 w-6 bg-neutral-50 transition-[transform_opacity] duration-350"
-      ></span>
-      <span class="h-0.5 w-6 bg-neutral-50 transition-transform duration-200"
-      ></span>
+    <label for="nav-menu-toggle" class="md:hidden flex flex-col gap-1.5">
+      <input
+        id="nav-menu-toggle"
+        type="checkbox"
+        readonly
+        class="hidden peer/menu-toggle"
+      />
+      <span id="top-line" class="h-0.5 w-6 bg-neutral-50 line line1"></span>
+      <span id="middle-line" class="h-0.5 w-6 bg-neutral-50 line line2"></span>
+      <span id="bottom-line" class="h-0.5 w-6 bg-neutral-50 line line3"></span>
     </label>
 
-    <div
-      class="max-md:absolute max-md:hidden max-md:peer-checked/menu-toggle:flex max-md:flex-col max-md:gap-4 max-md:top-[71px] max-md:w-full max-md:py-7 bg-[#3c3843] max-md:h-[calc(100vh-71px)] max-md:right-0 md:bg-transparent md:flex md:items-center"
-    >
-      <ul
-        data-navhidden
-        class="flex flex-col md:flex-row gap-4 mx-7 md:mx-0 md:w-auto relative md:mr-24"
+    <ul class="hidden items-center md:flex">
+      <li id="for-ctos" data-navhidden="true" class="m-2">
+        <a
+          class="whitespace-nowrap font-medium text-2xl md:text-lg text-[#E8E8E8] hover:text-white"
+          href="/for-ctos"
+        >
+          For CTOs
+        </a>
+      </li>
+      <li id="blog" data-navhidden="true" class="m-2">
+        <a
+          class="whitespace-nowrap font-medium text-2xl md:text-lg text-[#E8E8E8] hover:text-white"
+          href="/blog"
+        >
+          Blog
+        </a>
+      </li>
+      <li id="book-a-call-container" class="ml-auto w-0">
+        <a
+          data-navhidden="true"
+          id="book-a-call-action"
+          class="invisible w-fit font-medium h-[39px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-[#545664] text-[#ffffff] hover:opacity-90"
+          href="/#book-a-call-section"
+        >
+          Book a call
+        </a>
+      </li>
+    </ul>
+    <div class="hidden md:inline-block">
+      <a
+        class="font-medium
+          w-fit !h-[39px] items-center px-4 py-2 rounded-md
+          text-base text-center whitespace-nowrap bg-crocoder-yellow text-contrast hover:opacity-90
+          inline-block"
+        href="/contact"
       >
-        <li>
-          <a
-            class="font-medium text-2xl md:text-lg text-[#E8E8E8] hover:text-white"
-            href="/for-ctos"
-          >
-            For CTOs
-          </a>
-        </li>
-        <li>
-          <a
-            class="font-medium text-2xl md:text-lg text-[#E8E8E8] hover:text-white"
-            href="/blog"
-          >
-            Blog
-          </a>
-        </li>
-      </ul>
-      <ul class="flex md:ml-0 md:mx-0">
-        <li>
-          <a
-            id="book-a-call-action"
-            class="flex max-sm:ml-7 mr-4 w-fit font-medium h-[45px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-[#545664] text-[#ffffff] hover:opacity-90
-          md:[&[data-navhidden='false']]:opacity-0
-          md:[&[data-navhidden='']]:opacity-100
-          md:[&[data-navhidden='']]:delay-100
-          md:[&[data-navhidden='false']]:!w-0
-          md:[&[data-navhidden='false']]:overflow-hidden
-            md:[&[data-navhidden='false']]:!px-0"
-            data-navhidden="false"
-            href="#book-a-call-section">Book a call</a
-          >
-        </li>
-        <li data-navhidden>
-          <a
-            class="flex font-medium w-fit h-[45px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-crocoder-yellow text-contrast hover:opacity-90"
-            href="/contact"
-          >
-            Contact us
-          </a>
-        </li>
-      </ul>
+        Contact us
+      </a>
     </div>
   </nav>
+  <div
+    id="mobile-list"
+    class="relative px-7 py-4 gap-5 bg-secondary hidden flex-col items-center h-full peer/menu-toggle"
+  >
+    <a
+      class="whitespace-nowrap font-medium text-2xl md:text-lg text-[#E8E8E8] hover:text-white min-h-10"
+      href="/for-ctos"
+    >
+      For CTOs
+    </a>
+    <a
+      class="whitespace-nowrap font-medium text-2xl md:text-lg text-[#E8E8E8] hover:text-white min-h-10"
+      href="/blog"
+    >
+      Blog
+    </a>
+    <a
+      data-navhidden="true"
+      id="mobile-book-a-call-action"
+      class="w-full
+            font-medium h-[40px]
+            items-center px-4 py-2 rounded-md
+            text-base text-center
+            whitespace-nowrap
+             bg-[#545664] text-[#ffffff] hover:opacity-90"
+      href="/#book-a-call-section">Book a call</a
+    >
+    <a
+      class="font-medium
+          w-full !h-[40px] items-center px-4 py-2 rounded-md
+          text-base text-center whitespace-nowrap bg-crocoder-yellow text-contrast hover:opacity-90
+          inline-block"
+      href="/contact"
+    >
+      Contact us
+    </a>
+  </div>
 </header>
 
 <script is:inline>
@@ -167,8 +173,17 @@ const optimizedLogo = await getImage({
 
   const allDataHidden = document.querySelectorAll("[data-navhidden]");
   const bookACallAction = document.getElementById("book-a-call-action");
+  const mobileBookACallAction = document.getElementById(
+    "mobile-book-a-call-action"
+  );
   const navMenuToggle = document.getElementById("nav-menu-toggle");
   const mobileContact = document.getElementById("mobile-contact");
+  const navElem = document.getElementById("nav-bar");
+  const logoElem = document.getElementById("logo");
+  const forCtoElem = document.getElementById("for-ctos");
+  const blogElem = document.getElementById("blog");
+  const containerElement = document.getElementById("book-a-call-container");
+  const mobileList = document.getElementById("mobile-list");
 
   function onScroll() {
     const currentScrollTop =
@@ -184,11 +199,25 @@ const optimizedLogo = await getImage({
   }
 
   function handleScroll(currentScrollTop) {
+    /* Since the animation shouldn't trigger on first render, all the animation
+    classes are added first time the handle scroll is triggered*/
+    if (!navElem.classList.contains("animated-navigation")) {
+      navElem.classList.add("animated-navigation");
+      navElem.classList.remove("md:w-[600px]");
+      logoElem.classList.add("animated-button");
+      forCtoElem.classList.add("animated-text");
+      blogElem.classList.add("animated-text");
+      bookACallAction.classList.add("animated-button", "w-fit");
+      containerElement.classList.remove("w-0");
+      containerElement.classList.add("pr-2");
+      handleClassChanges(allDataHidden);
+    }
     if (
       currentScrollTop > lastScrollTop &&
-      allDataHidden[0].getAttribute("data-navhidden") === ""
+      allDataHidden[0].getAttribute("data-navhidden") === "true"
     ) {
       invertDataAttributte(allDataHidden);
+      handleClassChanges(allDataHidden);
     } else if (
       currentScrollTop <= lastScrollTop &&
       allDataHidden[0].getAttribute("data-navhidden") === "false"
@@ -204,12 +233,60 @@ const optimizedLogo = await getImage({
       if (node.closest("li")?.textContent?.includes("Contact us")) return;
 
       const currentVal = node.getAttribute("data-navhidden");
-      node.setAttribute("data-navhidden", currentVal === "" ? "false" : "");
+      node.setAttribute(
+        "data-navhidden",
+        currentVal === "true" ? "false" : "true"
+      );
+
+      node.style.animationName = "none";
+      void node.offsetWidth;
+      node.style.animationName = "";
+    });
+  }
+
+  function handleClassChanges(dataHiddenNodes) {
+    dataHiddenNodes.forEach((node) => {
+      let condition;
+      switch (node.getAttribute("id")) {
+        case "logo":
+          condition = node.getAttribute("data-navhidden") === "false";
+          logoElem.classList.toggle("hidden", condition);
+          logoElem.classList.toggle("!w-0", condition);
+          break;
+        case "for-ctos":
+          condition = node.getAttribute("data-navhidden") === "true";
+          forCtoElem.classList.toggle("hidden", condition);
+          forCtoElem.classList.toggle("!w-0", condition);
+          break;
+        case "blog":
+          condition = node.getAttribute("data-navhidden") === "true";
+          blogElem.classList.toggle("hidden", condition);
+          blogElem.classList.toggle("!w-0", condition);
+          break;
+        case "book-a-call-action":
+          condition = node.getAttribute("data-navhidden") === "false";
+          bookACallAction.classList.toggle("hidden", condition);
+          bookACallAction.classList.toggle("!w-0", condition);
+          break;
+        default:
+          break;
+      }
     });
   }
 
   navMenuToggle.addEventListener("change", () => {
     mobileContact.classList.toggle("hidden", navMenuToggle.checked);
+    mobileList.classList.toggle("hidden", !navMenuToggle.checked);
+    mobileList.classList.toggle("flex", navMenuToggle.checked);
+  });
+
+  navElem.addEventListener("animationend", (event) => {
+    if (
+      event.animationName === "navigation-animation" &&
+      allDataHidden[0].getAttribute("data-navhidden") === "true"
+    ) {
+      handleClassChanges(allDataHidden);
+    }
   });
 
   function handleBookACall() {
@@ -223,4 +300,8 @@ const optimizedLogo = await getImage({
 
   window.addEventListener("scroll", onScroll, { passive: true });
   bookACallAction.addEventListener("click", handleBookACall);
+
+  mobileBookACallAction.addEventListener("click", () => {
+    navMenuToggle.click();
+  });
 </script>
