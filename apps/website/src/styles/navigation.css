@@ -1,6 +1,6 @@
 @keyframes navigation-animation {
   0% {
-    width: 600px;
+    width: 680px;
   }
 
   100% {
@@ -130,7 +130,10 @@
     animation-direction: normal;
   }
 
-  .animated-button,
+  .animated-button {
+    animation-name: visible-animation;
+  }
+
   .animated-text {
     width: auto !important;
     animation-name: visible-animation;

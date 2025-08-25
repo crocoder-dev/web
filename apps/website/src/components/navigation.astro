@@ -9,6 +9,8 @@ const optimizedLogo = await getImage({
   height: 51,
   format: "webp",
 });
+
+const isContact = Astro.url.pathname === "/contact"
 ---
 
 <header
@@ -36,7 +38,7 @@ const optimizedLogo = await getImage({
       relative
       gap:12
       max-md:has-[input:checked]:bg-secondary
-      md:w-[600px]"
+      md:w-[680px]"
     data-navhidden="false"
   >
     <a
@@ -47,18 +49,14 @@ const optimizedLogo = await getImage({
       <img
         src={optimizedLogo.src}
         alt="Crocoder Crocodile Logo"
-        width="63"
-        height="51"
         class="h-[51px] w-auto"
         loading="eager"
       />
       <img
         id="logo"
-        width={153}
-        height={24}
         alt="Crocoder Text Logo"
         src="/images/crocoder-text.svg"
-        class="pl-[14px] h-6 w-auto hidden md:flex"
+        class="pl-[14px] h-6 w-[154px] hidden md:flex"
         data-navhidden="false"
       />
     </a>
@@ -110,8 +108,8 @@ const optimizedLogo = await getImage({
           data-navhidden="true"
           id="book-a-call-action"
           class="invisible w-fit font-medium h-[39px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-[#545664] text-[#ffffff] hover:opacity-90"
-          href="/#book-a-call-section"
-        >
+          href={isContact ? "/#book-a-call-section" : "#book-a-call-section"}
+          >
           Book a call
         </a>
       </li>
@@ -153,7 +151,8 @@ const optimizedLogo = await getImage({
             text-base text-center
             whitespace-nowrap
              bg-[#545664] text-[#ffffff] hover:opacity-90"
-      href="/#book-a-call-section">Book a call</a
+             href={isContact ? "/#book-a-call-section" : "#book-a-call-section"}
+             >Book a call</a
     >
     <a
       class="font-medium
@@ -203,8 +202,7 @@ const optimizedLogo = await getImage({
     classes are added first time the handle scroll is triggered*/
     if (!navElem.classList.contains("animated-navigation")) {
       navElem.classList.add("animated-navigation");
-      navElem.classList.remove("md:w-[600px]");
-      logoElem.classList.add("animated-button");
+      navElem.classList.remove("md:w-[680px]");
       forCtoElem.classList.add("animated-text");
       blogElem.classList.add("animated-text");
       bookACallAction.classList.add("animated-button", "w-fit");
@@ -250,8 +248,8 @@ const optimizedLogo = await getImage({
       switch (node.getAttribute("id")) {
         case "logo":
           condition = node.getAttribute("data-navhidden") === "false";
-          logoElem.classList.toggle("hidden", condition);
-          logoElem.classList.toggle("!w-0", condition);
+          logoElem.classList.toggle("md:hidden", condition);
+          logoElem.classList.toggle("w-0", condition);
           break;
         case "for-ctos":
           condition = node.getAttribute("data-navhidden") === "true";
