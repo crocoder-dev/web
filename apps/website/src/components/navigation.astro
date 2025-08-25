@@ -38,7 +38,7 @@ const isContact = Astro.url.pathname === "/contact"
       relative
       gap:12
       max-md:has-[input:checked]:bg-secondary
-      md:w-[660px]"
+      md:w-[680px]"
     data-navhidden="false"
   >
     <a
@@ -202,8 +202,7 @@ const isContact = Astro.url.pathname === "/contact"
     classes are added first time the handle scroll is triggered*/
     if (!navElem.classList.contains("animated-navigation")) {
       navElem.classList.add("animated-navigation");
-      navElem.classList.remove("md:w-[600px]");
-      logoElem.classList.add("animated-button");
+      navElem.classList.remove("md:w-[680px]");
       forCtoElem.classList.add("animated-text");
       blogElem.classList.add("animated-text");
       bookACallAction.classList.add("animated-button", "w-fit");
@@ -249,8 +248,8 @@ const isContact = Astro.url.pathname === "/contact"
       switch (node.getAttribute("id")) {
         case "logo":
           condition = node.getAttribute("data-navhidden") === "false";
-          logoElem.classList.toggle("hidden", condition);
-          logoElem.classList.toggle("!w-0", condition);
+          logoElem.classList.toggle("md:hidden", condition);
+          logoElem.classList.toggle("w-0", condition);
           break;
         case "for-ctos":
           condition = node.getAttribute("data-navhidden") === "true";
