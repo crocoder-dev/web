@@ -130,7 +130,10 @@
     animation-direction: normal;
   }
 
-  .animated-button,
+  .animated-button {
+    animation-name: visible-animation;
+  }
+
   .animated-text {
     width: auto !important;
     animation-name: visible-animation;
