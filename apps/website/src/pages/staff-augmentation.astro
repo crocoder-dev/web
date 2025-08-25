@@ -19,6 +19,7 @@ import crmServiceIcon from "../assets/crm-service-icon.svg";
 import circleCheckIcon from "../assets/circle-check-icon.svg";
 import quoteIcon from "../assets/quote-icon.svg";
 import "../styles/main.css";
+import GetYourPlan from "../components/GetYourPlan.astro";
 
 const { ogImage = "https://www.crocoder.dev/homepage-metadata-img.png" } =
   Astro.props;
@@ -28,29 +29,32 @@ const { ogImage = "https://www.crocoder.dev/homepage-metadata-img.png" } =
   <Navigation />
 
   <!-- Hero Section -->
-  <Section className="!pt-[75px] bg-white md:!pb-12 lg:!pb-24">
-    <div class="max-w-[1470px] mx-auto px-2 sm:px-4 md:px-7">
+  <Section
+    className="!pt-[75px] !pb-0 !px-0"
+    contentClassName="relative before:absolute before:z-[-1] before:top-0 before:w-full before:h-full before:bg-[#4E5BC8]"
+  >
+    <div
+      class="mx-auto px-7 xl:px-0 bg-white rounded-b-4xl md:rounded-b-[96px]"
+    >
       <div class={`${grid_classes}`}>
         <div
           class="row-start-1
           col-start-1
           col-span-6
-          md:col-span-12
-          lg:col-span-6
+          md:col-span-10
+          md:col-start-2
+          lg:col-span-5
+          lg:col-start-2
           grid
           gap-3 md:gap-7
           text-secondary
-          my-auto
-          pt-[30px] md:pt-[60px]
-          md:py-11
-          lg:max-w-[580px] xl:min-w-[626px]"
+           pt-7 pb-18 md:pb-24"
         >
           <div class="grid gap-2 md:gap-4">
             <Pill
-              className="text-xs min-[390px]:text-sm sm:text-base md:text-lg px-2 py-1 min-[390px]:px-3 min-[390px]:py-1.5 sm:px-4 sm:py-2"
+              className="text-[10px] min-[340px]:text-xs min-[390px]:text-sm sm:text-base md:text-lg px-2 py-1 min-[390px]:px-3 min-[390px]:py-1.5 sm:px-4 sm:py-2"
+              >Outcome-Driven Product Engineering</Pill
             >
-              Outcome-Driven Product Engineering
-            </Pill>
             <h1
               class="text-[18px] leading-[22px] min-[390px]:text-[24px] min-[390px]:leading-[28px] sm:text-[32px] sm:leading-[36px] md:text-[54px] md:leading-[59.4px] font-medium tracking-tight"
             >
@@ -93,7 +97,6 @@ const { ogImage = "https://www.crocoder.dev/homepage-metadata-img.png" } =
           row-start-2
           col-start-1
           col-span-6
-          md:col-span-12
           lg:col-span-6
           self-center
           justify-center
@@ -114,9 +117,16 @@ const { ogImage = "https://www.crocoder.dev/homepage-metadata-img.png" } =
     </div>
   </Section>
 
+  <GetYourPlan />
+
   <!-- Main Content Section -->
-  <Section className="bg-[#1E1A1A] !py-24">
-    <div class="max-w-[1470px] mx-auto px-2 sm:px-4 xl:px-7">
+  <Section
+    className="!py-0 !px-0"
+    contentClassName="relative before:absolute before:z-[-1] before:top-0 before:w-full before:h-full before:bg-[#4E5BC8]"
+  >
+    <div
+      class="px-7 py-18 md:py-24 bg-[#1E1A1A] rounded-t-4xl md:rounded-t-[96px]"
+    >
       <!-- Section Title -->
       <div
         class="flex flex-col items-center gap-4 mb-12 md:mb-24 px-1 md:px-2 xl:px-[104px] max-w-[1600px] mx-auto"
@@ -125,9 +135,9 @@ const { ogImage = "https://www.crocoder.dev/homepage-metadata-img.png" } =
         <h2
           class="text-[32px] leading-[36px] md:text-[48px] md:leading-[52px] lg:text-[60px] lg:leading-[66px] xl:text-[74px] xl:leading-[81px] font-medium tracking-[-2%] text-center"
         >
-          <span class="text-white block md:whitespace-nowrap">
-            Flexible, Embedded Engineers,
-          </span>
+          <span class="text-white block md:whitespace-nowrap"
+            >Flexible, Embedded Engineers,</span
+          >
           <span class="text-[#FEC343] block">Ready to Plug-In</span>
         </h2>
       </div>
@@ -158,23 +168,24 @@ const { ogImage = "https://www.crocoder.dev/homepage-metadata-img.png" } =
                   class="text-[16px] leading-[24px] md:text-[22px] md:leading-[32px] font-normal"
                 >
                   We offer <b>on-demand staff augmentation</b> with web engineers
-                  who blend <b>technical excellence</b>,
-                  <b>product intuition</b>, and <b>strong communication</b>.
+                  who blend <b>technical excellence</b>, <b>product intuition</b
+                  >, and <b>strong communication</b>.
                 </p>
                 <p
                   class="text-[16px] leading-[24px] md:text-[22px] md:leading-[32px] font-normal"
                 >
                   Whether you need a <b>junior developer</b> to support your team,
-                  or a <b>product-minded lead</b> to drive an initiative, we
-                  <b>match talent to your exact needs </b>
-                  and fast.
+                  or a <b>product-minded lead</b> to drive an initiative, we <b
+                    >match talent to your exact needs</b
+                  > and fast.
                 </p>
                 <p
                   class="text-[16px] leading-[24px] md:text-[22px] md:leading-[32px] font-normal"
                 >
                   Our engineers <b>take initiative</b> instead of waiting on tasks.
-                  They <b>think critically</b>, <b>act independently</b>, and
-                  <b>ship with care</b>.
+                  They <b>think critically</b>, <b>act independently</b>, and <b
+                    >ship with care</b
+                  >.
                 </p>
               </div>
             </div>
@@ -499,8 +510,9 @@ const { ogImage = "https://www.crocoder.dev/homepage-metadata-img.png" } =
         <h2
           class="text-[28px] leading-[32px] md:text-[54px] md:leading-[60px] tracking-tight font-medium mb-6 md:mb-12"
         >
-          <span class="text-secondary">Our </span>
-          <span class="text-[#607A1A]">Engineers</span>
+          <span class="text-secondary">Our </span><span class="text-[#607A1A]"
+            >Engineers</span
+          >
         </h2>
 
         <div class="space-y-4 md:space-y-7">

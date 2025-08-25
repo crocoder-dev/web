@@ -1,0 +1,89 @@
+---
+import Field from "./Field.astro";
+import Modal from "./Modal.astro";
+import * as formContent from "../content/contact/get-your-plan-form.md";
+import Select from "./Select.astro";
+import DatePicker from "./DatePicker.astro";
+---
+
+<Modal id="get-plan-modal" classNames="w-[calc(100%-16px)] max-w-[500px]">
+  <main class="bg-neutral-50 p-8 md:p-12 flex flex-col gap-8" slot="main">
+    <h3
+      class="text-center font-medium text-4xl text-secondary w-full tracking-[-0.7px]"
+    >
+      What can we <span class="text-crocoder-green">help you</span> with
+    </h3>
+    <div>
+      <Field
+        isTextArea={false}
+        inputProps={{
+          name: "form-company",
+          id: "form-company",
+          maxlength: "100",
+          placeholder: formContent.frontmatter.companyName,
+        }}
+        labelProps={{
+          for: "form-company",
+          "aria-hidden": "false",
+        }}
+        label={formContent.frontmatter.companyName}
+      />
+      <Select
+        selectProps={{
+          name: "form-challenge",
+          id: "form-challenge",
+        }}
+        label={formContent.frontmatter.yourMainChallenge}
+        labelProps={{
+          for: "form-challenge",
+          "aria-hidden": false,
+        }}
+        options={formContent.frontmatter.challanges.map((c: string) => ({
+          value: c,
+          content: c,
+        }))}
+      />
+      <DatePicker
+        label={formContent.frontmatter.expectedStartDate}
+        inputProps={{
+          id: "form-start-date",
+          name: "form-start-date",
+          min: new Date(Date.now()).toISOString().split("T")[0],
+        }}
+        labelProps={{
+          for: "form-start-date",
+          id: "form-start-date-label",
+          "aria-hidden": false,
+        }}
+      />
+      <button
+        type="submit"
+        value="modal"
+        id="modal-form-submit-button"
+        class="rounded-md
+        min-h-14
+        px-[25px] w-full py-4
+        text-center
+        text-secondary
+        text-base
+        font-medium
+        group-invalid/contact-us:pointer-events-none
+        group-invalid/contact-us:opacity-30
+        group-invalid/contact-us:focus-visible:bg-[#85a32a]
+        group-invalid/contact-us:focus-visible:outline-transparent
+        group-invalid/contact-us:focus:bg-[#85a32a]
+        group-valid/contact-us:cursor-pointer
+        bg-crocoder-yellow
+        hover:bg-crocoder-yellow/90
+        focus:bg-crocoder-yellow/90
+        focus-visible:bg-crocoder-yellow/90
+        focus-visible:outline-1
+        focus-visible:outline-neutral-50
+        mt-6"
+      >
+        <span>{formContent.frontmatter.modalSubmit}</span>
+        <div id="modal-form-loader" class="loader mx-auto hidden"></div>
+      </button>
+    </div>
+  </main>
+</Modal>

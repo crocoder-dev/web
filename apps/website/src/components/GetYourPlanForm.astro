@@ -1,0 +1,255 @@
+---
+import classNames from "classnames";
+import * as formContent from "../content/contact/get-your-plan-form.md";
+import "../styles/loader.css";
+import Field from "./Field.astro";
+import GetYourPlanModal from "./GetYourPlanModal.astro";
+import RightArrow from "./icons/RightArrow.astro";
+
+const enableModalForm = Astro.url.searchParams.get("extended-form") === "true";
+---
+
+<div class="col-span-6 lg:col-span-5 lg:col-start-2 md:row-start-2">
+  <form
+    id="get-your-plan-form"
+    class="group/contact-us mx-auto flex-col gap-2"
+    novalidate
+  >
+    <Field
+      isTextArea={false}
+      onDark
+      inputProps={{
+        name: "form-full-name",
+        id: "form-full-name",
+        maxlength: "100",
+        placeholder: formContent.frontmatter.fullname,
+        required: true,
+        minlength: 2,
+      }}
+      labelProps={{
+        for: "form-full-name",
+        "aria-hidden": "false",
+      }}
+      label={formContent.frontmatter.fullname}
+      errorText={formContent.frontmatter.fullnameLength}
+    />
+    <Field
+      isTextArea={false}
+      onDark
+      inputProps={{
+        name: "form-email",
+        id: "form-email",
+        maxlength: "100",
+        placeholder: formContent.frontmatter.email,
+        type: "email",
+        required: true,
+      }}
+      labelProps={{
+        for: "form-email",
+        "aria-hidden": "false",
+      }}
+      label={formContent.frontmatter.email}
+      errorText={formContent.frontmatter.emailInvalid}
+    />
+    <div>
+      <div class="flex gap-2.5 py-4">
+        <input
+          id="form-consent"
+          name="form-consent"
+          type="checkbox"
+          required
+          aria-describedby="form-consent-text"
+          class="h-4 w-4 rounded border-gray-300 text-[#67a807] focus:ring-[#67a807] mt-1 cursor-pointer"
+        />
+        <label
+          set:html={formContent.frontmatter.consent}
+          id="form-consent-text"
+          for="form-consent"
+          class="text-neutral-50 [&>em]:not-italic [&_b]:text-[#67a807] [&>em]:font-semibold cursor-pointer"
+        />
+      </div>
+      <button
+        type={"submit"}
+        value="page"
+        id="form-submit-button"
+        class="rounded-md
+          min-h-14
+          px-[25px] w-full py-4
+          text-center
+        text-secondary
+        text-base
+        font-medium
+        group-invalid/contact-us:pointer-events-none
+        group-invalid/contact-us:opacity-30
+        group-invalid/contact-us:focus-visible:bg-[#85a32a]
+        group-invalid/contact-us:focus-visible:outline-transparent
+        group-invalid/contact-us:focus:bg-[#85a32a]
+        bg-crocoder-yellow
+        hover:bg-crocoder-yellow/90
+        focus:bg-crocoder-yellow/90
+        focus-visible:bg-crocoder-yellow/90
+        focus-visible:outline-1
+        focus-visible:outline-neutral-50
+        cursor-pointer"
+      >
+        <span class="flex gap-3 items-center justify-center">
+          {formContent.frontmatter.submit}
+          <RightArrow />
+        </span>
+        <div id="get-your-plan-form-loader" class="loader mx-auto hidden"></div>
+      </button>
+      {enableModalForm && <GetYourPlanModal />}
+      <p id="form-notification" class="text-sm min-h-6 pt-1"></p>
+    </div>
+    <script>
+      import * as notification from "../content/contact/notification.md";
+
+      const urlSearchParams = new URLSearchParams(window.location.search);
+      const isWithModalParam = urlSearchParams.get("extended-form");
+
+      const enableModalForm = isWithModalParam === "true";
+
+      const form = document.getElementById("get-your-plan-form");
+      /* Page form elements */
+      const submitBtn = form?.querySelector("#form-submit-button");
+      const submitBtnElems = submitBtn?.querySelectorAll("*");
+      const submitBtnContent = submitBtnElems && submitBtnElems[0];
+      const submitBtnLoader = submitBtn?.querySelector(
+        "#get-your-plan-form-loader",
+      );
+
+      const notificationElem = form?.querySelector(
+        "#form-notification",
+      ) as HTMLElement;
+
+      /* Modal part of form elements */
+      const modalForm = enableModalForm
+        ? (document.getElementById(
+            "get-plan-modal",
+          ) as HTMLDialogElement | null)
+        : null;
+      const modalFormSubmitBtn = form?.querySelector(
+        "#modal-form-submit-button",
+      );
+      const modalFormSubmitBtnContent =
+        modalFormSubmitBtn?.querySelectorAll("*")[0];
+      const modalFormLoader =
+        modalFormSubmitBtn?.querySelector("#modal-form-loader");
+
+      const handleModalSoftDismiss = (e: MouseEvent) => {
+        if (!e.currentTarget) return;
+
+        const dialogElem = e.currentTarget as HTMLDialogElement;
+
+        if (e.target === dialogElem) {
+          dialogElem.close();
+        }
+      };
+
+      const handleOpenModal = () => {
+        modalForm?.showModal();
+      };
+
+      const handleCloseModal = () => {
+        modalForm?.close();
+      };
+
+      const showModalLoader = () => {
+        modalFormSubmitBtnContent?.classList.add("hidden");
+        modalFormLoader?.classList.add("!block");
+      };
+
+      const showLoader = () => {
+        submitBtnContent?.classList.add("hidden");
+        submitBtnLoader?.classList.add("!block");
+      };
+
+      const hideLoader = () => {
+        modalFormSubmitBtnContent?.classList.remove("hidden");
+        modalFormLoader?.classList.remove("!block");
+        submitBtnContent?.classList.remove("hidden");
+        submitBtnLoader?.classList.remove("!block");
+      };
+
+      if (modalForm) {
+        modalForm.addEventListener("click", handleModalSoftDismiss);
+      }
+
+      if (form) {
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const formData = new FormData(e.target as HTMLFormElement);
+          const name = formData.get("form-full-name");
+          const email = formData.get("form-email");
+          const consent = formData.get("form-consent");
+          const companyName = formData.get("form-company");
+          const mainChallenge = formData.get("form-challenge");
+          const expectedStartDate = formData.get("form-start-date");
+
+          if (!name || !email || !consent) {
+            return;
+          }
+
+          const isPageSubmitter =
+            (e.submitter as HTMLButtonElement).value === "page";
+          const isModalSubmitter =
+            (e.submitter as HTMLButtonElement).value === "modal";
+
+          if (!enableModalForm) {
+            showLoader();
+          }
+
+          if (enableModalForm && isPageSubmitter) {
+            handleOpenModal();
+          }
+
+          if (enableModalForm && isModalSubmitter) {
+            showModalLoader();
+          }
+
+          try {
+            const response = await fetch(
+              `${import.meta.env.PUBLIC_API_URL}/api/get-plan${enableModalForm ? "?extended-form=true" : ""}`,
+              {
+                method: "POST",
+                mode: "cors",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  name,
+                  email,
+                  hasConsent: consent ? true : false,
+                  companyName: companyName || "",
+                  mainChallenge: mainChallenge || "",
+                  expectedStartDate: expectedStartDate || "",
+                }),
+              },
+            );
+
+            if (response.status !== 200 && notificationElem) {
+              throw new Error();
+            }
+
+            // Redirect to success page
+            if (!enableModalForm || (enableModalForm && isModalSubmitter)) {
+              window.location.href = "/contact/success";
+            }
+          } catch (error) {
+            if (!enableModalForm || (enableModalForm && isModalSubmitter)) {
+              notificationElem.classList.add("text-red-500");
+              notificationElem.textContent = notification.frontmatter.error;
+              hideLoader();
+
+              if (isModalSubmitter) {
+                handleCloseModal();
+              }
+
+              return;
+            }
+          }
+        });
+      }
+    </script>
+  </form>
+</div>
