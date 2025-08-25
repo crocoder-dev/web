@@ -1,0 +1,108 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import classnames from "classnames";
+
+type Props = {
+  options: { value: string; content: string }[];
+  selectProps?: HTMLAttributes<"select">;
+  labelProps?: HTMLAttributes<"label">;
+  label?: string;
+  classNames?: string;
+  onDark?: boolean;
+};
+
+const { options, selectProps, labelProps, label, classNames, onDark } =
+  Astro.props;
+---
+
+<div
+  class={classnames(
+    `min-h-[74px]
+    relative pt-6 overflow-hidden
+    after:absolute
+    after:top-6
+    after:rounded-[6px]
+    after:w-[calc(100%-2px)]
+    after:bg-[#F6FCFD]
+    after:ml-[1px]
+    after:h-[46px]
+    rounded-[6px]
+    z-[2]
+    flex`,
+    classNames,
+  )}
+>
+  <select
+    {...selectProps}
+    class="rounded-[6px]
+    h-[46px]
+    border
+    border-transparent
+    bg-transparent
+    placeholder-transparent
+    px-4 py-2.5
+    peer/select
+    relative z-[4]
+    ml-[1px]
+    w-[calc(100%-2px)]
+    focus:outline-0
+    focus:ring-0
+    focus:border-transparent
+    text-secondary"
+  >
+    <option class="hidden" value=""></option>
+    {
+      options.map((option) => (
+        <option value={option.value}>{option.content}</option>
+      ))
+    }
+  </select>
+  <label
+    {...labelProps}
+    class={classnames(
+      `
+      text-xs
+      min-[375px]:text-sm
+      absolute
+      top-0
+      transition-transform
+      translate-y-[37px]
+      translate-x-[17px]
+      peer-[&:has(option:checked:not([value='']))]/select:!translate-y-0
+      peer-[&:has(option:checked:not([value='']))]/select:!translate-x-0
+      peer-placeholder-shown/select:text-secondary
+      z-[3]`,
+      {
+        "text-secondary": !onDark,
+        "text-neutral-50": onDark,
+      },
+    )}
+  >
+    <span>{label}</span>
+  </label>
+  <div
+    class={classnames(
+      `absolute
+      w-full h-[48px] 
+      top-[23px]
+      rounded-[6px]
+      bg-[#424c6d50]
+      flex
+      overflow-hidden
+      items-center
+      justify-center
+      peer-focus/select:after:scale-[25]
+      after:h-5
+      after:w-5
+      after:rounded-full
+      after:scale-0
+      after:transition-transform
+      after:duration-[400ms]`,
+      {
+        "after:bg-[#67a807]": !onDark,
+        "after:bg-neutral-50": onDark,
+      },
+    )}
+  >
+  </div>
+</div>

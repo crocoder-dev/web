@@ -7,6 +7,7 @@ type BaseProps = {
   label?: string;
   errorText?: string;
   classNames?: string;
+  onDark?: boolean;
 };
 
 type InputProps = {
@@ -21,7 +22,7 @@ type TextAreaProps = {
 
 type Props = BaseProps & (InputProps | TextAreaProps);
 
-const { classNames, labelProps, label, errorText } = Astro.props;
+const { classNames, labelProps, label, errorText, onDark } = Astro.props;
 ---
 
 <div
@@ -91,7 +92,8 @@ const { classNames, labelProps, label, errorText } = Astro.props;
   }
   <label
     {...labelProps}
-    class="text-secondary
+    class={classnames(
+      `
       text-xs
       min-[375px]:text-sm
       absolute
@@ -101,12 +103,17 @@ const { classNames, labelProps, label, errorText } = Astro.props;
       translate-x-0
       peer-placeholder-shown/input:translate-y-[37px]
       peer-placeholder-shown/input:translate-x-[17px]
-      peer-placeholder-shown/input:text-base
+      peer-placeholder-shown/input:text-secondary
       z-[3]
       [&>span:nth-child(2)]:hidden
       peer-[&:not(:placeholder-shown):not(:focus):invalid]/input:[&>span:first-child]:hidden
       peer-[&:not(:placeholder-shown):not(:focus):invalid]/input:[&>span:nth-child(2)]:inline
-      peer-[&:not(:placeholder-shown):not(:focus):invalid]/input:text-red-500"
+      peer-[&:not(:placeholder-shown):not(:focus):invalid]/input:text-red-500`,
+      {
+        "text-secondary": !onDark,
+        "text-neutral-50": onDark,
+      },
+    )}
   >
     <span>{label}</span>
     <span class="truncate text-ellipsis">{errorText || "Invalid field"}</span>
@@ -114,7 +121,7 @@ const { classNames, labelProps, label, errorText } = Astro.props;
   <div
     class={classnames(
       `absolute
-      w-full 
+      w-full
       rounded-[6px]
       bg-[#424c6d50]
       flex
@@ -125,7 +132,6 @@ const { classNames, labelProps, label, errorText } = Astro.props;
       after:h-5
       after:w-5
       after:rounded-full
-      after:bg-[#67a807]
       after:scale-0
       after:transition-transform
       after:duration-[400ms]
@@ -133,6 +139,8 @@ const { classNames, labelProps, label, errorText } = Astro.props;
       {
         "h-[48px] top-[23px]": !Astro.props.isTextArea,
         "h-[142px] top-[23px]": Astro.props.isTextArea,
+        "after:bg-[#67a807]": !onDark,
+        "after:bg-neutral-50": onDark,
       },
     )}
   >
