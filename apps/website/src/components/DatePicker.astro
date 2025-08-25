@@ -1,0 +1,95 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import classnames from "classnames";
+
+type Props = {
+  labelProps?: HTMLAttributes<"label">;
+  label?: string;
+  errorText?: string;
+  classNames?: string;
+  onDark?: boolean;
+  inputProps: HTMLAttributes<"input"> & { type?: "date" | string };
+};
+
+const { classNames, labelProps, label = "", onDark } = Astro.props;
+---
+
+<div
+  data-field
+  class={classnames(
+    `group relative z-[2] flex min-h-[74px] overflow-hidden pt-6
+     rounded-[6px]
+     after:absolute after:top-6 after:ml-[1px] after:h-[46px]
+     after:w-[calc(100%-2px)] after:rounded-[6px] after:bg-[#F6FCFD]`,
+    classNames,
+  )}
+  id="date-picker"
+>
+  <input
+    {...Astro.props.inputProps}
+    type="date"
+    class="peer/input text-transparent relative z-[4] ml-[1px] h-[46px] w-[calc(100%-2px)]
+           rounded-[6px] border border-transparent bg-transparent px-4 py-2.5
+           focus:border-transparent focus:outline-0 focus:ring-0
+           focus:text-secondary"
+  />
+
+  <label
+    {...labelProps}
+    class={classnames(
+      `
+      text-xs
+      min-[375px]:text-sm
+      absolute
+      top-0
+      translate-y-[37px]
+      transition-transform
+      translate-x-[17px]
+      z-[3]
+      peer-focus/input:translate-y-0
+      peer-focus/input:translate-x-0
+      `,
+      { "text-secondary": !onDark, "text-neutral-50": onDark },
+    )}
+  >
+    <span>{label}</span>
+  </label>
+
+  <div
+    class={classnames(
+      `
+      absolute top-[23px] flex h-[48px] w-full items-center justify-center overflow-hidden rounded-[6px]
+      bg-[#424c6d50]
+      after:h-5 after:w-5 after:scale-0 after:rounded-full after:transition-transform after:duration-[400ms]
+      peer-focus/input:after:scale-[25]
+      peer-[&:not(:focus):invalid]/input:data-[has-value=true]:bg-red-500
+      `,
+      { "after:bg-[#67a807]": !onDark, "after:bg-neutral-50": onDark },
+    )}
+  >
+  </div>
+</div>
+
+<script>
+  const datePicker = document.getElementById("date-picker") as HTMLDivElement;
+  const dateInput = datePicker.getElementsByTagName("input")[0];
+  const label = datePicker.getElementsByTagName("label")[0];
+
+  if (dateInput && label) {
+    dateInput.addEventListener("change", () => {
+      if (dateInput.value) {
+        label.classList.remove("translate-y-[37px]", "translate-x-[17px]");
+        dateInput.classList.remove("text-transparent");
+        label.classList.add("translate-y-0", "translate-x-0");
+      } else {
+        label.classList.remove("translate-y-0", "translate-x-0");
+        dateInput.classList.add("text-transparent");
+        label.classList.add(
+          "translate-y-[37px]",
+          "translate-x-[17px]",
+          "text-transparent",
+        );
+      }
+    });
+  }
+</script>

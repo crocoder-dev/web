@@ -60,7 +60,14 @@ const { className, ogImage } = Astro.props;
   </head>
   <body
     class={classNames(
-      "flex flex-col font-primary items-center justify-center min-h-screen bg-gray-100",
+      `flex 
+      flex-col 
+      font-primary 
+      items-center 
+      justify-center 
+      min-h-screen 
+      bg-gray-100 
+      has-[dialog[open]]:overflow-hidden`,
       className,
     )}
   >
