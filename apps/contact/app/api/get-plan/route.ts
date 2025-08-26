@@ -2,6 +2,8 @@ import { processContact } from "@/app/(helpers)/notion";
 import { nanoid } from "nanoid";
 import z from "zod";
 
+const { NOTION_GET_PLAN_DATABASE_ID } = process.env;
+
 const bodyValidationSchema = z.object({
   name: z
     .string()
@@ -9,13 +11,16 @@ const bodyValidationSchema = z.object({
   email: z
     .email({ message: "Invalid email adress" })
     .min(1, { message: "Required field" }),
-  message: z.string().min(1, { message: "Required field" }),
+  companyName: z.string().min(1, { message: "Required field" }).optional(),
+  mainChallenge: z.string().min(1, { message: "Required field" }).optional(),
+  expectedStartDate: z
+    .string()
+    .min(1, { message: "Required field" })
+    .optional(),
   hasConsent: z.boolean().optional(),
 });
 
 type RequestBody = z.infer<typeof bodyValidationSchema>;
-
-const { NOTION_DATABASE_ID } = process.env;
 
 const allowRequest = async (request: Request & { ip?: string }) => {
   return { success: true, limit: 1, reset: Date.now() + 30000, remaining: 1 };
@@ -59,7 +64,20 @@ export async function POST(request: Request) {
         );
       }
 
-      const { name, email, message, hasConsent } = body;
+      const {
+        name,
+        email,
+        companyName,
+        mainChallenge,
+        expectedStartDate,
+        hasConsent,
+      } = body;
+
+      const message = `
+        Company name: ${companyName || ""} \n
+        Main challenge: ${mainChallenge || ""} \n
+        Expected start date: ${expectedStartDate || ""}
+      `;
 
       if (!hasConsent) {
         return new Response(JSON.stringify({ message: "No consent by user" }), {
@@ -90,8 +108,8 @@ export async function POST(request: Request) {
         id: nanoid(),
         email,
         name,
-        message,
-        databaseID: NOTION_DATABASE_ID || "",
+        message: message || "",
+        databaseID: NOTION_GET_PLAN_DATABASE_ID || "",
       });
 
       return new Response(

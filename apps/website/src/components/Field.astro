@@ -22,7 +22,7 @@ type TextAreaProps = {
 
 type Props = BaseProps & (InputProps | TextAreaProps);
 
-const { classNames, labelProps, label, errorText } = Astro.props;
+const { classNames, labelProps, label, errorText, onDark } = Astro.props;
 ---
 
 <div
@@ -110,8 +110,8 @@ const { classNames, labelProps, label, errorText } = Astro.props;
       peer-[&:not(:placeholder-shown):not(:focus):invalid]/input:[&>span:nth-child(2)]:inline
       peer-[&:not(:placeholder-shown):not(:focus):invalid]/input:text-red-500`,
       {
-        "text-secondary": !Astro.props.onDark,
-        "text-neutral-50": Astro.props.onDark,
+        "text-secondary": !onDark,
+        "text-neutral-50": onDark,
       },
     )}
   >
@@ -139,8 +139,8 @@ const { classNames, labelProps, label, errorText } = Astro.props;
       {
         "h-[48px] top-[23px]": !Astro.props.isTextArea,
         "h-[142px] top-[23px]": Astro.props.isTextArea,
-        "after:bg-[#67a807]": !Astro.props.onDark,
-        "after:bg-neutral-50": Astro.props.onDark,
+        "after:bg-[#67a807]": !onDark,
+        "after:bg-neutral-50": onDark,
       },
     )}
   >

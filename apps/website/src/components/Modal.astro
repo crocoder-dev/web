@@ -1,0 +1,21 @@
+---
+const { id } = Astro.props;
+---
+
+<dialog
+  id={id}
+  class="fixed
+    left-1/2
+    top-1/2
+    -translate-x-1/2
+    -translate-y-1/2
+    backdrop:fixed
+    backdrop:top-0
+    backdrop:right-0
+    backdrop:bottomtop-0
+    backdrop:left-0
+    backdrop:bg-neutral-900
+    rounded-2xl"
+>
+  <slot name="main" />
+</dialog>
