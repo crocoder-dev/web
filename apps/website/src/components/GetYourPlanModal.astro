@@ -39,10 +39,14 @@ import Select from "./Select.astro";
           for: "form-challenge",
           "aria-hidden": false,
         }}
+        options={formContent.frontmatter.challanges.map((c: string) => ({
+          value: c,
+          content: c,
+        }))}
       />
       <button
         type="submit"
-        id="form-submit-button"
+        id="modal-form-submit-button"
         class="rounded-md
         min-h-14
         px-[25px] w-full py-4
@@ -63,8 +67,8 @@ import Select from "./Select.astro";
         focus-visible:outline-neutral-50
         mt-6"
       >
-        <span>{formContent.frontmatter.submit}</span>
-        <div class="loader mx-auto hidden"></div>
+        <span>{formContent.frontmatter.modalSubmit}</span>
+        <div id="modal-form-loader" class="loader mx-auto hidden"></div>
       </button>
     </div>
   </main>

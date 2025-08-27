@@ -3,15 +3,16 @@ import type { HTMLAttributes } from "astro/types";
 import classnames from "classnames";
 
 type Props = {
+  options: { value: string; content: string }[];
   selectProps?: HTMLAttributes<"select">;
   labelProps?: HTMLAttributes<"label">;
   label?: string;
-  errorText?: string;
   classNames?: string;
   onDark?: boolean;
 };
 
-const { classNames, labelProps, label, errorText, selectProps } = Astro.props;
+const { options, selectProps, labelProps, label, classNames, onDark } =
+  Astro.props;
 ---
 
 <div
@@ -50,8 +51,11 @@ const { classNames, labelProps, label, errorText, selectProps } = Astro.props;
     text-secondary"
   >
     <option class="hidden" value=""></option>
-    <option value="1">Test 1</option>
-    <option value="2">Test 2</option>
+    {
+      options.map((option) => (
+        <option value={option.value}>{option.content}</option>
+      ))
+    }
   </select>
   <label
     {...labelProps}
@@ -69,8 +73,8 @@ const { classNames, labelProps, label, errorText, selectProps } = Astro.props;
       peer-placeholder-shown/select:text-secondary
       z-[3]`,
       {
-        "text-secondary": !Astro.props.onDark,
-        "text-neutral-50": Astro.props.onDark,
+        "text-secondary": !onDark,
+        "text-neutral-50": onDark,
       },
     )}
   >
@@ -95,8 +99,8 @@ const { classNames, labelProps, label, errorText, selectProps } = Astro.props;
       after:transition-transform
       after:duration-[400ms]`,
       {
-        "after:bg-[#67a807]": !Astro.props.onDark,
-        "after:bg-neutral-50": Astro.props.onDark,
+        "after:bg-[#67a807]": !onDark,
+        "after:bg-neutral-50": onDark,
       },
     )}
   >

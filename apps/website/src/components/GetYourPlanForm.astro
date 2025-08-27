@@ -3,6 +3,8 @@ import * as formContent from "../content/contact/get-your-plan-form.md";
 import "../styles/loader.css";
 import Field from "./Field.astro";
 import GetYourPlanModal from "./GetYourPlanModal.astro";
+
+const enableModalForm = import.meta.env.ENABLE_MODAL_FORM === "true";
 ---
 
 <div class="col-span-6 lg:col-span-5 lg:col-start-2 md:row-start-2">
@@ -63,7 +65,7 @@ import GetYourPlanModal from "./GetYourPlanModal.astro";
         />
       </div>
       <button
-        type="submit"
+        type={enableModalForm ? "button" : "submit"}
         id="form-submit-button"
         class="rounded-md
         min-h-14
@@ -101,33 +103,72 @@ import GetYourPlanModal from "./GetYourPlanModal.astro";
               stroke-linejoin="round"></path>
           </svg>
         </span>
-        <div class="loader mx-auto hidden"></div>
+        <div id="get-your-plan-form-loader" class="loader mx-auto hidden"></div>
       </button>
-      <button id="open-get-plan-modal" type="button"> Open modal </button>
-      <GetYourPlanModal />
+      {enableModalForm && <GetYourPlanModal />}
       <p id="form-notification" class="text-sm min-h-6 pt-1"></p>
     </div>
     <script>
       import * as notification from "../content/contact/notification.md";
+      const enableModalForm = import.meta.env.ENABLE_MODAL_FORM === "true";
 
       const form = document.getElementById("get-your-plan-form");
-
+      /* Page form elements */
       const submitBtn = form?.querySelector("#form-submit-button");
       const submitBtnElems = submitBtn?.querySelectorAll("*");
       const submitBtnContent = submitBtnElems && submitBtnElems[0];
-      const submitBtnLoader = submitBtnElems && submitBtnElems[1];
-
-      const openGetPlanModalBtn = document.getElementById(
-        "open-get-plan-modal",
+      const submitBtnLoader = submitBtn?.querySelector(
+        "#get-your-plan-form-loader",
       );
-      const getPlanModal = document.getElementById(
-        "get-plan-modal",
-      ) as HTMLDialogElement | null;
 
-      getPlanModal?.showModal();
       const notificationElem = form?.querySelector("#form-notification");
 
+      /* Modal part of form elements */
+      const getPlanModal = enableModalForm
+        ? (document.getElementById(
+            "get-plan-modal",
+          ) as HTMLDialogElement | null)
+        : null;
+      const modalFormSubmitBtn = form?.querySelector(
+        "#modal-form-submit-button",
+      );
+      const modalFormSubmitBtnContent =
+        modalFormSubmitBtn?.querySelectorAll("*")[0];
+      const modalFormLoader =
+        modalFormSubmitBtn?.querySelector("#modal-form-loader");
+
+      const handleModalSoftDismiss = (e: PointerEvent) => {
+        if (!e.currentTarget) return;
+
+        const dialogElem = e.currentTarget as HTMLDialogElement;
+
+        if (e.target === dialogElem) {
+          dialogElem.close();
+        }
+      };
+
+      const handleOpenModal = () => {
+        getPlanModal?.showModal();
+      };
+
+      const handleCloseModal = () => {
+        getPlanModal?.close();
+      };
+
+      if (getPlanModal) {
+        getPlanModal.addEventListener("click", handleModalSoftDismiss);
+        submitBtn?.addEventListener("click", handleOpenModal);
+      }
+
       const showLoader = () => {
+        if (modalFormSubmitBtnContent && modalFormLoader) {
+          modalFormSubmitBtnContent.classList.add("hidden");
+          modalFormLoader.classList.add("!block");
+          // Dont trigger loader in form submit button
+          // if form is submited via modal
+          return;
+        }
+
         if (submitBtnContent && submitBtnLoader) {
           submitBtnContent.classList.add("hidden");
           submitBtnLoader.classList.add("!block");
@@ -135,32 +176,11 @@ import GetYourPlanModal from "./GetYourPlanModal.astro";
       };
 
       const hideLoader = () => {
-        if (submitBtnContent && submitBtnLoader) {
-          submitBtnContent.classList.remove("hidden");
-          submitBtnLoader.classList.remove("!block");
-        }
+        modalFormSubmitBtnContent?.classList.remove("hidden");
+        modalFormLoader?.classList.remove("!block");
+        submitBtnContent?.classList.remove("hidden");
+        submitBtnLoader?.classList.remove("!block");
       };
-
-      const handleModalSoftDismiss = (e: PointerEvent) => {
-        if (!e.currentTarget) return;
-
-        const dialogTarget = e.currentTarget as HTMLDialogElement;
-
-        if (e.target === dialogTarget) {
-          dialogTarget.close();
-        }
-      };
-
-      const handleOpenModal = () => {
-        if (getPlanModal) {
-          getPlanModal.showModal();
-        }
-      };
-
-      if (openGetPlanModalBtn && getPlanModal) {
-        openGetPlanModalBtn.addEventListener("click", handleOpenModal);
-        getPlanModal.addEventListener("click", handleModalSoftDismiss);
-      }
 
       if (form) {
         form.addEventListener("submit", async (e) => {
@@ -169,29 +189,38 @@ import GetYourPlanModal from "./GetYourPlanModal.astro";
           const name = formData.get("form-full-name");
           const email = formData.get("form-email");
           const consent = formData.get("form-consent");
+          const companyName = formData.get("form-company");
+          const mainChallenge = formData.get("form-challenge");
 
           if (!name || !email || !consent) {
             return;
           }
 
           showLoader();
-          const response = await fetch("/api/get-plan", {
-            method: "POST",
-            mode: "cors",
-            headers: {
-              "Content-Type": "application/json",
+
+          const response = await fetch(
+            `${import.meta.env.PUBLIC_API_URL}/api/get-plan`,
+            {
+              method: "POST",
+              mode: "cors",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                name,
+                email,
+                hasConsent: consent ? true : false,
+                companyName: companyName || "",
+                mainChallenge: mainChallenge || "",
+              }),
             },
-            body: JSON.stringify({
-              name,
-              email,
-              hasConsent: consent ? true : false,
-            }),
-          });
+          );
 
           if (response.status !== 200 && notificationElem) {
             notificationElem.classList.add("text-red-500");
             notificationElem.textContent = notification.frontmatter.error;
             hideLoader();
+            handleCloseModal();
             return;
           }
 

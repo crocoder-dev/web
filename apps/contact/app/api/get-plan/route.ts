@@ -11,12 +11,9 @@ const bodyValidationSchema = z.object({
   email: z
     .email({ message: "Invalid email adress" })
     .min(1, { message: "Required field" }),
-  companyName: z.string().min(1, { message: "Required field" }).optional(),
-  mainChallenge: z.string().min(1, { message: "Required field" }).optional(),
-  expectedStartDate: z
-    .string()
-    .min(1, { message: "Required field" })
-    .optional(),
+  companyName: z.string().optional(),
+  mainChallenge: z.string().optional(),
+  expectedStartDate: z.string().optional(),
   hasConsent: z.boolean().optional(),
 });
 
