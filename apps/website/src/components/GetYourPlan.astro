@@ -27,8 +27,8 @@ import { Picture } from "astro:assets";
       <Picture
         src={sectionImage}
         alt="Illustration of crocodile presenting analytics on a board"
-        widths={[240, 540, 720, sectionImage.width]}
-        sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${sectionImage.width}px`}
+        widths={[240, 540, 720]}
+        sizes={`(max-width: 360px) 240px, (max-width: 1600px) 540px, 720px`}
         formats={["avif", "webp"]}
         class="w-full max-w-[480px] md:max-w-[350px] lg:max-w-[480px]"
       />
