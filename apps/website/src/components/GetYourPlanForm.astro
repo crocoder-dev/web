@@ -4,7 +4,7 @@ import "../styles/loader.css";
 import Field from "./Field.astro";
 import GetYourPlanModal from "./GetYourPlanModal.astro";
 
-const enableModalForm = import.meta.env.ENABLE_MODAL_FORM === "true";
+const enableModalForm = import.meta.env.PUBLIC_ENABLE_MODAL_FORM === "true";
 ---
 
 <div class="col-span-6 lg:col-span-5 lg:col-start-2 md:row-start-2">
@@ -110,7 +110,8 @@ const enableModalForm = import.meta.env.ENABLE_MODAL_FORM === "true";
     </div>
     <script>
       import * as notification from "../content/contact/notification.md";
-      const enableModalForm = import.meta.env.ENABLE_MODAL_FORM === "true";
+      const enableModalForm =
+        import.meta.env.PUBLIC_ENABLE_MODAL_FORM === "true";
 
       const form = document.getElementById("get-your-plan-form");
       /* Page form elements */
