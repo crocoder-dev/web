@@ -20,6 +20,7 @@ export default defineConfig({
     imageService: true,
     imagesConfig: {
       sizes: [320, 480, 640, 800, 1196],
+      formats: ["image/avif", "image/webp"],
     },
   }),
   redirects: {
