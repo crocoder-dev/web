@@ -5,13 +5,10 @@ import * as formContent from "../content/contact/get-your-plan-form.md";
 import Select from "./Select.astro";
 ---
 
-<Modal id="get-plan-modal">
-  <main
-    class="bg-neutral-50 p-12 flex flex-col gap-8 w-full max-w-[560px]"
-    slot="main"
-  >
+<Modal id="get-plan-modal" classNames="w-[calc(100%-16px)] max-w-[500px]">
+  <main class="bg-neutral-50 p-8 md:p-12 flex flex-col gap-8" slot="main">
     <h3
-      class="text-center font-medium text-4xl text-secondary max-w-[500px] xl:max-w-[362px] tracking-[-0.7px]"
+      class="text-center font-medium text-4xl text-secondary w-full tracking-[-0.7px]"
     >
       What can we <span class="text-crocoder-green">help you</span> with
     </h3>
