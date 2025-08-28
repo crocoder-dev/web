@@ -5,7 +5,7 @@
 
 version: 2
 updates:
-  - package-ecosystem: bun
+  - package-ecosystem: npm
     directory: /
     schedule:
       interval: daily
@@ -15,12 +15,12 @@ updates:
     schedule:
       interval: daily
 
-  - package-ecosystem: bun
+  - package-ecosystem: npm
     directory: /packages/remark-plugin
     schedule:
       interval: daily
 
-  - package-ecosystem: bun
+  - package-ecosystem: npm
     directory: /apps/website
     schedule:
       interval: daily
