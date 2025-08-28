@@ -47,12 +47,7 @@ for (const testimonial of testimonialCollections) {
         <article class="flex-1 bg-[#F4F4F4] rounded-2xl p-7 min-w-[318px] md:min-w-[474px] xl:min-w-0 max-h-fit max-w-full [&_p]:leading-7 [&_p]:text-black [&_p]:w-full">
           <p set:html={content?.html} class="text-base leading-[26px]" />
           <div class="pt-7">
-            <Avatar
-              name={name}
-              role={title}
-              image={image}
-              company={company}
-            />
+            <Avatar name={name} role={title} image={image} company={company} />
           </div>
         </article>
       ))
