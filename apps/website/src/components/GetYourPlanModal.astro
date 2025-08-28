@@ -3,6 +3,7 @@ import Field from "./Field.astro";
 import Modal from "./Modal.astro";
 import * as formContent from "../content/contact/get-your-plan-form.md";
 import Select from "./Select.astro";
+import DatePicker from "./DatePicker.astro";
 ---
 
 <Modal id="get-plan-modal" classNames="w-[calc(100%-16px)] max-w-[500px]">
@@ -17,6 +18,7 @@ import Select from "./Select.astro";
         isTextArea={false}
         inputProps={{
           name: "form-company",
+          id: "form-company",
           maxlength: "100",
           placeholder: formContent.frontmatter.companyName,
         }}
@@ -41,6 +43,17 @@ import Select from "./Select.astro";
           content: c,
         }))}
       />
+      <DatePicker
+        label={formContent.frontmatter.expectedStartDate}
+        inputProps={{
+          id: "form-start-date",
+          name: "form-start-date",
+          min: new Date(Date.now()).toISOString().split("T")[0] }}
+        labelProps={{
+          for: "form-start-date",
+          "aria-hidden": false,
+        }}
+        />
       <button
         type="submit"
         id="modal-form-submit-button"
@@ -56,6 +69,7 @@ import Select from "./Select.astro";
         group-invalid/contact-us:focus-visible:bg-[#85a32a]
         group-invalid/contact-us:focus-visible:outline-transparent
         group-invalid/contact-us:focus:bg-[#85a32a]
+        group-valid/contact-us:cursor-pointer
         bg-crocoder-yellow
         hover:bg-crocoder-yellow/90
         focus:bg-crocoder-yellow/90

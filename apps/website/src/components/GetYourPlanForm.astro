@@ -19,6 +19,7 @@ const enableModalForm = import.meta.env.PUBLIC_ENABLE_MODAL_FORM === "true";
       onDark
       inputProps={{
         name: "form-full-name",
+        id: "form-full-name",
         maxlength: "100",
         placeholder: formContent.frontmatter.fullname,
         required: true,
@@ -36,6 +37,7 @@ const enableModalForm = import.meta.env.PUBLIC_ENABLE_MODAL_FORM === "true";
       onDark
       inputProps={{
         name: "form-email",
+        id: "form-email",
         maxlength: "100",
         placeholder: formContent.frontmatter.email,
         type: "email",
@@ -127,7 +129,7 @@ const enableModalForm = import.meta.env.PUBLIC_ENABLE_MODAL_FORM === "true";
       const modalFormLoader =
         modalFormSubmitBtn?.querySelector("#modal-form-loader");
 
-      const handleModalSoftDismiss = (e: PointerEvent) => {
+      const handleModalSoftDismiss = (e: MouseEvent) => {
         if (!e.currentTarget) return;
 
         const dialogElem = e.currentTarget as HTMLDialogElement;
@@ -181,6 +183,7 @@ const enableModalForm = import.meta.env.PUBLIC_ENABLE_MODAL_FORM === "true";
           const consent = formData.get("form-consent");
           const companyName = formData.get("form-company");
           const mainChallenge = formData.get("form-challenge");
+          const startDate = formData.get("form-start-date");
 
           if (!name || !email || !consent) {
             return;
@@ -202,6 +205,7 @@ const enableModalForm = import.meta.env.PUBLIC_ENABLE_MODAL_FORM === "true";
                 hasConsent: consent ? true : false,
                 companyName: companyName || "",
                 mainChallenge: mainChallenge || "",
+                startDate: startDate || "",
               }),
             },
           );
