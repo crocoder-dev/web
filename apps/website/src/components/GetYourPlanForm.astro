@@ -113,6 +113,13 @@ const enableModalForm = import.meta.env.PUBLIC_ENABLE_MODAL_FORM === "true";
         "#get-your-plan-form-loader",
       );
 
+      submitBtn?.addEventListener("click", () => {
+        const startDateInput = document.getElementById("form-start-date");
+        if (startDateInput) {
+          startDateInput.setAttribute("required", "");
+        }
+      });
+
       const notificationElem = form?.querySelector("#form-notification");
 
       /* Modal part of form elements */
@@ -144,10 +151,20 @@ const enableModalForm = import.meta.env.PUBLIC_ENABLE_MODAL_FORM === "true";
       };
 
       const handleCloseModal = () => {
+        const startDateInput = document.getElementById("form-start-date");
+        if (startDateInput) {
+          startDateInput.removeAttribute("required");
+        }
         getPlanModal?.close();
       };
 
       if (getPlanModal) {
+        getPlanModal.addEventListener("close", () => {
+          const startDateInput = document.getElementById("form-start-date");
+          if (startDateInput) {
+            startDateInput.removeAttribute("required");
+          }
+        });
         getPlanModal.addEventListener("click", handleModalSoftDismiss);
         submitBtn?.addEventListener("click", handleOpenModal);
       }
