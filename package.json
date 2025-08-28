@@ -11,9 +11,9 @@
     "turbo": "^2.5.5"
   },
   "engines": {
-    "bun": ">=1.1.18"
+    "bun": ">=1.2.21"
   },
-  "packageManager": "bun@1.1.18",
+  "packageManager": "bun@1.2.21",
   "workspaces": [
     "apps/*",
     "packages/*"
