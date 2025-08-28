@@ -1,19 +1,43 @@
 ---
 import classnames from "classnames";
-const { image, iconFirst, iconSecond, sectionTitle, titleFirst, titleSecond, descriptionFirst, descriptionSecond, classNames } = Astro.props;
+const {
+  image,
+  iconFirst,
+  iconSecond,
+  sectionTitle,
+  titleFirst,
+  titleSecond,
+  descriptionFirst,
+  descriptionSecond,
+  classNames,
+} = Astro.props;
 ---
 
-<div class={classnames("relative lg:h-[600px] overflow-hidden px-7 sm:pt-24 pt-16 sm:px-12", classNames)}>
+<div
+  class={classnames(
+    "relative lg:h-[600px] overflow-hidden px-7 sm:pt-24 pt-16 sm:px-12",
+    classNames,
+  )}
+>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-7">
     <div class="rounded-2xl gap-7">
-      <h2 class="font-medium text-[28px] leading-[30px] md:text-4xl md:leading-10 xl:text-[54px] xl:leading-[60px] -tracking-[2%]">
+      <h2
+        class="font-medium text-[28px] leading-[30px] md:text-4xl md:leading-10 xl:text-[54px] xl:leading-[60px] -tracking-[2%]"
+      >
         {sectionTitle}
       </h2>
     </div>
     <div class="rounded-2xl grid grid-cols-1 lg:grid-cols-2 gap-7 items-start">
       <div class="grid grid-cols-1 gap-y-4 text-left sm:text-left">
-        <img src={iconFirst} alt="" class="w-16 h-16 sm:mx-0" role="presentation" />
-        <h4 class="font-medium text-xl leading-[22px] md:text-[28px] md:leading-[30px] tracking-tight">
+        <img
+          src={iconFirst}
+          alt=""
+          class="w-16 h-16 sm:mx-0"
+          role="presentation"
+        />
+        <h4
+          class="font-medium text-xl leading-[22px] md:text-[28px] md:leading-[30px] tracking-tight"
+        >
           {titleFirst}
         </h4>
         <span class="font-normal text-4 leading-[26px]">
@@ -21,8 +45,15 @@ const { image, iconFirst, iconSecond, sectionTitle, titleFirst, titleSecond, des
         </span>
       </div>
       <div class="grid grid-cols-1 gap-y-4 text-left sm:text-left">
-        <img src={iconSecond} alt="" class="w-16 h-16 sm:mx-0" role="presentation" />
-        <h4 class="font-medium text-xl leading-[22px] md:text-[28px] md:leading-[30px] tracking-tight">
+        <img
+          src={iconSecond}
+          alt=""
+          class="w-16 h-16 sm:mx-0"
+          role="presentation"
+        />
+        <h4
+          class="font-medium text-xl leading-[22px] md:text-[28px] md:leading-[30px] tracking-tight"
+        >
           {titleSecond}
         </h4>
         <span class="font-normal text-base leading-[26px]">
@@ -31,7 +62,9 @@ const { image, iconFirst, iconSecond, sectionTitle, titleFirst, titleSecond, des
       </div>
     </div>
   </div>
-  <img src={image}
-  alt="CroCoder team member illustration"
-  class="md:absolute bottom-0 left-0 h-40 sm:h-56 lg:h-80 max-w-xs sm:max-w-md relative max-md:top-12 max-md:mt-12" />
+  <img
+    src={image}
+    alt="CroCoder team member illustration"
+    class="md:absolute bottom-0 left-0 h-40 sm:h-56 lg:h-80 max-w-xs sm:max-w-md relative max-md:top-12 max-md:mt-12"
+  />
 </div>

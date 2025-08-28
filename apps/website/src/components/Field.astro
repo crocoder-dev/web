@@ -41,7 +41,7 @@ const { classNames, labelProps, label, errorText } = Astro.props;
     {
       "after:h-[46px]": !Astro.props.isTextArea,
       "after:h-[139px] after:max-h-[139px]": Astro.props.isTextArea,
-    }
+    },
   )}
 >
   {
@@ -83,7 +83,7 @@ const { classNames, labelProps, label, errorText } = Astro.props;
           focus:border-transparent
           text-secondary
           `,
-          Astro.props.textAreaProps.class
+          Astro.props.textAreaProps.class,
         )}
         {...Astro.props.textAreaProps}
       />
@@ -133,7 +133,7 @@ const { classNames, labelProps, label, errorText } = Astro.props;
       {
         "h-[48px] top-[23px]": !Astro.props.isTextArea,
         "h-[142px] top-[23px]": Astro.props.isTextArea,
-      }
+      },
     )}
   >
   </div>
