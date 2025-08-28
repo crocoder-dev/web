@@ -1,15 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 interface Post {
-    userId: number;
-    id: number;
-    title: string;
-    body: string;
+  userId: number;
+  id: number;
+  title: string;
+  body: string;
 }
 
 export const useFetchData = (url: string) => {
   const [data, setData] = useState<Post[] | null>(null);
-  const [error, setError] = useState<{message: string} | null>(null);
+  const [error, setError] = useState<{ message: string } | null>(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
