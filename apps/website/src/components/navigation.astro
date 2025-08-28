@@ -10,7 +10,7 @@ const optimizedLogo = await getImage({
   format: "webp",
 });
 
-const isContact = Astro.url.pathname === "/contact"
+const isContact = Astro.url.pathname === "/contact";
 ---
 
 <header
@@ -109,7 +109,7 @@ const isContact = Astro.url.pathname === "/contact"
           id="book-a-call-action"
           class="invisible w-fit font-medium h-[39px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-[#545664] text-[#ffffff] hover:opacity-90"
           href={isContact ? "/#book-a-call-section" : "#book-a-call-section"}
-          >
+        >
           Book a call
         </a>
       </li>
@@ -151,9 +151,10 @@ const isContact = Astro.url.pathname === "/contact"
             text-base text-center
             whitespace-nowrap
              bg-[#545664] text-[#ffffff] hover:opacity-90"
-             href={isContact ? "/#book-a-call-section" : "#book-a-call-section"}
-             >Book a call</a
+      href={isContact ? "/#book-a-call-section" : "#book-a-call-section"}
     >
+      Book a call
+    </a>
     <a
       class="font-medium
           w-full !h-[40px] items-center px-4 py-2 rounded-md
@@ -173,7 +174,7 @@ const isContact = Astro.url.pathname === "/contact"
   const allDataHidden = document.querySelectorAll("[data-navhidden]");
   const bookACallAction = document.getElementById("book-a-call-action");
   const mobileBookACallAction = document.getElementById(
-    "mobile-book-a-call-action"
+    "mobile-book-a-call-action",
   );
   const navMenuToggle = document.getElementById("nav-menu-toggle");
   const mobileContact = document.getElementById("mobile-contact");
@@ -233,7 +234,7 @@ const isContact = Astro.url.pathname === "/contact"
       const currentVal = node.getAttribute("data-navhidden");
       node.setAttribute(
         "data-navhidden",
-        currentVal === "true" ? "false" : "true"
+        currentVal === "true" ? "false" : "true",
       );
 
       node.style.animationName = "none";

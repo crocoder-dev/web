@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback } from "react";
 interface UseClickTrackerState {
   count: number;
   lastClicked: number | null;
@@ -9,7 +9,7 @@ export const useClickTracker = (): [UseClickTrackerState, () => void] => {
     lastClicked: null,
   });
   const incrementCount = useCallback(() => {
-    setState(prevState => ({
+    setState((prevState) => ({
       count: prevState.count + 1,
       lastClicked: Date.now(),
     }));
