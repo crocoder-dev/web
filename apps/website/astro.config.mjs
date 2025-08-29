@@ -1,31 +1,35 @@
-import { defineConfig } from 'astro/config';
-import react from '@astrojs/react';
-import vercel from '@astrojs/vercel'
-import createRemarkPlugin from '@crocoder-dev/remark-plugin';
+import { defineConfig } from "astro/config";
+import react from "@astrojs/react";
+import vercel from "@astrojs/vercel";
+import createRemarkPlugin from "@crocoder-dev/remark-plugin";
 import tailwindcss from "@tailwindcss/vite";
 
 const classes = {
-  titleClass: 'font-bold text-[1.25rem] mt-[2.5rem]',
-  summaryClass: 'cursor-pointer font-bold text-[1.25rem]',
-  detailsClass: 'mt-[2.5rem]',
-  iframeClass: 'border-none w-full h-[360px] overflow-y-hidden'
-}
+  titleClass: "font-bold text-[1.25rem] mt-[2.5rem]",
+  summaryClass: "cursor-pointer font-bold text-[1.25rem]",
+  detailsClass: "mt-[2.5rem]",
+  iframeClass: "border-none w-full h-[360px] overflow-y-hidden",
+};
 
 const remarkPlugin = createRemarkPlugin(classes);
 
 export default defineConfig({
   prefetch: true,
-  output: 'server',
+  output: "server",
   adapter: vercel({
     imageService: true,
+    imagesConfig: {
+      sizes: [320, 480, 640, 800, 1196],
+      formats: ["image/avif", "image/webp"],
+    },
+    devImageService: "sharp",
   }),
   redirects: {
-    '/feed': '/rss.xml',
-    '/sitemap': '/sitemap.xml'
+    "/feed": "/rss.xml",
+    "/sitemap": "/sitemap.xml",
   },
   integrations: [tailwindcss(), react()],
   markdown: {
     remarkPlugins: [remarkPlugin],
   },
 });
-
