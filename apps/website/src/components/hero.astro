@@ -17,8 +17,8 @@ import { Picture } from "astro:assets";
       <Picture
         src={heroImage}
         alt="CroCoder team collaborating on web development projects"
-        widths={[320, 480, 640, 800, 1196]}
-        sizes="(max-width: 320px) 320px, (max-width: 480px) 480px, (max-width: 640px) 640px, 1196px"
+        widths={[320, 480, 640]}
+        sizes="(max-width: 480px) 320px, (max-width: 480px) 768px, 640px"
         loading="eager"
         fetchpriority="high"
       />
