@@ -19,10 +19,9 @@ export default defineConfig({
   adapter: vercel({
     imageService: true,
     imagesConfig: {
-      sizes: [320, 480, 640, 800, 1196],
+      sizes: [320, 480, 578, 640, 800, 1196],
       formats: ["image/avif", "image/webp"],
     },
-    devImageService: "sharp",
   }),
   redirects: {
     "/feed": "/rss.xml",

@@ -2,7 +2,6 @@
 import { grid_classes } from "./_grid";
 import Pill from "./Pill.astro";
 import Section from "./Section.astro";
-import { Image } from "astro:assets";
 import heroImage from "../assets/croco-13.png";
 import { Picture } from "astro:assets";
 ---
@@ -19,6 +18,7 @@ import { Picture } from "astro:assets";
         alt="CroCoder team collaborating on web development projects"
         widths={[320, 480, 640]}
         sizes="(max-width: 480px) 320px, (max-width: 480px) 768px, 640px"
+        quality={80}
         loading="eager"
         fetchpriority="high"
       />
