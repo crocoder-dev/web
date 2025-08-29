@@ -27,11 +27,10 @@ const { classNames, labelProps, label = "", onDark } = Astro.props;
   <input
     {...Astro.props.inputProps}
     type="date"
-    id="date-picker"
     class="peer/input text-transparent relative z-[4] ml-[1px] h-[46px] w-[calc(100%-2px)]
            rounded-[6px] border border-transparent bg-transparent px-4 py-2.5
            focus:border-transparent focus:outline-0 focus:ring-0
-           focus:text-secondary valid:text-secondary"
+           focus:text-secondary"
   />
 
   <label
@@ -48,7 +47,6 @@ const { classNames, labelProps, label = "", onDark } = Astro.props;
       z-[3]
       peer-focus/input:translate-y-0
       peer-focus/input:translate-x-0
-      peer-valid/input:translate-0
       `,
       { "text-secondary": !onDark, "text-neutral-50": onDark },
     )}
@@ -71,6 +69,24 @@ const { classNames, labelProps, label = "", onDark } = Astro.props;
   </div>
 </div>
 
-<script>
-
+<script is:inline>
+  const dateInput = document.getElementById("form-start-date");
+  const label = document.getElementById("form-start-date-label");
+  if (dateInput && label) {
+    dateInput.addEventListener("change", () => {
+      if (dateInput.value) {
+        label.classList.remove("translate-y-[37px]", "translate-x-[17px]");
+        dateInput.classList.remove("text-transparent");
+        label.classList.add("translate-y-0", "translate-x-0");
+      } else {
+        label.classList.remove("translate-y-0", "translate-x-0");
+        dateInput.classList.add("text-transparent");
+        label.classList.add(
+          "translate-y-[37px]",
+          "translate-x-[17px]",
+          "text-transparent",
+        );
+      }
+    });
+  }
 </script>

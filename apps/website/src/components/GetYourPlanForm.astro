@@ -1,4 +1,5 @@
 ---
+import classNames from "classnames";
 import * as formContent from "../content/contact/get-your-plan-form.md";
 import "../styles/loader.css";
 import Field from "./Field.astro";
@@ -71,9 +72,9 @@ const enableModalForm = import.meta.env.PUBLIC_ENABLE_MODAL_FORM === "true";
         type={enableModalForm ? "button" : "submit"}
         id="form-submit-button"
         class="rounded-md
-        min-h-14
-        px-[25px] w-full py-4
-        text-center
+          min-h-14
+          px-[25px] w-full py-4
+          text-center
         text-secondary
         text-base
         font-medium
@@ -113,13 +114,6 @@ const enableModalForm = import.meta.env.PUBLIC_ENABLE_MODAL_FORM === "true";
         "#get-your-plan-form-loader",
       );
 
-      submitBtn?.addEventListener("click", () => {
-        const startDateInput = document.getElementById("form-start-date");
-        if (startDateInput) {
-          startDateInput.setAttribute("required", "");
-        }
-      });
-
       const notificationElem = form?.querySelector("#form-notification");
 
       /* Modal part of form elements */
@@ -151,20 +145,10 @@ const enableModalForm = import.meta.env.PUBLIC_ENABLE_MODAL_FORM === "true";
       };
 
       const handleCloseModal = () => {
-        const startDateInput = document.getElementById("form-start-date");
-        if (startDateInput) {
-          startDateInput.removeAttribute("required");
-        }
         getPlanModal?.close();
       };
 
       if (getPlanModal) {
-        getPlanModal.addEventListener("close", () => {
-          const startDateInput = document.getElementById("form-start-date");
-          if (startDateInput) {
-            startDateInput.removeAttribute("required");
-          }
-        });
         getPlanModal.addEventListener("click", handleModalSoftDismiss);
         submitBtn?.addEventListener("click", handleOpenModal);
       }
@@ -200,7 +184,8 @@ const enableModalForm = import.meta.env.PUBLIC_ENABLE_MODAL_FORM === "true";
           const consent = formData.get("form-consent");
           const companyName = formData.get("form-company");
           const mainChallenge = formData.get("form-challenge");
-          const startDate = formData.get("form-start-date");
+          const expectedStartDate = formData.get("form-start-date");
+          console.log("startDate", expectedStartDate)
 
           if (!name || !email || !consent) {
             return;
@@ -222,7 +207,7 @@ const enableModalForm = import.meta.env.PUBLIC_ENABLE_MODAL_FORM === "true";
                 hasConsent: consent ? true : false,
                 companyName: companyName || "",
                 mainChallenge: mainChallenge || "",
-                startDate: startDate || "",
+                expectedStartDate: expectedStartDate || "",
               }),
             },
           );
