@@ -26,94 +26,95 @@ const {
     hideEventTypeDetails,
     eventType,
   }}
+  async
 >
-const loadCalEmbed = () => {
-  (function (C, A, L) {
-    let p = function (a, ar) {
-      a.q.push(ar);
-    };
-    let d = C.document;
-    C.Cal =
-      C.Cal ||
-      function () {
-        let cal = C.Cal;
-        let ar = arguments;
-        if (!cal.loaded) {
-          cal.ns = {};
-          cal.q = cal.q || [];
-          d.head.appendChild(d.createElement("script")).src = A;
-          cal.loaded = true;
-        }
-        if (ar[0] === L) {
-          const api = function () {
-            p(api, arguments);
-          };
-          const namespace = ar[1];
-          api.q = api.q || [];
-          if (typeof namespace === "string") {
-            cal.ns[namespace] = cal.ns[namespace] || api;
-            p(cal.ns[namespace], ar);
-            p(cal, ["initNamespace", namespace]);
-          } else p(cal, ar);
-          return;
-        }
-        p(cal, ar);
+  const loadCalEmbed = () => {
+    (function (C, A, L) {
+      let p = function (a, ar) {
+        a.q.push(ar);
       };
-  })(window, "https://app.cal.com/embed/embed.js", "init");
-  Cal("init", eventType, { origin: "https://cal.com" });
+      let d = C.document;
+      C.Cal =
+        C.Cal ||
+        function () {
+          let cal = C.Cal;
+          let ar = arguments;
+          if (!cal.loaded) {
+            cal.ns = {};
+            cal.q = cal.q || [];
+            d.head.appendChild(d.createElement("script")).src = A;
+            cal.loaded = true;
+          }
+          if (ar[0] === L) {
+            const api = function () {
+              p(api, arguments);
+            };
+            const namespace = ar[1];
+            api.q = api.q || [];
+            if (typeof namespace === "string") {
+              cal.ns[namespace] = cal.ns[namespace] || api;
+              p(cal.ns[namespace], ar);
+              p(cal, ["initNamespace", namespace]);
+            } else p(cal, ar);
+            return;
+          }
+          p(cal, ar);
+        };
+    })(window, "https://app.cal.com/embed/embed.js", "init");
+    Cal("init", eventType, { origin: "https://cal.com" });
 
-  Cal.ns[eventType]("inline", {
-    elementOrSelector,
-    config: { layout, theme: "light" },
-    calLink,
-  });
+    Cal.ns[eventType]("inline", {
+      elementOrSelector,
+      config: { layout, theme: "light" },
+      calLink,
+    });
 
-  Cal.ns[eventType]("ui", {
-    styles: {
-      body: {
-        background: "transparent",
+    Cal.ns[eventType]("ui", {
+      styles: {
+        body: {
+          background: "transparent",
+        },
+        branding: {
+          brandColor: "#FEB534",
+          lightColor: "#494545",
+          lighterColor: "#4c4848",
+          lightestColor: "#7c7777",
+          highlightColor: "#1E1A1A",
+          medianColor: "#1E1A1A",
+        },
+        enabledDateButton: {
+          backgroundColor: "rgba(254, 181, 52, 0.65)", //"rgba(254, 181, 52, 0.40)",
+        },
+        disabledDateButton: {
+          backgroundColor: "rgba(232,232,232,0.30)",
+        },
       },
-      branding: {
-        brandColor: "#FEB534",
-        lightColor: "#494545",
-        lighterColor: "#4c4848",
-        lightestColor: "#7c7777",
-        highlightColor: "#1E1A1A",
-        medianColor: "#1E1A1A",
-      },
-      enabledDateButton: {
-        backgroundColor: "rgba(254, 181, 52, 0.65)", //"rgba(254, 181, 52, 0.40)",
-      },
-      disabledDateButton: {
-        backgroundColor: "rgba(232,232,232,0.30)",
-      },
-    },
-    hideEventTypeDetails,
-    layout,
-  });
+      hideEventTypeDetails,
+      layout,
+    });
 
-  Cal.ns[eventType]("on", {
-    action: "bookingSuccessful",
-    callback: (e) => {
-      const {data, type, namespace} = e.detail;
-      console.log("Booking successful:", {data, type, namespace});
-      window.location.href = "/contact/success?src=calcom";
-    }
-  });
+    Cal.ns[eventType]("on", {
+      action: "bookingSuccessful",
+      callback: (e) => {
+        const { data, type, namespace } = e.detail;
+        console.log("Booking successful:", { data, type, namespace });
+        window.location.href = "/contact/success?src=calcom";
+      },
+    });
 
-  Cal("on", {
-    action: "bookingSuccessful",
-    callback: (e) => {
-      const {data, type, namespace} = e.detail;
-      console.log("Global booking successful:", {data, type, namespace});
-      window.location.href = "/contact/success?src=calcom";
-    }
-  });
-}
+    Cal("on", {
+      action: "bookingSuccessful",
+      callback: (e) => {
+        const { data, type, namespace } = e.detail;
+        console.log("Global booking successful:", { data, type, namespace });
+        window.location.href = "/contact/success?src=calcom";
+      },
+    });
+  };
 
-if ("requestIdleCallback" in window) {
- requestIdleCallback(loadCalEmbed);
-} else {
-  window.addEventListener("load", loadCalEmbed);
-}
+  if ("requestIdleCallback" in window) {
+    requestIdleCallback(loadCalEmbed);
+  } else {
+    window.addEventListener("load", loadCalEmbed);
+  }
 </script>
