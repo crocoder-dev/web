@@ -150,8 +150,16 @@ const enableModalForm = import.meta.env.PUBLIC_ENABLE_MODAL_FORM === "true";
 
       if (getPlanModal) {
         getPlanModal.addEventListener("click", handleModalSoftDismiss);
-        submitBtn?.addEventListener("click", handleOpenModal);
-      }
+        submitBtn?.addEventListener("click", (e) => {
+          e.preventDefault();
+          handleOpenModal();
+        })
+        form?.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+          }
+        });
+    };
 
       const showLoader = () => {
         if (modalFormSubmitBtnContent && modalFormLoader) {
