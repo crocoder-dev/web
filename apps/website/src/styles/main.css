@@ -32,7 +32,7 @@ body:has(nav #nav-menu-toggle:checked) {
 }
 @keyframes fade-in-up {
   0% {
-    opacity: 0;
+    opacity: 0.1;
     transform: translateY(-100%);
   }
   100% {
@@ -118,7 +118,7 @@ body:has(nav #nav-menu-toggle:checked) {
 }
 
 .prose blockquote {
-  border-color: #607A1A;
+  border-color: #607a1a;
 }
 
 @media (min-width: 320px) {
