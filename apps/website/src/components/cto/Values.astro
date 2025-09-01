@@ -11,13 +11,13 @@ import douglasIcon from "../../assets/douglas-icon.png";
 const optimizedDouglasIcon = await getImage({
   src: douglasIcon,
   width: 72,
-  height: 72
+  height: 72,
 });
 
 const optimizedTeamsImage = await getImage({
   src: teamsImage,
   width: 560,
-  height: 326
+  height: 326,
 });
 ---
 
@@ -114,7 +114,12 @@ const optimizedTeamsImage = await getImage({
         making process. Working with them is easy. They are organised,
         communicative, and have a great internal culture.
       </p>
-      <img src="/quotes.svg" alt="" role="presentation" class="hidden md:block" />
+      <img
+        src="/quotes.svg"
+        alt=""
+        role="presentation"
+        class="hidden md:block"
+      />
       <div class="flex gap-3 col-span-2">
         <img
           src={optimizedDouglasIcon.src}

@@ -1,6 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
-export const useDebouncedSearch = (value: string, search: (value: string) => void, wait: number) => {
+export const useDebouncedSearch = (
+  value: string,
+  search: (value: string) => void,
+  wait: number,
+) => {
   const [debouncedValue, setDebouncedValue] = useState(value);
 
   useEffect(() => {
