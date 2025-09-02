@@ -1,7 +1,3 @@
 export default function Home() {
-  return (
-    <div>
-      THIS IS API
-    </div>
-  );
+  return <div>THIS IS API</div>;
 }

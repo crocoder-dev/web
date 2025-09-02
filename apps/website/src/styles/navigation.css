@@ -1,0 +1,141 @@
+@keyframes navigation-animation {
+  0% {
+    width: 680px;
+  }
+
+  100% {
+    width: 377px;
+  }
+}
+
+@keyframes visible-animation {
+  0% {
+    visibility: hidden;
+    opacity: 0;
+    width: 0;
+  }
+
+  100% {
+    visibility: visible;
+    opacity: 1;
+    width: 100%;
+  }
+}
+
+@keyframes width-animation {
+  0% {
+    width: 0px;
+  }
+
+  100% {
+    width: auto;
+  }
+}
+
+.line {
+  transition: transform 100ms ease, opacity 250ms ease;
+}
+
+.line1,
+.line2,
+.line3 {
+  opacity: 1;
+}
+
+#nav-menu-toggle:checked+.line1 {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+#nav-menu-toggle:checked+.line1+.line2 {
+  transform: translateX(-10px);
+  opacity: 0;
+}
+
+#nav-menu-toggle:checked+.line1+.line2+.line3 {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+
+:root {
+  --frame-duration: 425ms;
+  --frame-gap: 50ms;
+  --start-delay: 0s;
+}
+
+@media (min-width: 768px) {
+
+  .animated-button,
+  .animated-navigation,
+  .animated-text {
+    animation-delay: var(--delay);
+    animation-timing-function: ease-in;
+    animation-duration: var(--frame-duration);
+    animation-fill-mode: both;
+  }
+
+  .animated-navigation {
+    --delay: calc(var(--frame-duration) + var(--frame-gap) + var(--start-delay));
+    animation-name: navigation-animation;
+  }
+
+  .animated-text {
+    --delay: calc(var(--start-delay));
+    margin-right: 8px;
+    margin-left: 8px;
+    animation-name: visible-animation, width-animation;
+    animation-duration: var(--frame-duration), 0s;
+  }
+
+  /* Wide - display + visibility once width done */
+  img.animated-button[data-navhidden="true"] {
+    --timeToFinishNav: calc(var(--frame-duration) / 2 + var(--frame-duration) + var(--frame-gap) + var(--start-delay));
+    animation-delay: var(--timeToFinishNav), var(--timeToFinishNav);
+  }
+
+    a.animated-button[data-navhidden="true"] {
+      --timeToFinishNav: calc(var(--frame-duration) + var(--frame-duration) + var(--frame-gap) + var(--start-delay));
+      animation-delay: var(--timeToFinishNav), var(--timeToFinishNav);
+    }
+
+  .animated-text[data-navhidden="false"] {
+    --timeToFinishNav: calc(var(--frame-duration) + var(--frame-duration) + var(--frame-gap) + var(--start-delay));
+    animation-delay: var(--timeToFinishNav / 2), var(--timeToFinishNav);
+  }
+
+  /* Narrow */
+  img.animated-button[data-navhidden="false"],
+  .animated-text[data-navhidden="true"] {
+    animation-delay: 0s, calc(var(--frame-duration) / 2);
+  }
+
+  a.animated-button[data-navhidden="false"] {
+    animation-delay: 0s, calc(var(--frame-duration) / 2);
+  }
+
+  .animated-button {
+    --delay: calc(var(--start-delay));
+    animation-name: visible-animation, width-animation;
+  }
+
+  .animated-navigation[data-navhidden="true"],
+  .animated-text[data-navhidden="true"],
+  .animated-button[data-navhidden="false"] {
+    animation-direction: reverse;
+  }
+
+
+  .animated-navigation[data-navhidden="false"],
+  .animated-text[data-navhidden="false"],
+  .animated-button[data-navhidden="true"] {
+    animation-direction: normal;
+  }
+
+  .animated-button {
+    animation-name: visible-animation;
+  }
+
+  .animated-text {
+    width: auto !important;
+    animation-name: visible-animation;
+  }
+}

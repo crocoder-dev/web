@@ -6,4 +6,4 @@ icon: "/target-black.svg"
 ---
 
 We don’t just build software, we build solutions that drive real impact. Every feature we create serves a purpose, aligning seamlessly with your business strategy.  
-No fluff, no waste—just results.
+No fluff, no waste — just results.

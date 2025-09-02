@@ -5,6 +5,13 @@ import Pill from "./Pill.astro";
 import Section from "./Section.astro";
 import { Image } from "astro:assets";
 import meetingImage from "../assets/meeting-croc.png";
+
+export interface Props {
+  calLink?: string;
+  eventType?: string;
+}
+
+const { calLink = "team/crocoder/hello", eventType = "hello" } = Astro.props;
 ---
 
 <!-- YELLOW-1 = #FEB534 -->
@@ -43,12 +50,12 @@ import meetingImage from "../assets/meeting-croc.png";
   </div>
 
   <div
-    class="relative col-span-6 md:col-span-10 md:col-start-2 overflow-hidden flex flex-col justify-center bg-white rounded"
+    class="relative col-span-6 md:col-span-10 md:col-start-2 overflow-hidden flex flex-col justify-center bg-white rounded lg:min-h-[460px]"
   >
     <div id="book-a-call"></div>
     <CalcomEmbedInline
-      calLink="team/crocoder/hello"
-      eventType="hello"
+      calLink={calLink}
+      eventType={eventType}
       elementOrSelector="#book-a-call"
       hideEventTypeDetails={false}
     />

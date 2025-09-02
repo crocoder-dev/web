@@ -1,5 +1,5 @@
 ---
-title: "No, you shouldn't measure developer productivity.."
+title: "No, you shouldn't measure developer productivity..."
 description: "Explore the contentious debate surrounding developer productivity measurement ignited by McKinsey's recent article. Discover why focusing on individual metrics hinders software engineering teams."
 createdAt: 1695115503000
 updatedAt: 1695115503000

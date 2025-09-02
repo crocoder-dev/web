@@ -5,21 +5,21 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,astro}\""
   },
   "devDependencies": {
     "turbo": "^2.5.5"
   },
   "engines": {
-    "bun": ">=1.1.18"
+    "bun": ">=1.2.21"
   },
-  "packageManager": "bun@1.1.18",
+  "packageManager": "bun@1.2.21",
   "workspaces": [
     "apps/*",
     "packages/*"
   ],
   "dependencies": {
-    "prettier": "^3.4.2",
+    "prettier": "^3.6.2",
     "prettier-plugin-astro": "^0.14.1"
   }
 }

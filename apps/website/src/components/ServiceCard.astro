@@ -54,7 +54,8 @@ const image = await src();
       `text-white
       h-full
       lg:h-[620px]
-      p-7
+      p-5
+      md:p-7
       lg:p-12
       grid
       grid-cols-6
@@ -71,33 +72,38 @@ const image = await src();
     )}
   >
     <div
-      class="col-span-6 grid max-lg:grid-rows-[min-content_min-content_auto] gap-7 lg:grid-cols-2 lg:col-span-2 lg:items-start justify-between"
+      class="col-span-6 grid max-lg:grid-rows-[min-content_min-content_auto] gap-4 md:gap-7 lg:grid-cols-2 lg:col-span-2 lg:items-start justify-between"
     >
-      <span class="grid md:flex gap-7">
-        <img src={iconPath} alt="" role="presentation" class="lg:mt-[2px] h-8 w-8 md:h-12 md:w-12" />
+      <span class="grid md:flex gap-4 md:gap-7">
+        <img
+          src={iconPath}
+          alt=""
+          role="presentation"
+          class="lg:mt-[2px] h-8 w-8 md:h-12 md:w-12"
+        />
         <div class="gap-y-2 flex flex-col">
           <h4
-            class="font-medium text-xl leading-[22px] md:text-[28px] md:leading-[30px] text-left"
+            class="font-medium text-lg leading-[22px] md:text-[28px] md:leading-[30px] text-left"
           >
             {title}
           </h4>
-          <p class="text-lg">{subtitle}</p>
+          <p class="text-base md:text-lg">{subtitle}</p>
         </div>
       </span>
       <div
         class="flex flex-col justify-center items-center row-start-3 lg:justify-start lg:col-span-1 lg:row-start-2"
       >
         <Image
-          class="object-cover xl:p-6"
+          class="object-cover w-full max-lg:max-w-[640px] xl:p-6"
           src={image.default}
           alt={imgAlt}
           widths={[320, 480, 578, 640]}
-          sizes="(max-width: 1024px) calc(100vw - 56px), calc(50vw - 28px)"
+          sizes="(max-width: 1024px) calc(100vw - 56px), 640px"
           loading="lazy"
         />
       </div>
       <div
-        class="flex flex-col lg:flex-col row-start-2 lg:col-span-1 lg:col-start-2 lg:row-span-2 [&_p]:text-base [&_p]:leading-[26px] md:[&_p]:text-[20px] md:[&_p]:font-normal md:[&_p]:leading-8 text-left"
+        class="flex flex-col lg:flex-col row-start-2 lg:col-span-1 lg:col-start-2 lg:row-span-2 [&_p]:text-base [&_p]:text-sm [&_p]:leading-[26px] md:[&_p]:text-[20px] md:[&_p]:font-normal md:[&_p]:leading-8 text-left"
         set:html={content.html}
       />
     </div>
