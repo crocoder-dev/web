@@ -1,14 +1,14 @@
 ---
 title: "Building a Streamable, Scalable Architecture for AI media generation"
 description: "Turning a powerful AI model into a real product means tackling latency, fragility, and scale. This post explores how to move beyond a blocking API to a streaming architecture that delivers fast, reliable results, and a user experience that feels seamless."
-createdAt: 1752743682557
-updatedAt: 1752743682557
+createdAt: 1756809222526
+updatedAt: 1756809222526
 authors: ["david"]
 category: "AWS"
 editors: ["velimir"]
 draft: false
 abstract: "Some of the hardest, and most necessary, challenges in bringing generative AI to market start after the model works. In this post, we dig into the overlooked but critical work of transforming a capable media generation model into a responsive, resilient product experience. From rethinking synchronous APIs to designing an architecture that streams results in seconds, we walk through lessons learned helping a client scale from fragile prototype to production-ready system. If you're building generative audio or video tools, this piece offers practical insights on turning raw model output into something real users can trust, use, and enjoy."
-image: "/images/block-russia-using-cloudfront.jpg"
+image: "/images/building-streamable-scalabe-architecture-for-ai-media-generation.png"
 ---
 
 Your engineering org just pulled off a giant feat: after months of research, you shipped a flagship generative AI model that turns raw prompts into jaw-dropping media. Early demos lit up boardroom TVs and beta users couldn't stop sharing samples. GPUs hum in perfect cadence, and your MLOps pipeline auto-retrains nightly.
