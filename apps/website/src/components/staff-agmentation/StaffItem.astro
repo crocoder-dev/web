@@ -1,0 +1,74 @@
+---
+import Plus from "../../components/icons/Plus.astro";
+import classnames from "classnames";
+import { Image } from "astro:assets";
+
+type Props = {
+  name: string;
+  imagePath: string;
+  role: string;
+  idx: number;
+};
+
+const { name, imagePath, role, idx } = Astro.props;
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/staff/*.{jpg, png}",
+);
+---
+
+<div
+  class={classnames("max-w-[230px] h-[230px] relative", {
+    "self-center top-7": !idx,
+    "self-center left-12 bottom-12": idx === 2,
+  })}
+>
+  <div
+    class={classnames("rounded-full overflow-hidden", {
+      "-rotate-z-[15deg]": idx === 1,
+      "rotate-z-[15deg]": idx === 2,
+    })}
+  >
+    <Image width={230} height={230} src={images[imagePath]()} alt="" />
+  </div>
+  <div
+    class={classnames("absolute w-full h-full top-0 left-0", {
+      "-rotate-z-[15deg]": idx === 1,
+      "rotate-z-[15deg]": idx === 2,
+    })}
+  >
+    <div
+      class="text-xs
+        uppercase
+        bg-white
+        px-3
+        py-1.5
+        rounded-[7000px]
+        absolute
+        bottom-8
+        left-1/2
+        -translate-x-1/2
+        shadow-[0px_3px_6px_rgba(0,0,0,0.05)]
+        flex w-fit"
+    >
+      <span class="font-bold block whitespace-nowrap">
+        {name}
+      </span>
+      {" - "}
+      <span class="block whitespace-nowrap">{role}</span>
+    </div>
+    <div
+      class="absolute
+        top-1/2
+        left-0
+        p-3
+        rounded-full
+        bg-white
+        -translate-y-1/2
+        -translate-x-1/2
+        shadow-[0px_3px_6px_rgba(0,0,0,0.05)]"
+    >
+      <Plus />
+    </div>
+  </div>
+</div>
