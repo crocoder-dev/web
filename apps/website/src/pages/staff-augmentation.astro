@@ -1,25 +1,26 @@
 ---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import circleCheckIcon from "../assets/circle-check-icon.svg";
+import codeXmlServiceIcon from "../assets/code-xml-service-icon.svg";
+import crmServiceIcon from "../assets/crm-service-icon.svg";
+import crocoderIll16 from "../assets/crocoder-ill-16-1.png";
+import handsPuzzleServiceIcon from "../assets/hands-puzzle-service-icon.svg";
+import paulJeszenszky from "../assets/paul-jeszenszky.png";
+import picCrocoderTeam from "../assets/pic-crocoder-team-3362ae.png";
+import quoteIcon from "../assets/quote-icon.svg";
+import targetIconCorrect from "../assets/target-icon-correct.svg";
+import zapServiceIcon from "../assets/zap-service-icon.svg";
 import BookACallForm from "../components/BookACallForm.astro";
+import GetYourPlan from "../components/GetYourPlan.astro";
+import Pill from "../components/Pill.astro";
+import Section from "../components/Section.astro";
+import { grid_classes } from "../components/_grid";
 import Footer from "../components/footer.astro";
 import Navigation from "../components/navigation.astro";
+import Hero from "../components/staff-agmentation/Hero.astro";
 import Base from "../layouts/base.astro";
-import Section from "../components/Section.astro";
-import Pill from "../components/Pill.astro";
-import { grid_classes } from "../components/_grid";
-import { Image } from "astro:assets";
-import picPeopleCollaborating from "../assets/pic-people-collaborating.png";
-import picCrocoderTeam from "../assets/pic-crocoder-team-3362ae.png";
-import crocoderIll16 from "../assets/crocoder-ill-16-1.png";
-import paulJeszenszky from "../assets/paul-jeszenszky.png";
-import targetIconCorrect from "../assets/target-icon-correct.svg";
-import codeXmlServiceIcon from "../assets/code-xml-service-icon.svg";
-import zapServiceIcon from "../assets/zap-service-icon.svg";
-import handsPuzzleServiceIcon from "../assets/hands-puzzle-service-icon.svg";
-import crmServiceIcon from "../assets/crm-service-icon.svg";
-import circleCheckIcon from "../assets/circle-check-icon.svg";
-import quoteIcon from "../assets/quote-icon.svg";
 import "../styles/main.css";
-import GetYourPlan from "../components/GetYourPlan.astro";
 
 const { ogImage = "https://www.crocoder.dev/homepage-metadata-img.png" } =
   Astro.props;
@@ -28,95 +29,7 @@ const { ogImage = "https://www.crocoder.dev/homepage-metadata-img.png" } =
 <Base className="bg-white" ogImage={ogImage}>
   <Navigation />
 
-  <!-- Hero Section -->
-  <Section
-    className="!pt-[75px] !pb-0 !px-0"
-    contentClassName="relative before:absolute before:z-[-1] before:top-0 before:w-full before:h-full before:bg-[#4E5BC8] md:max-w-screen"
-  >
-    <div
-      class="mx-auto px-7 xl:px-0 bg-white rounded-b-4xl md:rounded-b-[96px]"
-    >
-      <div class={`${grid_classes} md:max-w-[var(--max-width)] md:mx-auto`}>
-        <div
-          class="row-start-1
-          col-start-1
-          col-span-6
-          md:col-span-10
-          md:col-start-2
-          lg:col-span-5
-          lg:col-start-2
-          grid
-          gap-3 md:gap-7
-          text-secondary
-           pt-7 pb-18 md:pb-24"
-        >
-          <div class="grid gap-2 md:gap-4">
-            <Pill
-              className="text-[10px] min-[340px]:text-xs min-[390px]:text-sm sm:text-base md:text-lg px-2 py-1 min-[390px]:px-3 min-[390px]:py-1.5 sm:px-4 sm:py-2"
-              >Outcome-Driven Product Engineering</Pill
-            >
-            <h1
-              class="text-[18px] leading-[22px] min-[390px]:text-[24px] min-[390px]:leading-[28px] sm:text-[32px] sm:leading-[36px] md:text-[54px] md:leading-[59.4px] font-medium tracking-tight"
-            >
-              <span class="fadeInUp block" style="animation-delay: 100ms;">
-                On-Demand Talent,
-              </span>
-              <span
-                class="fadeInUp block"
-                style="animation-delay: 500ms;animation-fill-mode: backwards;"
-              >
-                Working as an Extension of Your Team
-              </span>
-            </h1>
-          </div>
-          <p
-            class="font-normal text-sm leading-5 min-[390px]:text-base min-[390px]:leading-6 sm:text-lg sm:leading-7 md:text-[22px] md:leading-8 tracking-normal"
-          >
-            <span
-              class="fadeInUp"
-              style="animation-delay: 900ms;animation-fill-mode: backwards;"
-            >
-              Product-minded web engineers who bring clarity, momentum, and
-              ownership. Skip the hiring bottlenecks. Our developers integrate
-              fast, think beyond the ticket, and help you build with purpose —
-              from junior support to senior leadership.
-            </span>
-          </p>
-
-          <a
-            id="book-a-call-action-hero"
-            href="#book-a-call-section"
-            class="inline-block bg-crocoder-yellow rounded-md px-[25px] py-4 text-center text-contrast text-base font-medium hover:opacity-90 uppercase w-fit"
-          >
-            Let's talk
-          </a>
-        </div>
-        <div
-          class="hidden
-          lg:flex
-          row-start-2
-          col-start-1
-          col-span-6
-          lg:col-span-6
-          self-center
-          justify-center
-          relative
-          lg:col-start-7
-          lg:row-start-1"
-        >
-          <Image
-            src={picPeopleCollaborating}
-            alt="People collaborating on software development"
-            widths={[320, 480, 640, 800]}
-            sizes="(max-width: 768px) calc(100vw - 32px), (max-width: 1024px) calc(100vw - 56px), calc(50vw - 28px)"
-            loading="eager"
-            fetchpriority="high"
-          />
-        </div>
-      </div>
-    </div>
-  </Section>
-
+  <Hero />
   <GetYourPlan />
 
   <!-- Main Content Section -->
