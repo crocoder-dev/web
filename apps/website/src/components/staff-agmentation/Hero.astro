@@ -1,0 +1,103 @@
+---
+import { Picture } from "astro:assets";
+import { getCollection, type CollectionEntry } from "astro:content";
+import hero from "../../assets/staff-hero.svg";
+import Pill from "../../components/Pill.astro";
+import Section from "../../components/Section.astro";
+import { grid_classes } from "../../components/_grid";
+import StaffMember from "../../components/staff-agmentation/StaffMember.astro";
+import "../../styles/main.css";
+import Calendar from "../icons/Calendar.astro";
+
+const staff = (await getCollection("staffmembers")) as {
+  data: { name: string; image: string; role: string };
+}[];
+
+const contentVariantID = Number(Astro.url.searchParams.get("variant") || 1);
+
+const staffContentVariants = await getCollection("staffherocontent");
+
+const staffContent = staffContentVariants.find(
+  (v: { data: { id: number } }) => v.data.id === contentVariantID,
+);
+
+const { Content } = await staffContent.render();
+---
+
+<Section
+  className="!p-0"
+  contentClassName="relative before:absolute before:z-[-1] before:top-0 before:w-full before:h-full before:bg-[#4E5BC8] md:max-w-screen"
+>
+  <div
+    class="mx-auto xl:px-0 bg-[#FFF1E1] rounded-b-4xl md:rounded-b-[96px] relative overflow-hidden"
+  >
+    <Picture
+      src={hero}
+      alt=""
+      class="w-full h-full absolute top-0 left-0 z-[1]"
+    />
+    <div
+      class={`${grid_classes} md:max-w-[var(--max-width)] px-4 md:px-7 !pt-[75px] md:mx-auto relative z-[2]`}
+    >
+      <div
+        class="row-start-1
+          col-start-1
+          col-span-6
+          md:col-span-10
+          lg:col-span-5
+          lg:col-start-2
+          grid
+          gap-3 md:gap-7
+          text-secondary
+           pt-7 pb-14 md:pb-24 self-start"
+      >
+        <div class="flex flex-col gap-2 md:gap-4 max-h-fit">
+          <Pill
+            className="text-[10px] min-[340px]:text-xs min-[390px]:text-sm sm:text-base md:text-lg px-2 py-1 min-[390px]:px-3 min-[390px]:py-1.5 sm:px-4 sm:py-2 max-h-[36px]"
+            >{staffContent.data.pillText}</Pill
+          >
+          <Content />
+        </div>
+        <div class="flex flex-wrap gap-2.5">
+          <a
+            id="book-a-call-action-hero"
+            href="#get-your-plan-section"
+            class="inline-block bg-crocoder-yellow rounded-md px-[25px] py-4 text-center text-contrast text-base font-medium hover:opacity-90 uppercase w-fit max-h-14"
+          >
+            Let's talk
+          </a>
+          <a
+            id="book-a-call-action-hero"
+            href="#book-a-call-section"
+            class="inline-flex gap-2.5 items-center bg-[#545664] rounded-md px-[25px] py-4 text-center text-white text-base font-medium hover:opacity-90 uppercase w-fit max-h-14"
+          >
+            <Calendar />
+            Book a call
+          </a>
+        </div>
+      </div>
+      <div
+        class="hidden
+          lg:flex
+          lg:flex-col
+          row-start-2
+          col-start-1
+          col-span-6
+          lg:col-span-6
+          lg:col-start-7
+          lg:row-start-1"
+      >
+        {
+          staff.map((s, i) => (
+            <StaffMember
+              name={s.data.name}
+              role={s.data.role}
+              imagePath={s.data.image}
+              idx={i}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</Section>

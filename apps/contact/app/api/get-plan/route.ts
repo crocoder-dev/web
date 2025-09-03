@@ -1,6 +1,9 @@
 import { processContact } from "@/app/(helpers)/notion";
 import { nanoid } from "nanoid";
+import { NextRequest } from "next/server";
 import z from "zod";
+
+const { NOTION_GET_PLAN_DATABASE_ID } = process.env;
 
 const bodyValidationSchema = z.object({
   name: z
@@ -9,13 +12,13 @@ const bodyValidationSchema = z.object({
   email: z
     .email({ message: "Invalid email adress" })
     .min(1, { message: "Required field" }),
-  message: z.string().min(1, { message: "Required field" }),
+  companyName: z.string().optional(),
+  mainChallenge: z.string().optional(),
+  expectedStartDate: z.string().optional(),
   hasConsent: z.boolean().optional(),
 });
 
 type RequestBody = z.infer<typeof bodyValidationSchema>;
-
-const { NOTION_DATABASE_ID } = process.env;
 
 const allowRequest = async (request: Request & { ip?: string }) => {
   return { success: true, limit: 1, reset: Date.now() + 30000, remaining: 1 };
@@ -32,7 +35,7 @@ export async function OPTIONS() {
   });
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   const corsHeaders = {
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Credentials": "true",
@@ -59,7 +62,24 @@ export async function POST(request: Request) {
         );
       }
 
-      const { name, email, message, hasConsent } = body;
+      const {
+        name,
+        email,
+        companyName,
+        mainChallenge,
+        expectedStartDate,
+        hasConsent,
+      } = body;
+
+      let message = "***Contact did not come from extended form***";
+
+      if (request.nextUrl.searchParams.get("extended-form") === "true") {
+        message = `
+          ***Contact came from extended form*** \n  
+          Company name: ${companyName || ""} \n
+          Main challenge: ${mainChallenge || ""} \n
+          Expected start date: ${expectedStartDate || ""} \n`;
+      }
 
       if (!hasConsent) {
         return new Response(JSON.stringify({ message: "No consent by user" }), {
@@ -90,8 +110,8 @@ export async function POST(request: Request) {
         id: nanoid(),
         email,
         name,
-        message,
-        databaseID: NOTION_DATABASE_ID || "",
+        message: message || "",
+        databaseID: NOTION_GET_PLAN_DATABASE_ID || "",
       });
 
       return new Response(
@@ -109,7 +129,7 @@ export async function POST(request: Request) {
         },
       );
     } catch (error) {
-      console.error("Error - api/contacts", error);
+      console.error("Error - api/get-plan", error);
 
       const statusCode = (error as any).statusCode || 501;
       const message =

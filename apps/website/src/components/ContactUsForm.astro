@@ -121,22 +121,6 @@ import "../styles/loader.css";
 
     const notificationElem = form?.querySelector("#form-notification");
 
-    const clearForm = () => {
-      if (form) {
-        const fields = form.querySelectorAll("input, textarea");
-        fields.forEach((child) => {
-          if (
-            child.tagName === "INPUT" &&
-            (child as HTMLInputElement).type === "checkbox"
-          ) {
-            (child as HTMLInputElement).checked = false;
-          } else {
-            (child as HTMLInputElement).value = "";
-          }
-        });
-      }
-    };
-
     const showLoader = () => {
       if (submitBtnContent && submitBtnLoader) {
         submitBtnContent.classList.add("hidden");
@@ -176,19 +160,22 @@ import "../styles/loader.css";
         }
 
         showLoader();
-        const response = await fetch("https://api.crocoder.dev/api/contact", {
-          method: "POST",
-          mode: "cors",
-          headers: {
-            "Content-Type": "application/json",
+        const response = await fetch(
+          `${import.meta.env.PUBLIC_API_URL}/api/contact`,
+          {
+            method: "POST",
+            mode: "cors",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name,
+              email,
+              message,
+              hasConsent: consent ? true : false,
+            }),
           },
-          body: JSON.stringify({
-            name,
-            email,
-            message,
-            hasConsent: consent ? true : false,
-          }),
-        });
+        );
 
         if (response.status !== 200 && notificationElem) {
           notificationElem.classList.add("text-red-500");
