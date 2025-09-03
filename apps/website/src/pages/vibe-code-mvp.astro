@@ -1,0 +1,33 @@
+---
+import BookACallForm from "../components/BookACallForm.astro";
+import Footer from "../components/footer.astro";
+import Navigation from "../components/navigation.astro";
+import Base from "../layouts/base.astro";
+import Section from "../components/Section.astro";
+import Pill from "../components/Pill.astro";
+import { grid_classes } from "../components/_grid";
+import { Image } from "astro:assets";
+import picPeopleCollaborating from "../assets/pic-people-collaborating.png";
+import picCrocoderTeam from "../assets/pic-crocoder-team-3362ae.png";
+import crocoderIll16 from "../assets/crocoder-ill-16-1.png";
+import paulJeszenszky from "../assets/paul-jeszenszky.png";
+import targetIconCorrect from "../assets/target-icon-correct.svg";
+import codeXmlServiceIcon from "../assets/code-xml-service-icon.svg";
+import zapServiceIcon from "../assets/zap-service-icon.svg";
+import handsPuzzleServiceIcon from "../assets/hands-puzzle-service-icon.svg";
+import crmServiceIcon from "../assets/crm-service-icon.svg";
+import circleCheckIcon from "../assets/circle-check-icon.svg";
+import quoteIcon from "../assets/quote-icon.svg";
+import "../styles/main.css";
+import Hero from "../components/vibe-code-mvp/Hero.astro";
+
+const { ogImage = "https://www.crocoder.dev/homepage-metadata-img.png" } =
+  Astro.props;
+---
+
+<Base className="bg-white !justify-start" ogImage={ogImage}>
+  <Navigation />
+  <Hero />
+
+  <Footer />
+</Base>
