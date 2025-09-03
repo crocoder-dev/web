@@ -7,6 +7,7 @@ import Section from "../../components/Section.astro";
 import { grid_classes } from "../../components/_grid";
 import StaffMember from "../../components/staff-agmentation/StaffMember.astro";
 import "../../styles/main.css";
+import Calendar from "../icons/Calendar.astro";
 
 const staff = (await getCollection("staffmembers")) as {
   data: { name: string; image: string; role: string };
@@ -57,13 +58,23 @@ const { Content } = await staffContent.render();
           >
           <Content />
         </div>
-        <a
-          id="book-a-call-action-hero"
-          href="#book-a-call-section"
-          class="inline-block bg-crocoder-yellow rounded-md px-[25px] py-4 text-center text-contrast text-base font-medium hover:opacity-90 uppercase w-fit max-h-14"
-        >
-          Let's talk
-        </a>
+        <div class="flex flex-wrap gap-2.5">
+          <a
+            id="book-a-call-action-hero"
+            href="#get-your-plan-section"
+            class="inline-block bg-crocoder-yellow rounded-md px-[25px] py-4 text-center text-contrast text-base font-medium hover:opacity-90 uppercase w-fit max-h-14"
+          >
+            Let's talk
+          </a>
+          <a
+            id="book-a-call-action-hero"
+            href="#book-a-call-section"
+            class="inline-flex gap-2.5 items-center bg-[#545664] rounded-md px-[25px] py-4 text-center text-white text-base font-medium hover:opacity-90 uppercase w-fit max-h-14"
+          >
+            <Calendar />
+            Book a call
+          </a>
+        </div>
       </div>
       <div
         class="hidden
