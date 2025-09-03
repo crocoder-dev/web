@@ -1,16 +1,26 @@
 ---
 import { Picture } from "astro:assets";
-import { getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 import hero from "../../assets/staff-hero.svg";
 import Pill from "../../components/Pill.astro";
 import Section from "../../components/Section.astro";
 import { grid_classes } from "../../components/_grid";
-import StaffItem from "../../components/staff-agmentation/StaffItem.astro";
+import StaffMember from "../../components/staff-agmentation/StaffMember.astro";
 import "../../styles/main.css";
 
-const staff = (await getCollection("staff")) as {
+const staff = (await getCollection("staffmembers")) as {
   data: { name: string; image: string; role: string };
 }[];
+
+const contentVariantID = Number(Astro.url.searchParams.get("variant") || 1);
+
+const staffContentVariants = await getCollection("staffherocontent");
+
+const staffContent = staffContentVariants.find(
+  (v: { data: { id: number } }) => v.data.id === contentVariantID,
+);
+
+const { Content } = await staffContent.render();
 ---
 
 <Section
@@ -18,7 +28,7 @@ const staff = (await getCollection("staff")) as {
   contentClassName="relative before:absolute before:z-[-1] before:top-0 before:w-full before:h-full before:bg-[#4E5BC8] md:max-w-screen"
 >
   <div
-    class="mx-auto px-7 xl:px-0 bg-[#FFF1E1] rounded-b-4xl md:rounded-b-[96px] relative overflow-hidden"
+    class="mx-auto xl:px-0 bg-[#FFF1E1] rounded-b-4xl md:rounded-b-[96px] relative overflow-hidden"
   >
     <Picture
       src={hero}
@@ -26,58 +36,31 @@ const staff = (await getCollection("staff")) as {
       class="w-full h-full absolute top-0 left-0 z-[1]"
     />
     <div
-      class={`${grid_classes} md:max-w-[var(--max-width)] !pt-[75px] md:mx-auto relative z-[2]`}
+      class={`${grid_classes} md:max-w-[var(--max-width)] px-4 md:px-7 !pt-[75px] md:mx-auto relative z-[2]`}
     >
       <div
         class="row-start-1
           col-start-1
           col-span-6
           md:col-span-10
-          md:col-start-2
           lg:col-span-5
           lg:col-start-2
           grid
           gap-3 md:gap-7
           text-secondary
-           pt-7 pb-18 md:pb-24"
+           pt-7 pb-14 md:pb-24 self-start"
       >
-        <div class="grid gap-2 md:gap-4">
+        <div class="flex flex-col gap-2 md:gap-4 max-h-fit">
           <Pill
-            className="text-[10px] min-[340px]:text-xs min-[390px]:text-sm sm:text-base md:text-lg px-2 py-1 min-[390px]:px-3 min-[390px]:py-1.5 sm:px-4 sm:py-2"
-            >Outcome-Driven Product Engineering</Pill
+            className="text-[10px] min-[340px]:text-xs min-[390px]:text-sm sm:text-base md:text-lg px-2 py-1 min-[390px]:px-3 min-[390px]:py-1.5 sm:px-4 sm:py-2 max-h-[36px]"
+            >{staffContent.data.pillText}</Pill
           >
-          <h1
-            class="text-[18px] leading-[22px] min-[390px]:text-[24px] min-[390px]:leading-[28px] sm:text-[32px] sm:leading-[36px] md:text-[54px] md:leading-[59.4px] font-medium tracking-tight"
-          >
-            <span class="fadeInUp block" style="animation-delay: 100ms;">
-              On-Demand Talent,
-            </span>
-            <span
-              class="fadeInUp block"
-              style="animation-delay: 500ms;animation-fill-mode: backwards;"
-            >
-              Working as an Extension of Your Team
-            </span>
-          </h1>
+          <Content />
         </div>
-        <p
-          class="font-normal text-sm leading-5 min-[390px]:text-base min-[390px]:leading-6 sm:text-lg sm:leading-7 md:text-[22px] md:leading-8 tracking-normal"
-        >
-          <span
-            class="fadeInUp"
-            style="animation-delay: 900ms;animation-fill-mode: backwards;"
-          >
-            Product-minded web engineers who bring clarity, momentum, and
-            ownership. Skip the hiring bottlenecks. Our developers integrate
-            fast, think beyond the ticket, and help you build with purpose —
-            from junior support to senior leadership.
-          </span>
-        </p>
-
         <a
           id="book-a-call-action-hero"
           href="#book-a-call-section"
-          class="inline-block bg-crocoder-yellow rounded-md px-[25px] py-4 text-center text-contrast text-base font-medium hover:opacity-90 uppercase w-fit"
+          class="inline-block bg-crocoder-yellow rounded-md px-[25px] py-4 text-center text-contrast text-base font-medium hover:opacity-90 uppercase w-fit max-h-14"
         >
           Let's talk
         </a>
@@ -95,7 +78,7 @@ const staff = (await getCollection("staff")) as {
       >
         {
           staff.map((s, i) => (
-            <StaffItem
+            <StaffMember
               name={s.data.name}
               role={s.data.role}
               imagePath={s.data.image}
