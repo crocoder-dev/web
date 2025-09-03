@@ -1,10 +1,9 @@
 ---
-import classNames from "classnames";
-import * as formContent from "../content/contact/get-your-plan-form.md";
-import "../styles/loader.css";
-import Field from "./Field.astro";
+import * as formContent from "../../content/contact/get-your-plan-form.md";
+import Field from "../Field.astro";
+import RightArrow from "../icons/RightArrow.astro";
+import "../../styles/loader.css";
 import GetYourPlanModal from "./GetYourPlanModal.astro";
-import RightArrow from "./icons/RightArrow.astro";
 
 const enableModalForm = Astro.url.searchParams.get("extended-form") === "true";
 ---
@@ -102,7 +101,7 @@ const enableModalForm = Astro.url.searchParams.get("extended-form") === "true";
       <p id="form-notification" class="text-sm min-h-6 pt-1"></p>
     </div>
     <script>
-      import * as notification from "../content/contact/notification.md";
+      import * as notification from "../../content/contact/notification.md";
 
       const urlSearchParams = new URLSearchParams(window.location.search);
       const isWithModalParam = urlSearchParams.get("extended-form");
