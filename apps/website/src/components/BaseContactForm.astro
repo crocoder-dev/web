@@ -93,7 +93,7 @@ const { onDark, classNames } = Astro.props;
         id="form-consent-text"
         for="form-consent"
         class={classnames(
-          "[&>em]:not-italic [&_b]:text-[#67a807] [&>em]:font-semibold cursor-pointer",
+          "[&>em]:not-italic [&_b]:text-[#67a807] [&>em]:font-semibold cursor-pointer text-sm sm:text-base",
           {
             "text-secondary": !onDark,
             "text-neutral-50": onDark,
