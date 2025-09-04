@@ -11,7 +11,8 @@ const { src, srcSet } = await getImage({
   src: hero,
   alt: "Developers collaborating",
   widths: [320, 480, 578, 640, 720, 800, 940, 1200, 1412, 1920],
-  sizes: "100vw",
+  sizes:
+    "(max-width: 320px) 320px, (max-width: 480px) 480px, (max-width: 800px) 800px,(max-width: 1200px) 1200px,(max-width: 1412px) 1412px, 1920",
   format: "avif",
   loading: "eager",
   fetchPriority: "high",
@@ -20,10 +21,10 @@ const { src, srcSet } = await getImage({
 const classname = ``;
 
 let bgImageClasses = "";
-
+console.log({ src });
 srcSet.values.forEach((v) => {
   if (v.transform.width === 1412) {
-    console.log({ v });
+    console.log({ v, src: v.transform.src });
     bgImageClasses += `[background:linear-gradient(0deg,rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('${v.url}'),#424C6D] `;
   }
 });
