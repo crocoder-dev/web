@@ -144,7 +144,9 @@ const { onDark, classNames } = Astro.props;
     const submitBtnContent = submitBtn?.querySelectorAll("#submit-content")[0];
     const submitBtnLoader = submitBtn?.querySelectorAll("#submit-loader")[0];
 
-    const notificationElem = form?.querySelector("#form-notification");
+    const notificationElem = form?.querySelector(
+      "#form-notification",
+    ) as HTMLElement;
 
     const currentUrl = new URL(window.location.href);
 
@@ -192,29 +194,33 @@ const { onDark, classNames } = Astro.props;
         const apiUrl = new URL(`${import.meta.env.PUBLIC_API_URL}/api/contact`);
         apiUrl.searchParams.set("source", currentUrl.pathname);
 
-        const response = await fetch(apiUrl, {
-          method: "POST",
-          mode: "cors",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name,
-            email,
-            message,
-            hasConsent: consent ? true : false,
-          }),
-        });
+        try {
+          const response = await fetch(apiUrl, {
+            method: "POST",
+            mode: "cors",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name,
+              email,
+              message,
+              hasConsent: consent ? true : false,
+            }),
+          });
 
-        if (response.status !== 200 && notificationElem) {
+          if (response.status !== 200 && notificationElem) {
+            throw new Error("Failed to send contact");
+          }
+
+          // Redirect to success page
+          window.location.href = "/contact/success";
+        } catch (error) {
           notificationElem.classList.add("text-red-500");
           notificationElem.textContent = notification.frontmatter.error;
           hideLoader();
           return;
         }
-
-        // Redirect to success page
-        window.location.href = "/contact/success";
       });
     }
   </script>
