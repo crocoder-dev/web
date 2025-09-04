@@ -5,31 +5,8 @@ import Pill from "../../components/Pill.astro";
 import Section from "../../components/Section.astro";
 import { grid_classes } from "../../components/_grid";
 import "../../styles/main.css";
-import classnames from "classnames";
 import BaseContactForm from "../BaseContactForm.astro";
 import RightArrow from "../icons/RightArrow.astro";
-
-const { src, srcSet } = await getImage({
-  src: hero,
-  alt: "Developers collaborating",
-  widths: [320, 480, 578, 640, 720, 800, 940, 1200, 1412, 1920],
-  sizes:
-    "(max-width: 320px) 320px, (max-width: 480px) 480px, (max-width: 800px) 800px,(max-width: 1200px) 1200px,(max-width: 1412px) 1412px, 1920",
-  format: "avif",
-  loading: "eager",
-  fetchPriority: "high",
-});
-
-const classname = ``;
-
-let bgImageClasses = "";
-console.log({ src });
-srcSet.values.forEach((v) => {
-  if (v.transform.width === 1412) {
-    console.log({ v, src: v.transform.src });
-    bgImageClasses += `[background:linear-gradient(0deg,rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('${v.url}'),#424C6D] `;
-  }
-});
 ---
 
 <Section className="!p-0 relative">
@@ -41,16 +18,16 @@ srcSet.values.forEach((v) => {
     format="avif"
     loading="eager"
     fetchpriority="high"
-    class="absolute inset-0 w-full h-full object-cover -z-10 bg-[#424c6d]"
+    class="absolute rounded-b-4xl md:rounded-b-[96px] inset-0 w-full h-full object-cover -z-10 bg-[#424c6d]"
   />
   <div
-    class="absolute inset-0 [background:linear-gradient(0deg,rgba(0,0,0,0.6),rgba(0,0,0,0.6))] -z-10"
+    class="absolute inset-0 [background:linear-gradient(0deg,rgba(0,0,0,0.6),rgba(0,0,0,0.6))] -z-10 rounded-b-4xl md:rounded-b-[96px]"
   >
     <!-- Overlay -->
   </div>
   <div class="mx-auto xl:px-0">
     <div
-      class={`${grid_classes} md:max-w-[var(--max-width)] px-4 md:px-7 !py-[144px] md:mx-auto relative z-[2] `}
+      class={`${grid_classes} md:max-w-[var(--max-width)] px-4 md:px-7 py-24 md:!py-[144px] md:mx-auto relative z-[2] min-[1281px]:px-0`}
     >
       <div
         class="row-start-1
@@ -66,7 +43,7 @@ srcSet.values.forEach((v) => {
       >
         <div class="flex flex-col gap-2 md:gap-4 max-h-fit">
           <Pill
-            className="text-[10px] min-[340px]:text-xs min-[390px]:text-sm sm:text-base md:text-lg px-2 py-1 min-[390px]:px-3 min-[390px]:py-1.5 sm:px-4 sm:py-2 max-h-[36px]"
+            className="text-[10px] min-[340px]:text-xs min-[390px]:text-sm sm:text-base px-2 py-1 min-[390px]:px-3 min-[390px]:py-1.5 sm:px-4 sm:py-2 max-h-[36px]"
             >We finish your vibe-coded mvps</Pill
           >
           <h1
@@ -102,17 +79,20 @@ srcSet.values.forEach((v) => {
         </div>
       </div>
       <div
-        class="hidden
-          lg:flex
-          lg:flex-col
+        class="flex
+          flex-col
           row-start-2
           col-start-1
           col-span-6
+          md:col-span-12
           lg:col-span-5
           lg:col-start-7
           lg:row-start-1"
       >
-        <BaseContactForm onDark>
+        <BaseContactForm
+          onDark
+          classNames="lg:-top-6 max-lg:max-w-3xl max-lg:mx-auto"
+        >
           <span
             slot="submit-button-content"
             class="flex items-center justify-center gap-2.5"

@@ -5,15 +5,18 @@ import "../styles/loader.css";
 import classnames from "classnames";
 
 type Props = {
-  buttonText?: HTMLElement | string;
   onDark?: boolean;
+  classNames?: string;
 };
 
-const { onDark, buttonText } = Astro.props;
+const { onDark, classNames } = Astro.props;
 ---
 
 <form
-  class="group/contact-us flex flex-col gap-2 relative -top-6"
+  class={classnames(
+    "group/contact-us flex flex-col gap-2 relative",
+    classNames,
+  )}
   id="contact-us-form"
   novalidate
 >
@@ -116,7 +119,7 @@ const { onDark, buttonText } = Astro.props;
       text-base
       font-medium mt-6"
     >
-      <span
+      <span id="submit-content"
         >{
           Astro.slots.has("submit-button-content") ? (
             <slot name="submit-button-content" />
@@ -125,7 +128,7 @@ const { onDark, buttonText } = Astro.props;
           )
         }</span
       >
-      <span class="loader mx-auto hidden"></span>
+      <span id="submit-loader" class="loader mx-auto hidden"></span>
     </button>
     <p id="form-notification" class="text-sm min-h-6 pt-1"></p>
   </div>
@@ -138,11 +141,12 @@ const { onDark, buttonText } = Astro.props;
     const form = document.getElementById("contact-us-form");
 
     const submitBtn = form?.querySelector("#form-submit-button");
-    const submitBtnElems = submitBtn?.querySelectorAll("*");
-    const submitBtnContent = submitBtnElems && submitBtnElems[0];
-    const submitBtnLoader = submitBtnElems && submitBtnElems[1];
+    const submitBtnContent = submitBtn?.querySelectorAll("#submit-content")[0];
+    const submitBtnLoader = submitBtn?.querySelectorAll("#submit-loader")[0];
 
     const notificationElem = form?.querySelector("#form-notification");
+
+    const currentUrl = new URL(window.location.href);
 
     const showLoader = () => {
       if (submitBtnContent && submitBtnLoader) {
@@ -172,6 +176,7 @@ const { onDark, buttonText } = Astro.props;
     if (form) {
       form.addEventListener("submit", async (e) => {
         e.preventDefault();
+
         const formData = new FormData(e.target as HTMLFormElement);
         const name = formData.get("form-full-name");
         const email = formData.get("form-email");
@@ -183,7 +188,11 @@ const { onDark, buttonText } = Astro.props;
         }
 
         showLoader();
-        const response = await fetch("http://localhost:3000/api/contact", {
+
+        const apiUrl = new URL(`${import.meta.env.PUBLIC_API_URL}/api/contact`);
+        apiUrl.searchParams.set("source", currentUrl.pathname);
+
+        const response = await fetch(apiUrl, {
           method: "POST",
           mode: "cors",
           headers: {
