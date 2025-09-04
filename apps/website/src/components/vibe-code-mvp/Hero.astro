@@ -6,6 +6,8 @@ import Section from "../../components/Section.astro";
 import { grid_classes } from "../../components/_grid";
 import "../../styles/main.css";
 import classnames from "classnames";
+import BaseContactForm from "../BaseContactForm.astro";
+import RightArrow from "../icons/RightArrow.astro";
 
 const { src, srcSet } = await getImage({
   src: hero,
@@ -30,7 +32,22 @@ srcSet.values.forEach((v) => {
 });
 ---
 
-<Section className={classnames(`!p-0 !bg-cover`, bgImageClasses)}>
+<Section className="!p-0 relative">
+  <Picture
+    src={hero}
+    alt="Developers collaborating"
+    widths={[320, 480, 578, 640, 720, 800, 940, 1200, 1412, 1920]}
+    sizes="100vw"
+    format="avif"
+    loading="eager"
+    fetchpriority="high"
+    class="absolute inset-0 w-full h-full object-cover -z-10 bg-[#424c6d]"
+  />
+  <div
+    class="absolute inset-0 [background:linear-gradient(0deg,rgba(0,0,0,0.6),rgba(0,0,0,0.6))] -z-10"
+  >
+    <!-- Overlay -->
+  </div>
   <div class="mx-auto xl:px-0">
     <div
       class={`${grid_classes} md:max-w-[var(--max-width)] px-4 md:px-7 !py-[144px] md:mx-auto relative z-[2] `}
@@ -91,10 +108,18 @@ srcSet.values.forEach((v) => {
           row-start-2
           col-start-1
           col-span-6
-          lg:col-span-6
+          lg:col-span-5
           lg:col-start-7
-          lg:row-start-1 h-[500px]"
+          lg:row-start-1"
       >
+        <BaseContactForm onDark>
+          <span
+            slot="submit-button-content"
+            class="flex items-center justify-center gap-2.5"
+          >
+            Get a free build review <RightArrow />
+          </span>
+        </BaseContactForm>
       </div>
     </div>
   </div>

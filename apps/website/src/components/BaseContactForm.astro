@@ -5,105 +5,108 @@ import "../styles/loader.css";
 import Field from "./Field.astro";
 
 type Props = {
+  formId: string;
   onDark?: boolean;
   classNames?: string;
+  formClassNames?: string;
 };
 
-const { onDark, classNames } = Astro.props;
+const { onDark, classNames, formId, formClassNames } = Astro.props;
 ---
 
-<form
-  class={classnames(
-    "group/contact-us flex flex-col gap-2 relative",
-    classNames,
-  )}
-  id="contact-us-form"
-  novalidate
->
-  <Field
-    isTextArea={false}
-    inputProps={{
-      name: "form-full-name",
-      maxlength: "100",
-      placeholder: formContent.frontmatter.fullname,
-      required: true,
-      minlength: 2,
-    }}
-    labelProps={{
-      for: "form-full-name",
-      "aria-hidden": "false",
-    }}
-    label={formContent.frontmatter.fullname}
-    errorText={formContent.frontmatter.fullnameLength}
-    onDark={onDark}
-  />
-  <Field
-    isTextArea={false}
-    inputProps={{
-      name: "form-email",
-      maxlength: "100",
-      placeholder: formContent.frontmatter.email,
-      type: "email",
-      required: true,
-    }}
-    labelProps={{
-      for: "form-email",
-      "aria-hidden": "false",
-    }}
-    label={formContent.frontmatter.email}
-    errorText={formContent.frontmatter.emailInvalid}
-    onDark={onDark}
-  />
-  <div>
+<base-contact-form data-id={formId} class={classnames(classNames)}>
+  <form
+    class={classnames(
+      "group/contact-us flex flex-col gap-2 relative",
+      formClassNames
+    )}
+    id={formId}
+    novalidate
+  >
     <Field
-      isTextArea
-      textAreaProps={{
-        name: "form-message",
-        maxlength: 1500,
-        minlength: 1,
-        placeholder: formContent.frontmatter.projectInfo,
-        id: "form-message",
+      isTextArea={false}
+      inputProps={{
+        name: "form-full-name",
+        maxlength: "100",
+        placeholder: formContent.frontmatter.fullname,
+        required: true,
+        minlength: 2,
+      }}
+      labelProps={{
+        for: "form-full-name",
+        "aria-hidden": "false",
+      }}
+      label={formContent.frontmatter.fullname}
+      errorText={formContent.frontmatter.fullnameLength}
+      onDark={onDark}
+    />
+    <Field
+      isTextArea={false}
+      inputProps={{
+        name: "form-email",
+        maxlength: "100",
+        placeholder: formContent.frontmatter.email,
+        type: "email",
         required: true,
       }}
       labelProps={{
-        for: "form-message",
+        for: "form-email",
         "aria-hidden": "false",
       }}
-      label={formContent.frontmatter.projectInfo}
-      errorText={formContent.frontmatter.requiredField}
+      label={formContent.frontmatter.email}
+      errorText={formContent.frontmatter.emailInvalid}
       onDark={onDark}
     />
-    <span class="text-secondary text-xs text-right mt-1 block">
-      <span id="char-counter">0</span>/1500
-    </span>
-  </div>
-
-  <div>
-    <div class="flex gap-2.5">
-      <input
-        id="form-consent"
-        name="form-consent"
-        type="checkbox"
-        required
-        aria-describedby="form-consent-text"
-        class="h-4 w-4 rounded border-gray-300 text-[#67a807] focus:ring-[#67a807] mt-1 cursor-pointer"
+    <div>
+      <Field
+        isTextArea
+        textAreaProps={{
+          name: "form-message",
+          maxlength: 1500,
+          minlength: 1,
+          placeholder: formContent.frontmatter.projectInfo,
+          id: "form-message",
+          required: true,
+        }}
+        labelProps={{
+          for: "form-message",
+          "aria-hidden": "false",
+        }}
+        label={formContent.frontmatter.projectInfo}
+        errorText={formContent.frontmatter.requiredField}
+        onDark={onDark}
       />
-      <label
-        set:html={formContent.frontmatter.consent}
-        id="form-consent-text"
-        for="form-consent"
-        class={classnames(
-          "[&>em]:not-italic [&_b]:text-[#67a807] [&>em]:font-semibold cursor-pointer text-sm sm:text-base",
-          {
-            "text-secondary": !onDark,
-            "text-neutral-50": onDark,
-          },
-        )}
-      />
+      <span class="text-secondary text-xs text-right mt-1 block">
+        <span id="char-counter">0</span>/1500
+      </span>
     </div>
-    <button
-      id="form-submit-button"
-      class="rounded-md
+
+    <div>
+      <div class="flex gap-2.5">
+        <input
+          id="form-consent"
+          name="form-consent"
+          type="checkbox"
+          required
+          aria-describedby="form-consent-text"
+          class="h-4 w-4 rounded border-gray-300 text-[#67a807] focus:ring-[#67a807] mt-1 cursor-pointer"
+        />
+        <label
+          set:html={formContent.frontmatter.consent}
+          id="form-consent-text"
+          for="form-consent"
+          class={classnames(
+            "[&>em]:not-italic [&_b]:text-[#67a807] [&>em]:font-semibold cursor-pointer text-sm sm:text-base",
+            {
+              "text-secondary": !onDark,
+              "text-neutral-50": onDark,
+            }
+          )}
+        />
+      </div>
+      <button
+        id="form-submit-button"
+        class="rounded-md
       min-h-14
       group-invalid/contact-us:pointer-events-none
       group-invalid/contact-us:focus-visible:outline-transparent
@@ -118,110 +121,124 @@ const { onDark, classNames } = Astro.props;
       text-secondary
       text-base
       font-medium mt-6"
-    >
-      <span id="submit-content"
-        >{
-          Astro.slots.has("submit-button-content") ? (
-            <slot name="submit-button-content" />
-          ) : (
-            formContent.frontmatter.submit
-          )
-        }</span
       >
-      <span id="submit-loader" class="loader mx-auto hidden"></span>
-    </button>
-    <p id="form-notification" class="text-sm min-h-6 pt-1"></p>
-  </div>
-  <script>
-    import * as notification from "../content/contact/notification.md";
+        <span id="submit-content"
+          >{
+            Astro.slots.has("submit-button-content") ? (
+              <slot name="submit-button-content" />
+            ) : (
+              formContent.frontmatter.submit
+            )
+          }</span
+        >
+        <span id="submit-loader" class="loader mx-auto hidden"></span>
+      </button>
+      <p id="form-notification" class="text-sm min-h-6 pt-1"></p>
+    </div>
+  </form>
+</base-contact-form>
 
-    const messageField = document.getElementById("form-message");
-    const charCounter = document.getElementById("char-counter");
+<script>
+  import * as notification from "../content/contact/notification.md";
+  class BaseContactForm extends HTMLElement {
+    connectedCallback() {
+      const formId = this.dataset.id;
 
-    const form = document.getElementById("contact-us-form");
+      if (!formId) return;
 
-    const submitBtn = form?.querySelector("#form-submit-button");
-    const submitBtnContent = submitBtn?.querySelectorAll("#submit-content")[0];
-    const submitBtnLoader = submitBtn?.querySelectorAll("#submit-loader")[0];
+      const messageField = document.getElementById("form-message");
+      const charCounter = document.getElementById("char-counter");
 
-    const notificationElem = form?.querySelector(
-      "#form-notification",
-    ) as HTMLElement;
+      const form = document.getElementById(formId);
 
-    const currentUrl = new URL(window.location.href);
+      const submitBtn = form?.querySelector("#form-submit-button");
+      const submitBtnContent =
+        submitBtn?.querySelectorAll("#submit-content")[0];
+      const submitBtnLoader = submitBtn?.querySelectorAll("#submit-loader")[0];
 
-    const showLoader = () => {
-      if (submitBtnContent && submitBtnLoader) {
-        submitBtnContent.classList.add("hidden");
-        submitBtnLoader.classList.add("!block");
-      }
-    };
+      const notificationElem = form?.querySelector(
+        "#form-notification"
+      ) as HTMLElement;
 
-    const hideLoader = () => {
-      if (submitBtnContent && submitBtnLoader) {
-        submitBtnContent.classList.remove("hidden");
-        submitBtnLoader.classList.remove("!block");
-      }
-    };
+      const currentUrl = new URL(window.location.href);
 
-    const updateCount = (e: Event) => {
-      const charCount = `${(e.target as HTMLTextAreaElement).value.length}`;
-      if (charCounter) {
-        charCounter.textContent = charCount;
-      }
-    };
-
-    if (messageField) {
-      messageField.addEventListener("input", updateCount);
-    }
-
-    if (form) {
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        const formData = new FormData(e.target as HTMLFormElement);
-        const name = formData.get("form-full-name");
-        const email = formData.get("form-email");
-        const message = formData.get("form-message");
-        const consent = formData.get("form-consent");
-
-        if (!name || !email || !message || !consent) {
-          return;
+      const showLoader = () => {
+        if (submitBtnContent && submitBtnLoader) {
+          submitBtnContent.classList.add("hidden");
+          submitBtnLoader.classList.add("!block");
         }
+      };
 
-        showLoader();
+      const hideLoader = () => {
+        if (submitBtnContent && submitBtnLoader) {
+          submitBtnContent.classList.remove("hidden");
+          submitBtnLoader.classList.remove("!block");
+        }
+      };
 
-        const apiUrl = new URL(`${import.meta.env.PUBLIC_API_URL}/api/contact`);
-        apiUrl.searchParams.set("source", currentUrl.pathname);
+      const updateCount = (e: Event) => {
+        const charCount = `${(e.target as HTMLTextAreaElement).value.length}`;
+        if (charCounter) {
+          charCounter.textContent = charCount;
+        }
+      };
 
-        try {
-          const response = await fetch(apiUrl, {
-            method: "POST",
-            mode: "cors",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              name,
-              email,
-              message,
-              hasConsent: consent ? true : false,
-            }),
-          });
+      if (messageField) {
+        messageField.addEventListener("input", updateCount);
+      }
 
-          if (response.status !== 200 && notificationElem) {
-            throw new Error("Failed to send contact");
+      if (form) {
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const formData = new FormData(e.target as HTMLFormElement);
+          const name = formData.get("form-full-name");
+          const email = formData.get("form-email");
+          const message = formData.get("form-message");
+          const consent = formData.get("form-consent");
+
+          if (!name || !email || !message || !consent) {
+            return;
           }
 
-          // Redirect to success page
-          window.location.href = "/contact/success";
-        } catch (error) {
-          notificationElem.classList.add("text-red-500");
-          notificationElem.textContent = notification.frontmatter.error;
-          hideLoader();
-          return;
-        }
-      });
+          showLoader();
+
+          const apiUrl = new URL(
+            `${import.meta.env.PUBLIC_API_URL}/api/contact`
+          );
+          apiUrl.searchParams.set("source", currentUrl.pathname);
+
+          try {
+            const response = await fetch(apiUrl, {
+              method: "POST",
+              mode: "cors",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                name,
+                email,
+                message,
+                hasConsent: consent ? true : false,
+              }),
+            });
+
+            if (response.status !== 200 && notificationElem) {
+              throw new Error("Failed to send contact");
+            }
+
+            // Redirect to success page
+            window.location.href = "/contact/success";
+          } catch (error) {
+            notificationElem.classList.add("text-red-500");
+            notificationElem.textContent = notification.frontmatter.error;
+            hideLoader();
+            return;
+          }
+        });
+      }
     }
-  </script>
-</form>
+  }
+
+  customElements.define("base-contact-form", BaseContactForm);
+</script>
