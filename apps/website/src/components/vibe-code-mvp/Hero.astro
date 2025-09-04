@@ -5,20 +5,31 @@ import Pill from "../../components/Pill.astro";
 import Section from "../../components/Section.astro";
 import { grid_classes } from "../../components/_grid";
 import "../../styles/main.css";
+import classnames from "classnames";
 
-const { src } = await getImage({
+const { src, srcSet } = await getImage({
   src: hero,
   alt: "Developers collaborating",
   widths: [320, 480, 578, 640, 720, 800, 940, 1200, 1412, 1920],
   sizes: "100vw",
   format: "avif",
+  loading: "eager",
+  fetchPriority: "high",
+});
+
+const classname = ``;
+
+let bgImageClasses = "";
+
+srcSet.values.forEach((v) => {
+  if (v.transform.width === 1412) {
+    console.log({ v });
+    bgImageClasses += `[background:linear-gradient(0deg,rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('${v.url}'),#424C6D] `;
+  }
 });
 ---
 
-<Section
-  className="!p-0 !bg-cover"
-  style=`background: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('${src}'), #424C6D;`
->
+<Section className={classnames(`!p-0 !bg-cover`, bgImageClasses)}>
   <div class="mx-auto xl:px-0">
     <div
       class={`${grid_classes} md:max-w-[var(--max-width)] px-4 md:px-7 !py-[144px] md:mx-auto relative z-[2] `}
