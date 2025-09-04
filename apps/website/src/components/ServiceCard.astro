@@ -1,32 +1,36 @@
 ---
-import classnames from "classnames";
 import { Image } from "astro:assets";
+import classnames from "classnames";
+import BlogLink from "./BlogLink.astro";
+import CTA from "./CTA.astro";
+import IconSubtitle from "./IconSubtitle.astro";
 
 interface Props {
   idx: number;
   title: string;
-  subtitle: string;
+  subtitles: Array<{
+    iconPath: string;
+    text: string;
+  }>;
   content: any;
   styles?: string;
-  imgPath: string;
-  imgAlt: string;
-  iconPath: string;
+  img: {
+    path: string;
+    alt?: string;
+  };
   classNames?: string | string[];
+  link: {
+    href: string;
+    text: string;
+    title?: string;
+  };
 }
 
-const {
-  title,
-  subtitle,
-  content,
-  styles,
-  imgPath,
-  imgAlt,
-  iconPath,
-  classNames,
-} = Astro.props;
+const { title, subtitles, content, styles, img, classNames, link } =
+  Astro.props;
 
 const images = import.meta.glob("../assets/*.*");
-const src = images[`../assets${imgPath}`] as any as () => Promise<{
+const src = images[`../assets${img.path}`] as any as () => Promise<{
   default: ImageMetadata;
 }>;
 
@@ -53,7 +57,6 @@ const image = await src();
     class={classnames(
       `text-white
       h-full
-      lg:h-[620px]
       p-5
       md:p-7
       lg:p-12
@@ -65,7 +68,6 @@ const image = await src();
       lg:gap-x-7
       lg:gap-y-12
       lg:grid-cols-2
-      lg:grid-rows-[min-content_auto]
       backdrop-blur-[15px]
       `,
       classNames,
@@ -74,38 +76,59 @@ const image = await src();
     <div
       class="col-span-6 grid max-lg:grid-rows-[min-content_min-content_auto] gap-4 md:gap-7 lg:grid-cols-2 lg:col-span-2 lg:items-start justify-between"
     >
-      <span class="grid md:flex gap-4 md:gap-7">
-        <img
-          src={iconPath}
-          alt=""
-          role="presentation"
-          class="lg:mt-[2px] h-8 w-8 md:h-12 md:w-12"
-        />
-        <div class="gap-y-2 flex flex-col">
-          <h4
-            class="font-medium text-lg leading-[22px] md:text-[28px] md:leading-[30px] text-left"
-          >
-            {title}
-          </h4>
-          <p class="text-base md:text-lg">{subtitle}</p>
+      <h2
+        class="font-medium text-xl sm:text-[28px] md:text-5xl text-left leading-[110%] lg:col-start-1 lg:row-start-1"
+      >
+        {title}
+      </h2>
+
+      <div class="flex flex-col gap-4 md:gap-9 lg:row-span-2">
+        <div class="grid md:grid-cols-2 gap-4">
+          {
+            subtitles.map(({ iconPath, text }) => (
+              <IconSubtitle subtitle={text} iconPath={iconPath} />
+            ))
+          }
         </div>
-      </span>
+        <div
+          class="[&_p]:text-sm [&_p]:leading-[26px] sm:[&_p]:text-base md:[&_p]:text-[20px] md:[&_p]:font-normal md:[&_p]:leading-8 text-left"
+          set:html={content.html}
+        />
+        <div>
+          {
+            link?.title ? (
+              <BlogLink
+                href={link.href}
+                title={link.title}
+                linkText={link.text}
+              />
+            ) : (
+              <CTA id="contact-cta" href={link.href}>
+                {link.text}
+                <img
+                  src={"arrow-top-right.svg"}
+                  alt="Arrow Top Right"
+                  role="presentation"
+                  class="hidden min-[375px]:block sm:h-4 sm:w-4"
+                />
+              </CTA>
+            )
+          }
+        </div>
+      </div>
+
       <div
-        class="flex flex-col justify-center items-center row-start-3 lg:justify-start lg:col-span-1 lg:row-start-2"
+        class="flex flex-col justify-center items-center lg:justify-start lg:col-start-1 lg:row-start-2"
       >
         <Image
           class="object-cover w-full max-lg:max-w-[640px] xl:p-6"
           src={image.default}
-          alt={imgAlt}
+          alt={img.alt || ""}
           widths={[320, 480, 578, 640]}
           sizes="(max-width: 1024px) calc(100vw - 56px), 640px"
           loading="lazy"
         />
       </div>
-      <div
-        class="flex flex-col lg:flex-col row-start-2 lg:col-span-1 lg:col-start-2 lg:row-span-2 [&_p]:text-base [&_p]:text-sm [&_p]:leading-[26px] md:[&_p]:text-[20px] md:[&_p]:font-normal md:[&_p]:leading-8 text-left"
-        set:html={content.html}
-      />
     </div>
   </section>
 </div>
