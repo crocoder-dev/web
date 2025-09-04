@@ -1,0 +1,22 @@
+---
+interface Props {
+  subtitle: string;
+  iconPath: string;
+}
+
+const { subtitle, iconPath } = Astro.props;
+---
+
+<span class="flex gap-3 items-center">
+  <img
+    src={iconPath}
+    alt=""
+    role="presentation"
+    class="lg:mt-[2px] h-6 w-6 sm:h-8 sm:w-8 md:h-12 md:w-12"
+  />
+  <h4
+    class="font-medium text-base sm:text-lg leading-[110%] md:text-[22px] text-left"
+  >
+    {subtitle}
+  </h4>
+</span>

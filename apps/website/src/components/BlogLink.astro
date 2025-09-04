@@ -1,0 +1,16 @@
+---
+import ExternalLink from "./ExternalLink.astro";
+
+interface Props {
+  href: string;
+  linkText: string;
+  title: string;
+}
+
+const { href, linkText, title } = Astro.props;
+---
+
+<div class="bg-white p-4 rounded-md gap-2 grid md:w-[65%]">
+  <span class="text-contrast text-sm sm:text-base font-semibold">{title}</span>
+  <ExternalLink href={href} text={linkText} />
+</div>
