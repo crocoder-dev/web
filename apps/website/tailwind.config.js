@@ -51,6 +51,7 @@ module.exports = {
         "crocoder-yellow": theme.colors.default.theme_color.crocoder_yellow,
         contrast: theme.colors.default.theme_color.contrast,
         "crocoder-green": theme.colors.default.theme_color.crocoder_green,
+        "crocoder-orange": theme.colors.default.theme_color.crocoder_orange,
       },
       fontSize: {
         base: font_base + "px",
@@ -65,8 +66,8 @@ module.exports = {
         h6: h6 + "rem",
       },
       fontFamily: {
-        primary: 'var(--font-primary)',
-        secondary: 'var(--font-secondary)',
+        primary: "var(--font-primary)",
+        secondary: "var(--font-secondary)",
       },
     },
   },
