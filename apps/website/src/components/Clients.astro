@@ -2,14 +2,14 @@
 import Section from "./Section.astro";
 ---
 
-<Section>
+<Section className="lg:py-24">
   <h4
-    class="text-base text-start md:text-center mx-4 md:mx-7 font-bold uppercase mt-[72px]"
+    class="text-base text-start md:text-center mx-4 md:mx-7 font-bold uppercase"
   >
     Trusted By:
   </h4>
-  <div class="overflow-x-auto whitespace-nowrap px-4 no-scrollbar">
-    <div class="flex gap-7 justify-center my-8 lg:my-10 min-w-max">
+  <div class="overflow-x-auto whitespace-nowrap px-4 no-scrollbar mt-4">
+    <div class="flex gap-7 justify-center min-w-max max-h-10 lg:max-h-[60px]">
       <img
         src="/conductor.svg"
         alt="Conductor logo"
@@ -43,7 +43,7 @@ import Section from "./Section.astro";
   </div>
 
   <div
-    class="text-[#3C3843] md:text-center text-2xl leading-9 md:text-4xl md:leading-[54px] font-medium px-4 md:px-7 xl:px-60 py-[72px] md:pt-32 md:pb-[138px]"
+    class="text-[#3C3843] md:text-center text-2xl leading-9 md:text-4xl md:leading-[54px] font-medium px-4 md:px-7 xl:px-60 mt-[72px] md:mt-32 lg:mt-[138px]"
   >
     Our tailored software services bridge the gap between the big-picture
     strategy
