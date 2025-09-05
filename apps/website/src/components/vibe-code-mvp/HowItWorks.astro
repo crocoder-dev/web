@@ -1,0 +1,98 @@
+---
+import { getCollection } from "astro:content";
+import Section from "../Section.astro";
+import classnames from "classnames";
+import Pill from "../Pill.astro";
+import CircleCheck from "../icons/CircleCheck.astro";
+import CircleX from "../icons/CircleX.astro";
+import { grid_classes } from "../_grid";
+import { Picture } from "astro:assets";
+import Calendar from "../icons/Calendar.astro";
+import nodeLogo from "../../assets/node_logo.png";
+import nextLogo from "../../assets/nextjs_logo.png";
+import reactLogo from "../../assets/react_logo.png";
+import { Image } from "astro:assets";
+
+const steps = (await getCollection("vibecodemvphowitworks")) as {
+  data: {
+    image: string;
+    imageAlt: string;
+    bgColor: string;
+    pill: string;
+    title: string;
+    description: string;
+  };
+}[];
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/*.svg"
+);
+---
+
+<Section
+  className="!py-18 md:!py-31 overflow-unset"
+  contentClassName={classnames(grid_classes, "!gap-y-7 items-start")}
+>
+  <div class="col-span-6 md:col-span-12 lg:col-span-6 lg:sticky lg:top-24">
+    <div class="flex flex-col gap-4">
+      <Pill
+        className="text-sm sm:text-base md:text-lg px-2 py-1 min-[390px]:px-3 min-[390px]:py-1.5 sm:px-4 sm:py-2 max-h-[36px]"
+      >
+        We're 100% focused on results
+      </Pill>
+      <h2
+        class="text-[32px] leading-[36px] md:text-[48px] md:leading-[52px] lg:text-[60px] lg:leading-[66px] xl:text-[74px] xl:leading-[81px] font-medium tracking-[-2%]"
+      >
+        <span class="text-crocoder-green">How</span> it Works.
+      </h2>
+      <div class="flex flex-wrap gap-2.5">
+        <a
+          id="book-a-call-action-hero"
+          href="#get-your-plan-section"
+          class="inline-block bg-crocoder-yellow rounded-md px-[25px] py-4 text-center text-contrast text-base font-medium hover:opacity-90 uppercase w-fit max-h-14"
+        >
+          Let's talk
+        </a>
+        <a
+          id="book-a-call-action-hero"
+          href="#book-a-call-section"
+          class="inline-flex gap-2.5 items-center bg-[#545664] rounded-md px-[25px] py-4 text-center text-white text-base font-medium hover:opacity-90 uppercase w-fit max-h-14"
+        >
+          <Calendar />
+          Book a call
+        </a>
+      </div>
+    </div>
+    <div class="mt-12">
+      <p class="text-[22px] leading-8">We're experts in:</p>
+      <div class="flex gap-x-7 gap-y-4 flex-wrap items-center">
+        <Image src={nodeLogo} alt="Node JS logo" width={134} height={51} />
+        <Image src={nextLogo} alt="Next JS logo" width={96} height={57} />
+        <Image src={reactLogo} alt="React logo" width={118} height={41} />
+      </div>
+    </div>
+  </div>
+  <div
+    class="col-span-6 md:col-span-12 lg:col-span-6 lg:col-start-7 flex flex-col gap-8"
+  >
+    {
+      steps.map((s, idx) => (
+        <div
+          class={classnames(
+            "p-8 md:p-12 rounded-2xl text-white flex flex-col gap-5",
+            s.data.bgColor
+          )}
+        >
+          <Image src={images[s.data.image]()} alt={s.data.imageAlt} />
+          <p class="text-2xl leading-[26.4px] md:text-[36px] md:leading-[39.6px] tracking-tight font-medium">
+            <span class="text-[#FEC343]">{`${idx + 1}.`}</span>
+            {s.data.title}
+          </p>
+          <p class="text-base leading-[26px] tracking-normal">
+            {s.data.description}
+          </p>
+        </div>
+      ))
+    }
+  </div>
+</Section>
