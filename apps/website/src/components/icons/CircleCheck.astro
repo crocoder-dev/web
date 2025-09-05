@@ -1,0 +1,24 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import classnames from "classnames";
+
+type Props = HTMLAttributes<"svg"> & { classNames?: string };
+
+const { width, height, classNames } = Astro.props;
+---
+
+<svg
+  width={width || "24"}
+  height={height || "24"}
+  viewBox="0 0 24 24"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  class={classnames(classNames)}
+>
+  <path
+    d="M6.96437 12.7707L9.75943 15.9083C9.83415 15.9946 9.92716 16.0631 10.0317 16.109C10.1363 16.1548 10.2497 16.1768 10.3638 16.1733C10.4787 16.1713 10.5919 16.1446 10.6956 16.095C10.7993 16.0454 10.891 15.974 10.9647 15.8858L17.5048 8.06773M22.4038 12C22.4038 17.7459 17.7459 22.4038 12 22.4038C6.25414 22.4038 1.59619 17.7459 1.59619 12C1.59619 6.25414 6.25414 1.59619 12 1.59619C17.7459 1.59619 22.4038 6.25414 22.4038 12Z"
+    stroke="#00A708"
+    stroke-width="1.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"></path>
+</svg>

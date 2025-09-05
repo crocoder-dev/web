@@ -1,0 +1,93 @@
+---
+import { getCollection } from "astro:content";
+import Section from "../Section.astro";
+import classnames from "classnames";
+import Pill from "../Pill.astro";
+import CircleCheck from "../icons/CircleCheck.astro";
+import CircleX from "../icons/CircleX.astro";
+import { grid_classes } from "../_grid";
+import { Picture } from "astro:assets";
+
+const phases = (await getCollection("vibecodemvpphases")) as {
+  data: {
+    image: string;
+    imageAlt: string;
+    imageBgColor: string;
+    pill: string;
+    title: string;
+    checks: string[];
+    issues: string[];
+    issueChecks: string[];
+  };
+}[];
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/*.png"
+);
+
+const listItemClasses =
+  "flex items-center gap-2.5 text-base md:text-[22px] md:leading-8";
+---
+
+<Section
+  className="py-18 md:py-24 px-4 md:px-7"
+  contentClassName={classnames(grid_classes, "!gap-y-7")}
+>
+  {
+    phases.map((p, idx) => (
+      <div class="flex flex-col gap-y-8 lg:flex-row col-span-6 md:col-span-12">
+        <div
+          class={classnames(
+            "w-full lg:w-1/2 rounded-2xl lg:rounded-[48px] h-[500px] md:h-[700px] flex items-center justify-center overflow-hidden",
+            p.data.imageBgColor
+          )}
+        >
+          <Picture
+            src={images[p.data.image]()}
+            alt={p.data.imageAlt}
+            class={classnames("w-full md:w-[470px]", {
+              "md:w-full": idx === phases.length - 1,
+            })}
+            widths={[320, 480, 578, 640, 720, 800, 940, 1200]}
+            sizes={"(max-width: 1024px) calc(100vw - 28px), 640px"}
+          />
+        </div>
+        <div class="w-full lg:w-1/2 flex flex-col justify-center lg:px-[80px]">
+          <Pill className="text-sm sm:text-base px-4 py-2 mb-4">
+            {p.data.pill}
+          </Pill>
+          <div class="flex flex-col gap-7">
+            <p class="text-[24px] leading-[28px] sm:text-[32px] sm:leading-[36px] md:text-[54px] md:leading-[59.4px] font-medium tracking-tight">
+              {p.data.title}
+            </p>
+            {p.data.checks.length ? (
+              <ul class="flex flex-col gap-4">
+                {p.data.checks.map((c) => (
+                  <li class={classnames(listItemClasses)}>
+                    <CircleCheck classNames="min-w-6" /> {c}
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+            {p.data.issues.length ? (
+              <ul class="list-disc list-outside pl-8.5">
+                {p.data.issues.map((i) => (
+                  <li class={classnames(listItemClasses, "list-item")}>{i}</li>
+                ))}
+              </ul>
+            ) : null}
+            {p.data.issueChecks.length ? (
+              <ul class="flex flex-col gap-4">
+                {p.data.issueChecks.map((ic) => (
+                  <li class={classnames(listItemClasses)}>
+                    <CircleX classNames="min-w-6" /> {ic}
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+          </div>
+        </div>
+      </div>
+    ))
+  }
+</Section>
