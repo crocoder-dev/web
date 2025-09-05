@@ -5,8 +5,6 @@ import Pill from "../../components/Pill.astro";
 import Section from "../../components/Section.astro";
 import { grid_classes } from "../../components/_grid";
 import "../../styles/main.css";
-import BaseContactForm from "../BaseContactForm.astro";
-import RightArrow from "../icons/RightArrow.astro";
 ---
 
 <Section className="!p-0" contentClassName="md:max-w-screen">
@@ -17,8 +15,7 @@ import RightArrow from "../icons/RightArrow.astro";
       widths={[320, 480, 578, 640, 720, 800, 940, 1200, 1412, 1920]}
       sizes="100vw"
       format="avif"
-      loading="eager"
-      fetchpriority="high"
+      loading="lazy"
       class="absolute inset-0 w-full h-full object-cover object-top -z-10 bg-[#424c6d]"
     />
     <div
