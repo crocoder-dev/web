@@ -8,17 +8,16 @@ import Base from "../layouts/base.astro";
 import "../styles/main.css";
 ---
 
-<Base>
+<Base className="bg-white">
   <Navigation />
-  <main class="min-h-[calc(100vh-244px)] bg-white">
-    <Hero />
-    <Clients />
-    <BookACallForm className="!mt-[210px]">
-      <span slot="title">
-        Everything <span class="text-crocoder-yellow"> Kicks Off </span>
-        with One Call
-      </span>
-    </BookACallForm>
-  </main>
+  <Hero />
+  <Clients />
+  <BookACallForm className="!mt-[100px] md:!mt-[210px]">
+    <span slot="title">
+      Everything <span class="text-crocoder-yellow"> Kicks Off </span>
+      with One Call
+    </span>
+  </BookACallForm>
+
   <Footer />
 </Base>
