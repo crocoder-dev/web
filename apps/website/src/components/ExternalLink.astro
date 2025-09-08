@@ -1,0 +1,23 @@
+---
+interface Props {
+  href: string;
+  text: string;
+}
+
+const { href, text } = Astro.props;
+---
+
+<div class="flex gap-2 items-center">
+  <a
+    class="text-contrast underline underline-offset-2 text-sm sm:text-base"
+    href={href}
+  >
+    {text}
+  </a>
+  <img
+    src={"arrow-top-right.svg"}
+    alt="Arrow Top Right"
+    role="presentation"
+    class="h-3 w-3 sm:h-4 sm:w-4"
+  />
+</div>
