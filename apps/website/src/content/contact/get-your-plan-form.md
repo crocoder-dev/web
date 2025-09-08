@@ -10,6 +10,6 @@ challanges:
   ["Website design", "Webflow design", "Custom code solutions", "Other"]
 expectedStartDate: "Expected start date"
 consent: "I give consent to <em><b>Cro</b>Coder</em> to use this information to contact me."
-submit: "Get your plan now"
+submit: "Get Started with My Free Consultation"
 modalSubmit: "Get your free plan"
 ---
