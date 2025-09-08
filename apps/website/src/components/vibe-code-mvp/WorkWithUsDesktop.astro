@@ -1,0 +1,187 @@
+---
+import { getCollection } from "astro:content";
+import Section from "../Section.astro";
+import classnames from "classnames";
+import Pill from "../Pill.astro";
+import CircleCheck from "../icons/CircleCheck.astro";
+import CircleX from "../icons/CircleX.astro";
+import { grid_classes } from "../_grid";
+import { Picture } from "astro:assets";
+
+const phases = (await getCollection("vibecodemvpphases")) as {
+  data: {
+    image: string;
+    imageAlt: string;
+    imageBgColor: string;
+    pill: string;
+    title: string;
+    checks: string[];
+    issues: string[];
+    issueChecks: string[];
+  };
+}[];
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/*.png"
+);
+
+const listItemClasses = "flex items-center gap-2.5 text-[22px] leading-8";
+---
+
+<Section
+  className="!py-18 md:!py-31 overflow-unset"
+  contentClassName={classnames(grid_classes, "!gap-y-7 items-start")}
+  idx="work-with-us"
+>
+  <div class="col-span-6 sticky top-31">
+    <div class="relative h-[700px]">
+      {
+        phases.map((p, idx) => (
+          <div
+            class={classnames(
+              `images rounded-[48px] 
+              h-[700px] 
+              w-full 
+              flex 
+              items-center 
+              justify-center 
+              overflow-hidden 
+              absolute 
+              top-0 
+              left-0
+              opacity-0
+              transition-all
+              duration-500
+              `,
+              p.data.imageBgColor,
+              {
+                "opacity-100": !idx,
+              }
+            )}
+          >
+            <Picture
+              src={images[p.data.image]()}
+              alt={p.data.imageAlt}
+              class={classnames("w-[470px]", {
+                "w-full": idx === phases.length - 1,
+              })}
+              widths={[640, 720, 800, 940, 1200, 1412, 1920]}
+              sizes={"640px"}
+              loading={"lazy"}
+            />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+  <div class="col-span-6 col-start-7 flex flex-col gap-8">
+    {
+      phases.map((p, idx) => (
+        <div
+          data-index={idx}
+          class="phase flex flex-col justify-center px-[80px] min-h-[700px]"
+        >
+          <Pill className="text-sm sm:text-base px-4 py-2 mb-4">
+            {p.data.pill}
+          </Pill>
+          <div class="flex flex-col gap-7">
+            <p class="text-[54px] leading-[59.4px] font-medium tracking-tight">
+              {p.data.title}
+            </p>
+            {p.data.checks.length ? (
+              <ul class="flex flex-col gap-4">
+                {p.data.checks.map((c) => (
+                  <li class={classnames(listItemClasses)}>
+                    <CircleCheck classNames="min-w-6" /> {c}
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+            {p.data.issues.length ? (
+              <ul class="list-disc list-outside pl-8.5">
+                {p.data.issues.map((i) => (
+                  <li class={classnames(listItemClasses, "list-item")}>{i}</li>
+                ))}
+              </ul>
+            ) : null}
+            {p.data.issueChecks.length ? (
+              <ul class="flex flex-col gap-4">
+                {p.data.issueChecks.map((ic) => (
+                  <li class={classnames(listItemClasses)}>
+                    <CircleX classNames="min-w-6" /> {ic}
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+  <script>
+    const getObserverOpts = () => {
+      const screenHeight = window.innerHeight;
+
+      const observingElemsHeight = 700;
+
+      // Intersection area: from the very top of viewport
+      // down to observed elements height (700px) x 1.5
+      let intersectionBottomMargin = screenHeight - observingElemsHeight * 1.5;
+      let rootMargin = "0px";
+
+      if (intersectionBottomMargin > 0) {
+        rootMargin = `0px 0px -${intersectionBottomMargin}px 0px`;
+      }
+
+      return {
+        root: null,
+        rootMargin: rootMargin,
+        threshold: [0.7],
+      };
+    };
+
+    const observeCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const targetIdx = Number(entry.target.getAttribute("data-index"));
+          images.forEach((image, i) => {
+            if (targetIdx === i) {
+              image.classList.add("opacity-100");
+              image.classList.remove("opacity-0");
+              return;
+            }
+            image.classList.add("opacity-0");
+            image.classList.remove("opacity-100");
+          });
+        }
+      });
+    };
+
+    const textSections = document.querySelectorAll(".phase");
+    const images = document.querySelectorAll(".images");
+
+    let observer = new IntersectionObserver(observeCallback, getObserverOpts());
+
+    const handleUnobserve = (observer: IntersectionObserver) => {
+      textSections.forEach((section) => {
+        observer.observe(section);
+      });
+    };
+
+    const handleObserve = () => {
+      if (observer) {
+        handleUnobserve(observer);
+      }
+      observer = new IntersectionObserver(observeCallback, getObserverOpts());
+      textSections.forEach((section) => {
+        observer.observe(section);
+      });
+    };
+
+    window.addEventListener("resize", () => {
+      handleObserve();
+    });
+
+    handleObserve();
+  </script>
+</Section>

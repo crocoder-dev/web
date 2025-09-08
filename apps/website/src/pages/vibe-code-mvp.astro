@@ -6,6 +6,7 @@ import Hero from "../components/vibe-code-mvp/Hero.astro";
 import HowItWorks from "../components/vibe-code-mvp/HowItWorks.astro";
 import WhyWorkWithUs from "../components/vibe-code-mvp/WhyWorkWithUs.astro";
 import WorkWithUs from "../components/vibe-code-mvp/WorkWithUs.astro";
+import WorkWithUsDesktop from "../components/vibe-code-mvp/WorkWithUsDesktop.astro";
 import Base from "../layouts/base.astro";
 import "../styles/main.css";
 
@@ -16,7 +17,12 @@ const { ogImage = "https://www.crocoder.dev/homepage-metadata-img.png" } =
 <Base className="bg-white !justify-start" ogImage={ogImage}>
   <Navigation />
   <Hero />
-  <WorkWithUs />
+  <div class="hidden min-lg:block">
+    <WorkWithUsDesktop />
+  </div>
+  <div class="block min-lg:hidden">
+    <WorkWithUs />
+  </div>
   <HowItWorks />
   <WhyWorkWithUs />
   <GetInTouch />

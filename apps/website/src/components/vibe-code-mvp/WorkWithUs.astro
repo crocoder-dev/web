@@ -35,7 +35,7 @@ const listItemClasses =
 >
   {
     phases.map((p, idx) => (
-      <div class="flex flex-col gap-y-8 lg:flex-row col-span-6 md:col-span-12">
+      <div class="flex flex-col gap-y-8 lg:flex-row col-span-6 min- md:col-span-12">
         <div
           class={classnames(
             "w-full lg:w-1/2 rounded-[48px] lg:rounded-[48px] h-[calc(100vw-48px)] md:h-[700px] flex items-center justify-center overflow-hidden",
@@ -48,8 +48,10 @@ const listItemClasses =
             class={classnames("w-full md:max-w-[800px] lg:w-[470px]", {
               "md:w-full": idx === phases.length - 1,
             })}
-            widths={[320, 480, 578, 640, 720, 800, 940, 1200, 1412, 1920]}
-            sizes={"(max-width: 1024px) calc(100vw - 28px), 640px"}
+            widths={[
+              320, 480, 578, 640, 720, 800, 940, 1200, 1412, 1536, 1800, 1920,
+            ]}
+            sizes={"(max-width: 768px) calc(100vw - 28px), 640px"}
             loading={"lazy"}
           />
         </div>
