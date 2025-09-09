@@ -1,6 +1,6 @@
 ---
-import { Picture } from "astro:assets";
-import { getCollection, type CollectionEntry } from "astro:content";
+import { getImage, Picture } from "astro:assets";
+import { getCollection, render } from "astro:content";
 import hero from "../../assets/staff-hero.svg";
 import Pill from "../../components/Pill.astro";
 import Section from "../../components/Section.astro";
@@ -8,6 +8,7 @@ import { grid_classes } from "../../components/_grid";
 import StaffMember from "../../components/staff-agmentation/StaffMember.astro";
 import "../../styles/main.css";
 import Calendar from "../icons/Calendar.astro";
+import classnames from "classnames";
 
 const staff = (await getCollection("staffmembers")) as {
   data: { name: string; image: string; role: string };
@@ -18,10 +19,19 @@ const contentVariantID = Number(Astro.url.searchParams.get("variant") || 1);
 const staffContentVariants = await getCollection("staffherocontent");
 
 const staffContent = staffContentVariants.find(
-  (v: { data: { id: number } }) => v.data.id === contentVariantID,
+  (v: { data: { id: number } }) => v.data.id === contentVariantID
 );
 
-const { Content } = await staffContent.render();
+if (!staffContent) {
+  return;
+}
+
+const { Content } = await render(staffContent);
+
+const data = await getImage({
+  src: hero,
+  width: 1920,
+});
 ---
 
 <Section
@@ -29,12 +39,19 @@ const { Content } = await staffContent.render();
   contentClassName="relative before:absolute before:z-[-1] before:top-0 before:w-full before:h-full before:bg-[#4E5BC8] md:max-w-screen"
 >
   <div
-    class="mx-auto xl:px-0 bg-[#FFF1E1] rounded-b-4xl md:rounded-b-[96px] relative overflow-hidden"
+    class={classnames(
+      "mx-auto xl:px-0 bg-[#FFF1E1] rounded-b-4xl md:rounded-b-[96px] relative overflow-hidden"
+    )}
   >
+    <div
+      class="absolute w-full h-full top-0 left-0 hidden min-[1600px]:block"
+      style={`background-image:url('${data.src}'); background-size: 1600px 100%; background-position: center`}
+    >
+    </div>
     <Picture
       src={hero}
       alt=""
-      class="w-full h-full absolute top-0 left-0 z-[1]"
+      class="w-full h-full absolute top-0 left-1/2 -translate-x-1/2 z-[1] bg-[#FFF1E1] min-[1600px]:hidden"
     />
     <div
       class={`${grid_classes} md:max-w-[var(--max-width)] px-4 md:px-7 !pt-[75px] md:mx-auto relative z-[2]`}
