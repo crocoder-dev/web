@@ -1,0 +1,78 @@
+---
+import { Picture } from "astro:assets";
+import hero from "../../assets/contact-hero.svg";
+import Pill from "../../components/Pill.astro";
+import Section from "../../components/Section.astro";
+import { grid_classes } from "../../components/_grid";
+import "../../styles/main.css";
+import BaseContactForm from "../BaseContactForm.astro";
+import RightArrow from "../icons/RightArrow.astro";
+---
+
+<Section className="!p-0">
+  <div
+    class="bg-[#4E5BC8] rounded-b-4xl md:rounded-b-[96px] relative overflow-hidden"
+  >
+    <Picture src={hero} alt="" class="w-full h-full absolute top-0 left-0" />
+    <div
+      class={`${grid_classes} md:max-w-[var(--max-width)] relative px-7 max-md:pt-8 max-lg:pt-12 lg:py-16 xl:py-24`}
+    >
+      <div
+        class="col-span-6 md:col-span-12 lg:col-span-6 xl:col-span-5 xl:col-start-2 text-white pt-12 md:px-12 lg:pr-0 lg:py-12 content-center"
+      >
+        <Pill
+          className="text-[10px] min-[340px]:text-xs min-[390px]:text-sm sm:text-base md:text-lg px-2 py-1 min-[390px]:px-3 min-[390px]:py-1.5 sm:px-4 sm:py-2 max-h-[36px] mb-2 md:mb-4"
+        >
+          get in touch
+        </Pill>
+        <h1
+          class="text-[18px] leading-[22px] min-[390px]:text-[24px] min-[390px]:leading-[28px] sm:text-[32px] sm:leading-[36px] md:text-[54px] md:leading-[59.4px] font-medium tracking-tight mb-5 md:mb-7"
+        >
+          <span class="fadeInUp block" style="animation-delay: 100ms;">
+            Let’s Talk About
+          </span>
+          <span
+            class="fadeInUp block"
+            style="animation-delay: 500ms;animation-fill-mode: backwards;"
+          >
+            Your Project.
+          </span>
+        </h1>
+        <p
+          class="font-normal text-sm leading-5 min-[390px]:text-base min-[390px]:leading-6 sm:text-lg sm:leading-7 md:text-[22px] md:leading-8 tracking-normal mb-5 md:mb-7"
+        >
+          <span
+            class="fadeInUp"
+            style="animation-delay: 900ms;animation-fill-mode: backwards;"
+          >
+            Our software development services helped clients big and small build
+            solutions with a lasting impact.
+          </span>
+        </p>
+        <p
+          class="font-semibold text-sm leading-5 min-[390px]:text-base min-[390px]:leading-6 sm:text-lg sm:leading-7 md:text-[22px] md:leading-8 tracking-normal"
+        >
+          <span
+            class="fadeInUp"
+            style="animation-delay: 1100ms;animation-fill-mode: backwards;"
+          >
+            Fill the contact form and we’ll get back to you in the next two days
+            or book a call with us below.
+          </span>
+        </p>
+      </div>
+
+      <BaseContactForm
+        onDark
+        classNames="col-span-6 md:col-span-12 lg:col-span-6 xl:col-span-5 lg:col-start-7 md:p-12 lg:pl-0"
+      >
+        <span
+          slot="submit-button-content"
+          class="flex items-center justify-center gap-2.5 text-sm sm:text-base"
+        >
+          Get a free build review <RightArrow />
+        </span>
+      </BaseContactForm>
+    </div>
+  </div>
+</Section>
