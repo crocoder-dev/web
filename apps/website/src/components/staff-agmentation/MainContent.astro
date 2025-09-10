@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
 import circleCheckIcon from "../../assets/circle-check-icon.svg";
 import paulJeszenszky from "../../assets/paul-jeszenszky.png";
 import picCrocoderTeam from "../../assets/pic-crocoder-team-3362ae.png";
@@ -7,16 +8,28 @@ import quoteIcon from "../../assets/quote-icon.svg";
 import targetIconCorrect from "../../assets/target-icon-correct.svg";
 import Pill from "../../components/Pill.astro";
 import Section from "../../components/Section.astro";
-import { getCollection, type CollectionEntry } from "astro:content";
 
-const collection = await getCollection("staffmaincontent");
-const fitChecks = collection.find(
-  (collectionEntry: CollectionEntry<"staffmaincontent">) =>
-    collectionEntry.id === "teamFitChecks.md",
-).data.checks as {
-  highlight: string;
-  text: string;
+const fitCheckVariants = (await getCollection("staff_fit_check")) as {
+  data: {
+    id: number;
+    checks: {
+      highlight: string;
+      text: string;
+    }[];
+  };
 }[];
+
+const fitChecksVariantId = Number(
+  Astro.url.searchParams.get("fitChecksVariant") || 1
+);
+
+let fitChecks = fitCheckVariants.find(
+  (collectionEntry) => collectionEntry.data.id === fitChecksVariantId
+)?.data.checks;
+
+if (!fitChecks) {
+  fitChecks = fitCheckVariants[0].data.checks;
+}
 ---
 
 <Section

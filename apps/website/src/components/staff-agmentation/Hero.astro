@@ -10,20 +10,22 @@ import "../../styles/main.css";
 import Calendar from "../icons/Calendar.astro";
 import classnames from "classnames";
 
-const staff = (await getCollection("staffmembers")) as {
+const staff = (await getCollection("staff_members")) as {
   data: { name: string; image: string; role: string };
 }[];
 
-const contentVariantID = Number(Astro.url.searchParams.get("variant") || 1);
+const contentVariantID = Number(
+  Astro.url.searchParams.get("heroContentVariant") || 1
+);
 
-const staffContentVariants = await getCollection("staffherocontent");
+const staffContentVariants = await getCollection("staff_hero_content");
 
-const staffContent = staffContentVariants.find(
+let staffContent = staffContentVariants.find(
   (v: { data: { id: number } }) => v.data.id === contentVariantID
 );
 
 if (!staffContent) {
-  return;
+  staffContent = staffContentVariants[0];
 }
 
 const { Content } = await render(staffContent);
