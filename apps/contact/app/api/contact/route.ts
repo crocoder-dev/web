@@ -1,4 +1,6 @@
 import { processContact } from "@/app/(helpers)/notion";
+import { notifyContactCreated } from "../../../utils/notifyContactCreated";
+import { Client, isFullPage } from "@notionhq/client";
 import { nanoid } from "nanoid";
 import { NextRequest } from "next/server";
 import z from "zod";
