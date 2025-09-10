@@ -1,7 +1,6 @@
 ---
 import { getImage } from "astro:assets";
 import crocoderLogo from "../assets/crocoder-logo.png";
-import "../styles/navigation.css";
 
 const optimizedLogo = await getImage({
   src: crocoderLogo,
@@ -34,8 +33,6 @@ const optimizedLogo = await getImage({
       md:rounded-r-lg
       md:overflow-hidden
       relative
-      gap:12
-      max-md:has-[input:checked]:bg-secondary
       md:w-[680px]"
     data-navhidden="false"
   >
@@ -72,17 +69,17 @@ const optimizedLogo = await getImage({
       </li>
     </ul>
 
-    <label for="nav-menu-toggle" class="md:hidden flex flex-col gap-1.5">
-      <input
-        id="nav-menu-toggle"
-        type="checkbox"
-        readonly
-        class="hidden peer/menu-toggle"
-      />
+    <button
+      id="nav-menu-toggle"
+      aria-expanded="false"
+      aria-controls="mobile-list"
+      aria-label="Toggle menu"
+      class="md:hidden flex flex-col gap-1.5"
+    >
       <span id="top-line" class="h-0.5 w-6 bg-neutral-50 line line1"></span>
       <span id="middle-line" class="h-0.5 w-6 bg-neutral-50 line line2"></span>
       <span id="bottom-line" class="h-0.5 w-6 bg-neutral-50 line line3"></span>
-    </label>
+    </button>
 
     <ul class="hidden items-center md:flex">
       <li id="for-ctos" data-navhidden="true" class="m-2">
@@ -101,7 +98,7 @@ const optimizedLogo = await getImage({
           Blog
         </a>
       </li>
-      <li id="book-a-call-container" class="ml-auto w-0">
+      <li id="book-a-call-container" class="ml-auto">
         <a
           data-navhidden="true"
           id="book-a-call-action"
@@ -165,140 +162,150 @@ const optimizedLogo = await getImage({
   </div>
 </header>
 
-<script is:inline>
-  let lastScrollTop = 0;
-  let isScroll = false;
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-  const allDataHidden = document.querySelectorAll("[data-navhidden]");
-  const bookACallAction = document.getElementById("book-a-call-action");
-  const mobileBookACallAction = document.getElementById(
-    "mobile-book-a-call-action",
-  );
-  const navMenuToggle = document.getElementById("nav-menu-toggle");
-  const mobileContact = document.getElementById("mobile-contact");
-  const navElem = document.getElementById("nav-bar");
+  gsap.registerPlugin(ScrollTrigger);
+  let mm = gsap.matchMedia();
+
+  const NAV_SHRINK_WIDTH = "377px";
+  const NAV_EXPAND_WIDTH = "680px";
+  const FRAME_DURATION = 0.425;
+
+  const navBar = document.getElementById("nav-bar");
   const logoElem = document.getElementById("logo");
   const forCtoElem = document.getElementById("for-ctos");
   const blogElem = document.getElementById("blog");
+  const bookACallAction = document.getElementById("book-a-call-action");
   const containerElement = document.getElementById("book-a-call-container");
+  const mobileBookACallAction = document.getElementById(
+    "mobile-book-a-call-action",
+  );
+
+  const mobileContact = document.getElementById("mobile-contact");
   const mobileList = document.getElementById("mobile-list");
+  const navMenuToggle = document.getElementById("nav-menu-toggle");
 
-  function onScroll() {
-    const currentScrollTop =
-      window.scrollY || document.documentElement.scrollTop;
+  mm.add("(width >= 768px)", () => {
+    if (!navBar || !bookACallAction) return;
 
-    if (!isScroll) {
-      isScroll = true;
-      window.requestAnimationFrame(() => {
-        handleScroll(currentScrollTop);
-        isScroll = false;
-      });
-    }
-  }
+    const navHideItems = [forCtoElem, blogElem, logoElem];
 
-  function handleScroll(currentScrollTop) {
-    /* Since the animation shouldn't trigger on first render, all the animation
-    classes are added first time the handle scroll is triggered*/
-    if (!navElem.classList.contains("animated-navigation")) {
-      navElem.classList.add("animated-navigation");
-      navElem.classList.remove("md:w-[680px]");
-      forCtoElem.classList.add("animated-text");
-      blogElem.classList.add("animated-text");
-      bookACallAction.classList.add("animated-button", "w-fit");
-      containerElement.classList.remove("w-0");
-      containerElement.classList.add("pr-2");
-      handleClassChanges(allDataHidden);
-    }
-    if (
-      currentScrollTop > lastScrollTop &&
-      allDataHidden[0].getAttribute("data-navhidden") === "true"
-    ) {
-      invertDataAttributte(allDataHidden);
-      handleClassChanges(allDataHidden);
-    } else if (
-      currentScrollTop <= lastScrollTop &&
-      allDataHidden[0].getAttribute("data-navhidden") === "false"
-    ) {
-      invertDataAttributte(allDataHidden);
-    }
-
-    lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
-  }
-
-  function invertDataAttributte(dataHiddenNodes) {
-    dataHiddenNodes.forEach((node) => {
-      if (node.closest("li")?.textContent?.includes("Contact us")) return;
-
-      const currentVal = node.getAttribute("data-navhidden");
-      node.setAttribute(
-        "data-navhidden",
-        currentVal === "true" ? "false" : "true",
-      );
-
-      node.style.animationName = "none";
-      void node.offsetWidth;
-      node.style.animationName = "";
+    gsap.set(navBar, { width: NAV_EXPAND_WIDTH, overwrite: false });
+    gsap.set(navHideItems, {
+      autoAlpha: 1,
+      width: "auto",
+      overflow: "hidden",
     });
-  }
+    gsap.set(containerElement, { autoAlpha: 0 });
+    gsap.set(bookACallAction, { autoAlpha: 0, overflow: "hidden" });
 
-  function handleClassChanges(dataHiddenNodes) {
-    dataHiddenNodes.forEach((node) => {
-      let condition;
-      switch (node.getAttribute("id")) {
-        case "logo":
-          condition = node.getAttribute("data-navhidden") === "false";
-          logoElem.classList.toggle("md:hidden", condition);
-          logoElem.classList.toggle("w-0", condition);
-          break;
-        case "for-ctos":
-          condition = node.getAttribute("data-navhidden") === "true";
-          forCtoElem.classList.toggle("hidden", condition);
-          forCtoElem.classList.toggle("!w-0", condition);
-          break;
-        case "blog":
-          condition = node.getAttribute("data-navhidden") === "true";
-          blogElem.classList.toggle("hidden", condition);
-          blogElem.classList.toggle("!w-0", condition);
-          break;
-        case "book-a-call-action":
-          condition = node.getAttribute("data-navhidden") === "false";
-          bookACallAction.classList.toggle("hidden", condition);
-          bookACallAction.classList.toggle("!w-0", condition);
-          break;
-        default:
-          break;
-      }
+    const tl = gsap.timeline({
+      paused: true,
+      defaults: { duration: FRAME_DURATION, ease: "none" },
     });
-  }
 
-  navMenuToggle.addEventListener("change", () => {
-    mobileContact.classList.toggle("hidden", navMenuToggle.checked);
-    mobileList.classList.toggle("hidden", !navMenuToggle.checked);
-    mobileList.classList.toggle("flex", navMenuToggle.checked);
+    tl.to(navHideItems, {
+      autoAlpha: 0,
+      stagger: 0.05,
+      overwrite: "auto",
+      display: "none",
+    }).to(navBar, { width: NAV_SHRINK_WIDTH }, "-=0.1");
+
+    tl.addLabel("showBookACall");
+
+    tl.to(bookACallAction, { autoAlpha: 1 }, "showBookACall");
+    tl.to(containerElement, { autoAlpha: 1 }, "showBookACall");
+
+    let lastDirection = 0;
+    let firstScrollTriggered = false;
+
+    const st = ScrollTrigger.create({
+      onUpdate(self) {
+        if (!firstScrollTriggered) {
+          firstScrollTriggered = true;
+        }
+
+        if (self.direction === 1 && lastDirection !== 1) {
+          tl.play();
+          lastDirection = 1;
+        } else if (self.direction === -1 && lastDirection !== -1) {
+          tl.reverse();
+          lastDirection = -1;
+        }
+      },
+    });
+
+    return () => {
+      tl.kill();
+      st.kill();
+      gsap.killTweensOf([
+        navBar,
+        ...navHideItems,
+        bookACallAction,
+        containerElement,
+      ]);
+    };
   });
 
-  navElem.addEventListener("animationend", (event) => {
+  mm.add("(width < 768px)", () => {
     if (
-      event.animationName === "navigation-animation" &&
-      allDataHidden[0].getAttribute("data-navhidden") === "true"
-    ) {
-      handleClassChanges(allDataHidden);
-    }
-  });
+      !navMenuToggle ||
+      !mobileList ||
+      !mobileContact ||
+      !mobileBookACallAction
+    )
+      return;
 
-  function handleBookACall() {
-    navMenuToggle.checked = false;
-    window.navScroll = true;
+    gsap.set(mobileList, {
+      height: 0,
+      autoAlpha: 0,
+      display: "flex",
+      overflow: "hidden",
+    });
+    gsap.set(mobileContact, { autoAlpha: 1 });
 
-    setTimeout(() => {
-      window.navScroll = false;
-    }, 1500);
-  }
+    const tlBurger = gsap.timeline({
+      paused: true,
+      defaults: { duration: 0.3, ease: "power2.inOut" },
+    });
 
-  window.addEventListener("scroll", onScroll, { passive: true });
-  bookACallAction.addEventListener("click", handleBookACall);
+    tlBurger
+      .to("#top-line", { rotation: 45, x: 0, y: 9 }, 0)
+      .to("#middle-line", { autoAlpha: 0 }, 0)
+      .to("#bottom-line", { rotation: -45, x: 0, y: -6 }, 0)
+      .to(navBar, { backgroundColor: "#3c3843" }, 0)
+      .to(mobileList, { height: "auto", autoAlpha: 1, duration: 0.4 }, 0)
+      .to(mobileContact, { autoAlpha: 0 }, 0);
 
-  mobileBookACallAction.addEventListener("click", () => {
-    navMenuToggle.click();
+    const handleBurgerClick = () => {
+      const expanded = navMenuToggle.getAttribute("aria-expanded") === "true";
+      navMenuToggle.setAttribute("aria-expanded", String(!expanded));
+
+      if (expanded) tlBurger.reverse();
+      else tlBurger.play();
+    };
+
+    const handleBookACallClick = () => {
+      tlBurger.reverse();
+      navMenuToggle.setAttribute("aria-expanded", "false");
+    };
+
+    mobileBookACallAction.addEventListener("click", handleBookACallClick);
+    navMenuToggle.addEventListener("click", handleBurgerClick);
+
+    return () => {
+      navMenuToggle.removeEventListener("click", handleBurgerClick);
+      mobileBookACallAction.removeEventListener("click", handleBookACallClick);
+
+      gsap.killTweensOf([
+        mobileList,
+        mobileContact,
+        "#top-line",
+        "#middle-line",
+        "#bottom-line",
+      ]);
+    };
   });
 </script>

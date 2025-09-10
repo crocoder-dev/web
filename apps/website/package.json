@@ -16,12 +16,12 @@
     "autoprefixer": "^10.4.21",
     "classnames": "^2.5.1",
     "date-fns": "^4.1.0",
+    "gsap": "^3.13.0",
     "marked": "^16.1.2",
     "posthog-js": "^1.222.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-icons": "^5.5.0",
-    "tailwind": "^4.0.0",
     "tailwind-bootstrap-grid": "^6.0.0"
   },
   "scripts": {
