@@ -6,13 +6,13 @@ import classnames from "classnames";
 import { getCollection, type CollectionEntry } from "astro:content";
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/assets/*.svg",
+  "/src/assets/*.svg"
 );
 
-const collection = await getCollection("staffmaincontent");
+const collection = await getCollection("staff_main_content");
 const specializationCards = collection.find(
-  (collectionEntry: CollectionEntry<"staffmaincontent">) =>
-    collectionEntry.id === "specializations.md",
+  (collectionEntry: CollectionEntry<"staff_main_content">) =>
+    collectionEntry.id === "specializations.md"
 ).data.specializations as {
   title: string;
   description: string;
@@ -49,7 +49,7 @@ const specializationCards = collection.find(
             class={classnames(
               "rounded-2xl p-6 md:p-12 text-center",
               card.bgColor,
-              card.textColor,
+              card.textColor
             )}
           >
             <div class="w-[60px] h-[60px] md:w-[90px] md:h-[90px] flex items-center justify-center mx-auto mb-4 md:mb-7">
