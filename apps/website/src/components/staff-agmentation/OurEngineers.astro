@@ -6,10 +6,10 @@ import Section from "../../components/Section.astro";
 import { grid_classes } from "../../components/_grid";
 import { getCollection, type CollectionEntry } from "astro:content";
 
-const collection = await getCollection("staffmaincontent");
+const collection = await getCollection("staff_main_content");
 const qualities = collection.find(
-  (collectionEntry: CollectionEntry<"staffmaincontent">) =>
-    collectionEntry.id === "ourEngineers.md",
+  (collectionEntry: CollectionEntry<"staff_main_content">) =>
+    collectionEntry.id === "ourEngineers.md"
 ).data.qualities as { title: string; description: string }[];
 ---
 
