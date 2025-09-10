@@ -35,8 +35,8 @@ test.describe("Form page", () => {
   test("should support input of data and submission of a form", async ({
     page,
   }) => {
-    await page.route(routeUrl, (route) => {
-      route.fulfill({
+    await page.route(`${routeUrl}**`, async (route) => {
+      await route.fulfill({
         status: 200,
         contentType: "application/json",
         body: JSON.stringify({
@@ -71,11 +71,8 @@ test.describe("Form submission from home page", () => {
   });
 
   test("sucessfull", async ({ page }) => {
-    await expect(
-      page.getByRole("heading", { name: "Let’s Talk About Your Project" }),
-    ).toBeVisible();
-    await page.route(routeUrl, (route) => {
-      route.fulfill({
+    await page.route(`${routeUrl}**`, async (route) => {
+      await route.fulfill({
         status: 200,
         contentType: "application/json",
         body: JSON.stringify({
@@ -85,7 +82,11 @@ test.describe("Form submission from home page", () => {
         }),
       });
     });
+
     await page.getByRole("navigation").getByText("Contact us").last().click();
+    await expect(
+      page.getByRole("heading", { name: "Let’s Talk About Your Project" }),
+    ).toBeVisible();
 
     await page.getByPlaceholder("Full name *").fill("Test name");
     await page.getByPlaceholder("E-mail *").fill("test@test.com");
@@ -106,16 +107,15 @@ test.describe("Form submission from home page", () => {
     await page.waitForURL(`${baseUrl}/`);
 
     await expect(
-      page.getByRole("heading", { name: "Let’s Talk About Your Project" }),
+      page.getByRole("heading", {
+        name: "Building Software that Builds Your Business",
+      }),
     ).toBeVisible();
   });
 
   test("unsucessfull", async ({ page }) => {
-    await expect(
-      page.getByRole("heading", { name: "Let’s Talk About Your Project" }),
-    ).toBeVisible();
-    await page.route(routeUrl, (route) => {
-      route.fulfill({
+    await page.route(`${routeUrl}**`, async (route) => {
+      await route.fulfill({
         status: 501,
         contentType: "application/json",
         body: JSON.stringify({
@@ -124,7 +124,11 @@ test.describe("Form submission from home page", () => {
         }),
       });
     });
+
     await page.getByRole("navigation").getByText("Contact us").last().click();
+    await expect(
+      page.getByRole("heading", { name: "Let’s Talk About Your Project" }),
+    ).toBeVisible();
 
     await page.getByPlaceholder("Full name *").fill("Test name");
     await page.getByPlaceholder("E-mail *").fill("test@test.com");

@@ -46,8 +46,8 @@ test.describe("Form page in mobile view", () => {
   });
 
   test("should support input of data and submission of a form", async () => {
-    await page.route(routeUrl, (route) => {
-      route.fulfill({
+    await page.route(`${routeUrl}**`, async (route) => {
+      await route.fulfill({
         status: 200,
         contentType: "application/json",
         body: JSON.stringify({
@@ -95,11 +95,12 @@ test.describe("Form submission in mobile view from home page", () => {
   });
 
   test("sucessfull", async () => {
+    await page.getByRole("link", { name: "Contact us", exact: true }).click();
     await expect(
       page.getByRole("heading", { name: "Let’s Talk About Your Project" }),
     ).toBeVisible();
-    await page.route(routeUrl, (route) => {
-      route.fulfill({
+    await page.route(`${routeUrl}**`, async (route) => {
+      await route.fulfill({
         status: 200,
         contentType: "application/json",
         body: JSON.stringify({
@@ -109,7 +110,6 @@ test.describe("Form submission in mobile view from home page", () => {
         }),
       });
     });
-    await page.getByRole("link", { name: "Contact us", exact: true }).click();
 
     await page.getByPlaceholder("Full name *").fill("Test name");
     await page.getByPlaceholder("E-mail *").fill("test@test.com");
@@ -130,16 +130,19 @@ test.describe("Form submission in mobile view from home page", () => {
     await page.waitForURL(`${baseUrl}/`);
 
     await expect(
-      page.getByRole("heading", { name: "Let’s Talk About Your Project" }),
+      page.getByRole("heading", {
+        name: "Building Software that Builds Your Business",
+      }),
     ).toBeVisible();
   });
 
   test("unsucessfull", async () => {
+    await page.getByRole("link", { name: "Contact us", exact: true }).click();
     await expect(
       page.getByRole("heading", { name: "Let’s Talk About Your Project" }),
     ).toBeVisible();
-    await page.route(routeUrl, (route) => {
-      route.fulfill({
+    await page.route(`${routeUrl}**`, async (route) => {
+      await route.fulfill({
         status: 501,
         contentType: "application/json",
         body: JSON.stringify({
@@ -148,7 +151,6 @@ test.describe("Form submission in mobile view from home page", () => {
         }),
       });
     });
-    await page.getByRole("link", { name: "Contact us", exact: true }).click();
 
     await page.getByPlaceholder("Full name *").fill("Test name");
     await page.getByPlaceholder("E-mail *").fill("test@test.com");

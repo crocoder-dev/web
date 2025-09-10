@@ -8,8 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "playwright": "npx playwright test",
-    "test": "npx jest"
+    "test": "npx jest && npx playwright test"
   },
   "dependencies": {
     "react": "^19.0.0",
