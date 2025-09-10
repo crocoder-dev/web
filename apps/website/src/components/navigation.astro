@@ -226,14 +226,9 @@ const optimizedLogo = await getImage({
     tl.to(containerElement, { autoAlpha: 1 }, "showBookACall");
 
     let lastDirection = 0;
-    let firstScrollTriggered = false;
 
     const st = ScrollTrigger.create({
       onUpdate(self) {
-        if (!firstScrollTriggered) {
-          firstScrollTriggered = true;
-        }
-
         if (self.direction === 1 && lastDirection !== 1) {
           tl.play();
           lastDirection = 1;
