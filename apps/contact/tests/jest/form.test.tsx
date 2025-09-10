@@ -17,15 +17,17 @@ jest.mock("@notionhq/client", () => {
   };
 });
 
-jest.mock("../../utils/notifyContactCreated", () => {
+jest.mock("../../app/(helpers)/slack", () => {
   return {
     notifyContactCreated: jest.fn(),
   };
 });
 
-import { Request } from "@whatwg-node/fetch";
+process.env.NOTION_DATABASE_ID = "mocked-notion-database-id";
+
+import { NextRequest } from "next/server";
 import { POST } from "../../app/api/contact/route";
-import { notifyContactCreated } from "../../utils/notifyContactCreated";
+import { notifyContactCreated } from "../../app/(helpers)/slack";
 
 const mockSlack = notifyContactCreated as jest.Mock;
 
@@ -50,9 +52,12 @@ describe("POST /api/contact", () => {
     const { isFullPage } = require("@notionhq/client");
     isFullPage.mockImplementation(() => true);
   });
+  afterAll(() => {
+    delete process.env.NOTION_DATABASE_ID;
+  });
 
   it("should call Notion, Slack and return 200 response on success", async () => {
-    const request = new Request("http://localhost", {
+    const request = new NextRequest("http://localhost", {
       method: "POST",
       body: JSON.stringify(mockBody),
       headers: {
@@ -70,7 +75,7 @@ describe("POST /api/contact", () => {
   });
 
   it("shouldn't call Notion or Slack and return 400 response when incorect header Content-Type is set", async () => {
-    const request = new Request("http://localhost", {
+    const request = new NextRequest("http://localhost", {
       method: "POST",
       body: JSON.stringify(mockBody),
       headers: {
@@ -88,7 +93,7 @@ describe("POST /api/contact", () => {
   it("should call Notion but not Slack if isFullPage is false", async () => {
     const { isFullPage } = require("@notionhq/client");
     isFullPage.mockImplementation(() => false);
-    const request = new Request("http://localhost", {
+    const request = new NextRequest("http://localhost", {
       method: "POST",
       body: JSON.stringify(mockBody),
       headers: {
@@ -107,7 +112,7 @@ describe("POST /api/contact", () => {
 
   it("should call Notion but not Slack if the page is not created", async () => {
     mockNotion.mockResolvedValue({ id: undefined });
-    const request = new Request("http://localhost", {
+    const request = new NextRequest("http://localhost", {
       method: "POST",
       body: JSON.stringify(mockBody),
       headers: {
@@ -125,7 +130,7 @@ describe("POST /api/contact", () => {
   });
 
   it("shouldn't call Notion or Slack and return 400 response when no body was passed", async () => {
-    const request = new Request("http://localhost", {
+    const request = new NextRequest("http://localhost", {
       method: "POST",
       body: JSON.stringify({}),
       headers: {
@@ -142,7 +147,7 @@ describe("POST /api/contact", () => {
   });
 
   it("should return 403 response when no consent from user", async () => {
-    const request = new Request("http://localhost", {
+    const request = new NextRequest("http://localhost", {
       method: "POST",
       body: JSON.stringify(mockNoConsent),
       headers: {
