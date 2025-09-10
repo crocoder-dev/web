@@ -1,19 +1,19 @@
 ---
-id: 2
-pillText: "Engineers who act like owners"
+id: 3
+pillText: "The Product Engineer Advantage"
 ---
 
 <h1
   class="text-[18px] leading-[22px] min-[390px]:text-[24px] min-[390px]:leading-[28px] sm:text-[32px] sm:leading-[36px] md:text-[54px] md:leading-[59.4px] font-medium tracking-tight"
 >
   <span class="fadeInUp block" style="animation-delay: 100ms;">
-   Product-Minded
-  </span> 
+   On-Demand Web Talent.
+  </span>  
   <span
     class="fadeInUp block"
     style="animation-delay: 500ms;animation-fill-mode: backwards;"
   >
-   Developers Who Bring Clarity, Momentum and Accountability.
+ Engineers Who Act Lke Owners
   </span>
 </h1>
 <p
@@ -23,6 +23,7 @@ pillText: "Engineers who act like owners"
     class="fadeInUp"
     style="animation-delay: 900ms;animation-fill-mode: backwards;"
   >
-  Skip the hiring bottlenecks. Our developers integrate fast, think beyond the ticket, and help you build with purpose — from junior support to senior leadership.
+  Product-Minded Developers Who Bring Clarity, Momentum and Accountability. Skip the hiring bottlenecks.
+  <span class="text-[#4E5BC8] mt-7 inline-block">Fast to onboard. Easy to work with. Fully aligned with your team.</span>
   </span>
 </p>
