@@ -229,7 +229,7 @@ const config: Config = {
   ],
   moduleFileExtensions: ["cjs", "js", "ts", "tsx", "json", "node"],
   setupFilesAfterEnv: ["./jest.setup.ts"],
-  testPathIgnorePatterns: ["/node_modules/", "/tests/e2e/"],
+  testPathIgnorePatterns: ["/node_modules/", "/tests/playwright/"],
 };
 
 export default config;
