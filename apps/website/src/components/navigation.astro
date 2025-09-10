@@ -98,7 +98,7 @@ const optimizedLogo = await getImage({
           Blog
         </a>
       </li>
-      <li id="book-a-call-container" class="ml-auto">
+      <li id="book-a-call-container" class="ml-auto pr-2">
         <a
           data-navhidden="true"
           id="book-a-call-action"
@@ -195,11 +195,14 @@ const optimizedLogo = await getImage({
     gsap.set(navBar, { width: NAV_EXPAND_WIDTH, overwrite: false });
     gsap.set(navHideItems, {
       autoAlpha: 1,
-      width: "auto",
       overflow: "hidden",
     });
     gsap.set(containerElement, { autoAlpha: 0 });
-    gsap.set(bookACallAction, { autoAlpha: 0, overflow: "hidden" });
+    gsap.set(bookACallAction, {
+      autoAlpha: 0,
+      overflow: "hidden",
+      display: "none",
+    });
 
     const tl = gsap.timeline({
       paused: true,
@@ -215,7 +218,11 @@ const optimizedLogo = await getImage({
 
     tl.addLabel("showBookACall");
 
-    tl.to(bookACallAction, { autoAlpha: 1 }, "showBookACall");
+    tl.to(
+      bookACallAction,
+      { autoAlpha: 1, display: "list-item" },
+      "showBookACall",
+    );
     tl.to(containerElement, { autoAlpha: 1 }, "showBookACall");
 
     let lastDirection = 0;
