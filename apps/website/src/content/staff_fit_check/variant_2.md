@@ -3,17 +3,20 @@ id: 2
 checks:
   [
     {
-      highlight: "Need to scale quickly",
-      text: "without compromising quality",
+      highlight: "Are facing tight deadlines",
+      text: "and need extra hands instantly",
     },
-    { highlight: "Have projects at risk", text: "due to bandwidth issues" },
-    {
-      highlight: "Struggle to find Engineers",
-      text: "with both soft skills and technical depth",
+    { 
+      highlight: "Have critical initiatives",
+      text: "stuck due to bandwidth limits"
     },
     {
-      highlight: "Want talent",
-      text: "that can work independently and contribute meaningfully",
+      highlight: "Need engineers",
+      text: "who can jump in and deliver without hand-holding",
+    },
+    {
+      highlight: "Want reliable, senior-level support",
+      text: "without hiring full-time",
     },
   ]
 ---
