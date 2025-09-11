@@ -107,7 +107,7 @@ export async function POST(request: NextRequest) {
         name,
         message: message || "",
         databaseID: NOTION_GET_PLAN_DATABASE_ID || "",
-        source: "",
+        source: request.nextUrl.searchParams.get("source") || "Unknown",
       });
 
       return new Response(
