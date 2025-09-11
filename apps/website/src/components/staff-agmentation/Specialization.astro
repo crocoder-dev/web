@@ -9,11 +9,9 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/*.svg"
 );
 
-const collection = await getCollection("staff_main_content");
-const specializationCards = collection.find(
-  (collectionEntry: CollectionEntry<"staff_main_content">) =>
-    collectionEntry.id === "specializations.md"
-).data.specializations as {
+const collection = await getCollection("staff_specializations");
+
+const specializationCards = collection[0].data.specializations as {
   title: string;
   description: string;
   image: string;
