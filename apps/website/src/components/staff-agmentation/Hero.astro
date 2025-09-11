@@ -51,15 +51,28 @@ const data = await getImage({
       "mx-auto xl:px-0 bg-[#FFF1E1] rounded-b-4xl md:rounded-b-[96px] relative overflow-hidden"
     )}
   >
-    <div
-      class="absolute w-full h-full top-0 left-0 hidden min-[1600px]:block"
-      style={`background-image:url('${data.src}'); background-size: 1600px 100%; background-position: center`}
-    >
-    </div>
+    <!-- Fills the empty left gap on wide screens.
+     Simulates `background-repeat`, because we can’t use 
+     an SVG as background-image in combination with background-repeat 
+     because it gets blurry. -->
     <Picture
       src={hero}
       alt=""
-      class="w-full h-full absolute top-0 left-1/2 -translate-x-1/2 z-[1] bg-[#FFF1E1] min-[1600px]:hidden"
+      class="w-[1400px] h-full absolute top-0 -translate-x-full left-[calc(50%-800px)] z-[1] bg-[#FFF1E1] hidden min-[1600px]:block"
+    />
+    <!-- Fills the empty right gap on wide screens.
+     Simulates `background-repeat`, because we can’t use 
+     an SVG as background-image in combination with background-repeat 
+     because it gets blurry. -->
+    <Picture
+      src={hero}
+      alt=""
+      class="w-[1400px] h-full absolute top-0 left-[calc((50%-600px)+1400px)] z-[1] bg-[#FFF1E1] hidden min-[1600px]:block"
+    />
+    <Picture
+      src={hero}
+      alt=""
+      class="w-[1400px] h-full absolute top-0 left-1/2 -translate-x-1/2 z-[1] bg-[#FFF1E1]"
     />
     <div
       class={`${grid_classes} md:max-w-[var(--max-width)] px-4 md:px-7 !pt-[75px] md:mx-auto relative z-[2]`}
