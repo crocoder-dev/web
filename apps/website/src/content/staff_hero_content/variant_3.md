@@ -1,19 +1,19 @@
 ---
 id: 3
-pillText: "The Product Engineer Advantage"
+pillText: "On-Demand Senior Engineers"
 ---
 
 <h1
   class="text-[18px] leading-[22px] min-[390px]:text-[24px] min-[390px]:leading-[28px] sm:text-[32px] sm:leading-[36px] md:text-[54px] md:leading-[59.4px] font-medium tracking-tight"
 >
   <span class="fadeInUp block" style="animation-delay: 100ms;">
-   On-Demand Web Talent.
+   Solve Your
   </span>  
   <span
     class="fadeInUp block"
     style="animation-delay: 500ms;animation-fill-mode: backwards;"
   >
- Engineers Who Act Lke Owners
+   Toughest Blocks
   </span>
 </h1>
 <p
@@ -23,7 +23,6 @@ pillText: "The Product Engineer Advantage"
     class="fadeInUp"
     style="animation-delay: 900ms;animation-fill-mode: backwards;"
   >
-  Product-Minded Developers Who Bring Clarity, Momentum and Accountability. Skip the hiring bottlenecks.
-  <span class="text-[#4E5BC8] mt-7 inline-block">Fast to onboard. Easy to work with. Fully aligned with your team.</span>
+  Bring in a stack-matched expert who joins your team, tackles the tricky issues slowing you down, and leaves the system better than they found it.
   </span>
 </p>
