@@ -2,18 +2,21 @@
 id: 1
 checks:
   [
-    { highlight: "Need to scale fast", text: "without compromising quality" },
     {
-      highlight: "Have initiatives",
-      text: "they want to move forward but are lacking bandwidth",
+      highlight: "Need a proven developer",
+      text: "in-seat this week"
     },
     {
-      highlight: "Struggle to find",
-      text: "Engineers with both soft skills and technical depth",
+      highlight: "Need to scale fast",
+      text: "without a long recruitment process",
     },
     {
-      highlight: "Want talent",
-      text: "that can work independently and contribute meaningfully",
+      highlight: "Struggle to find engineers",
+      text: "who work independently",
+    },
+    {
+      highlight: "Want proactive teammates",
+      text: "who make progress without hand-holding",
     },
   ]
 ---
