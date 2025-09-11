@@ -1,9 +1,16 @@
 ---
 import * as content from "../../content/contact/thank-you.md";
+import Section from "../Section.astro";
+import GetYourPlanModal from "./GetYourPlanModal.astro";
 ---
 
-<section class={`w-full bg-[#505AC9] text-white`}>
-  <div class={`mx-auto max-w-5xl px-6 py-16 md:px-10 md:py-24 ${Astro.props.class ?? ""}`}>
+<Section
+  className="hidden bg-[#505AC9] text-white"
+  idx="thank-you-card-section"
+>
+  <div
+    class={`mx-auto max-w-5xl px-6 py-16 md:px-10 md:py-24 ${Astro.props.class ?? ""}`}
+  >
     <h1 class="font-semibold text-4xl tracking-tight">
       <span class="text-[40px] leading-[44px] md:text-[56px] md:leading-[60px]">
         <span class="text-[#FFC447]">{content.frontmatter.titleLead}</span>
@@ -12,19 +19,56 @@ import * as content from "../../content/contact/thank-you.md";
     </h1>
 
     <div class="mt-8 space-y-8">
-      {(content.frontmatter.paragraphs as string[]).map((p: string) => (
-        <p class="max-w-4xl text-white/90 text-[22px] leading-[32px]">{p}</p>
-      ))}
+      {
+        (content.frontmatter.paragraphs as string[]).map((p: string) => (
+          <p class="max-w-4xl text-white/90 text-[22px] leading-[32px]">{p}</p>
+        ))
+      }
     </div>
 
     <div class="mt-12 md:mt-16 flex justify-center">
-        <button
-          type="button"
-          class="inline-flex w-full items-center justify-center rounded-2xl bg-[#585A61] px-6 py-5 text-center text-[16px] leading-[26px] font-medium text-white/95 focus:outline-none focus:ring-2 focus:ring-white/40 md:mx-auto"
-          aria-label={content.frontmatter.ctaLabel}
-        >
-          {content.frontmatter.ctaLabel}
-        </button>
+      <button
+        type="button"
+        id="thank-you-card-submit-button"
+        class="inline-flex w-full items-center justify-center rounded-2xl bg-[#585A61] px-6 py-5 text-center text-[16px] leading-[26px] font-medium text-white/95 focus:outline-none focus:ring-2 focus:ring-white/40 md:mx-auto"
+        aria-label={content.frontmatter.ctaLabel}
+      >
+        {content.frontmatter.ctaLabel}
+      </button>
+      <p id="form-notification" class="text-sm min-h-6 pt-1"></p>
     </div>
   </div>
-</section>
+</Section>
+{(<GetYourPlanModal />)}
+
+<script>
+  const thankYouCard = document.getElementById("thank-you-card-section");
+  const submitBtn = thankYouCard?.querySelector(
+    "#thank-you-card-submit-button",
+  );
+  const modalForm = document.getElementById(
+    "get-plan-modal",
+  ) as HTMLDialogElement | null;
+
+  const handleModalSoftDismiss = (e: MouseEvent) => {
+    if (!e.currentTarget) return;
+    const dialogElem = e.currentTarget as HTMLDialogElement;
+    if (e.target === dialogElem) {
+      dialogElem.close();
+    }
+  };
+
+  const handleOpenModal = () => {
+    modalForm?.showModal();
+  };
+
+  if (modalForm) {
+    modalForm.addEventListener("click", handleModalSoftDismiss);
+  }
+
+  if (submitBtn) {
+    submitBtn.addEventListener("click", () => {
+      handleOpenModal();
+    });
+  }
+</script>

@@ -3,9 +3,6 @@ import * as formContent from "../../content/contact/get-your-plan-form.md";
 import Field from "../Field.astro";
 import RightArrow from "../icons/RightArrow.astro";
 import "../../styles/loader.css";
-import GetYourPlanModal from "./GetYourPlanModal.astro";
-
-const enableModalForm = Astro.url.searchParams.get("extended-form") === "true";
 ---
 
 <div class="col-span-6 lg:col-span-5 lg:col-start-2 md:row-start-2">
@@ -95,16 +92,17 @@ const enableModalForm = Astro.url.searchParams.get("extended-form") === "true";
         </span>
         <div id="get-your-plan-form-loader" class="loader mx-auto hidden"></div>
       </button>
-      {enableModalForm && <GetYourPlanModal />}
       <p id="form-notification" class="text-sm min-h-6 pt-1"></p>
     </div>
     <script>
       import * as notification from "../../content/contact/notification.md";
 
-      const urlSearchParams = new URLSearchParams(window.location.search);
-      const isWithModalParam = urlSearchParams.get("extended-form");
-
-      const enableModalForm = isWithModalParam === "true";
+      const thankYouCardSection = document.getElementById(
+        "thank-you-card-section",
+      );
+      const getYourPlanSection = document.getElementById(
+        "get-your-plan-section",
+      );
 
       const form = document.getElementById("get-your-plan-form");
       /* Page form elements */
@@ -120,32 +118,17 @@ const enableModalForm = Astro.url.searchParams.get("extended-form") === "true";
       ) as HTMLElement;
 
       /* Modal part of form elements */
-      const modalForm = enableModalForm
-        ? (document.getElementById(
-            "get-plan-modal",
-          ) as HTMLDialogElement | null)
-        : null;
-      const modalFormSubmitBtn = form?.querySelector(
+      const modalForm = document.getElementById(
+        "get-plan-modal",
+      ) as HTMLDialogElement | null;
+
+      const modalFormSubmitBtn = modalForm?.querySelector(
         "#modal-form-submit-button",
       );
       const modalFormSubmitBtnContent =
         modalFormSubmitBtn?.querySelectorAll("*")[0];
       const modalFormLoader =
         modalFormSubmitBtn?.querySelector("#modal-form-loader");
-
-      const handleModalSoftDismiss = (e: MouseEvent) => {
-        if (!e.currentTarget) return;
-
-        const dialogElem = e.currentTarget as HTMLDialogElement;
-
-        if (e.target === dialogElem) {
-          dialogElem.close();
-        }
-      };
-
-      const handleOpenModal = () => {
-        modalForm?.showModal();
-      };
 
       const handleCloseModal = () => {
         modalForm?.close();
@@ -168,10 +151,6 @@ const enableModalForm = Astro.url.searchParams.get("extended-form") === "true";
         submitBtnLoader?.classList.remove("!block");
       };
 
-      if (modalForm) {
-        modalForm.addEventListener("click", handleModalSoftDismiss);
-      }
-
       if (form) {
         form.addEventListener("submit", async (e) => {
           e.preventDefault();
@@ -192,21 +171,16 @@ const enableModalForm = Astro.url.searchParams.get("extended-form") === "true";
           const isModalSubmitter =
             (e.submitter as HTMLButtonElement).value === "modal";
 
-          if (!enableModalForm) {
+          if (isPageSubmitter) {
             showLoader();
           }
-
-          if (enableModalForm && isPageSubmitter) {
-            handleOpenModal();
-          }
-
-          if (enableModalForm && isModalSubmitter) {
+          if (isModalSubmitter) {
             showModalLoader();
           }
 
           try {
             const response = await fetch(
-              `${import.meta.env.PUBLIC_API_URL}/api/get-plan${enableModalForm ? "?extended-form=true" : ""}`,
+              `${import.meta.env.PUBLIC_API_URL}/api/get-plan`,
               {
                 method: "POST",
                 mode: "cors",
@@ -227,13 +201,17 @@ const enableModalForm = Astro.url.searchParams.get("extended-form") === "true";
             if (response.status !== 200 && notificationElem) {
               throw new Error();
             }
+            if (isPageSubmitter) {
+              getYourPlanSection?.classList.add("hidden");
+              thankYouCardSection?.classList.remove("hidden");
+            }
 
-            // Redirect to success page
-            if (!enableModalForm || (enableModalForm && isModalSubmitter)) {
+            // Show thank you card message
+            if (isModalSubmitter) {
               window.location.href = "/contact/success";
             }
           } catch (error) {
-            if (!enableModalForm || (enableModalForm && isModalSubmitter)) {
+            if (isModalSubmitter) {
               notificationElem.classList.add("text-red-500");
               notificationElem.textContent = notification.frontmatter.error;
               hideLoader();
