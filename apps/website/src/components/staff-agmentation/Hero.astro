@@ -1,5 +1,5 @@
 ---
-import { getImage, Picture } from "astro:assets";
+import { Picture } from "astro:assets";
 import { getCollection } from "astro:content";
 import classnames from "classnames";
 import hero from "../../assets/staff-hero.svg";
@@ -35,11 +35,6 @@ let content = staffContent.find((v) => v.data.id === contentVariantID);
 if (!content) {
   content = staffContent[0];
 }
-
-const data = await getImage({
-  src: hero,
-  width: 1920,
-});
 ---
 
 <Section
