@@ -1,11 +1,14 @@
-import { test, expect, Page, devices } from "@playwright/test";
+import { test, expect, devices } from "@playwright/test";
+import type { Page } from "@playwright/test";
 
 // const baseUrl = "http://localhost:4321";
 const baseUrl = "https://www.crocoder.dev";
-const staffAugmentationUrl = "staff-augmentation";
+const forCtosUrl = "for-ctos";
+const contactUrl = "contact";
+const valuesSection = "values-grid";
 const bookACallSection = "book-a-call-section";
 
-test.describe("Staff Augmentation page in mobile view", () => {
+test.describe("For CTOs page in mobile view", () => {
   let page: Page;
   let context;
   test.beforeEach(async ({ browser }) => {
@@ -20,7 +23,7 @@ test.describe("Staff Augmentation page in mobile view", () => {
           })
         : await browser.newContext(testDevice);
     page = await context.newPage();
-    await page.goto(`${baseUrl}/${staffAugmentationUrl}`);
+    await page.goto(`${baseUrl}/${forCtosUrl}`);
   });
 
   test("should have title and heading", async () => {
@@ -29,7 +32,7 @@ test.describe("Staff Augmentation page in mobile view", () => {
     );
     await expect(
       page.getByRole("heading", {
-        name: "On-Demand Talent, Working as an Extension of Your Team",
+        name: "Your Tech Strategy: Delivered, Scaled, and Sustained",
       }),
     ).toBeVisible();
   });
@@ -50,17 +53,46 @@ test.describe("Navigation via links in mobile view to", () => {
           })
         : await browser.newContext(testDevice);
     page = await context.newPage();
-    await page.goto(`${baseUrl}/${staffAugmentationUrl}`);
+    await page.goto(`${baseUrl}/${forCtosUrl}`);
   });
 
   test("Book a call section from hero", async () => {
-    const letsTalkLink = page.getByRole("link", { name: "LET'S TALK" });
+    const getStertedLink = page.getByRole("link", { name: "GET STARTED" });
 
-    await letsTalkLink.click();
+    await getStertedLink.click();
 
     await expect(page).toHaveURL(
-      `${baseUrl}/${staffAugmentationUrl}#${bookACallSection}`,
+      `${baseUrl}/${forCtosUrl}#${bookACallSection}`,
     );
     await expect(page.locator(`#${bookACallSection}`)).toBeInViewport();
+  });
+
+  test("Book a call section from values section", async () => {
+    const bookACallLink = page.locator(`#${valuesSection}`).getByRole("link", {
+      name: "Book a call",
+    });
+
+    await bookACallLink.click();
+
+    await expect(page).toHaveURL(
+      `${baseUrl}/${forCtosUrl}#${bookACallSection}`,
+    );
+    await expect(page.locator(`#${bookACallSection}`)).toBeInViewport();
+  });
+
+  test("Contact us page from values section", async () => {
+    const contactUsLink = page
+      .locator(`#${valuesSection}`)
+      .getByRole("link", { name: "Contact us" });
+
+    await contactUsLink.click();
+
+    await Promise.allSettled([
+      page.waitForURL(`${baseUrl}/${contactUrl}`, { timeout: 10000 }),
+    ]);
+
+    await expect(
+      page.getByRole("heading", { name: "Let’s Talk About Your Project" }),
+    ).toBeVisible();
   });
 });

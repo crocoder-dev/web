@@ -1,11 +1,12 @@
-import { test, expect, devices, Page } from "@playwright/test";
+import { test, expect, devices } from "@playwright/test";
+import type { Page } from "@playwright/test";
 
 // const baseUrl = "http://localhost:4321";
 const baseUrl = "https://www.crocoder.dev";
+const staffAugmentationUrl = "staff-augmentation";
 const bookACallSection = "book-a-call-section";
-const discoverOurServices = "discover-our-services";
 
-test.describe("Landing page in mobile view", () => {
+test.describe("Staff Augmentation page in mobile view", () => {
   let page: Page;
   let context;
   test.beforeEach(async ({ browser }) => {
@@ -20,17 +21,16 @@ test.describe("Landing page in mobile view", () => {
           })
         : await browser.newContext(testDevice);
     page = await context.newPage();
-    await page.goto(baseUrl);
+    await page.goto(`${baseUrl}/${staffAugmentationUrl}`);
   });
 
   test("should have title and heading", async () => {
     await expect(page).toHaveTitle(
       "CroCoder | Building Software that Builds Your Business",
     );
-
     await expect(
       page.getByRole("heading", {
-        name: "Building Software that Builds Your Business",
+        name: "On-Demand Talent, Working as an Extension of Your Team",
       }),
     ).toBeVisible();
   });
@@ -51,30 +51,17 @@ test.describe("Navigation via links in mobile view to", () => {
           })
         : await browser.newContext(testDevice);
     page = await context.newPage();
-    await page.goto(baseUrl);
+    await page.goto(`${baseUrl}/${staffAugmentationUrl}`);
   });
 
-  test("Book a call section", async () => {
-    const bookACallLink = page.getByRole("link", {
-      name: "BOOK A CALL",
-      exact: true,
-    });
+  test("Book a call section from hero", async () => {
+    const letsTalkLink = page.getByRole("link", { name: "LET'S TALK" });
 
-    await bookACallLink.click();
+    await letsTalkLink.click();
 
-    await expect(page).toHaveURL(`${baseUrl}/#${bookACallSection}`);
+    await expect(page).toHaveURL(
+      `${baseUrl}/${staffAugmentationUrl}#${bookACallSection}`,
+    );
     await expect(page.locator(`#${bookACallSection}`)).toBeInViewport();
-  });
-
-  test("Discover our services section", async () => {
-    const discoverOurServicesLink = page.getByRole("link", {
-      name: "DISCOVER OUR SERVICES",
-      exact: true,
-    });
-
-    await discoverOurServicesLink.click();
-
-    await expect(page).toHaveURL(`${baseUrl}/#${discoverOurServices}`);
-    await expect(page.locator(`#${discoverOurServices}`)).toBeInViewport();
   });
 });
