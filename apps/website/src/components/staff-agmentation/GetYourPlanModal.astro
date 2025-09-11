@@ -6,7 +6,7 @@ import Select from "../Select.astro";
 import { quarterLabelInMonthsAhead } from "../../utils/quarter";
 
 const computedStartDates = (formContent.frontmatter.startDates as string[]).map(
-  (d) => (d === "quarter-label" ? quarterLabelInMonthsAhead(4) : d),
+  (d) => (d === "quarter-label" ? quarterLabelInMonthsAhead(6) : d),
 );
 ---
 
@@ -94,6 +94,7 @@ const computedStartDates = (formContent.frontmatter.startDates as string[]).map(
         <span>{formContent.frontmatter.modalSubmit}</span>
         <div id="modal-form-loader" class="loader mx-auto hidden"></div>
       </button>
+      <p id="form-notification" class="text-sm min-h-6 pt-1"></p>
     </form>
   </main>
 </Modal>

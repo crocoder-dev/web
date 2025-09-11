@@ -1,5 +1,5 @@
 ---
 name: Gloria
-role: Senior Web Team Leader
+role: Full Stack Developer
 image: "/src/assets/staff/gloria.jpg"
 ---
