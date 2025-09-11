@@ -9,27 +9,36 @@ import targetIconCorrect from "../../assets/target-icon-correct.svg";
 import Pill from "../../components/Pill.astro";
 import Section from "../../components/Section.astro";
 
-const fitCheckVariants = (await getCollection("staff_fit_check")) as {
+export type MainContent = {
+  pillText: string;
+  title_1: string;
+  title_2: string;
+  fitChecks: {
+    highlight: string;
+    text: string;
+  }[];
+  aboutUs: string[];
+  ourEngineers: { title: string; description: string }[];
+};
+
+const staffContent = (await getCollection("staff_augmentation")) as {
   data: {
     id: number;
-    checks: {
-      highlight: string;
-      text: string;
-    }[];
+    main: MainContent;
   };
 }[];
 
-const fitChecksVariantId = Number(
-  Astro.url.searchParams.get("fitChecksVariant") || 1
+const contentVariantId = Number(
+  Astro.url.searchParams.get("contentVariant") || 1
 );
 
-let fitChecks = fitCheckVariants.find(
-  (collectionEntry) => collectionEntry.data.id === fitChecksVariantId
-)?.data.checks;
+let content = staffContent.find((c) => c.data.id === contentVariantId);
 
-if (!fitChecks) {
-  fitChecks = fitCheckVariants[0].data.checks;
+if (!content) {
+  content = staffContent[0];
 }
+
+const { data } = content;
 ---
 
 <Section
@@ -44,14 +53,14 @@ if (!fitChecks) {
       <div
         class="flex flex-col items-center gap-4 mb-12 md:mb-24 px-1 md:px-2 xl:px-[104px] mx-auto"
       >
-        <Pill>We're 100% Focused on results</Pill>
+        <Pill>{data.main.pillText}</Pill>
         <h2
           class="text-[32px] leading-[36px] md:text-[48px] md:leading-[52px] lg:text-[60px] lg:leading-[66px] xl:text-[74px] xl:leading-[81px] font-medium tracking-[-2%] text-center"
         >
           <span class="text-white block md:whitespace-nowrap"
-            >Flexible, Embedded Engineers,</span
+            >{data.main.title_1}</span
           >
-          <span class="text-[#FEC343] block">Ready to Plug-In</span>
+          <span class="text-[#FEC343] block">{data.main.title_2}</span>
         </h2>
       </div>
 
@@ -77,29 +86,13 @@ if (!fitChecks) {
                 />
               </div>
               <div class="space-y-4 md:space-y-7">
-                <p
-                  class="text-[16px] leading-[24px] md:text-[22px] md:leading-[32px] font-normal"
-                >
-                  We offer <b>on-demand staff augmentation</b> with web engineers
-                  who blend <b>technical excellence</b>, <b>product intuition</b
-                  >, and <b>strong communication</b>.
-                </p>
-                <p
-                  class="text-[16px] leading-[24px] md:text-[22px] md:leading-[32px] font-normal"
-                >
-                  Whether you need a <b>junior developer</b> to support your team,
-                  or a <b>product-minded lead</b> to drive an initiative, we <b
-                    >match talent to your exact needs</b
-                  > and fast.
-                </p>
-                <p
-                  class="text-[16px] leading-[24px] md:text-[22px] md:leading-[32px] font-normal"
-                >
-                  Our engineers <b>take initiative</b> instead of waiting on tasks.
-                  They <b>think critically</b>, <b>act independently</b>, and <b
-                    >ship with care</b
-                  >.
-                </p>
+                {
+                  data.main.aboutUs.map((about) => (
+                    <p class="text-[16px] leading-[24px] md:text-[22px] md:leading-[32px] font-normal">
+                      {about}
+                    </p>
+                  ))
+                }
               </div>
             </div>
 
@@ -170,7 +163,7 @@ if (!fitChecks) {
             </h3>
             <div class="space-y-4 md:space-y-7 mb-4 md:mb-7">
               {
-                fitChecks.map((check) => (
+                content.data.main.fitChecks.map((check) => (
                   <div class="flex gap-4 md:gap-7">
                     <div class="w-8 h-8 md:w-12 md:h-12 flex-shrink-0">
                       <Image

@@ -1,6 +1,7 @@
 ---
 import { getImage, Picture } from "astro:assets";
-import { getCollection, render } from "astro:content";
+import { getCollection } from "astro:content";
+import classnames from "classnames";
 import hero from "../../assets/staff-hero.svg";
 import Pill from "../../components/Pill.astro";
 import Section from "../../components/Section.astro";
@@ -8,27 +9,32 @@ import { grid_classes } from "../../components/_grid";
 import StaffMember from "../../components/staff-agmentation/StaffMember.astro";
 import "../../styles/main.css";
 import Calendar from "../icons/Calendar.astro";
-import classnames from "classnames";
 
 const staff = (await getCollection("staff_members")) as {
   data: { name: string; image: string; role: string };
 }[];
 
 const contentVariantID = Number(
-  Astro.url.searchParams.get("heroContentVariant") || 1
+  Astro.url.searchParams.get("contentVariant") || 1
 );
 
-const staffContentVariants = await getCollection("staff_hero_content");
+const staffContent = (await getCollection("staff_augmentation")) as {
+  data: {
+    id: number;
+    hero: {
+      pillText: string;
+      title_1: string;
+      title_2: string;
+      description: string;
+    };
+  };
+}[];
 
-let staffContent = staffContentVariants.find(
-  (v: { data: { id: number } }) => v.data.id === contentVariantID
-);
+let content = staffContent.find((v) => v.data.id === contentVariantID);
 
-if (!staffContent) {
-  staffContent = staffContentVariants[0];
+if (!content) {
+  content = staffContent[0];
 }
-
-const { Content } = await render(staffContent);
 
 const data = await getImage({
   src: hero,
@@ -73,9 +79,31 @@ const data = await getImage({
         <div class="flex flex-col gap-2 md:gap-4 max-h-fit">
           <Pill
             className="text-[10px] min-[340px]:text-xs min-[390px]:text-sm sm:text-base md:text-lg px-2 py-1 min-[390px]:px-3 min-[390px]:py-1.5 sm:px-4 sm:py-2 max-h-[36px]"
-            >{staffContent.data.pillText}</Pill
+            >{content.data.hero.pillText}</Pill
           >
-          <Content />
+          <h1
+            class="text-[18px] leading-[22px] min-[390px]:text-[24px] min-[390px]:leading-[28px] sm:text-[32px] sm:leading-[36px] md:text-[54px] md:leading-[59.4px] font-medium tracking-tight"
+          >
+            <span class="fadeInUp block" style="animation-delay: 100ms;">
+              {content.data.hero.title_1}
+            </span>
+            <span
+              class="fadeInUp block"
+              style="animation-delay: 500ms;animation-fill-mode: backwards;"
+            >
+              {content.data.hero.title_2}
+            </span>
+          </h1>
+          <p
+            class="font-normal text-sm leading-5 min-[390px]:text-base min-[390px]:leading-6 sm:text-lg sm:leading-7 md:text-[22px] md:leading-8 tracking-normal"
+          >
+            <span
+              class="fadeInUp"
+              style="animation-delay: 900ms;animation-fill-mode: backwards;"
+            >
+              {content.data.hero.description}
+            </span>
+          </p>
         </div>
         <div class="flex flex-wrap gap-2.5">
           <a
