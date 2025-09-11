@@ -178,25 +178,28 @@ import "../../styles/loader.css";
             showModalLoader();
           }
 
+          const currentUrl = new URL(window.location.href);
+
           try {
-            const response = await fetch(
+            const apiUrl = new URL(
               `${import.meta.env.PUBLIC_API_URL}/api/get-plan`,
-              {
-                method: "POST",
-                mode: "cors",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  name,
-                  email,
-                  hasConsent: consent ? true : false,
-                  companyName: companyName || "",
-                  mainChallenge: mainChallenge || "",
-                  expectedStartDate: expectedStartDate || "",
-                }),
-              },
             );
+            apiUrl.searchParams.set("source", currentUrl.pathname);
+            const response = await fetch(apiUrl, {
+              method: "POST",
+              mode: "cors",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                name,
+                email,
+                hasConsent: consent ? true : false,
+                companyName: companyName || "",
+                mainChallenge: mainChallenge || "",
+                expectedStartDate: expectedStartDate || "",
+              }),
+            });
 
             if (response.status !== 200 && notificationElem) {
               throw new Error();
@@ -211,17 +214,10 @@ import "../../styles/loader.css";
               window.location.href = "/contact/success";
             }
           } catch (error) {
-            if (isModalSubmitter) {
-              notificationElem.classList.add("text-red-500");
-              notificationElem.textContent = notification.frontmatter.error;
-              hideLoader();
-
-              if (isModalSubmitter) {
-                handleCloseModal();
-              }
-
-              return;
-            }
+            notificationElem.classList.add("text-red-500");
+            notificationElem.textContent = notification.frontmatter.error;
+            hideLoader();
+            return;
           }
         });
       }
