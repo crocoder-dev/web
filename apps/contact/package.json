@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "npx jest && npx playwright test"
+    "test": "npx jest"
   },
   "dependencies": {
     "react": "^19.0.0",
@@ -20,7 +20,6 @@
     "zod": "^4.0.17"
   },
   "devDependencies": {
-    "@playwright/test": "^1.55.0",
     "@types/jest": "^30.0.0",
     "@types/node": "^24",
     "@types/node-fetch": "^2.6.13",

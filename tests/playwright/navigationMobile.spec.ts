@@ -1,4 +1,5 @@
-import { test, expect, Page, devices } from "@playwright/test";
+import { test, expect, devices } from "@playwright/test";
+import type { Page } from "@playwright/test";
 
 // const baseUrl = "http://localhost:4321";
 const baseUrl = "https://www.crocoder.dev";
