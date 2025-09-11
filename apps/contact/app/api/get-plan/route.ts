@@ -71,15 +71,10 @@ export async function POST(request: NextRequest) {
         hasConsent,
       } = body;
 
-      let message = "***Contact did not come from extended form***";
-
-      if (request.nextUrl.searchParams.get("extended-form") === "true") {
-        message = `
-          ***Contact came from extended form*** \n  
+      const message = `
           Company name: ${companyName || ""} \n
           Main challenge: ${mainChallenge || ""} \n
           Expected start date: ${expectedStartDate || ""} \n`;
-      }
 
       if (!hasConsent) {
         return new Response(JSON.stringify({ message: "No consent by user" }), {

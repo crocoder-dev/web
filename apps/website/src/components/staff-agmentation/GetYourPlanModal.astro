@@ -3,7 +3,11 @@ import Field from "../Field.astro";
 import Modal from "../Modal.astro";
 import * as formContent from "../../content/contact/get-your-plan-form.md";
 import Select from "../Select.astro";
-import DatePicker from "../DatePicker.astro";
+import { quarterLabelInMonthsAhead } from "../../utils/quarter";
+
+const computedStartDates = (formContent.frontmatter.startDates as string[]).map(
+  (d) => (d === "quarter-label" ? quarterLabelInMonthsAhead(4) : d),
+);
 ---
 
 <Modal id="get-plan-modal" classNames="w-[calc(100%-16px)] max-w-[500px]">
@@ -11,9 +15,9 @@ import DatePicker from "../DatePicker.astro";
     <h3
       class="text-center font-medium text-4xl text-secondary w-full tracking-[-0.7px]"
     >
-      What can we <span class="text-crocoder-green">help you</span> with
+      Let's <span class="text-crocoder-green">Personalise</span><br /> Your Audit
     </h3>
-    <div>
+    <form id="modal-form" novalidate>
       <Field
         isTextArea={false}
         inputProps={{
@@ -21,6 +25,7 @@ import DatePicker from "../DatePicker.astro";
           id: "form-company",
           maxlength: "100",
           placeholder: formContent.frontmatter.companyName,
+          form: "get-your-plan-form",
         }}
         labelProps={{
           for: "form-company",
@@ -28,28 +33,32 @@ import DatePicker from "../DatePicker.astro";
         }}
         label={formContent.frontmatter.companyName}
       />
-      <Select
-        selectProps={{
-          name: "form-challenge",
-          id: "form-challenge",
-        }}
+      <Field
+        isTextArea={false}
         label={formContent.frontmatter.yourMainChallenge}
         labelProps={{
           for: "form-challenge",
           "aria-hidden": false,
         }}
-        options={formContent.frontmatter.challanges.map((c: string) => ({
-          value: c,
-          content: c,
-        }))}
-      />
-      <DatePicker
-        label={formContent.frontmatter.expectedStartDate}
         inputProps={{
-          id: "form-start-date",
-          name: "form-start-date",
-          min: new Date(Date.now()).toISOString().split("T")[0],
+          name: "form-challenge",
+          id: "form-challenge",
+          maxlength: "100",
+          placeholder: formContent.frontmatter.yourMainChallenge,
+          form: "get-your-plan-form",
         }}
+      />
+      <Select
+        selectProps={{
+          name: "form-start-date",
+          id: "form-start-date",
+          form: "get-your-plan-form",
+        }}
+        ,
+        label={formContent.frontmatter.expectedStartDate}
+        ,
+        options={computedStartDates.map((d) => ({ value: d, content: d }))}
+        ,
         labelProps={{
           for: "form-start-date",
           id: "form-start-date-label",
@@ -60,6 +69,7 @@ import DatePicker from "../DatePicker.astro";
         type="submit"
         value="modal"
         id="modal-form-submit-button"
+        form="get-your-plan-form"
         class="rounded-md
         min-h-14
         px-[25px] w-full py-4
@@ -79,11 +89,11 @@ import DatePicker from "../DatePicker.astro";
         focus-visible:bg-crocoder-yellow/90
         focus-visible:outline-1
         focus-visible:outline-neutral-50
-        mt-6"
+        mt-6 cursor-pointer"
       >
         <span>{formContent.frontmatter.modalSubmit}</span>
         <div id="modal-form-loader" class="loader mx-auto hidden"></div>
       </button>
-    </div>
+    </form>
   </main>
 </Modal>
