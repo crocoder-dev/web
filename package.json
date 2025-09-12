@@ -6,7 +6,9 @@
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,astro}\"",
-    "test:playwright": "cd tests && npx playwright test"
+    "test:jest": "cd tests && npx jest",
+    "test:playwright": "cd tests && npx playwright test",
+    "test": "npm run test:jest && npm run test:playwright"
   },
   "devDependencies": {
     "@playwright/test": "^1.55.0",
