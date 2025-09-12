@@ -34,7 +34,7 @@ main:
     aboutUs:
       [
         "Our on-demand engineers are product-minded problem solvers with deep expertise in React, Next.js, Node.js, and more.",
-        "They integrate seamlessly with your team, code alongside you, and explain solutions as they go. ",
+        "They integrate seamlessly with your team, code alongside you, and explain solutions as they go.",
         "Whether it’s a critical bug, performance problem, or tricky feature, they act independently and deliver results immediately. Transparent rates, quick start, UK/EU time-zone overlap.",
       ],
     ourEngineers:
