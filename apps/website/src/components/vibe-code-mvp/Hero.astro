@@ -1,0 +1,107 @@
+---
+import { Picture } from "astro:assets";
+import hero from "../../assets/vibe-code-mvp-hero.jpg";
+import Pill from "../../components/Pill.astro";
+import Section from "../../components/Section.astro";
+import { grid_classes } from "../../components/_grid";
+import "../../styles/main.css";
+import BaseContactForm from "../BaseContactForm.astro";
+import RightArrow from "../icons/RightArrow.astro";
+---
+
+<Section className="!p-0 relative">
+  <Picture
+    src={hero}
+    alt="Developers collaborating"
+    widths={[320, 480, 578, 640, 720, 800, 940, 1200, 1412, 1920]}
+    sizes="100vw"
+    format="avif"
+    loading="eager"
+    fetchpriority="high"
+    class="absolute rounded-b-[48px] md:rounded-b-[96px] inset-0 w-full h-full object-cover min-[1920px]:object-[right_0_top_-150px] -z-10 bg-[#424c6d]"
+  />
+  <div
+    class="absolute inset-0 [background:linear-gradient(0deg,rgba(0,0,0,0.6),rgba(0,0,0,0.6))] -z-10 rounded-b-[48px] md:rounded-b-[96px]"
+  >
+    <!-- Overlay -->
+  </div>
+  <div class="mx-auto xl:px-0">
+    <div
+      class={`${grid_classes} md:max-w-[var(--max-width)] px-4 md:px-7 py-24 md:!py-[144px] md:mx-auto relative z-[2] min-[1281px]:px-0`}
+    >
+      <div
+        class="row-start-1
+          col-start-1
+          col-span-6
+          md:col-span-10
+          lg:col-span-5
+          lg:col-start-2
+          grid
+          gap-3 md:gap-7
+          text-white
+          self-start"
+      >
+        <div class="flex flex-col gap-2 md:gap-4 max-h-fit">
+          <Pill
+            className="text-[10px] min-[340px]:text-xs min-[390px]:text-sm sm:text-base px-2 py-1 min-[390px]:px-3 min-[390px]:py-1.5 sm:px-4 sm:py-2 max-h-[36px]"
+            >We finish your vibe-coded mvps</Pill
+          >
+          <h1
+            class="text-[18px] leading-[22px] min-[390px]:text-[24px] min-[390px]:leading-[28px] sm:text-[32px] sm:leading-[36px] md:text-[54px] md:leading-[59.4px] font-medium tracking-tight"
+          >
+            <span class="fadeInUp block" style="animation-delay: 100ms;">
+              Your MVP is 80%
+            </span>
+            <span
+              class="fadeInUp block"
+              style="animation-delay: 500ms;animation-fill-mode: backwards;"
+            >
+              Done? We will get you <span class="text-crocoder-yellow"
+                >to 100%</span
+              >.
+            </span>
+          </h1>
+          <p
+            class="font-normal text-sm leading-5 min-[390px]:text-base min-[390px]:leading-6 sm:text-lg sm:leading-7 md:text-[22px] md:leading-8 tracking-normal"
+          >
+            <span
+              class="fadeInUp"
+              style="animation-delay: 900ms;animation-fill-mode: backwards;"
+            >
+              You used AI, no-code, or some coding to build fast? Now you're
+              stuck at the edge of launch.
+              <br />
+              <strong class="font-semibold">
+                Polish, bugs, logic, production - That's where we come in.
+              </strong>
+            </span>
+          </p>
+        </div>
+      </div>
+      <div
+        class="flex
+          flex-col
+          row-start-2
+          col-start-1
+          col-span-6
+          md:col-span-12
+          lg:col-span-5
+          lg:col-start-7
+          lg:row-start-1"
+      >
+        <BaseContactForm
+          formId="vibe-code-contact-us-hero"
+          onDark
+          formClassNames="lg:-top-6 max-lg:max-w-3xl max-lg:mx-auto"
+        >
+          <span
+            slot="submit-button-content"
+            class="flex items-center justify-center gap-2.5"
+          >
+            Get a free build review <RightArrow />
+          </span>
+        </BaseContactForm>
+      </div>
+    </div>
+  </div>
+</Section>

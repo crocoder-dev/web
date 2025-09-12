@@ -1,0 +1,106 @@
+---
+import { Picture } from "astro:assets";
+import team from "../../assets/team.jpg";
+import Pill from "../../components/Pill.astro";
+import Section from "../../components/Section.astro";
+import { grid_classes } from "../../components/_grid";
+import "../../styles/main.css";
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+
+const reasons = (await getCollection("vibe_code_mvp_why_work_with_us")) as {
+  data: {
+    image: string;
+    imageAlt: string;
+    title: string;
+  };
+}[];
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/*.svg"
+);
+---
+
+<Section className="!p-0" contentClassName="md:max-w-screen">
+  <div
+    class="relative pt-49 pb-18 md:pb-24 min-[1920px]:pb-48 min-[1920px]:pt-98"
+  >
+    <Picture
+      src={team}
+      alt="Developers collaborating"
+      widths={[320, 480, 578, 640, 720, 800, 940, 1200, 1412, 1920]}
+      sizes="100vw"
+      format="avif"
+      loading="lazy"
+      class="absolute inset-0 w-full h-full object-cover object-top -z-10 bg-[#424c6d]"
+    />
+    <div
+      class="absolute inset-0 -z-10"
+      style="background:linear-gradient(180deg,rgba(30, 26, 26, 0) 0%, #1E1A1A 100%)"
+    >
+      <!-- Overlay -->
+    </div>
+    <div class="mx-auto xl:px-0">
+      <div
+        class={`${grid_classes} md:max-w-[var(--max-width)] px-4 md:px-7 py-0 md:mx-auto relative z-[2] min-[1281px]:px-0`}
+      >
+        <div
+          class="row-start-1
+          col-start-1
+          col-span-6
+          md:col-span-10
+          md:col-start-2
+          text-white"
+        >
+          <div class="flex flex-col items-center gap-2 md:gap-4 max-h-fit">
+            <Pill
+              className="text-[10px] min-[340px]:text-xs min-[390px]:text-sm sm:text-base px-2 py-1 min-[390px]:px-3 min-[390px]:py-1.5 sm:px-4 sm:py-2 max-h-[36px]"
+              >Why work with us</Pill
+            >
+            <h2
+              class="text-[18px] leading-[22px] min-[390px]:text-[24px] min-[390px]:leading-[28px] sm:text-[32px] sm:leading-[36px] md:text-[54px] md:leading-[59.4px] font-medium lg:text-[74px] lg:leading-[82px] tracking-tight text-center"
+            >
+              The <span class="text-crocoder-orange">Dev Team</span> Who <span
+                class="text-crocoder-orange">Finishes</span
+              > What AI, Templates And Tools Can't
+            </h2>
+            <p
+              class="font-normal text-sm leading-5 min-[390px]:text-base min-[390px]:leading-6 sm:text-lg sm:leading-7 md:text-[22px] md:leading-8 tracking-normal text-center"
+            >
+              We're not a design agency. We're not no-code coaches
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bg-contrast">
+    <div
+      class={`${grid_classes} 
+    md:max-w-[var(--max-width)] 
+    pl-4 md:pl-7 pr-0 lg:pr-7 py-0 
+    md:mx-auto 
+    relative 
+    min-[1281px]:px-0 
+    `}
+    >
+      <div
+        class="col-span-6 md:col-span-12 flex gap-2 overflow-x-auto no-scrollbar pr-4 md:pr-7 lg:px-0 lg:overflow-hidden"
+      >
+        {
+          reasons.map((r) => (
+            <div class="bg-white/10 p-5 rounded-2xl flex flex-col gap-5 min-w-[240px] lg:flex-1 lg:min-w-auto">
+              <Image
+                src={images[r.data.image]()}
+                alt={r.data.imageAlt}
+                width={48}
+                height={48}
+              />
+              <p class="text-[22px] leading-6 text-[#FFFFFF]">{r.data.title}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</Section>

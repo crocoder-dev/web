@@ -10,7 +10,8 @@
         "secondary": "#3C3843",
         "crocoder_yellow": "#FEC343",
         "contrast": "#1E1A1A",
-        "crocoder_green": "#607A1A"
+        "crocoder_green": "#607A1A",
+        "crocoder_orange": "#FEB534"
       },
       "text_color": {
         "default": "#747577",

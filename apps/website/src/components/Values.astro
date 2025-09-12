@@ -8,7 +8,7 @@ import Pill from "./Pill.astro";
 import { getImage } from "astro:assets";
 import bgImage from "../assets/values-main-image.png";
 
-const styles = ["bg-[#FEB534]", "bg-[#607A1A]", "bg-[#F6FCFD]"];
+const styles = ["bg-crocoder-orange", "bg-[#607A1A]", "bg-[#F6FCFD]"];
 
 const valueCollection = await getCollection("values");
 
@@ -47,8 +47,8 @@ const { src } = await getImage({
     <SectionTitle
       className="col-span-6 md:text-center text-[44px] leading-[48px] md:text-[74px] md:leading-[81px] md:max-w-[712px] xl:max-w-[848px] text-white"
     >
-      <span class="text-[#FEB534]"> Creating Value </span>Through The Power Of
-      Software
+      <span class="text-crocoder-orange"> Creating Value </span>Through The
+      Power Of Software
     </SectionTitle>
   </div>
   {
