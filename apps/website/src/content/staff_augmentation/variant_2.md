@@ -2,21 +2,21 @@
 id: "get-on-demand-talent"
 hero:
   {
-    pillText: "Expand Your Capacity Now",
+    pillText: "Facing a tight deadline?",
     title_1: "Get On-Demand",
-    title_2: "Talent for Your Team by Friday",
+    title_2: "Talent for Your Team in No Time",
     description: "Product-minded web engineers who join instantly, unblock critical work, and help you ship on time — from urgent fixes to major features, junior to senior talent.",
   }
 main:
   {
-    pillText: "Ship Features, Fix Bugs, Meet Deadlines",
-    title_1: "Add headcount instantly",
-    title_2: "and take on more work with confidence",
+    pillText: "No delays, just delivery",
+    title_1: "Expand Your Capacity Now",
+    title_2: "And Take on More Work With Confidence",
     fitChecks:
       [
         {
           highlight: "Are facing tight deadlines",
-          text: "and need extra hands instantly",
+          text: "and need extra hands ASAP",
         },
         {
           highlight: "Have critical initiatives",
