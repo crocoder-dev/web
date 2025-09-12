@@ -2,14 +2,14 @@
 id: "backfill-your-developer-gap"
 hero:
   {
-    pillText: "No Delays, Just Delivery",
+    pillText: "Keep your projects moving",
     title_1: "Backfill Your Developer Gap",
     title_2: "This Week",
     description: " Whether a teammate leaves or workload spikes — skip hiring delays. We embed engineers in days who work your hours, use your tools, and take ownership from day one.",
   }
 main:
   {
-    pillText: "Hands-On Engineers, Fast",
+    pillText: "Jumpstart your team",
     title_1: "Staff Augmentation",
     title_2: "Without the Hiring Bottleneck",
     fitChecks:

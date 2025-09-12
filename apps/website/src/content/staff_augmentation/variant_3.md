@@ -9,7 +9,7 @@ hero:
   }
 main:
   {
-    pillText: "The Right Skills for the Right Project",
+    pillText: "Tailored skills, perfect fit",
     title_1: "Flexible, Embedded Experts,",
     title_2: "Ready to Jump In",
     fitChecks:
