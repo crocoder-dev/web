@@ -4,7 +4,7 @@ import {
 } from "../../apps/contact/app/(helpers)/slack";
 
 const mockData = {
-  name: "Test",
+  name: "Test name",
   email: "test@test.com",
   url: "https://www.test.dev/",
 };
@@ -22,7 +22,7 @@ const mockBlocks = [
     type: "section",
     text: {
       type: "mrkdwn",
-      text: `We got a new message from _${mockData.name}_ (_${mockData.email}_).`,
+      text: `We got a new message from _Test name_ (_test@test.com_).`,
     },
   },
   {
@@ -42,7 +42,7 @@ const mockBlocks = [
         emoji: true,
       },
       value: "new_message_click",
-      url: mockData.url,
+      url: "https://www.test.dev/",
       action_id: "button-action",
     },
   },
