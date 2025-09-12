@@ -76,7 +76,12 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
         errorText={formContent.frontmatter.requiredField}
         onDark={onDark}
       />
-      <span class="text-secondary text-xs text-right mt-1 block">
+      <span
+        class={classnames("text-xs text-right mt-1 block", {
+          "text-secondary": !onDark,
+          "text-neutral-50": onDark,
+        })}
+      >
         <span id="char-counter">0</span>/1500
       </span>
     </div>
