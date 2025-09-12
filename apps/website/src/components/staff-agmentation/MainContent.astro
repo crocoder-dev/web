@@ -23,13 +23,13 @@ export type MainContent = {
 
 const staffContent = (await getCollection("staff_augmentation")) as {
   data: {
-    id: number;
+    id: string;
     main: MainContent;
   };
 }[];
 
-const contentVariantId = Number(
-  Astro.url.searchParams.get("contentVariant") || 1
+const contentVariantId = String(
+  Astro.url.searchParams.get("id") || "backfill-your-developer-gap",
 );
 
 let content = staffContent.find((c) => c.data.id === contentVariantId);
@@ -53,8 +53,10 @@ const { data } = content;
       <div
         class="flex flex-col items-center gap-4 mb-12 md:mb-24 px-1 md:px-2 xl:px-[104px] mx-auto"
       >
-        <Pill>{data.main.pillText}</Pill>
-        <h2
+      <Pill className="min-w-0 w-auto max-w-[280px] !whitespace-normal break-words text-center sm:w-fit sm:max-w-none">
+        {data.main.pillText}
+      </Pill>
+              <h2
           class="text-[32px] leading-[36px] md:text-[48px] md:leading-[52px] lg:text-[60px] lg:leading-[66px] xl:text-[74px] xl:leading-[81px] font-medium tracking-[-2%] text-center"
         >
           <span class="text-white block md:whitespace-nowrap"
