@@ -9,13 +9,13 @@ import type { MainContent } from "./MainContent.astro";
 
 const staffContent = (await getCollection("staff_augmentation")) as {
   data: {
-    id: number;
+    id: string;
     main: MainContent;
   };
 }[];
 
-const contentVariantId = Number(
-  Astro.url.searchParams.get("contentVariant") || 1
+const contentVariantId = String(
+  Astro.url.searchParams.get("id") || "backfill-your-developer-gap"
 );
 
 let content = staffContent.find((c) => c.data.id === contentVariantId);

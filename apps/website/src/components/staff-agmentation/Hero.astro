@@ -14,13 +14,13 @@ const staff = (await getCollection("staff_members")) as {
   data: { name: string; image: string; role: string };
 }[];
 
-const contentVariantID = Number(
-  Astro.url.searchParams.get("contentVariant") || 1
+const contentVariantID = String(
+  Astro.url.searchParams.get("id") || "backfill-your-developer-gap"
 );
 
 const staffContent = (await getCollection("staff_augmentation")) as {
   data: {
-    id: number;
+    id: string;
     hero: {
       pillText: string;
       title_1: string;
@@ -47,8 +47,8 @@ if (!content) {
     )}
   >
     <!-- Fills the empty left gap on wide screens.
-     Simulates `background-repeat`, because we can’t use 
-     an SVG as background-image in combination with background-repeat 
+     Simulates `background-repeat`, because we can’t use
+     an SVG as background-image in combination with background-repeat
      because it gets blurry. -->
     <Picture
       src={hero}
@@ -56,8 +56,8 @@ if (!content) {
       class="w-[1400px] h-full absolute top-0 -translate-x-full left-[calc(50%-800px)] z-[1] bg-[#FFF1E1] hidden min-[1600px]:block"
     />
     <!-- Fills the empty right gap on wide screens.
-     Simulates `background-repeat`, because we can’t use 
-     an SVG as background-image in combination with background-repeat 
+     Simulates `background-repeat`, because we can’t use
+     an SVG as background-image in combination with background-repeat
      because it gets blurry. -->
     <Picture
       src={hero}
