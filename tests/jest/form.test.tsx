@@ -17,7 +17,7 @@ jest.mock("@notionhq/client", () => {
   };
 });
 
-jest.mock("../../app/(helpers)/slack", () => {
+jest.mock("../../apps/contact/app/(helpers)/slack", () => {
   return {
     notifyContactCreated: jest.fn(),
   };
@@ -26,8 +26,8 @@ jest.mock("../../app/(helpers)/slack", () => {
 process.env.NOTION_DATABASE_ID = "mocked-notion-database-id";
 
 import { NextRequest } from "next/server";
-import { POST } from "../../app/api/contact/route";
-import { notifyContactCreated } from "../../app/(helpers)/slack";
+import { POST } from "../../apps/contact/app/api/contact/route";
+import { notifyContactCreated } from "../../apps/contact/app/(helpers)/slack";
 
 const mockSlack = notifyContactCreated as jest.Mock;
 
