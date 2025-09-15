@@ -15,7 +15,7 @@ const staff = (await getCollection("staff_members")) as {
 }[];
 
 const contentVariantID = String(
-  Astro.url.searchParams.get("id") || "backfill-your-developer-gap"
+  Astro.url.searchParams.get("id") || "backfill-your-developer-gap",
 );
 
 const staffContent = (await getCollection("staff_augmentation")) as {
@@ -43,7 +43,7 @@ if (!content) {
 >
   <div
     class={classnames(
-      "mx-auto xl:px-0 bg-[#FFF1E1] rounded-b-4xl md:rounded-b-[96px] relative overflow-hidden"
+      "mx-auto xl:px-0 bg-[#FFF1E1] rounded-b-4xl md:rounded-b-[96px] relative overflow-hidden",
     )}
   >
     <!-- Fills the empty left gap on wide screens.
@@ -84,13 +84,13 @@ if (!content) {
           text-secondary
            pt-7 pb-14 md:pb-24 self-start"
       >
-        <div class="flex flex-col gap-2 md:gap-4 max-h-fit">
+        <div class="flex flex-col gap-4 md:gap-4 max-h-fit">
           <Pill
             className="text-[10px] min-[340px]:text-xs min-[390px]:text-sm sm:text-base md:text-lg px-2 py-1 min-[390px]:px-3 min-[390px]:py-1.5 sm:px-4 sm:py-2 max-h-[36px]"
             >{content.data.hero.pillText}</Pill
           >
           <h1
-            class="text-[18px] leading-[22px] min-[390px]:text-[24px] min-[390px]:leading-[28px] sm:text-[32px] sm:leading-[36px] md:text-[54px] md:leading-[59.4px] font-medium tracking-tight"
+            class="text-[32px] w-[300px] min-sm:w-auto mt-2 leading-none min-[390px]:leading-[28px] sm:leading-[36px] md:text-[54px] md:leading-[59.4px] font-medium tracking-tight"
           >
             <span class="fadeInUp block" style="animation-delay: 100ms;">
               {content.data.hero.title_1}
@@ -103,7 +103,7 @@ if (!content) {
             </span>
           </h1>
           <p
-            class="font-normal text-sm leading-5 min-[390px]:text-base min-[390px]:leading-6 sm:text-lg sm:leading-7 md:text-[22px] md:leading-8 tracking-normal"
+            class="font-normal text-base leading-5 min-[390px]:leading-6 sm:text-lg sm:leading-7 md:text-[22px] md:leading-8 tracking-normal"
           >
             <span
               class="fadeInUp"
