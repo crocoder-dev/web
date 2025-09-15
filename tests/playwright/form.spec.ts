@@ -82,7 +82,7 @@ test.describe("Form submission from home page", () => {
         }),
       });
     });
-    await page.getByRole("navigation").getByText("Contact us").last().click();
+    await page.getByRole("link", { name: "Contact us", exact: true }).click();
 
     await expect(page.getByText("get in touch")).toBeVisible();
     await page.getByRole("textbox", { name: "Full name *" }).fill("Test name");
@@ -115,7 +115,7 @@ test.describe("Form submission from home page", () => {
         }),
       });
     });
-    await page.getByRole("navigation").getByText("Contact us").last().click();
+    await page.getByRole("link", { name: "Contact us", exact: true }).click();
 
     await expect(page.getByText("get in touch")).toBeVisible();
     await page.getByRole("textbox", { name: "Full name *" }).fill("Test name");

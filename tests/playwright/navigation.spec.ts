@@ -75,10 +75,10 @@ test.describe("Navigation via navigation bar to", () => {
   test("Contact us page", async ({ page }) => {
     await expect(page.getByRole("navigation")).toBeVisible();
 
-    const contactUsLink = page
-      .getByRole("navigation")
-      .getByText("Contact us")
-      .last();
+    const contactUsLink = page.getByRole("link", {
+      name: "Contact us",
+      exact: true,
+    });
 
     await expect(contactUsLink).toBeVisible();
     await contactUsLink.click();
