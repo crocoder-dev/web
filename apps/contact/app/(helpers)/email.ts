@@ -1,15 +1,24 @@
+import { SendEmailCommand, SESv2Client } from "@aws-sdk/client-sesv2";
 import { render } from "@react-email/components";
 import { createTransport } from "nodemailer";
 
-const { EMAIL_HOST, EMAIL_FROM, EMAIL_USERNAME, EMAIL_PASSWORD } = process.env;
+const {
+  EMAIL_FROM,
+  AWS_REGION,
+  EMAIL_AWS_ACCESS_KEY,
+  EMAIL_AWS_SECRET_ACCESS_KEY,
+} = process.env;
+
+const sesClient = new SESv2Client({
+  region: AWS_REGION,
+  credentials: {
+    accessKeyId: EMAIL_AWS_ACCESS_KEY || "",
+    secretAccessKey: EMAIL_AWS_SECRET_ACCESS_KEY || "",
+  },
+});
 
 const transporter = createTransport({
-  host: EMAIL_HOST,
-  port: 587,
-  auth: {
-    user: EMAIL_USERNAME,
-    pass: EMAIL_PASSWORD,
-  },
+  SES: { sesClient, SendEmailCommand },
 });
 
 export const sendEmail = async ({

@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-sdk/client-sesv2": "^3.888.0",
     "@notionhq/client": "^5.0.0",
     "@react-email/components": "^0.5.3",
     "nanoid": "^5.0.9",
