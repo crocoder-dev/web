@@ -15,10 +15,15 @@ test.describe("Form page", () => {
       "CroCoder | Building Software that Builds Your Business",
     );
     await expect(page.getByText("get in touch")).toBeVisible();
-    await expect(page.getByPlaceholder("Full name *")).toBeVisible();
-    await expect(page.getByPlaceholder("E-mail *")).toBeVisible();
     await expect(
-      page.getByPlaceholder("Tell us about your project *"),
+      page.getByRole("textbox", { name: "Full name *" }),
+    ).toBeVisible();
+    await expect(page.getByRole("textbox", { name: "E-mail *" })).toBeVisible();
+    await expect(
+      page.getByRole("textbox", { name: "Tell us about your project *" }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("checkbox", { name: "I give consent to CroCoder to" }),
     ).toBeVisible();
     await expect(
       page.getByText(
@@ -44,15 +49,13 @@ test.describe("Form page", () => {
         }),
       });
     });
-    await page.getByPlaceholder("Full name *").fill("Test name");
-    await page.getByPlaceholder("E-mail *").fill("test@test.com");
+    await page.getByRole("textbox", { name: "Full name *" }).fill("Test name");
+    await page.getByRole("textbox", { name: "E-mail *" }).fill("test@test.com");
     await page
-      .getByPlaceholder("Tell us about your project *")
+      .getByRole("textbox", { name: "Tell us about your project *" })
       .fill("This is a test input");
     await page
-      .getByText(
-        "I give consent to CroCoder to use this information to contact me.",
-      )
+      .getByRole("checkbox", { name: "I give consent to CroCoder to" })
       .click();
     await page.getByRole("button", { name: "Get a free build review" }).click();
 
@@ -82,15 +85,13 @@ test.describe("Form submission from home page", () => {
     await page.getByRole("navigation").getByText("Contact us").last().click();
 
     await expect(page.getByText("get in touch")).toBeVisible();
-    await page.getByPlaceholder("Full name *").fill("Test name");
-    await page.getByPlaceholder("E-mail *").fill("test@test.com");
+    await page.getByRole("textbox", { name: "Full name *" }).fill("Test name");
+    await page.getByRole("textbox", { name: "E-mail *" }).fill("test@test.com");
     await page
-      .getByPlaceholder("Tell us about your project *")
+      .getByRole("textbox", { name: "Tell us about your project *" })
       .fill("This is a test input");
     await page
-      .getByText(
-        "I give consent to CroCoder to use this information to contact me.",
-      )
+      .getByRole("checkbox", { name: "I give consent to CroCoder to" })
       .click();
     await page.getByRole("button", { name: "Get a free build review" }).click();
 
@@ -117,15 +118,13 @@ test.describe("Form submission from home page", () => {
     await page.getByRole("navigation").getByText("Contact us").last().click();
 
     await expect(page.getByText("get in touch")).toBeVisible();
-    await page.getByPlaceholder("Full name *").fill("Test name");
-    await page.getByPlaceholder("E-mail *").fill("test@test.com");
+    await page.getByRole("textbox", { name: "Full name *" }).fill("Test name");
+    await page.getByRole("textbox", { name: "E-mail *" }).fill("test@test.com");
     await page
-      .getByPlaceholder("Tell us about your project *")
+      .getByRole("textbox", { name: "Tell us about your project *" })
       .fill("This is a test input");
     await page
-      .getByText(
-        "I give consent to CroCoder to use this information to contact me.",
-      )
+      .getByRole("checkbox", { name: "I give consent to CroCoder to" })
       .click();
     await page.getByRole("button", { name: "Get a free build review" }).click();
 

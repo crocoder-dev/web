@@ -48,7 +48,7 @@ test.describe("Mobile view navigation via navigation bar to", () => {
 
   test("For CTOs page", async () => {
     await expect(page.getByRole("navigation")).toBeVisible();
-    await page.locator("#top-line").click();
+    await page.getByRole("button", { name: "Toggle menu" }).click();
 
     const forCtosLink = page
       .locator("#mobile-list")
@@ -65,7 +65,7 @@ test.describe("Mobile view navigation via navigation bar to", () => {
 
   test("Blog page", async () => {
     await expect(page.getByRole("navigation")).toBeVisible();
-    await page.locator("#top-line").click();
+    await page.getByRole("button", { name: "Toggle menu" }).click();
 
     const blogLink = page
       .locator("#mobile-list")
@@ -82,7 +82,7 @@ test.describe("Mobile view navigation via navigation bar to", () => {
 
   test("Book a call section", async () => {
     await expect(page.getByRole("navigation")).toBeVisible();
-    await page.locator("#top-line").click();
+    await page.getByRole("button", { name: "Toggle menu" }).click();
 
     const bookACallLink = page
       .locator("#mobile-list")
@@ -97,7 +97,7 @@ test.describe("Mobile view navigation via navigation bar to", () => {
 
   test("Contact us page", async () => {
     await expect(page.getByRole("navigation")).toBeVisible();
-    await page.locator("#top-line").click();
+    await page.getByRole("button", { name: "Toggle menu" }).click();
 
     const contactUsLink = page
       .locator("#mobile-list")
