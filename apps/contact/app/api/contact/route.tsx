@@ -1,3 +1,5 @@
+//import { ContactTemplate } from "@/app/(email-templates)/contact";
+//import { sendEmail } from "@/app/(helpers)/email";
 import { processContact } from "@/app/(helpers)/notion";
 import { nanoid } from "nanoid";
 import { NextRequest } from "next/server";
@@ -95,6 +97,11 @@ export async function POST(request: NextRequest) {
         databaseID: NOTION_DATABASE_ID || "",
         source: request.nextUrl.searchParams.get("source") || "Unknown",
       });
+
+      /* await sendEmail({
+        template: <ContactTemplate />,
+        options: { to: email, subject: "Thank you for contacting us!" },
+      }); */
 
       return new Response(
         JSON.stringify({
