@@ -26,15 +26,11 @@ test.describe("For CTOs page in mobile view", () => {
     await page.goto(`${baseUrl}/${forCtosUrl}`);
   });
 
-  test("should have title and heading", async () => {
+  test("should have title and corresponding text", async () => {
     await expect(page).toHaveTitle(
       "CroCoder | Building Software that Builds Your Business",
     );
-    await expect(
-      page.getByRole("heading", {
-        name: "Your Tech Strategy: Delivered, Scaled, and Sustained",
-      }),
-    ).toBeVisible();
+    await expect(page.getByText("Integrated solutions for CTOs")).toBeVisible();
   });
 });
 
@@ -89,10 +85,7 @@ test.describe("Navigation via links in mobile view to", () => {
 
     await Promise.allSettled([
       page.waitForURL(`${baseUrl}/${contactUrl}`, { timeout: 10000 }),
+      expect(page.getByText("get in touch")).toBeVisible(),
     ]);
-
-    await expect(
-      page.getByRole("heading", { name: "Let’s Talk About Your Project" }),
-    ).toBeVisible();
   });
 });

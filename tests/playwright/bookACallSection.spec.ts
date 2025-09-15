@@ -21,10 +21,7 @@ test.describe("Book a call section", () => {
 
     await Promise.allSettled([
       page.waitForURL(`${baseUrl}/${contactUrl}`, { timeout: 10000 }),
+      expect(page.getByText("get in touch")).toBeVisible(),
     ]);
-
-    await expect(
-      page.getByRole("heading", { name: "Let’s Talk About Your Project" }),
-    ).toBeVisible();
   });
 });

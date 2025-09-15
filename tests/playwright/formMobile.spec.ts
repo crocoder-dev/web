@@ -28,9 +28,7 @@ test.describe("Form page in mobile view", () => {
     await expect(page).toHaveTitle(
       "CroCoder | Building Software that Builds Your Business",
     );
-    await expect(
-      page.getByRole("heading", { name: "Let’s Talk About Your Project" }),
-    ).toBeVisible();
+    await expect(page.getByText("get in touch")).toBeVisible();
     await expect(page.getByPlaceholder("Full name *")).toBeVisible();
     await expect(page.getByPlaceholder("E-mail *")).toBeVisible();
     await expect(
@@ -58,7 +56,6 @@ test.describe("Form page in mobile view", () => {
         }),
       });
     });
-
     await page.getByPlaceholder("Full name *").fill("Test name");
     await page.getByPlaceholder("E-mail *").fill("test@test.com");
     await page
@@ -96,10 +93,6 @@ test.describe("Form submission in mobile view from home page", () => {
   });
 
   test("sucessfull", async () => {
-    await page.getByRole("link", { name: "Contact us", exact: true }).click();
-    await expect(
-      page.getByRole("heading", { name: "Let’s Talk About Your Project" }),
-    ).toBeVisible();
     await page.route(`${routeUrl}**`, async (route) => {
       await route.fulfill({
         status: 200,
@@ -111,7 +104,9 @@ test.describe("Form submission in mobile view from home page", () => {
         }),
       });
     });
+    await page.getByRole("link", { name: "Contact us", exact: true }).click();
 
+    await expect(page.getByText("get in touch")).toBeVisible();
     await page.getByPlaceholder("Full name *").fill("Test name");
     await page.getByPlaceholder("E-mail *").fill("test@test.com");
     await page
@@ -128,20 +123,12 @@ test.describe("Form submission in mobile view from home page", () => {
       page.getByRole("link", { name: "BACK TO HOMEPAGE" }),
     ).toBeVisible();
     await page.getByRole("link", { name: "BACK TO HOMEPAGE" }).click();
-    await page.waitForURL(`${baseUrl}/`);
 
-    await expect(
-      page.getByRole("heading", {
-        name: "Building Software that Builds Your Business",
-      }),
-    ).toBeVisible();
+    await page.waitForURL(`${baseUrl}/`);
+    await expect(page.getByText("More than just developers")).toBeVisible();
   });
 
   test("unsucessfull", async () => {
-    await page.getByRole("link", { name: "Contact us", exact: true }).click();
-    await expect(
-      page.getByRole("heading", { name: "Let’s Talk About Your Project" }),
-    ).toBeVisible();
     await page.route(`${routeUrl}**`, async (route) => {
       await route.fulfill({
         status: 501,
@@ -152,7 +139,9 @@ test.describe("Form submission in mobile view from home page", () => {
         }),
       });
     });
+    await page.getByRole("link", { name: "Contact us", exact: true }).click();
 
+    await expect(page.getByText("get in touch")).toBeVisible();
     await page.getByPlaceholder("Full name *").fill("Test name");
     await page.getByPlaceholder("E-mail *").fill("test@test.com");
     await page

@@ -10,15 +10,11 @@ test.describe("Landing page", () => {
     await page.goto(baseUrl);
   });
 
-  test("should have title and heading", async ({ page }) => {
+  test("should have title and corresponding text", async ({ page }) => {
     await expect(page).toHaveTitle(
       "CroCoder | Building Software that Builds Your Business",
     );
-    await expect(
-      page.getByRole("heading", {
-        name: "Building Software that Builds Your Business",
-      }),
-    ).toBeVisible();
+    await expect(page.getByText("More than just developers")).toBeVisible();
   });
 });
 

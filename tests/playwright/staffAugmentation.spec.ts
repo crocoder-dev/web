@@ -10,14 +10,12 @@ test.describe("Staff Augmentation page", () => {
     await page.goto(`${baseUrl}/${staffAugmentationUrl}`);
   });
 
-  test("should have title and heading", async ({ page }) => {
+  test("should have title and corresponding text", async ({ page }) => {
     await expect(page).toHaveTitle(
       "CroCoder | Building Software that Builds Your Business",
     );
     await expect(
-      page.getByRole("heading", {
-        name: "On-Demand Talent, Working as an Extension of Your Team",
-      }),
+      page.getByText("Outcome-Driven Product Engineering"),
     ).toBeVisible();
   });
 });

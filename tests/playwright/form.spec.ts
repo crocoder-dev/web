@@ -14,9 +14,7 @@ test.describe("Form page", () => {
     await expect(page).toHaveTitle(
       "CroCoder | Building Software that Builds Your Business",
     );
-    await expect(
-      page.getByRole("heading", { name: "Let’s Talk About Your Project" }),
-    ).toBeVisible();
+    await expect(page.getByText("get in touch")).toBeVisible();
     await expect(page.getByPlaceholder("Full name *")).toBeVisible();
     await expect(page.getByPlaceholder("E-mail *")).toBeVisible();
     await expect(
@@ -46,7 +44,6 @@ test.describe("Form page", () => {
         }),
       });
     });
-
     await page.getByPlaceholder("Full name *").fill("Test name");
     await page.getByPlaceholder("E-mail *").fill("test@test.com");
     await page
@@ -82,12 +79,9 @@ test.describe("Form submission from home page", () => {
         }),
       });
     });
-
     await page.getByRole("navigation").getByText("Contact us").last().click();
-    await expect(
-      page.getByRole("heading", { name: "Let’s Talk About Your Project" }),
-    ).toBeVisible();
 
+    await expect(page.getByText("get in touch")).toBeVisible();
     await page.getByPlaceholder("Full name *").fill("Test name");
     await page.getByPlaceholder("E-mail *").fill("test@test.com");
     await page
@@ -104,13 +98,9 @@ test.describe("Form submission from home page", () => {
       page.getByRole("link", { name: "BACK TO HOMEPAGE" }),
     ).toBeVisible();
     await page.getByRole("link", { name: "BACK TO HOMEPAGE" }).click();
-    await page.waitForURL(`${baseUrl}/`);
 
-    await expect(
-      page.getByRole("heading", {
-        name: "Building Software that Builds Your Business",
-      }),
-    ).toBeVisible();
+    await page.waitForURL(`${baseUrl}/`);
+    await expect(page.getByText("More than just developers")).toBeVisible();
   });
 
   test("unsucessfull", async ({ page }) => {
@@ -124,12 +114,9 @@ test.describe("Form submission from home page", () => {
         }),
       });
     });
-
     await page.getByRole("navigation").getByText("Contact us").last().click();
-    await expect(
-      page.getByRole("heading", { name: "Let’s Talk About Your Project" }),
-    ).toBeVisible();
 
+    await expect(page.getByText("get in touch")).toBeVisible();
     await page.getByPlaceholder("Full name *").fill("Test name");
     await page.getByPlaceholder("E-mail *").fill("test@test.com");
     await page

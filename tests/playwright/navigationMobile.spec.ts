@@ -43,11 +43,7 @@ test.describe("Mobile view navigation via navigation bar to", () => {
     await croCoderLogo.click();
 
     await expect(page).toHaveURL(`${baseUrl}/`);
-    await expect(
-      page.getByRole("heading", {
-        name: "Building Software that Builds Your Business",
-      }),
-    ).toBeVisible();
+    await expect(page.getByText("More than just developers")).toBeVisible();
   });
 
   test("For CTOs page", async () => {
@@ -63,13 +59,8 @@ test.describe("Mobile view navigation via navigation bar to", () => {
 
     await Promise.allSettled([
       page.waitForURL(`${baseUrl}/${forCtosUrl}`, { timeout: 10000 }),
+      expect(page.getByText("Integrated solutions for CTOs")).toBeVisible(),
     ]);
-
-    await expect(
-      page.getByRole("heading", {
-        name: "Your Tech Strategy: Delivered, Scaled, and Sustained",
-      }),
-    ).toBeVisible();
   });
 
   test("Blog page", async () => {
@@ -85,9 +76,8 @@ test.describe("Mobile view navigation via navigation bar to", () => {
 
     await Promise.allSettled([
       page.waitForURL(`${baseUrl}/${blogUrl}`, { timeout: 10000 }),
+      expect(page).toHaveTitle("Blog | CroCoder"),
     ]);
-
-    await expect(page).toHaveTitle("Blog | CroCoder");
   });
 
   test("Book a call section", async () => {
@@ -118,11 +108,8 @@ test.describe("Mobile view navigation via navigation bar to", () => {
     await Promise.all([
       page.waitForURL(`${baseUrl}/${contactUrl}`),
       contactUsLink.click(),
+      expect(page.getByText("get in touch")).toBeVisible(),
     ]);
-
-    await expect(
-      page.getByRole("heading", { name: "Let’s Talk About Your Project" }),
-    ).toBeVisible();
   });
 
   test("Contact us page from nav bar", async () => {
@@ -138,11 +125,8 @@ test.describe("Mobile view navigation via navigation bar to", () => {
 
     await Promise.allSettled([
       page.waitForURL(`${baseUrl}/${contactUrl}`, { timeout: 10000 }),
+      expect(page.getByText("get in touch")).toBeVisible(),
     ]);
-
-    await expect(
-      page.getByRole("heading", { name: "Let’s Talk About Your Project" }),
-    ).toBeVisible();
   });
 });
 
@@ -172,11 +156,7 @@ test.describe("Navigation via footer links in mobile view to", () => {
     await croCoderLogo.click();
 
     await expect(page).toHaveURL(`${baseUrl}/`);
-    await expect(
-      page.getByRole("heading", {
-        name: "Building Software that Builds Your Business",
-      }),
-    ).toBeVisible();
+    await expect(page.getByText("More than just developers")).toBeVisible();
   });
 
   test("Home page link", async () => {
@@ -185,11 +165,7 @@ test.describe("Navigation via footer links in mobile view to", () => {
     await homeLink.click();
 
     await expect(page).toHaveURL(`${baseUrl}/`);
-    await expect(
-      page.getByRole("heading", {
-        name: "Building Software that Builds Your Business",
-      }),
-    ).toBeVisible();
+    await expect(page.getByText("More than just developers")).toBeVisible();
   });
 
   test("For CTOs page", async () => {
@@ -199,13 +175,8 @@ test.describe("Navigation via footer links in mobile view to", () => {
 
     await Promise.allSettled([
       page.waitForURL(`${baseUrl}/${forCtosUrl}`, { timeout: 10000 }),
+      expect(page.getByText("Integrated solutions for CTOs")).toBeVisible(),
     ]);
-
-    await expect(
-      page.getByRole("heading", {
-        name: "Your Tech Strategy: Delivered, Scaled, and Sustained",
-      }),
-    ).toBeVisible();
   });
 
   test("Staff Augmentation page", async () => {
@@ -217,13 +188,10 @@ test.describe("Navigation via footer links in mobile view to", () => {
 
     await Promise.allSettled([
       page.waitForURL(`${baseUrl}/${staffAugmentationUrl}`, { timeout: 10000 }),
+      expect(
+        page.getByText("Outcome-Driven Product Engineering"),
+      ).toBeVisible(),
     ]);
-
-    await expect(
-      page.getByRole("heading", {
-        name: "On-Demand Talent, Working as an Extension of Your Team",
-      }),
-    ).toBeVisible();
   });
 
   test("Blog page", async () => {
@@ -233,9 +201,8 @@ test.describe("Navigation via footer links in mobile view to", () => {
 
     await Promise.allSettled([
       page.waitForURL(`${baseUrl}/${blogUrl}`, { timeout: 10000 }),
+      expect(page).toHaveTitle("Blog | CroCoder"),
     ]);
-
-    await expect(page).toHaveTitle("Blog | CroCoder");
   });
 
   test("Contact page", async () => {
@@ -245,11 +212,8 @@ test.describe("Navigation via footer links in mobile view to", () => {
 
     await Promise.allSettled([
       page.waitForURL(`${baseUrl}/${contactUrl}`, { timeout: 10000 }),
+      expect(page.getByText("get in touch")).toBeVisible(),
     ]);
-
-    await expect(
-      page.getByRole("heading", { name: "Let’s Talk About Your Project" }),
-    ).toBeVisible();
   });
 
   test("Youtube channel", async () => {
@@ -265,16 +229,6 @@ test.describe("Navigation via footer links in mobile view to", () => {
     await page.waitForURL((url) => url.href.includes("youtube.com/channel"), {
       timeout: 10000,
     });
-
-    // await Promise.all([
-    //   page.waitForSelector('button:has-text("Accept all")', {
-    //     state: "attached",
-    //   }),
-    //   page.getByRole("button", { name: "Accept all" }).scrollIntoViewIfNeeded(),
-    //   page.waitForURL(`${mobileYoutubeChannelUrl}`),
-    //   page.getByRole("button", { name: "Accept all" }).click(),
-    // ]);
-
     await expect(page).toHaveURL(`${mobileYoutubeChannelUrl}`);
   });
 

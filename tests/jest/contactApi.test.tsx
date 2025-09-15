@@ -38,6 +38,13 @@ const mockBody = {
   hasConsent: true,
 };
 
+const mockInvalidBody = {
+  name: "",
+  email: "test@example.com",
+  message: "",
+  hasConsent: true,
+};
+
 const mockNoConsent = {
   name: "Test No Consent",
   email: "testNoConsent@example.com",
@@ -139,7 +146,22 @@ describe("POST /api/contact", () => {
     });
 
     const response = await POST(request);
-    const data = await response.json();
+
+    expect(response.status).toBe(400);
+    expect(mockNotion).toHaveBeenCalledTimes(0);
+    expect(mockSlack).toHaveBeenCalledTimes(0);
+  });
+
+  it("shouldn't call Notion or Slack and return 400 response when invalid body was passed", async () => {
+    const request = new NextRequest("http://localhost", {
+      method: "POST",
+      body: JSON.stringify(mockInvalidBody),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const response = await POST(request);
 
     expect(response.status).toBe(400);
     expect(mockNotion).toHaveBeenCalledTimes(0);
