@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "emails": "email dev --dir app/\\(email-templates\\)"
   },
   "dependencies": {
     "@aws-sdk/client-sesv2": "^3.888.0",
@@ -20,10 +21,12 @@
     "zod": "^4.0.17"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@react-email/preview-server": "4.2.11",
     "@types/node": "^24",
     "@types/nodemailer": "^7.0.1",
     "@types/react": "^19",
-    "@types/react-dom": "^19"
+    "@types/react-dom": "^19",
+    "react-email": "4.2.11",
+    "typescript": "^5"
   }
 }
