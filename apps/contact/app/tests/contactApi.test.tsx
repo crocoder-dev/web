@@ -1,7 +1,3 @@
-/**
- * @jest-environment jsdom
- */
-
 const mockNotion = jest.fn();
 jest.mock("@notionhq/client", () => {
   const actual = jest.requireActual("@notionhq/client");
@@ -17,7 +13,7 @@ jest.mock("@notionhq/client", () => {
   };
 });
 
-jest.mock("../../apps/contact/app/(helpers)/slack", () => {
+jest.mock("../(helpers)/slack", () => {
   return {
     notifyContactCreated: jest.fn(),
   };
@@ -26,8 +22,8 @@ jest.mock("../../apps/contact/app/(helpers)/slack", () => {
 process.env.NOTION_DATABASE_ID = "mocked-notion-database-id";
 
 import { NextRequest } from "next/server";
-import { POST } from "../../apps/contact/app/api/contact/route";
-import { notifyContactCreated } from "../../apps/contact/app/(helpers)/slack";
+import { POST } from "../api/contact/route";
+import { notifyContactCreated } from "../(helpers)/slack";
 
 const mockSlack = notifyContactCreated as jest.Mock;
 

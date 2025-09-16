@@ -1,7 +1,4 @@
-import {
-  notifyContactCreated,
-  createPayload,
-} from "../../apps/contact/app/(helpers)/slack";
+import { notifyContactCreated, createPayload } from "../(helpers)/slack";
 
 const mockData = {
   name: "Test name",
