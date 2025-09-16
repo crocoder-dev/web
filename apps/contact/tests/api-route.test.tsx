@@ -92,6 +92,7 @@ describe("Contact API Route", () => {
       expect(responseData.message).toContain("Invalid email");
     });
 
+    /** Should this be the case? **/
     it("should return 400 for missing required fields", async () => {
       const invalidBody = {
         name: "John Doe",
