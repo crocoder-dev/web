@@ -76,9 +76,7 @@ import "../../styles/loader.css";
         text-secondary
         text-base
         font-medium
-        group-invalid/contact-us:pointer-events-none
         group-invalid/contact-us:focus-visible:outline-transparent
-        group-invalid/contact-us:opacity-70
         bg-crocoder-yellow
         hover:bg-crocoder-yellow/90
         focus:bg-crocoder-yellow/90
@@ -163,7 +161,19 @@ import "../../styles/loader.css";
           const mainChallenge = formData.get("form-challenge");
           const expectedStartDate = formData.get("form-start-date");
 
+          const emailInput = form.querySelector<HTMLInputElement>("#form-email");
+
+
           if (!name || !email || !consent) {
+            notificationElem.classList.add("text-red-500");
+
+            if (!name) {
+              notificationElem.textContent = notification.frontmatter.fullnameLength;
+            } else if (!email) {
+              notificationElem.textContent = notification.frontmatter.emailInvalid;
+            } else if (!consent) {
+              notificationElem.textContent = notification.frontmatter.consentRequired;
+            }
             return;
           }
 
