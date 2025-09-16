@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "emails": "email dev --dir app/\\(email-templates\\)"
+    "emails": "email dev --dir email-templates"
   },
   "dependencies": {
     "@aws-sdk/client-sesv2": "^3.888.0",
