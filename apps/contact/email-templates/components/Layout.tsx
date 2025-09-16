@@ -13,8 +13,7 @@ import {
   Text,
 } from "@react-email/components";
 
-const baseUrl =
-  "https://company-website-git-feat-email-layout-crocoder.vercel.app";
+const baseUrl = "https://www.crocoder.dev";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
