@@ -1,4 +1,4 @@
-import { processContact } from "@/app/(helpers)/notion";
+import { processContact } from "@/helpers/notion";
 import { nanoid } from "nanoid";
 import { NextRequest } from "next/server";
 import z from "zod";
