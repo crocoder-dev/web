@@ -95,6 +95,15 @@ While off-product work can sometimes feel fragmented or disconnected, these grou
 
 Pair programming turned out to be a highly effective method for hands-on coding support in this project. Initially, developers were hesitant to ask for help, so we took the initiative by offering guidance on new features and React. After a few programming sessions, developers started reaching out on their own, asking for support and assistance with adding new components.
 
+<blockquote>
+  <div>
+    <p>Before starting the migration, only a few of our developers had some React experience. With the help of CroCoder developers, we were able to lead the migration ourselves. They explained everything clearly, gave us confidence in the new codebase, and supported us whenever we needed.</p>
+  </div>
+  <p style="quotes: none; font-style: normal;">
+    — Florian Le Dentu-Jost, Senior Software Developer at sevdesk
+  </p>
+</blockquote>
+
 ## The Turning Point
 
 When it comes to large initiatives and changes, it may take some time to see the fruits of your labor, but that doesn’t mean you are on the wrong track. Our efforts proved effective when two developers from the same team reached out to us requesting new components. Unlike before, when such tasks were assigned to the Core team, they now wanted to build the components themselves with our support. This was a huge step forward, as it showcased the willingness and motivation of the developers to start coding in React and participate in the migration. After a few pair-programming sessions, the first components not created by the Core team were added to the new component library. Because of this, the two developers continued working on maintaining these components independently.
