@@ -28,32 +28,18 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           style={{
             backgroundImage: `url('${baseUrl}/pattern_light.png')`,
             backgroundSize: "contain",
-            backgroundBlendMode: "lighten",
           }}
         >
-          <Container className="rounded-lg">
-            <Row className="bg-[#3C3843] pt-3 pb-2">
-              <Column
-                align="left"
-                className="table-cell align-bottom px-4 h-[51px]"
-              >
+          <Container>
+            <Row className="bg-[#3C3843] pt-3 pb-2 rounded-t-lg">
+              <Column align="left" className="table-cell align-bottom px-4">
                 <Row className="table-cell">
                   <Column>
                     <Link href={baseUrl}>
                       <Img
-                        src={`${baseUrl}/_vercel/image?url=_astro%2Fcrocoder-logo.C0zJTFWP.png&w=320&q=100`}
+                        src={`${baseUrl}/email_light.png`}
                         alt="Crocoder logo"
-                        width={64}
-                        className="inline"
-                      />
-                    </Link>
-                  </Column>
-                  <Column className="pl-3">
-                    <Link href={baseUrl}>
-                      <Img
-                        src={`${baseUrl}/images/crocoder-text.svg`}
-                        alt="Crocoder logo"
-                        width={155}
+                        width={225}
                         className="inline"
                       />
                     </Link>
@@ -64,30 +50,17 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             <Container className="py-8 px-4 bg-neutral-50">
               {children}
             </Container>
-            <Section className="bg-[#3C3843] px-4">
+            <Section className="bg-[#3C3843] px-4 rounded-b-lg">
               <Row>
                 <Row className="pt-3 pb-2">
-                  <Column
-                    align="left"
-                    className="table-cell align-bottom h-[51px]"
-                  >
+                  <Column align="left" className="table-cell align-bottom">
                     <Row className="table-cell">
                       <Column>
                         <Link href={baseUrl}>
                           <Img
-                            src={`${baseUrl}/_vercel/image?url=_astro%2Fcrocoder-logo.C0zJTFWP.png&w=320&q=100`}
+                            src={`${baseUrl}/email_light.png`}
                             alt="Crocoder logo"
-                            width={64}
-                            className="inline"
-                          />
-                        </Link>
-                      </Column>
-                      <Column className="pl-3">
-                        <Link href={baseUrl}>
-                          <Img
-                            src={`${baseUrl}/images/crocoder-text.svg`}
-                            alt="Crocoder logo"
-                            width={155}
+                            width={225}
                             className="inline"
                           />
                         </Link>
