@@ -8,7 +8,7 @@ import z from "zod";
 const bodyValidationSchema = z.object({
   name: z
     .string()
-    .min(3, { message: "Name must be at least 3 characters long" }),
+    .min(2, { message: "Name must be at least 2 characters long" }),
   email: z
     .email({ message: "Invalid email adress" })
     .min(1, { message: "Required field" }),
