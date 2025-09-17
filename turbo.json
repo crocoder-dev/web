@@ -14,6 +14,11 @@
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "test": {
+      "dependsOn": ["^test"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": []
     }
   },
   "globalEnv": [
@@ -25,6 +30,10 @@
     "NOTION_TOKEN",
     "SLACK_BOT_TOKEN",
     "NOTION_DATABASE_ID",
-    "SITE_URL"
+    "SITE_URL",
+    "VITE_CONTACT_URL",
+    "NOTION_GET_PLAN_DATABASE_ID",
+    "EMAIL_AWS_ACCESS_KEY",
+    "EMAIL_AWS_SECRET_ACCESS_KEY"
   ]
 }
