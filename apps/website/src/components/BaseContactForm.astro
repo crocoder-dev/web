@@ -158,17 +158,7 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
 </base-contact-form>
 
 <script>
-  import { getEntry } from "astro:content";
-
-  const notificationEntryData = (await getEntry("contact", "notification")) as {
-    data: {
-      error: string,
-      fullnameLength: string,
-      emailInvalid: string,
-      projectDescriptionRequired: string
-    }
-  }
-
+  import * as notification from "../content/contact/notification.md";
   class BaseContactForm extends HTMLElement {
     connectedCallback() {
       const formId = this.dataset.id;
@@ -285,21 +275,21 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
           if (!isNameInputValid) {
             handleValidation(
               nameInput,
-              notificationEntryData.data.fullnameLength,
+              notification.frontmatter.fullnameLength,
               form,
             );
           }
           if (!isEmailInputValid) {
             handleValidation(
               emailInput,
-              notificationEntryData.data.emailInvalid,
+              notification.frontmatter.emailInvalid,
               form,
             );
           }
           if (!isMessageInputValid) {
             handleValidation(
               messageInput,
-              notificationEntryData.data.projectDescriptionRequired,
+              notification.frontmatter.projectDescriptionRequired,
               form,
             );
           }
@@ -350,7 +340,7 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
             window.location.href = "/contact/success";
           } catch (error) {
             notificationElem.classList.add("text-red-500");
-            notificationElem.textContent = notificationEntryData.data.error;
+            notificationElem.textContent = notification.frontmatter.error;
             hideLoader();
             return;
           }
