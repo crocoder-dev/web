@@ -1,8 +1,19 @@
 ---
-import * as formContent from "../../content/contact/get-your-plan-form.md";
 import Field from "../Field.astro";
 import RightArrow from "../icons/RightArrow.astro";
 import "../../styles/loader.css";
+import { getEntry } from "astro:content";
+
+const formContentEntry = (await getEntry("contact", "get-your-plan-form")) as {
+  data: {
+    fullname: string,
+    fullnameLength: string,
+    email: string,
+    emailInvalid: string,
+    consent: string,
+    submit: string,
+  }
+}
 ---
 
 <div class="col-span-6 lg:col-span-5 lg:col-start-2 md:row-start-2">
@@ -18,15 +29,15 @@ import "../../styles/loader.css";
         name: "form-full-name",
         id: "form-full-name",
         maxlength: "100",
-        placeholder: formContent.frontmatter.fullname,
+        placeholder: formContentEntry.data.fullname,
         required: true,
       }}
       labelProps={{
         for: "form-full-name",
         "aria-hidden": "false",
       }}
-      label={formContent.frontmatter.fullname}
-      errorText={formContent.frontmatter.fullnameLength}
+      label={formContentEntry.data.fullname}
+      errorText={formContentEntry.data.fullnameLength}
     />
     <Field
       isTextArea={false}
@@ -35,7 +46,7 @@ import "../../styles/loader.css";
         name: "form-email",
         id: "form-email",
         maxlength: "100",
-        placeholder: formContent.frontmatter.email,
+        placeholder: formContentEntry.data.email,
         type: "email",
         required: true,
       }}
@@ -43,8 +54,8 @@ import "../../styles/loader.css";
         for: "form-email",
         "aria-hidden": "false",
       }}
-      label={formContent.frontmatter.email}
-      errorText={formContent.frontmatter.emailInvalid}
+      label={formContentEntry.data.email}
+      errorText={formContentEntry.data.emailInvalid}
     />
     <div>
       <div class="flex gap-2.5 py-4">
@@ -57,7 +68,7 @@ import "../../styles/loader.css";
           class="h-4 w-4 rounded border-gray-300 text-[#67a807] focus:ring-[#67a807] mt-1 cursor-pointer"
         />
         <label
-          set:html={formContent.frontmatter.consent}
+          set:html={formContentEntry.data.consent}
           id="form-consent-text"
           for="form-consent"
           class="text-neutral-50 [&>em]:not-italic [&>em]:font-semibold cursor-pointer"
@@ -85,7 +96,7 @@ import "../../styles/loader.css";
         cursor-pointer"
       >
         <span class="flex gap-3 items-center justify-center">
-          {formContent.frontmatter.submit}
+          {formContentEntry.data.submit}
           <RightArrow />
         </span>
         <div id="get-your-plan-form-loader" class="loader mx-auto hidden"></div>

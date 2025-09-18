@@ -1,8 +1,22 @@
 ---
 import classnames from "classnames";
-import * as formContent from "../content/contact/form.md";
 import "../styles/loader.css";
 import Field from "./Field.astro";
+import { getEntry } from "astro:content";
+
+const formEntryData = (await getEntry("contact", "form")) as {
+  data: {
+    fullname: string,
+    fullnameLength: string,
+    requiredField: string,
+    email: string,
+    emailInvalid: string,
+    projectInfo: string,
+    consent: string,
+    submit: string,
+  }
+}
+
 
 type Props = {
   formId: string;
@@ -29,15 +43,15 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
         name: "form-full-name",
         id: "form-full-name",
         maxlength: "100",
-        placeholder: formContent.frontmatter.fullname,
+        placeholder: formEntryData.data.fullname,
         required: true,
       }}
       labelProps={{
         for: "form-full-name",
         "aria-hidden": "false",
       }}
-      label={formContent.frontmatter.fullname}
-      errorText={formContent.frontmatter.fullnameLength}
+      label={formEntryData.data.fullname}
+      errorText={formEntryData.data.fullnameLength}
       onDark={onDark}
     />
     <Field
@@ -46,7 +60,7 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
         name: "form-email",
         id: "form-email",
         maxlength: "100",
-        placeholder: formContent.frontmatter.email,
+        placeholder: formEntryData.data.email,
         type: "email",
         required: true,
       }}
@@ -54,8 +68,8 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
         for: "form-email",
         "aria-hidden": "false",
       }}
-      label={formContent.frontmatter.email}
-      errorText={formContent.frontmatter.emailInvalid}
+      label={formEntryData.data.email}
+      errorText={formEntryData.data.emailInvalid}
       onDark={onDark}
     />
     <div>
@@ -65,7 +79,7 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
           name: "form-message",
           maxlength: 1500,
           minlength: 1,
-          placeholder: formContent.frontmatter.projectInfo,
+          placeholder: formEntryData.data.projectInfo,
           id: "form-message",
           required: true,
         }}
@@ -73,8 +87,8 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
           for: "form-message",
           "aria-hidden": "false",
         }}
-        label={formContent.frontmatter.projectInfo}
-        errorText={formContent.frontmatter.requiredField}
+        label={formEntryData.data.projectInfo}
+        errorText={formEntryData.data.requiredField}
         onDark={onDark}
       />
       <span
@@ -98,7 +112,7 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
           class="h-4 w-4 rounded border-gray-300 text-[#67a807] focus:ring-[#67a807] mt-1 cursor-pointer"
         />
         <label
-          set:html={formContent.frontmatter.consent}
+          set:html={formEntryData.data.consent}
           id="form-consent-text"
           for="form-consent"
           class={classnames(
@@ -132,7 +146,7 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
             Astro.slots.has("submit-button-content") ? (
               <slot name="submit-button-content" />
             ) : (
-              formContent.frontmatter.submit
+              formEntryData.data.submit
             )
           }</span
         >
@@ -144,7 +158,16 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
 </base-contact-form>
 
 <script>
-  import * as notification from "../content/contact/notification.md";
+  import { getEntry } from "astro:content";
+
+  const notificationEntryData = (await getEntry("contact", "notification")) as {
+    data: {
+      error: string,
+      fullnameLength: string,
+      emailInvalid: string,
+      projectDescriptionRequired: string
+    }
+  }
 
   class BaseContactForm extends HTMLElement {
     connectedCallback() {
@@ -262,21 +285,21 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
           if (!isNameInputValid) {
             handleValidation(
               nameInput,
-              notification.frontmatter.fullnameLength,
+              notificationEntryData.data.fullnameLength,
               form,
             );
           }
           if (!isEmailInputValid) {
             handleValidation(
               emailInput,
-              notification.frontmatter.emailInvalid,
+              notificationEntryData.data.emailInvalid,
               form,
             );
           }
           if (!isMessageInputValid) {
             handleValidation(
               messageInput,
-              notification.frontmatter.projectDescriptionRequired,
+              notificationEntryData.data.projectDescriptionRequired,
               form,
             );
           }
@@ -327,7 +350,7 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
             window.location.href = "/contact/success";
           } catch (error) {
             notificationElem.classList.add("text-red-500");
-            notificationElem.textContent = notification.frontmatter.error;
+            notificationElem.textContent = notificationEntryData.data.error;
             hideLoader();
             return;
           }
