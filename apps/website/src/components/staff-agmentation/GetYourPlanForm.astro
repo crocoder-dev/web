@@ -20,7 +20,6 @@ import "../../styles/loader.css";
         maxlength: "100",
         placeholder: formContent.frontmatter.fullname,
         required: true,
-        minlength: 2,
       }}
       labelProps={{
         for: "form-full-name",
@@ -103,7 +102,9 @@ import "../../styles/loader.css";
         "get-your-plan-section",
       );
 
-      const form = document.getElementById("get-your-plan-form");
+      const form = document.getElementById(
+        "get-your-plan-form",
+      ) as HTMLFormElement | null;
       /* Page form elements */
       const submitBtn = form?.querySelector("#form-submit-button");
       const submitBtnElems = submitBtn?.querySelectorAll("*");
@@ -129,8 +130,21 @@ import "../../styles/loader.css";
       const modalFormLoader =
         modalFormSubmitBtn?.querySelector("#modal-form-loader");
 
-      const handleCloseModal = () => {
-        modalForm?.close();
+      const handleValidation = (
+        input: HTMLInputElement | null,
+        errorMessage: string,
+        form: HTMLFormElement | null,
+      ) => {
+        if (!input) return false;
+
+        const label = form?.querySelector<HTMLLabelElement>(
+          `label[for="${input.id}"]`,
+        );
+        const placeholderSpan = label?.querySelector("span:first-child");
+        const errorSpan = label?.querySelector("span:nth-child(2)");
+        placeholderSpan?.classList.add("hidden");
+        errorSpan?.classList.add("!inline", "text-red-500");
+        if (errorSpan) errorSpan.textContent = errorMessage;
       };
 
       const showModalLoader = () => {
@@ -150,7 +164,38 @@ import "../../styles/loader.css";
         submitBtnLoader?.classList.remove("!block");
       };
 
-      if (form) {
+      const handleFieldReset = (input: HTMLInputElement | null) => {
+        if (!input) return;
+
+        const spanErr = form?.querySelector(`#error-text-value-${input.id}`);
+        const placeholderSpan = form?.querySelector(`#label-value-${input.id}`);
+
+        input.addEventListener("click", () => {
+          placeholderSpan?.classList.remove("hidden");
+          spanErr?.classList.remove("!inline", "text-red-500");
+        });
+      };
+
+      const handleConsentReset = (checkbox: HTMLInputElement | null) => {
+        if (!checkbox) return;
+
+        checkbox.addEventListener("click", () => {
+          checkbox.classList.replace("border-red-600", "border-gray-300");
+          checkbox.classList.remove("border-2");
+        });
+      };
+
+      const emailInput = form?.querySelector<HTMLInputElement>("#form-email");
+      const nameInput =
+        form?.querySelector<HTMLInputElement>("#form-full-name");
+      const consentInput =
+        form?.querySelector<HTMLInputElement>("#form-consent");
+
+      if (form && emailInput && nameInput && consentInput) {
+        handleFieldReset(nameInput);
+        handleFieldReset(emailInput);
+        handleConsentReset(consentInput);
+
         form.addEventListener("submit", async (e) => {
           e.preventDefault();
           const formData = new FormData(e.target as HTMLFormElement);
@@ -161,21 +206,46 @@ import "../../styles/loader.css";
           const mainChallenge = formData.get("form-challenge");
           const expectedStartDate = formData.get("form-start-date");
 
-          const emailInput = form.querySelector<HTMLInputElement>("#form-email");
+          const consentInput =
+            form?.querySelector<HTMLInputElement>("#form-consent");
 
+          const isNameInputValid =
+            nameInput.validity.valid && !nameInput.validity.valueMissing;
+          const isEmailInputValid =
+            emailInput.validity.valid && !emailInput.validity.valueMissing;
+          const isConsentInputValid = consentInput?.validity.valid;
 
-          if (!name || !email || !consent) {
-            notificationElem.classList.add("text-red-500");
+          if (!isNameInputValid) {
+            handleValidation(
+              nameInput,
+              notification.frontmatter.fullnameLength,
+              form,
+            );
+          }
 
-            if (!name) {
-              notificationElem.textContent = notification.frontmatter.fullnameLength;
-            } else if (!email) {
-              notificationElem.textContent = notification.frontmatter.emailInvalid;
-            } else if (!consent) {
-              notificationElem.textContent = notification.frontmatter.consentRequired;
+          if (!isEmailInputValid) {
+            handleValidation(
+              emailInput,
+              notification.frontmatter.emailInvalid,
+              form,
+            );
+          }
+
+          if (
+            !nameInput.validity.valid ||
+            !emailInput.validity.valid ||
+            !isConsentInputValid
+          ) {
+            if (!consent) {
+              consentInput?.classList.replace(
+                "border-gray-300",
+                "border-red-600",
+              );
+              consentInput?.classList.add("border-2");
             }
             return;
           }
+          notificationElem.textContent = "";
 
           const isPageSubmitter =
             (e.submitter as HTMLButtonElement).value === "page";
