@@ -137,11 +137,9 @@ import "../../styles/loader.css";
       ) => {
         if (!input) return false;
 
-        const label = form?.querySelector<HTMLLabelElement>(
-          `label[for="${input.id}"]`,
-        );
-        const placeholderSpan = label?.querySelector("span:first-child");
-        const errorSpan = label?.querySelector("span:nth-child(2)");
+        const errorSpan = form?.querySelector(`#error-text-value-${input.id}`);
+        const placeholderSpan = form?.querySelector(`#label-value-${input.id}`);
+
         placeholderSpan?.classList.add("hidden");
         errorSpan?.classList.add("!inline", "text-red-500");
         if (errorSpan) errorSpan.textContent = errorMessage;
@@ -167,12 +165,12 @@ import "../../styles/loader.css";
       const handleFieldReset = (input: HTMLInputElement | null) => {
         if (!input) return;
 
-        const spanErr = form?.querySelector(`#error-text-value-${input.id}`);
+        const errorSpan = form?.querySelector(`#error-text-value-${input.id}`);
         const placeholderSpan = form?.querySelector(`#label-value-${input.id}`);
 
         input.addEventListener("click", () => {
           placeholderSpan?.classList.remove("hidden");
-          spanErr?.classList.remove("!inline", "text-red-500");
+          errorSpan?.classList.remove("!inline", "text-red-500");
         });
       };
 
@@ -205,9 +203,6 @@ import "../../styles/loader.css";
           const companyName = formData.get("form-company");
           const mainChallenge = formData.get("form-challenge");
           const expectedStartDate = formData.get("form-start-date");
-
-          const consentInput =
-            form?.querySelector<HTMLInputElement>("#form-consent");
 
           const isNameInputValid =
             nameInput.validity.valid && !nameInput.validity.valueMissing;
