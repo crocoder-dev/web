@@ -152,7 +152,7 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
       if (!formId) return;
 
       const messageInput =
-        document.querySelector<HTMLInputElement>("#form-message");
+        document.querySelector<HTMLTextAreaElement>("#form-message");
       const charCounter = document.getElementById("char-counter");
 
       const form = document.getElementById(formId) as HTMLFormElement | null;
@@ -169,7 +169,7 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
       const currentUrl = new URL(window.location.href);
 
       const handleValidation = (
-        input: HTMLInputElement | null,
+        input: HTMLInputElement | HTMLTextAreaElement | null,
         errorMessage: string,
         form: HTMLFormElement | null,
       ) => {
@@ -181,27 +181,6 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
         placeholderSpan?.classList.add("hidden");
         errorSpan?.classList.add("!inline", "text-red-500");
         if (errorSpan) errorSpan.textContent = errorMessage;
-      };
-
-      const handleFieldReset = (input: HTMLInputElement | null) => {
-        if (!input) return;
-
-        const errorSpan = form?.querySelector(`#error-text-value-${input.id}`);
-        const placeholderSpan = form?.querySelector(`#label-value-${input.id}`);
-
-        input.addEventListener("click", () => {
-          placeholderSpan?.classList.remove("hidden");
-          errorSpan?.classList.remove("!inline", "text-red-500");
-        });
-      };
-
-      const handleConsentReset = (checkbox: HTMLInputElement | null) => {
-        if (!checkbox) return;
-
-        checkbox.addEventListener("click", () => {
-          checkbox.classList.replace("border-red-600", "border-gray-300");
-          checkbox.classList.remove("border-2");
-        });
       };
 
       const showLoader = () => {
@@ -236,10 +215,24 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
         form?.querySelector<HTMLInputElement>("#form-consent");
 
       if (form && nameInput && emailInput && messageInput && consentInput) {
-        handleFieldReset(nameInput);
-        handleFieldReset(emailInput);
-        handleFieldReset(messageInput);
-        handleConsentReset(consentInput);
+        form.addEventListener("click", (e) => {
+          if (!(e.currentTarget instanceof HTMLFormElement)) return;
+          const isInputTarget = e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement;
+          if (isInputTarget && e.target.type !== "checkbox") {
+            const errorSpan = e.currentTarget.querySelector(
+              `#error-text-value-${e.target.id}`,
+            );
+            const placeholderSpan = e.currentTarget.querySelector(
+              `#label-value-${e.target.id}`,
+            );
+            placeholderSpan?.classList.remove("hidden");
+            errorSpan?.classList.remove("!inline", "text-red-500");
+          }
+          if (isInputTarget && e.target.type === "checkbox") {
+            consentInput.classList.replace("border-red-600", "border-gray-300");
+            consentInput.classList.remove("border-2");
+          }
+        });
 
         form.addEventListener("submit", async (e) => {
           e.preventDefault();
