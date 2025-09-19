@@ -13,6 +13,7 @@ import ThankYouCard from "../components/staff-agmentation/ThankYouCard.astro";
 import TrustedBy from "../components/TrustedBy.astro";
 import Base from "../layouts/base.astro";
 import "../styles/main.css";
+import WhyWorkWithUs from "../components/vibe-code-mvp/WhyWorkWithUs.astro";
 
 const { ogImage = "https://www.crocoder.dev/homepage-metadata-img.png" } =
   Astro.props;
@@ -30,6 +31,7 @@ const { ogImage = "https://www.crocoder.dev/homepage-metadata-img.png" } =
   <Testimonial classNames="lg:py-24" />
   <Specialization />
   <OurEngineers />
+  <WhyWorkWithUs />
 
   <BookACallForm
     calLink="team/crocoder/staff-augmentation-intro"
