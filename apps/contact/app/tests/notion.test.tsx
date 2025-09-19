@@ -13,19 +13,19 @@ jest.mock("@notionhq/client", () => {
   };
 });
 
-jest.mock("../(helpers)/slack", () => {
+jest.mock("../../helpers/slack", () => {
   return {
     notifyContactCreated: jest.fn(),
   };
 });
 
-import { notifyContactCreated } from "../(helpers)/slack";
-import { processContact } from "../(helpers)/notion";
+import { notifyContactCreated } from "../../helpers/slack";
+import { processContact } from "../../helpers/notion";
 
 const mockSlack = notifyContactCreated as jest.Mock;
 
 const mockData = {
-  id: "123",
+  id: "123456789",
   email: "test@test.com",
   name: "Test Test",
   message: "This is a test message",
@@ -35,7 +35,10 @@ const mockData = {
 
 describe("Notion helper", () => {
   beforeEach(() => {
-    mockNotion.mockResolvedValue({ id: "fake-page-id" });
+    mockNotion.mockResolvedValue({
+      id: "fake-page-id",
+      url: "https://www.notion.so/Message-from-Test-Test-123456789-fakepageid",
+    });
     mockSlack.mockResolvedValue({ message: "success" });
     const { isFullPage } = require("@notionhq/client");
     isFullPage.mockImplementation(() => true);

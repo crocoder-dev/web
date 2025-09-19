@@ -13,7 +13,7 @@ jest.mock("@notionhq/client", () => {
   };
 });
 
-jest.mock("../(helpers)/slack", () => {
+jest.mock("../../helpers/slack", () => {
   return {
     notifyContactCreated: jest.fn(),
   };
@@ -23,7 +23,7 @@ process.env.NOTION_DATABASE_ID = "mocked-notion-database-id";
 
 import { NextRequest } from "next/server";
 import { POST } from "../api/contact/route";
-import { notifyContactCreated } from "../(helpers)/slack";
+import { notifyContactCreated } from "../../helpers/slack";
 
 const mockSlack = notifyContactCreated as jest.Mock;
 
@@ -50,7 +50,10 @@ const mockNoConsent = {
 
 describe("POST /api/contact", () => {
   beforeEach(() => {
-    mockNotion.mockResolvedValue({ id: "fake-page-id" });
+    mockNotion.mockResolvedValue({
+      id: "fake-page-id",
+      url: "https://www.notion.so/Message-from-Test-123456789-fakepageid",
+    });
     mockSlack.mockResolvedValue({ message: "success" });
     const { isFullPage } = require("@notionhq/client");
     isFullPage.mockImplementation(() => true);
