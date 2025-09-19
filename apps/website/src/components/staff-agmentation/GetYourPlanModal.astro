@@ -1,0 +1,98 @@
+---
+import Field from "../Field.astro";
+import Modal from "../Modal.astro";
+import Select from "../Select.astro";
+import { quarterLabelInMonthsAhead } from "../../utils/quarter.ts";
+import * as formContent from "../../content/contact/get-your-plan-form.md";
+
+const computedStartDates = (formContent.frontmatter.startDates as string[]).map(
+  (d) => (d === "quarter-label" ? quarterLabelInMonthsAhead(6) : d),
+);
+---
+
+<Modal id="get-plan-modal" classNames="w-[calc(100%-16px)] max-w-[500px]">
+  <main class="bg-neutral-50 p-8 md:p-12 flex flex-col gap-8" slot="main">
+    <h3
+      class="text-center font-medium text-4xl text-secondary w-full tracking-[-0.7px]"
+    >
+      Let's <span class="text-crocoder-green">Personalise</span><br /> Your Audit
+    </h3>
+    <form id="modal-form" novalidate>
+      <Field
+        isTextArea={false}
+        inputProps={{
+          name: "form-company",
+          id: "form-company",
+          maxlength: "100",
+          placeholder: formContent.frontmatter.companyName,
+          form: "get-your-plan-form",
+        }}
+        labelProps={{
+          for: "form-company",
+          "aria-hidden": "false",
+        }}
+        label={formContent.frontmatter.companyName}
+      />
+      <Field
+        isTextArea={false}
+        label={formContent.frontmatter.yourMainChallenge}
+        labelProps={{
+          for: "form-challenge",
+          "aria-hidden": false,
+        }}
+        inputProps={{
+          name: "form-challenge",
+          id: "form-challenge",
+          maxlength: "100",
+          placeholder: formContent.frontmatter.yourMainChallenge,
+          form: "get-your-plan-form",
+        }}
+      />
+      <Select
+        selectProps={{
+          name: "form-start-date",
+          id: "form-start-date",
+          form: "get-your-plan-form",
+        }}
+        ,
+        label={formContent.frontmatter.expectedStartDate}
+        ,
+        options={computedStartDates.map((d) => ({ value: d, content: d }))}
+        ,
+        labelProps={{
+          for: "form-start-date",
+          id: "form-start-date-label",
+          "aria-hidden": false,
+        }}
+      />
+      <button
+        type="submit"
+        value="modal"
+        id="modal-form-submit-button"
+        form="get-your-plan-form"
+        class="rounded-md
+        min-h-14
+        px-[25px] w-full py-4
+        text-center
+        text-secondary
+        text-base
+        font-medium
+        group-invalid/contact-us:focus-visible:bg-[#85a32a]
+        group-invalid/contact-us:focus-visible:outline-transparent
+        group-invalid/contact-us:focus:bg-[#85a32a]
+        group-valid/contact-us:cursor-pointer
+        bg-crocoder-yellow
+        hover:bg-crocoder-yellow/90
+        focus:bg-crocoder-yellow/90
+        focus-visible:bg-crocoder-yellow/90
+        focus-visible:outline-1
+        focus-visible:outline-neutral-50
+        mt-6 cursor-pointer"
+      >
+        <span>{formContent.frontmatter.modalSubmit}</span>
+        <div id="modal-form-loader" class="loader mx-auto hidden"></div>
+      </button>
+      <p id="form-notification" class="text-sm min-h-6 pt-1"></p>
+    </form>
+  </main>
+</Modal>

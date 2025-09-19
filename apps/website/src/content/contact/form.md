@@ -1,6 +1,6 @@
 ---
 fullname: "Full name *"
-fullnameLength: "Name must be at least 2 characters."
+fullnameLength: "Name is required"
 requiredField: "This is a required field."
 email: "E-mail *"
 emailInvalid: "Email you entered is not valid."

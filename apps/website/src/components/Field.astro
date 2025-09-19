@@ -22,7 +22,13 @@ type TextAreaProps = {
 
 type Props = BaseProps & (InputProps | TextAreaProps);
 
-const { classNames, labelProps, label, errorText, onDark } = Astro.props;
+const props = Astro.props as Props;
+
+
+const { classNames, labelProps, label, errorText, onDark } = props;
+const { isTextArea } = props;
+
+const fieldId = isTextArea ? props.textAreaProps.id : props.inputProps.id
 ---
 
 <div
@@ -108,15 +114,16 @@ const { classNames, labelProps, label, errorText, onDark } = Astro.props;
       [&>span:nth-child(2)]:hidden
       peer-[&:not(:placeholder-shown):not(:focus):invalid]/input:[&>span:first-child]:hidden
       peer-[&:not(:placeholder-shown):not(:focus):invalid]/input:[&>span:nth-child(2)]:inline
-      peer-[&:not(:placeholder-shown):not(:focus):invalid]/input:text-red-500`,
+      peer-[&:not(:placeholder-shown):not(:focus):invalid]/input:text-red-500
+      `,
       {
         "text-secondary": !onDark,
         "text-neutral-50": onDark,
       },
     )}
   >
-    <span>{label}</span>
-    <span class="truncate text-ellipsis">{errorText || "Invalid field"}</span>
+    <span id=`label-value-${fieldId}`>{label}</span>
+    <span id=`error-text-value-${fieldId}` class="truncate text-ellipsis">{errorText || "Invalid field"}</span>
   </label>
   <div
     class={classnames(

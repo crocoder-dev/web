@@ -1,0 +1,297 @@
+---
+import Field from "../Field.astro";
+import RightArrow from "../icons/RightArrow.astro";
+import "../../styles/loader.css";
+import * as formContent from "../../content/contact/get-your-plan-form.md";
+---
+
+<div class="col-span-6 lg:col-span-5 lg:col-start-2 md:row-start-2">
+  <form
+    id="get-your-plan-form"
+    class="group/contact-us mx-auto flex-col gap-2"
+    novalidate
+  >
+    <Field
+      isTextArea={false}
+      onDark
+      inputProps={{
+        name: "form-full-name",
+        id: "form-full-name",
+        maxlength: "100",
+        placeholder: formContent.frontmatter.fullname,
+        required: true,
+      }}
+      labelProps={{
+        for: "form-full-name",
+        "aria-hidden": "false",
+      }}
+      label={formContent.frontmatter.fullname}
+      errorText={formContent.frontmatter.fullnameLength}
+    />
+    <Field
+      isTextArea={false}
+      onDark
+      inputProps={{
+        name: "form-email",
+        id: "form-email",
+        maxlength: "100",
+        placeholder: formContent.frontmatter.email,
+        type: "email",
+        required: true,
+      }}
+      labelProps={{
+        for: "form-email",
+        "aria-hidden": "false",
+      }}
+      label={formContent.frontmatter.email}
+      errorText={formContent.frontmatter.emailInvalid}
+    />
+    <div>
+      <div class="flex gap-2.5 py-4">
+        <input
+          id="form-consent"
+          name="form-consent"
+          type="checkbox"
+          required
+          aria-describedby="form-consent-text"
+          class="h-4 w-4 rounded border-gray-300 text-[#67a807] focus:ring-[#67a807] mt-1 cursor-pointer"
+        />
+        <label
+          set:html={formContent.frontmatter.consent}
+          id="form-consent-text"
+          for="form-consent"
+          class="text-neutral-50 [&>em]:not-italic [&>em]:font-semibold cursor-pointer"
+        />
+      </div>
+      <button
+        type={"submit"}
+        value="page"
+        id="form-submit-button"
+        class="rounded-md
+          min-h-14
+          px-[25px] w-full py-4
+          text-center
+          text-[16px]
+        text-secondary
+        text-base
+        font-medium
+        group-invalid/contact-us:focus-visible:outline-transparent
+        bg-crocoder-yellow
+        hover:bg-crocoder-yellow/90
+        focus:bg-crocoder-yellow/90
+        focus-visible:bg-crocoder-yellow/90
+        focus-visible:outline-1
+        focus-visible:outline-neutral-50
+        cursor-pointer"
+      >
+        <span class="flex gap-3 items-center justify-center">
+          {formContent.frontmatter.submit}
+          <RightArrow />
+        </span>
+        <div id="get-your-plan-form-loader" class="loader mx-auto hidden"></div>
+      </button>
+      <p id="form-notification" class="text-sm min-h-6 pt-1"></p>
+    </div>
+    <script>
+      import type { SyntheticEvent } from "react";
+      import * as notification from "../../content/contact/notification.md";
+
+      const thankYouCardSection = document.getElementById(
+        "thank-you-card-section",
+      );
+      const getYourPlanSection = document.getElementById(
+        "get-your-plan-section",
+      );
+
+      const form = document.getElementById(
+        "get-your-plan-form",
+      ) as HTMLFormElement | null;
+      /* Page form elements */
+      const submitBtn = form?.querySelector("#form-submit-button");
+      const submitBtnElems = submitBtn?.querySelectorAll("*");
+      const submitBtnContent = submitBtnElems && submitBtnElems[0];
+      const submitBtnLoader = submitBtn?.querySelector(
+        "#get-your-plan-form-loader",
+      );
+
+      const notificationElem = form?.querySelector(
+        "#form-notification",
+      ) as HTMLElement;
+
+      /* Modal part of form elements */
+      const modalForm = document.getElementById(
+        "get-plan-modal",
+      ) as HTMLDialogElement | null;
+
+      const modalFormSubmitBtn = modalForm?.querySelector(
+        "#modal-form-submit-button",
+      );
+      const modalFormSubmitBtnContent =
+        modalFormSubmitBtn?.querySelectorAll("*")[0];
+      const modalFormLoader =
+        modalFormSubmitBtn?.querySelector("#modal-form-loader");
+
+      const handleValidation = (
+        input: HTMLInputElement | null,
+        errorMessage: string,
+        form: HTMLFormElement | null,
+      ) => {
+        if (!input) return false;
+
+        const errorSpan = form?.querySelector(`#error-text-value-${input.id}`);
+        const placeholderSpan = form?.querySelector(`#label-value-${input.id}`);
+
+        placeholderSpan?.classList.add("hidden");
+        errorSpan?.classList.add("!inline", "text-red-500");
+        if (errorSpan) errorSpan.textContent = errorMessage;
+      };
+
+      const showModalLoader = () => {
+        modalFormSubmitBtnContent?.classList.add("hidden");
+        modalFormLoader?.classList.add("!block");
+      };
+
+      const showLoader = () => {
+        submitBtnContent?.classList.add("hidden");
+        submitBtnLoader?.classList.add("!block");
+      };
+
+      const hideLoader = () => {
+        modalFormSubmitBtnContent?.classList.remove("hidden");
+        modalFormLoader?.classList.remove("!block");
+        submitBtnContent?.classList.remove("hidden");
+        submitBtnLoader?.classList.remove("!block");
+      };
+
+      const emailInput = form?.querySelector<HTMLInputElement>("#form-email");
+      const nameInput =
+        form?.querySelector<HTMLInputElement>("#form-full-name");
+      const consentInput =
+        form?.querySelector<HTMLInputElement>("#form-consent");
+
+      if (form && emailInput && nameInput && consentInput) {
+        form.addEventListener("click", (e) => {
+          if (!(e.currentTarget instanceof HTMLFormElement)) return;
+          const isInputTarget = e.target instanceof HTMLInputElement;
+          if (isInputTarget && e.target.type !== "checkbox") {
+            const errorSpan = e.currentTarget.querySelector(
+              `#error-text-value-${e.target.id}`,
+            );
+            const placeholderSpan = e.currentTarget.querySelector(
+              `#label-value-${e.target.id}`,
+            );
+            placeholderSpan?.classList.remove("hidden");
+            errorSpan?.classList.remove("!inline", "text-red-500");
+          }
+          if (isInputTarget && e.target.type === "checkbox") {
+            consentInput.classList.replace("border-red-600", "border-gray-300");
+            consentInput.classList.remove("border-2");
+          }
+        });
+
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const formData = new FormData(e.target as HTMLFormElement);
+          const name = formData.get("form-full-name");
+          const email = formData.get("form-email");
+          const consent = formData.get("form-consent");
+          const companyName = formData.get("form-company");
+          const mainChallenge = formData.get("form-challenge");
+          const expectedStartDate = formData.get("form-start-date");
+
+          const isNameInputValid =
+            nameInput.validity.valid && !nameInput.validity.valueMissing;
+          const isEmailInputValid =
+            emailInput.validity.valid && !emailInput.validity.valueMissing;
+          const isConsentInputValid = consentInput?.validity.valid;
+
+          if (!isNameInputValid) {
+            handleValidation(
+              nameInput,
+              notification.frontmatter.fullnameLength,
+              form,
+            );
+          }
+
+          if (!isEmailInputValid) {
+            handleValidation(
+              emailInput,
+              notification.frontmatter.emailInvalid,
+              form,
+            );
+          }
+
+          if (
+            !nameInput.validity.valid ||
+            !emailInput.validity.valid ||
+            !isConsentInputValid
+          ) {
+            if (!consent) {
+              consentInput?.classList.replace(
+                "border-gray-300",
+                "border-red-600",
+              );
+              consentInput?.classList.add("border-2");
+            }
+            return;
+          }
+          notificationElem.textContent = "";
+
+          const isPageSubmitter =
+            (e.submitter as HTMLButtonElement).value === "page";
+          const isModalSubmitter =
+            (e.submitter as HTMLButtonElement).value === "modal";
+
+          if (isPageSubmitter) {
+            showLoader();
+          }
+          if (isModalSubmitter) {
+            showModalLoader();
+          }
+
+          const currentUrl = new URL(window.location.href);
+
+          try {
+            const apiUrl = new URL(
+              `${import.meta.env.PUBLIC_API_URL}/api/get-plan`,
+            );
+            apiUrl.searchParams.set("source", currentUrl.pathname);
+            const response = await fetch(apiUrl, {
+              method: "POST",
+              mode: "cors",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                name,
+                email,
+                hasConsent: consent ? true : false,
+                companyName: companyName || "",
+                mainChallenge: mainChallenge || "",
+                expectedStartDate: expectedStartDate || "",
+              }),
+            });
+
+            if (response.status !== 200 && notificationElem) {
+              throw new Error();
+            }
+            if (isPageSubmitter) {
+              getYourPlanSection?.classList.add("hidden");
+              thankYouCardSection?.classList.remove("hidden");
+            }
+
+            // Show thank you card message
+            if (isModalSubmitter) {
+              window.location.href = "/contact/success";
+            }
+          } catch (error) {
+            notificationElem.classList.add("text-red-500");
+            notificationElem.textContent = notification.frontmatter.error;
+            hideLoader();
+            return;
+          }
+        });
+      }
+    </script>
+  </form>
+</div>

@@ -1,0 +1,66 @@
+---
+import sectionImage from "../../assets/crocodile-board_v3.png";
+import { grid_classes } from "../_grid";
+import Section from "../Section.astro";
+import GetYourPlanForm from "./GetYourPlanForm.astro";
+import { Picture } from "astro:assets";
+import "../../styles/loader.css";
+---
+
+<Section
+  className="!py-0 !px-0 scroll-mt-[-400px] md:scroll-mt-0"
+  contentClassName="md:max-w-screen bg-[#4E5BC8] "
+  idx="get-your-plan-section"
+>
+  <div
+    class={`${grid_classes}
+    items-start
+    p-4
+    md:p-7
+    lg:!gap-y-7
+    pt-18 pb-12
+    md:py-24
+    md:max-w-[var(--max-width)]
+    md:mx-auto
+    xl:px-0
+    `}
+  >
+    <div
+      class="col-span-6
+      flex
+      md:justify-center
+      md:col-start-7
+      md:row-start-2
+      lg:justify-start
+      xl:row-start-1
+      xl:row-span-2
+      lg:relative
+      lg:bottom-24
+      xl:bottom-0"
+    >
+      <Picture
+        src={sectionImage}
+        alt="Illustration of crocodile presenting analytics on a board"
+        widths={[480, 640]}
+        sizes={`(max-width: 1600px) 480px, 640px`}
+        formats={["avif", "webp"]}
+        class="w-full max-w-[480px] md:max-w-[350px] lg:max-w-[480px]"
+      />
+    </div>
+    <div
+      class="col-span-6 flex flex-wrap gap-7 items-center md:col-span-11 lg:col-start-2 lg:col-span-8 lg:row-start-1 xl:col-start-2 xl:col-span-5"
+    >
+      <h2 class="font-medium leading-none text-[32px] text-white tracking-[-0.7px]">
+        Get Your <span class="text-crocoder-yellow"
+          >Free Staffing Consultation Audit</span
+        >
+      </h2>
+      <p class="font-normal text-[16px] text-white">
+        Tell us a bit about your team and hiring challenges, and we’ll send you
+        a tailored recommendation on whether staff augmentation is the right fit
+        for you.
+      </p>
+    </div>
+    <GetYourPlanForm />
+  </div>
+</Section>
