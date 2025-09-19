@@ -1,8 +1,8 @@
 ---
 import classnames from "classnames";
-import * as formContent from "../content/contact/form.md";
 import "../styles/loader.css";
 import Field from "./Field.astro";
+import * as formContent from "../content/contact/form.md";
 
 type Props = {
   formId: string;
@@ -27,10 +27,10 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
       isTextArea={false}
       inputProps={{
         name: "form-full-name",
+        id: "form-full-name",
         maxlength: "100",
         placeholder: formContent.frontmatter.fullname,
         required: true,
-        minlength: 2,
       }}
       labelProps={{
         for: "form-full-name",
@@ -44,6 +44,7 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
       isTextArea={false}
       inputProps={{
         name: "form-email",
+        id: "form-email",
         maxlength: "100",
         placeholder: formContent.frontmatter.email,
         type: "email",
@@ -150,10 +151,11 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
 
       if (!formId) return;
 
-      const messageField = document.getElementById("form-message");
+      const messageInput =
+        document.querySelector<HTMLInputElement>("#form-message");
       const charCounter = document.getElementById("char-counter");
 
-      const form = document.getElementById(formId);
+      const form = document.getElementById(formId) as HTMLFormElement | null;
 
       const submitBtn = form?.querySelector("#form-submit-button");
       const submitBtnContent =
@@ -165,6 +167,42 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
       ) as HTMLElement;
 
       const currentUrl = new URL(window.location.href);
+
+      const handleValidation = (
+        input: HTMLInputElement | null,
+        errorMessage: string,
+        form: HTMLFormElement | null,
+      ) => {
+        if (!input) return false;
+
+        const errorSpan = form?.querySelector(`#error-text-value-${input.id}`);
+        const placeholderSpan = form?.querySelector(`#label-value-${input.id}`);
+
+        placeholderSpan?.classList.add("hidden");
+        errorSpan?.classList.add("!inline", "text-red-500");
+        if (errorSpan) errorSpan.textContent = errorMessage;
+      };
+
+      const handleFieldReset = (input: HTMLInputElement | null) => {
+        if (!input) return;
+
+        const errorSpan = form?.querySelector(`#error-text-value-${input.id}`);
+        const placeholderSpan = form?.querySelector(`#label-value-${input.id}`);
+
+        input.addEventListener("click", () => {
+          placeholderSpan?.classList.remove("hidden");
+          errorSpan?.classList.remove("!inline", "text-red-500");
+        });
+      };
+
+      const handleConsentReset = (checkbox: HTMLInputElement | null) => {
+        if (!checkbox) return;
+
+        checkbox.addEventListener("click", () => {
+          checkbox.classList.replace("border-red-600", "border-gray-300");
+          checkbox.classList.remove("border-2");
+        });
+      };
 
       const showLoader = () => {
         if (submitBtnContent && submitBtnLoader) {
@@ -187,11 +225,22 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
         }
       };
 
-      if (messageField) {
-        messageField.addEventListener("input", updateCount);
+      if (messageInput) {
+        messageInput.addEventListener("input", updateCount);
       }
 
-      if (form) {
+      const emailInput = form?.querySelector<HTMLInputElement>("#form-email");
+      const nameInput =
+        form?.querySelector<HTMLInputElement>("#form-full-name");
+      const consentInput =
+        form?.querySelector<HTMLInputElement>("#form-consent");
+
+      if (form && nameInput && emailInput && messageInput && consentInput) {
+        handleFieldReset(nameInput);
+        handleFieldReset(emailInput);
+        handleFieldReset(messageInput);
+        handleConsentReset(consentInput);
+
         form.addEventListener("submit", async (e) => {
           e.preventDefault();
 
@@ -201,21 +250,48 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
           const message = formData.get("form-message");
           const consent = formData.get("form-consent");
 
-          if (!name || !email || !message || !consent) {
-            notificationElem.classList.add("text-red-500");
+          const isNameInputValid =
+            nameInput.validity.valid && !nameInput.validity.valueMissing;
+          const isEmailInputValid =
+            emailInput.validity.valid && !emailInput.validity.valueMissing;
+          const isMessageInputValid =
+            messageInput.validity.valid && !messageInput.validity.valueMissing;
+          const isConsentInputValid = consentInput?.validity.valid;
 
-            if (!name) {
-              notificationElem.textContent =
-                notification.frontmatter.fullnameLength;
-            } else if (!email) {
-              notificationElem.textContent =
-                notification.frontmatter.emailInvalid;
-            } else if (!message) {
-              notificationElem.textContent =
-                notification.frontmatter.projectDescriptionRequired;
-            } else if (!consent) {
-              notificationElem.textContent =
-                notification.frontmatter.consentRequired;
+          if (!isNameInputValid) {
+            handleValidation(
+              nameInput,
+              notification.frontmatter.fullnameLength,
+              form,
+            );
+          }
+          if (!isEmailInputValid) {
+            handleValidation(
+              emailInput,
+              notification.frontmatter.emailInvalid,
+              form,
+            );
+          }
+          if (!isMessageInputValid) {
+            handleValidation(
+              messageInput,
+              notification.frontmatter.projectDescriptionRequired,
+              form,
+            );
+          }
+
+          if (
+            !nameInput.validity.valid ||
+            !emailInput.validity.valid ||
+            !messageInput.validity.valid ||
+            !isConsentInputValid
+          ) {
+            if (!consent) {
+              consentInput?.classList.replace(
+                "border-gray-300",
+                "border-red-600",
+              );
+              consentInput?.classList.add("border-2");
             }
             return;
           }

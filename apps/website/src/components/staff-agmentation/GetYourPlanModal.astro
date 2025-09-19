@@ -1,9 +1,9 @@
 ---
 import Field from "../Field.astro";
 import Modal from "../Modal.astro";
-import * as formContent from "../../content/contact/get-your-plan-form.md";
 import Select from "../Select.astro";
-import { quarterLabelInMonthsAhead } from "../../utils/quarter";
+import { quarterLabelInMonthsAhead } from "../../utils/quarter.ts";
+import * as formContent from "../../content/contact/get-your-plan-form.md";
 
 const computedStartDates = (formContent.frontmatter.startDates as string[]).map(
   (d) => (d === "quarter-label" ? quarterLabelInMonthsAhead(6) : d),

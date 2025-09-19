@@ -6,9 +6,7 @@ import z from "zod";
 const { NOTION_GET_PLAN_DATABASE_ID } = process.env;
 
 const bodyValidationSchema = z.object({
-  name: z
-    .string()
-    .min(3, { message: "Name must be at least 3 characters long" }),
+  name: z.string(),
   email: z
     .email({ message: "Invalid email adress" })
     .min(1, { message: "Required field" }),
