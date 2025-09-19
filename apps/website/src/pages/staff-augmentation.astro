@@ -33,18 +33,3 @@ const { ogImage = "https://www.crocoder.dev/homepage-metadata-img.png" } =
 
   <Footer />
 </Base>
-
-<script is:inline>
-  function handleActionHeroClick() {
-    window.navScroll = true;
-    setTimeout(() => {
-      window.navScroll = false;
-    }, 1500);
-  }
-
-  document
-    .querySelectorAll("#book-a-call-action-hero")
-    .forEach((element) =>
-      element.addEventListener("click", handleActionHeroClick),
-    );
-</script>
