@@ -1,5 +1,5 @@
 import { Client, isFullPage } from "@notionhq/client";
-import { notifyContactCreated } from "./slack";
+import { notifyContactError, notifyContactCreated } from "./slack";
 
 const { NOTION_TOKEN, MENTION_EMAILS, MENTION_IDS } = process.env;
 
@@ -120,12 +120,25 @@ const createContact = async (
     createContactObject(id, email, name, content, databaseID, source),
   );
 
+  // isFullPage checks if the response is type PageObjectResponse => contains url
   if (response.id && isFullPage(response)) {
     return {
       id: response.id,
       url: response.url,
     };
+    // In case the page is created but the response is type PartialPageObjectResponse => doesn't contain url
+  } else if (response.id && !isFullPage(response)) {
+    // Notion allows navigation to the created page using only the id without '-'
+    // https://dev.to/adamcoster/change-a-url-without-breaking-existing-links-4m0d
+    const cleanId = response.id.replace(/-/g, "");
+    const pageUrl = `https://notion.so/${cleanId}`;
+    return {
+      id: response.id,
+      url: pageUrl,
+    };
   }
+
+  await notifyContactError(name, email, content);
   throw {
     body: {
       message: "Failed to create notion page",
