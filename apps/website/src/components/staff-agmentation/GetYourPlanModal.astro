@@ -3,20 +3,9 @@ import Field from "../Field.astro";
 import Modal from "../Modal.astro";
 import Select from "../Select.astro";
 import { quarterLabelInMonthsAhead } from "../../utils/quarter.ts";
-import { getEntry } from "astro:content";
+import * as formContent from "../../content/contact/get-your-plan-form.md";
 
-
-const formContentEntryData = (await getEntry("contact", "get-your-plan-form")) as {
-  data: {
-    companyName: string,
-    yourMainChallenge: string,
-    startDates: string[],
-    expectedStartDate: string,
-    modalSubmit: string
-  }
-}
-
-const computedStartDates = (formContentEntryData.data.startDates as string[]).map(
+const computedStartDates = (formContent.frontmatter.startDates as string[]).map(
   (d) => (d === "quarter-label" ? quarterLabelInMonthsAhead(6) : d),
 );
 ---
@@ -35,18 +24,18 @@ const computedStartDates = (formContentEntryData.data.startDates as string[]).ma
           name: "form-company",
           id: "form-company",
           maxlength: "100",
-          placeholder: formContentEntryData.data.companyName,
+          placeholder: formContent.frontmatter.companyName,
           form: "get-your-plan-form",
         }}
         labelProps={{
           for: "form-company",
           "aria-hidden": "false",
         }}
-        label={formContentEntryData.data.companyName}
+        label={formContent.frontmatter.companyName}
       />
       <Field
         isTextArea={false}
-        label={formContentEntryData.data.yourMainChallenge}
+        label={formContent.frontmatter.yourMainChallenge}
         labelProps={{
           for: "form-challenge",
           "aria-hidden": false,
@@ -55,7 +44,7 @@ const computedStartDates = (formContentEntryData.data.startDates as string[]).ma
           name: "form-challenge",
           id: "form-challenge",
           maxlength: "100",
-          placeholder: formContentEntryData.data.yourMainChallenge,
+          placeholder: formContent.frontmatter.yourMainChallenge,
           form: "get-your-plan-form",
         }}
       />
@@ -66,7 +55,7 @@ const computedStartDates = (formContentEntryData.data.startDates as string[]).ma
           form: "get-your-plan-form",
         }}
         ,
-        label={formContentEntryData.data.expectedStartDate}
+        label={formContent.frontmatter.expectedStartDate}
         ,
         options={computedStartDates.map((d) => ({ value: d, content: d }))}
         ,
@@ -100,7 +89,7 @@ const computedStartDates = (formContentEntryData.data.startDates as string[]).ma
         focus-visible:outline-neutral-50
         mt-6 cursor-pointer"
       >
-        <span>{formContentEntryData.data.modalSubmit}</span>
+        <span>{formContent.frontmatter.modalSubmit}</span>
         <div id="modal-form-loader" class="loader mx-auto hidden"></div>
       </button>
       <p id="form-notification" class="text-sm min-h-6 pt-1"></p>

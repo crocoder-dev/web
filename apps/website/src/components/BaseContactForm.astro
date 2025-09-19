@@ -2,21 +2,7 @@
 import classnames from "classnames";
 import "../styles/loader.css";
 import Field from "./Field.astro";
-import { getEntry } from "astro:content";
-
-const formEntryData = (await getEntry("contact", "form")) as {
-  data: {
-    fullname: string,
-    fullnameLength: string,
-    requiredField: string,
-    email: string,
-    emailInvalid: string,
-    projectInfo: string,
-    consent: string,
-    submit: string,
-  }
-}
-
+import * as formContent from "../content/contact/form.md";
 
 type Props = {
   formId: string;
@@ -43,15 +29,15 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
         name: "form-full-name",
         id: "form-full-name",
         maxlength: "100",
-        placeholder: formEntryData.data.fullname,
+        placeholder: formContent.frontmatter.fullname,
         required: true,
       }}
       labelProps={{
         for: "form-full-name",
         "aria-hidden": "false",
       }}
-      label={formEntryData.data.fullname}
-      errorText={formEntryData.data.fullnameLength}
+      label={formContent.frontmatter.fullname}
+      errorText={formContent.frontmatter.fullnameLength}
       onDark={onDark}
     />
     <Field
@@ -60,7 +46,7 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
         name: "form-email",
         id: "form-email",
         maxlength: "100",
-        placeholder: formEntryData.data.email,
+        placeholder: formContent.frontmatter.email,
         type: "email",
         required: true,
       }}
@@ -68,8 +54,8 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
         for: "form-email",
         "aria-hidden": "false",
       }}
-      label={formEntryData.data.email}
-      errorText={formEntryData.data.emailInvalid}
+      label={formContent.frontmatter.email}
+      errorText={formContent.frontmatter.emailInvalid}
       onDark={onDark}
     />
     <div>
@@ -79,7 +65,7 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
           name: "form-message",
           maxlength: 1500,
           minlength: 1,
-          placeholder: formEntryData.data.projectInfo,
+          placeholder: formContent.frontmatter.projectInfo,
           id: "form-message",
           required: true,
         }}
@@ -87,8 +73,8 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
           for: "form-message",
           "aria-hidden": "false",
         }}
-        label={formEntryData.data.projectInfo}
-        errorText={formEntryData.data.requiredField}
+        label={formContent.frontmatter.projectInfo}
+        errorText={formContent.frontmatter.requiredField}
         onDark={onDark}
       />
       <span
@@ -112,7 +98,7 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
           class="h-4 w-4 rounded border-gray-300 text-[#67a807] focus:ring-[#67a807] mt-1 cursor-pointer"
         />
         <label
-          set:html={formEntryData.data.consent}
+          set:html={formContent.frontmatter.consent}
           id="form-consent-text"
           for="form-consent"
           class={classnames(
@@ -146,7 +132,7 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
             Astro.slots.has("submit-button-content") ? (
               <slot name="submit-button-content" />
             ) : (
-              formEntryData.data.submit
+              formContent.frontmatter.submit
             )
           }</span
         >

@@ -2,18 +2,7 @@
 import Field from "../Field.astro";
 import RightArrow from "../icons/RightArrow.astro";
 import "../../styles/loader.css";
-import { getEntry } from "astro:content";
-
-const formContentEntry = (await getEntry("contact", "get-your-plan-form")) as {
-  data: {
-    fullname: string,
-    fullnameLength: string,
-    email: string,
-    emailInvalid: string,
-    consent: string,
-    submit: string,
-  }
-}
+import * as formContent from "../../content/contact/get-your-plan-form.md";
 ---
 
 <div class="col-span-6 lg:col-span-5 lg:col-start-2 md:row-start-2">
@@ -29,15 +18,15 @@ const formContentEntry = (await getEntry("contact", "get-your-plan-form")) as {
         name: "form-full-name",
         id: "form-full-name",
         maxlength: "100",
-        placeholder: formContentEntry.data.fullname,
+        placeholder: formContent.frontmatter.fullname,
         required: true,
       }}
       labelProps={{
         for: "form-full-name",
         "aria-hidden": "false",
       }}
-      label={formContentEntry.data.fullname}
-      errorText={formContentEntry.data.fullnameLength}
+      label={formContent.frontmatter.fullname}
+      errorText={formContent.frontmatter.fullnameLength}
     />
     <Field
       isTextArea={false}
@@ -46,7 +35,7 @@ const formContentEntry = (await getEntry("contact", "get-your-plan-form")) as {
         name: "form-email",
         id: "form-email",
         maxlength: "100",
-        placeholder: formContentEntry.data.email,
+        placeholder: formContent.frontmatter.email,
         type: "email",
         required: true,
       }}
@@ -54,8 +43,8 @@ const formContentEntry = (await getEntry("contact", "get-your-plan-form")) as {
         for: "form-email",
         "aria-hidden": "false",
       }}
-      label={formContentEntry.data.email}
-      errorText={formContentEntry.data.emailInvalid}
+      label={formContent.frontmatter.email}
+      errorText={formContent.frontmatter.emailInvalid}
     />
     <div>
       <div class="flex gap-2.5 py-4">
@@ -68,7 +57,7 @@ const formContentEntry = (await getEntry("contact", "get-your-plan-form")) as {
           class="h-4 w-4 rounded border-gray-300 text-[#67a807] focus:ring-[#67a807] mt-1 cursor-pointer"
         />
         <label
-          set:html={formContentEntry.data.consent}
+          set:html={formContent.frontmatter.consent}
           id="form-consent-text"
           for="form-consent"
           class="text-neutral-50 [&>em]:not-italic [&>em]:font-semibold cursor-pointer"
@@ -96,7 +85,7 @@ const formContentEntry = (await getEntry("contact", "get-your-plan-form")) as {
         cursor-pointer"
       >
         <span class="flex gap-3 items-center justify-center">
-          {formContentEntry.data.submit}
+          {formContent.frontmatter.submit}
           <RightArrow />
         </span>
         <div id="get-your-plan-form-loader" class="loader mx-auto hidden"></div>
