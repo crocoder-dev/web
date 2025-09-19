@@ -131,7 +131,7 @@ const createContact = async (
     // Notion allows navigation to the created page using only the id without '-'
     // https://dev.to/adamcoster/change-a-url-without-breaking-existing-links-4m0d
     const cleanId = response.id.replace(/-/g, "");
-    const pageUrl = `https://notion.so/${cleanId}`;
+    const pageUrl = `https://www.notion.so/${cleanId}`;
     return {
       id: response.id,
       url: pageUrl,
