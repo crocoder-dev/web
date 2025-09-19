@@ -1,6 +1,6 @@
 //import { ContactTemplate } from "@/email-templates/contact";
 //import { sendEmail } from "@/helpers/email";
-import { processContact } from "@/helpers/notion";
+import { processContact } from "../../../helpers/notion";
 import { nanoid } from "nanoid";
 import { NextRequest } from "next/server";
 import z from "zod";
