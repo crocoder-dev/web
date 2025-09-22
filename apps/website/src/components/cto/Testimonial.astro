@@ -3,15 +3,25 @@ import { grid_classes } from "../_grid";
 import Section from "../Section.astro";
 import { getImage } from "astro:assets";
 import raphaelBauerBubble from "../../assets/raphael-bauer-bubble.png";
+import classnames from "classnames";
 
 const optimizedTestimonial = await getImage({
   src: raphaelBauerBubble,
   width: 569,
   height: 547,
 });
+
+type Props = {
+  classNames?: string;
+};
+
+const { classNames } = Astro.props;
 ---
 
-<Section className="bg-white" contentClassName={grid_classes}>
+<Section
+  className={classnames("bg-white", classNames)}
+  contentClassName={grid_classes}
+>
   <div
     class="bg-[#F4F4F4] rounded-2xl col-span-6 md:col-span-12 lg:col-span-10 lg:col-start-2 p-12 md:pt-0 md:pr-0 gap-7 grid relative text-secondary md:grid-cols-[auto_1fr_auto]"
   >
