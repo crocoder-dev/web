@@ -1,15 +1,18 @@
 ---
 import BookACallForm from "../components/BookACallForm.astro";
-import GetYourPlan from "../components/staff-agmentation/GetYourPlan.astro";
+import Testimonial from "../components/cto/Testimonial.astro";
 import Footer from "../components/footer.astro";
 import Navigation from "../components/navigation.astro";
+import Section from "../components/Section.astro";
+import GetYourPlan from "../components/staff-agmentation/GetYourPlan.astro";
 import Hero from "../components/staff-agmentation/Hero.astro";
 import MainContent from "../components/staff-agmentation/MainContent.astro";
 import OurEngineers from "../components/staff-agmentation/OurEngineers.astro";
 import Specialization from "../components/staff-agmentation/Specialization.astro";
+import ThankYouCard from "../components/staff-agmentation/ThankYouCard.astro";
+import TrustedBy from "../components/TrustedBy.astro";
 import Base from "../layouts/base.astro";
 import "../styles/main.css";
-import ThankYouCard from "../components/staff-agmentation/ThankYouCard.astro";
 
 const { ogImage = "https://www.crocoder.dev/homepage-metadata-img.png" } =
   Astro.props;
@@ -21,6 +24,10 @@ const { ogImage = "https://www.crocoder.dev/homepage-metadata-img.png" } =
   <GetYourPlan />
   <ThankYouCard />
   <MainContent />
+  <Section className="!pb-0 lg:!pt-24">
+    <TrustedBy />
+  </Section>
+  <Testimonial classNames="lg:py-24" />
   <Specialization />
   <OurEngineers />
 

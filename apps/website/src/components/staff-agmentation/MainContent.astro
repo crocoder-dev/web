@@ -8,6 +8,7 @@ import Pill from "../../components/Pill.astro";
 import Section from "../../components/Section.astro";
 import { grid_classes } from "../_grid";
 import CircleCheck from "../icons/CircleCheck.astro";
+import { Picture } from "astro:assets";
 
 export type MainContent = {
   pillText: string;
@@ -51,11 +52,11 @@ const { data } = content;
     <div
       class="relative
       col-span-6
-      overflow-hidden
       h-[calc(120vw+100px)]
       max-h-[700px]
       md:col-span-12
-      md:h-[70vw]
+      md:h-[calc(70vw+100px)]
+      lg:h-[70vw]
       lg:col-span-6
       lg:max-h-[870px]
       xl:overflow-visible"
@@ -75,16 +76,19 @@ const { data } = content;
           lg:-left-1/5
           lg:max-w-[800px]"
       >
-        <Image
+        <Picture
           src={staffCollaborationImg}
           alt="Two male developers in CroCoder hoodies collaborating"
           class="absolute top-1/12 left-1/6 md:left-0"
+          widths={[320, 480, 640, 800, 960, 1280, 1600]}
+          sizes={"(max-width: 500px) 120vw, (max-width: 1280px) 640px, 800px"}
+          format="avif"
         />
       </div>
       <Image
         src={crocoIcon}
         alt="Illustration of a crocodile in a cloud with laptop"
-        class="absolute bottom-0 left-4 lg:left-7 w-[300px]"
+        class="absolute bottom-0 left-4 md:left-7 w-[300px]"
       />
     </div>
     <div
@@ -165,10 +169,13 @@ const { data } = content;
             ))
           }
         </div>
-        <Image
+        <Picture
           src={idealForIllustration}
           alt="Illustration of crocodile and developers collaborating"
           class="w-[calc(100%+32px)] max-w-[715px] relative top-21"
+          widths={[320, 480, 640, 720, 800, 940, 1200, 1280, 1440, 1600]}
+          sizes={"(max-width: 768px) 100vw, 720px"}
+          format="avif"
         />
       </div>
     </div>
