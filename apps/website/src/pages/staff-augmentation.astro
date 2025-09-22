@@ -30,15 +30,18 @@ const { ogImage = "https://www.crocoder.dev/homepage-metadata-img.png" } =
   </Section>
   <Testimonial classNames="lg:py-24" />
   <Specialization />
-  <OurEngineers />
   <WhyWorkWithUs />
 
-  <BookACallForm
-    calLink="team/crocoder/staff-augmentation-intro"
-    eventType="staff-augmentation-intro"
-  >
-    <span slot="title"> Let's Build Together </span>
-  </BookACallForm>
-
-  <Footer />
+  <div class="bg-contrast w-full">
+    <BookACallForm
+      className="!bg-transparent !py-0 mt-[300px] md:mt-[400px] overflow-visible"
+      contentClassName="items-center bg-secondary rounded-4xl md:rounded-[96px] md:pb-[122px]"
+      calLink="team/crocoder/staff-augmentation-intro"
+      eventType="staff-augmentation-intro"
+    >
+      <span slot="title"> Let's Build Together </span>
+    </BookACallForm>
+  </div>
 </Base>
+
+<Footer />
