@@ -139,11 +139,11 @@ const createContact = async (
       };
     }
     return {
-      message: "Failed to create notion page",
+      error: "Failed to create notion page",
     };
-  } catch (error) {
+  } catch (e) {
     return {
-      message: "Failed to create notion page",
+      error: "Failed to create notion page",
     };
   }
 };
@@ -170,7 +170,7 @@ export const processContact = async (event: {
   const {
     id: notionPageID,
     url,
-    message: errorMessage,
+    error: errorMessage,
   } = await createContact(
     `Message from ${name} (${id})`,
     email,
