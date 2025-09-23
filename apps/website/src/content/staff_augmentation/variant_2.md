@@ -40,22 +40,32 @@ main:
     ourEngineers:
       [
         {
+          image: "/src/assets/target-icon-correct.svg",
+          alt: "Illustration of a target",
           title: "Product-minded",
           description: "Focused on moving the project forward",
         },
         {
+          image: "/src/assets/seo_search_graph.svg",
+          alt: "Illustration of search graph",
           title: "Proactive",
           description: "Jump into work and unblock critical paths without waiting",
         },
         {
+          image: "/src/assets/chat-two-bubbles.svg",
+          alt: "Illustration of two cloud bubbles",
           title: "Communicative",
           description: "Async-ready, remote-native, and highly collaborative",
         },
         {
+          image: "/src/assets/hands-puzzle.svg",
+          alt: "Illustration of hands on puzzle",
           title: "Flexible",
           description: "Short-term, long-term, or somewhere in between",
         },
         {
+          image: "/src/assets/check_badge.svg",
+          alt: "Illustration of check badge",
           title: "Skilled across levels",
           description: "From promising juniors to proven engineering leads",
         },

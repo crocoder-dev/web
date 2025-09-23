@@ -31,12 +31,16 @@ const { ogImage = "https://www.crocoder.dev/homepage-metadata-img.png" } =
   <Specialization />
   <OurEngineers />
 
-  <BookACallForm
-    calLink="team/crocoder/staff-augmentation-intro"
-    eventType="staff-augmentation-intro"
-  >
-    <span slot="title"> Let's Build Together </span>
-  </BookACallForm>
-
-  <Footer />
+  <div class="bg-contrast w-full">
+    <BookACallForm
+      className="!bg-transparent !py-0 mt-[300px] md:mt-[400px] overflow-visible"
+      contentClassName="items-center bg-secondary rounded-4xl md:rounded-[96px] pb-[122px] px-4"
+      calLink="team/crocoder/staff-augmentation-intro"
+      eventType="staff-augmentation-intro"
+    >
+      <span slot="title"> Let's Build Together </span>
+    </BookACallForm>
+  </div>
 </Base>
+
+<Footer />
