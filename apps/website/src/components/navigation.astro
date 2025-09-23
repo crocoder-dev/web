@@ -145,6 +145,12 @@ const optimizedLogo = await getImage({
     >
       Blog
     </a>
+    <div class="whitespace-nowrap flex flex-col gap-3 font-medium text-2xl md:text-lg text-[#E8E8E8] hover:text-white min-h-10 items-center">
+      Case Studies
+        <a class="text-xl" href="/blog/how-we-rebuilt-a-legacy-ui-with-zero-downtime">Legacy UI</a>
+        <a class="text-xl" href="/blog/using-lago-to-create-a-flexible-billing-system">Billing System</a>
+        <a class="text-xl" href="/blog/migrating-an-enterprise-app-from-angularjs-to-react">Frontend Migration</a>
+    </div>
     <a
       data-navhidden="true"
       id="mobile-book-a-call-action"
@@ -204,7 +210,6 @@ const optimizedLogo = await getImage({
     gsap.set(navBar, { width: NAV_EXPAND_WIDTH, overwrite: false });
     gsap.set(navHideItems, {
       autoAlpha: 1,
-      overflow: "hidden",
     });
     gsap.set(containerElement, { autoAlpha: 0 });
     gsap.set(bookACallAction, {
