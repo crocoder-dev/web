@@ -12,29 +12,28 @@ const contentVariantID = String(
   Astro.url.searchParams.get("id") || "backfill-your-developer-gap",
 );
 
-
 const staffAugmentation = (await getCollection("staff_augmentation")) as {
   data: {
     id: string;
     main: {
       ourEngineers: {
-      image: string,
-      alt: string,
-      title: string,
-      description: string,
+        image: string;
+        alt: string;
+        title: string;
+        description: string;
       }[];
-    }
+    };
   };
 }[];
 
 let content = staffAugmentation.find((v) => v.data.id === contentVariantID);
 
 if (!content) {
-  content = staffAugmentation[0]
+  content = staffAugmentation[0];
 }
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/assets/*.svg"
+  "/src/assets/*.svg",
 );
 ---
 
@@ -82,7 +81,9 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
             <p
               class="font-normal text-sm leading-5 min-[390px]:text-base min-[390px]:leading-6 sm:text-lg sm:leading-7 md:text-[22px] md:leading-8 tracking-normal lg:px-32 text-center"
             >
-            Our software development services helped clients big and small build solutions with a lasting impact.             </p>
+              Our software development services helped clients big and small
+              build solutions with a lasting impact.
+            </p>
           </div>
         </div>
       </div>
@@ -102,16 +103,16 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
         class="col-span-6 md:col-span-12 flex gap-2 overflow-x-auto no-scrollbar pr-4 md:pr-7 lg:px-0 lg:overflow-hidden"
       >
         {
-          content.data.main.ourEngineers.map((engineer) => (
+          content.data.main.ourEngineers.map((c) => (
             <div class="bg-white/10 p-5 rounded-2xl flex flex-col gap-5 min-w-[240px] lg:flex-1 lg:min-w-auto">
               <Image
-                src={images[engineer.image]()}
-                alt={engineer.alt}
+                src={images[c.image]()}
+                alt={c.alt}
                 width={48}
                 height={48}
               />
-              <h2 class="text-[22px] text-[#FFFFFF]">{engineer.title}</h2>
-              <p class="text-base leading-6 text-[#FFFFFF]">{engineer.description}</p>
+              <h2 class="text-[22px] text-[#FFFFFF]">{c.title}</h2>
+              <p class="text-base leading-6 text-[#FFFFFF]">{c.description}</p>
             </div>
           ))
         }

@@ -58,7 +58,7 @@ main:
           description: "Async-ready, remote-native, and highly collaborative",
         },
         {
-          image: "/hands-puzzle.svg",
+          image: "/src/assets/hands-puzzle.svg",
           alt: "Illustration of hands on puzzle",
           title: "Flexible",
           description: "Short-term, long-term, or somewhere in between",
