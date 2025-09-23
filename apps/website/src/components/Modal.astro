@@ -1,0 +1,32 @@
+---
+import classnames from "classnames";
+
+type Props = {
+  id: string;
+  classNames?: string;
+};
+
+const { id, classNames } = Astro.props;
+---
+
+<dialog
+  id={id}
+  class={classnames(
+    `fixed
+    left-1/2
+    top-1/2
+    -translate-x-1/2
+    -translate-y-1/2
+    backdrop:fixed
+    backdrop:top-0
+    backdrop:right-0
+    backdrop:bottomtop-0
+    backdrop:left-0
+    backdrop:bg-neutral-900/80
+    rounded-2xl
+    `,
+    classNames || "",
+  )}
+>
+  <slot name="main" />
+</dialog>

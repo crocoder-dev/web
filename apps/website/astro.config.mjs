@@ -19,7 +19,10 @@ export default defineConfig({
   adapter: vercel({
     imageService: true,
     imagesConfig: {
-      sizes: [320, 480, 578, 640, 720, 800, 940, 1200, 1412, 1536, 1800, 1920],
+      sizes: [
+        320, 480, 578, 640, 720, 800, 940, 960, 1200, 1280, 1412, 1440, 1536,
+        1600, 1800, 1920,
+      ],
       formats: ["image/avif", "image/webp"],
     },
   }),

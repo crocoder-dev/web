@@ -1,0 +1,79 @@
+---
+import { Image } from "astro:assets";
+import circleCheckIcon from "../../assets/circle-check-icon.svg";
+import crocoderIll16 from "../../assets/crocoder-ill-16-1.png";
+import Section from "../../components/Section.astro";
+import { grid_classes } from "../../components/_grid";
+import { getCollection, type CollectionEntry } from "astro:content";
+import type { MainContent } from "./MainContent.astro";
+
+const staffContent = (await getCollection("staff_augmentation")) as {
+  data: {
+    id: string;
+    main: MainContent;
+  };
+}[];
+
+const contentVariantId = String(
+  Astro.url.searchParams.get("id") || "backfill-your-developer-gap"
+);
+
+let content = staffContent.find((c) => c.data.id === contentVariantId);
+
+if (!content) {
+  content = staffContent[0];
+}
+---
+
+<!-- Engineers Section -->
+<Section className="!py-12 md:!py-20">
+  <div class={`${grid_classes} gap-8 md:gap-20`}>
+    <div class="col-span-6 md:col-span-12 lg:col-span-6">
+      <h2
+        class="text-[28px] leading-[32px] md:text-[54px] md:leading-[60px] tracking-tight font-medium mb-6 md:mb-12"
+      >
+        <span class="text-secondary">Our </span><span class="text-[#607A1A]"
+          >Engineers</span
+        >
+      </h2>
+
+      <div class="space-y-4 md:space-y-7">
+        {
+          content.data.main.ourEngineers.map((q) => (
+            <div class="flex gap-4 md:gap-7">
+              <div class="w-8 h-8 md:w-12 md:h-12 flex-shrink-0">
+                <Image
+                  src={circleCheckIcon}
+                  alt="Check icon"
+                  width={48}
+                  height={48}
+                  loading="lazy"
+                  class="w-full h-full"
+                />
+              </div>
+              <div>
+                <p class="text-[16px] leading-[24px] md:text-[22px] md:leading-8 font-semibold text-secondary">
+                  {q.title}
+                </p>
+                <p class="text-[16px] leading-[24px] md:text-[22px] md:leading-8 text-secondary">
+                  {q.description}
+                </p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="hidden lg:block col-span-6 lg:col-span-6">
+      <Image
+        src={crocoderIll16}
+        alt="CroCoder engineering team"
+        widths={[320, 480, 640, 720, 800, 940]}
+        sizes="calc(50vw - 28px)"
+        loading="lazy"
+        class="w-full h-auto"
+      />
+    </div>
+  </div>
+</Section>

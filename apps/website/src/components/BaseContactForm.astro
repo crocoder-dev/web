@@ -1,8 +1,8 @@
 ---
 import classnames from "classnames";
-import * as formContent from "../content/contact/form.md";
 import "../styles/loader.css";
 import Field from "./Field.astro";
+import * as formContent from "../content/contact/form.md";
 
 type Props = {
   formId: string;
@@ -18,7 +18,7 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
   <form
     class={classnames(
       "group/contact-us flex flex-col gap-2 relative",
-      formClassNames
+      formClassNames,
     )}
     id={formId}
     novalidate
@@ -27,10 +27,10 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
       isTextArea={false}
       inputProps={{
         name: "form-full-name",
+        id: "form-full-name",
         maxlength: "100",
         placeholder: formContent.frontmatter.fullname,
         required: true,
-        minlength: 2,
       }}
       labelProps={{
         for: "form-full-name",
@@ -44,6 +44,7 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
       isTextArea={false}
       inputProps={{
         name: "form-email",
+        id: "form-email",
         maxlength: "100",
         placeholder: formContent.frontmatter.email,
         type: "email",
@@ -105,7 +106,7 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
             {
               "text-secondary": !onDark,
               "text-neutral-50": onDark,
-            }
+            },
           )}
         />
       </div>
@@ -113,7 +114,6 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
         id="form-submit-button"
         class="rounded-md
       min-h-14
-      group-invalid/contact-us:pointer-events-none
       group-invalid/contact-us:focus-visible:outline-transparent
       bg-crocoder-yellow
       hover:bg-crocoder-yellow/90
@@ -125,7 +125,7 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
       text-center
       text-secondary
       text-base
-      font-medium mt-6"
+      font-medium mt-6 cursor-pointer"
       >
         <span id="submit-content"
           >{
@@ -151,10 +151,11 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
 
       if (!formId) return;
 
-      const messageField = document.getElementById("form-message");
+      const messageInput =
+        document.querySelector<HTMLTextAreaElement>("#form-message");
       const charCounter = document.getElementById("char-counter");
 
-      const form = document.getElementById(formId);
+      const form = document.getElementById(formId) as HTMLFormElement | null;
 
       const submitBtn = form?.querySelector("#form-submit-button");
       const submitBtnContent =
@@ -162,10 +163,25 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
       const submitBtnLoader = submitBtn?.querySelectorAll("#submit-loader")[0];
 
       const notificationElem = form?.querySelector(
-        "#form-notification"
+        "#form-notification",
       ) as HTMLElement;
 
       const currentUrl = new URL(window.location.href);
+
+      const handleValidation = (
+        input: HTMLInputElement | HTMLTextAreaElement | null,
+        errorMessage: string,
+        form: HTMLFormElement | null,
+      ) => {
+        if (!input) return false;
+
+        const errorSpan = form?.querySelector(`#error-text-value-${input.id}`);
+        const placeholderSpan = form?.querySelector(`#label-value-${input.id}`);
+
+        placeholderSpan?.classList.add("hidden");
+        errorSpan?.classList.add("!inline", "text-red-500");
+        if (errorSpan) errorSpan.textContent = errorMessage;
+      };
 
       const showLoader = () => {
         if (submitBtnContent && submitBtnLoader) {
@@ -188,11 +204,36 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
         }
       };
 
-      if (messageField) {
-        messageField.addEventListener("input", updateCount);
+      if (messageInput) {
+        messageInput.addEventListener("input", updateCount);
       }
 
-      if (form) {
+      const emailInput = form?.querySelector<HTMLInputElement>("#form-email");
+      const nameInput =
+        form?.querySelector<HTMLInputElement>("#form-full-name");
+      const consentInput =
+        form?.querySelector<HTMLInputElement>("#form-consent");
+
+      if (form && nameInput && emailInput && messageInput && consentInput) {
+        form.addEventListener("click", (e) => {
+          if (!(e.currentTarget instanceof HTMLFormElement)) return;
+          const isInputTarget = e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement;
+          if (isInputTarget && e.target.type !== "checkbox") {
+            const errorSpan = e.currentTarget.querySelector(
+              `#error-text-value-${e.target.id}`,
+            );
+            const placeholderSpan = e.currentTarget.querySelector(
+              `#label-value-${e.target.id}`,
+            );
+            placeholderSpan?.classList.remove("hidden");
+            errorSpan?.classList.remove("!inline", "text-red-500");
+          }
+          if (isInputTarget && e.target.type === "checkbox") {
+            consentInput.classList.replace("border-red-600", "border-gray-300");
+            consentInput.classList.remove("border-2");
+          }
+        });
+
         form.addEventListener("submit", async (e) => {
           e.preventDefault();
 
@@ -202,14 +243,56 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
           const message = formData.get("form-message");
           const consent = formData.get("form-consent");
 
-          if (!name || !email || !message || !consent) {
+          const isNameInputValid =
+            nameInput.validity.valid && !nameInput.validity.valueMissing;
+          const isEmailInputValid =
+            emailInput.validity.valid && !emailInput.validity.valueMissing;
+          const isMessageInputValid =
+            messageInput.validity.valid && !messageInput.validity.valueMissing;
+          const isConsentInputValid = consentInput?.validity.valid;
+
+          if (!isNameInputValid) {
+            handleValidation(
+              nameInput,
+              notification.frontmatter.fullnameLength,
+              form,
+            );
+          }
+          if (!isEmailInputValid) {
+            handleValidation(
+              emailInput,
+              notification.frontmatter.emailInvalid,
+              form,
+            );
+          }
+          if (!isMessageInputValid) {
+            handleValidation(
+              messageInput,
+              notification.frontmatter.projectDescriptionRequired,
+              form,
+            );
+          }
+
+          if (
+            !nameInput.validity.valid ||
+            !emailInput.validity.valid ||
+            !messageInput.validity.valid ||
+            !isConsentInputValid
+          ) {
+            if (!consent) {
+              consentInput?.classList.replace(
+                "border-gray-300",
+                "border-red-600",
+              );
+              consentInput?.classList.add("border-2");
+            }
             return;
           }
 
           showLoader();
 
           const apiUrl = new URL(
-            `${import.meta.env.PUBLIC_API_URL}/api/contact`
+            `${import.meta.env.PUBLIC_API_URL}/api/contact`,
           );
           apiUrl.searchParams.set("source", currentUrl.pathname);
 
