@@ -34,7 +34,7 @@ const optimizedLogo = await getImage({
       md:rounded-l-[3rem]
       md:rounded-r-lg
       relative
-      md:w-[680px]"
+      md:w-[780px]"
     data-navhidden="false"
   >
     <a
@@ -178,13 +178,14 @@ const optimizedLogo = await getImage({
   let mm = gsap.matchMedia();
 
   const NAV_SHRINK_WIDTH = "377px";
-  const NAV_EXPAND_WIDTH = "680px";
+  const NAV_EXPAND_WIDTH = "780px";
   const FRAME_DURATION = 0.425;
 
   const navBar = document.getElementById("nav-bar");
   const logoElem = document.getElementById("logo");
   const forCtoElem = document.getElementById("for-ctos");
   const blogElem = document.getElementById("blog");
+  const caseStudyElem = document.getElementById("case-study");
   const bookACallAction = document.getElementById("book-a-call-action");
   const containerElement = document.getElementById("book-a-call-container");
   const mobileBookACallAction = document.getElementById(
@@ -198,7 +199,7 @@ const optimizedLogo = await getImage({
   mm.add("(width >= 768px)", () => {
     if (!navBar || !bookACallAction) return;
 
-    const navHideItems = [forCtoElem, blogElem, logoElem];
+    const navHideItems = [forCtoElem, blogElem, logoElem, caseStudyElem];
 
     gsap.set(navBar, { width: NAV_EXPAND_WIDTH, overwrite: false });
     gsap.set(navHideItems, {
