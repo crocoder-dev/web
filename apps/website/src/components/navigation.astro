@@ -1,6 +1,8 @@
 ---
 import { getImage } from "astro:assets";
 import crocoderLogo from "../assets/crocoder-logo.png";
+import Menu from "./Menu.astro";
+import MenuItem from "./MenuItem.astro";
 
 const optimizedLogo = await getImage({
   src: crocoderLogo,
@@ -31,7 +33,6 @@ const optimizedLogo = await getImage({
       md:px-[15px]
       md:rounded-l-[3rem]
       md:rounded-r-lg
-      md:overflow-hidden
       relative
       md:w-[680px]"
     data-navhidden="false"
@@ -97,6 +98,13 @@ const optimizedLogo = await getImage({
         >
           Blog
         </a>
+      </li>
+      <li id="case-study" data-navhidden="true" class="m-2">
+        <Menu title={"Case Studies"}>
+          <MenuItem><a href="/blog/how-we-rebuilt-a-legacy-ui-with-zero-downtime">Legacy UI</a></MenuItem>
+          <MenuItem><a href="/blog/using-lago-to-create-a-flexible-billing-system">Billing System</a></MenuItem>
+          <MenuItem><a href="/blog/migrating-an-enterprise-app-from-angularjs-to-react">Frontend Migration</a></MenuItem>
+        </Menu>
       </li>
       <li id="book-a-call-container" class="ml-auto pr-2">
         <a

@@ -1,0 +1,26 @@
+---
+import classNames from "classnames";
+import ChevronTop from "./icons/ChevronTop.astro";
+
+interface Props {
+  className?: string;
+  title: string;
+}
+
+const { className, title } = Astro.props;
+---
+
+<div class={classNames("relative group flex gap-2 items-center", className)}>
+  <div class="hidden group-active:grid group-hover:grid z-10 absolute">
+    <div
+      class="bg-[#3C3843E5] min-w-56 mt-48 p-4 gap-2.5 rounded-lg"
+    >
+      <slot />
+    </div>
+  </div>
+  <button
+  class="whitespace-nowrap font-medium text-2xl md:text-lg text-[#E8E8E8] hover:text-white"
+  >{title}</button
+  >
+  <ChevronTop classNames="group-hover:rotate-180" />
+</div>
