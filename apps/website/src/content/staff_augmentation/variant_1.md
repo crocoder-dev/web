@@ -38,22 +38,27 @@ main:
     ourEngineers:
       [
         {
+          image: "src/assets/target-icon-correct.svg",
           title: "Goal-Driven",
           description: "They focus on outcomes, not just tasks",
         },
         {
+          image: "src/assets/seo_search_graph.svg",
           title: "Proactive",
           description: "They solve problems without waiting for instructions",
         },
         {
+          image: "src/assets/chat-two-bubbles.svg",
           title: "Communicative",
           description: "Async-ready, remote-native, and highly collaborative",
         },
         {
+          image: "/hands-puzzle.svg",
           title: "Flexible",
           description: "Short-term, long-term, or somewhere in between",
         },
         {
+          image: "src/assets/check_badge.svg",
           title: "Skilled across levels",
           description: "From promising juniors to proven engineering leads",
         },

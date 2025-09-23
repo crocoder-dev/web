@@ -40,22 +40,27 @@ main:
     ourEngineers:
       [
         {
+          image: "src/assets/target-icon-correct.svg",
           title: "Problem-Solvers",
           description: "They unblock issues and improve the system as they work",
         },
         {
+          image: "src/assets/seo_search_graph.svg",
           title: "Proactive",
           description: "Senior-level initiative to drive results fast",
         },
         {
+          image: "src/assets/chat-two-bubbles.svg",
           title: "Communicative",
           description: "Async-ready, remote-native, and highly collaborative",
         },
         {
+          image: "/hands-puzzle.svg",
           title: "Flexible",
           description: "Short-term, long-term, or somewhere in between",
         },
         {
+          image: "src/assets/check_badge.svg",
           title: "Skilled across levels",
           description: "Proven senior specialists ready to tackle your toughest challenges",
         },
