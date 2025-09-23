@@ -40,27 +40,32 @@ main:
     ourEngineers:
       [
         {
-          image: "src/assets/target-icon-correct.svg",
+          image: "/src/assets/target-icon-correct.svg",
+          alt: "Illustration of a target",
           title: "Problem-Solvers",
           description: "They unblock issues and improve the system as they work",
         },
         {
-          image: "src/assets/seo_search_graph.svg",
+          image: "/src/assets/seo_search_graph.svg",
+          alt: "Illustration of search graph",
           title: "Proactive",
           description: "Senior-level initiative to drive results fast",
         },
         {
-          image: "src/assets/chat-two-bubbles.svg",
+          image: "/src/assets/chat-two-bubbles.svg",
+          alt: "Illustration of two cloud bubbles",
           title: "Communicative",
           description: "Async-ready, remote-native, and highly collaborative",
         },
         {
           image: "/hands-puzzle.svg",
+          alt: "Illustration of hands on puzzle",
           title: "Flexible",
           description: "Short-term, long-term, or somewhere in between",
         },
         {
-          image: "src/assets/check_badge.svg",
+          image: "/src/assets/check_badge.svg",
+          alt: "Illustration of check badge",
           title: "Skilled across levels",
           description: "Proven senior specialists ready to tackle your toughest challenges",
         },

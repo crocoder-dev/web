@@ -38,27 +38,32 @@ main:
     ourEngineers:
       [
         {
-          image: "src/assets/target-icon-correct.svg",
+          image: "/src/assets/target-icon-correct.svg",
+          alt: "Illustration of a target",
           title: "Goal-Driven",
           description: "They focus on outcomes, not just tasks",
         },
         {
-          image: "src/assets/seo_search_graph.svg",
+          image: "/src/assets/seo_search_graph.svg",
+          alt: "Illustration of search graph",
           title: "Proactive",
           description: "They solve problems without waiting for instructions",
         },
         {
-          image: "src/assets/chat-two-bubbles.svg",
+          image: "/src/assets/chat-two-bubbles.svg",
+          alt: "Illustration of two cloud bubbles",
           title: "Communicative",
           description: "Async-ready, remote-native, and highly collaborative",
         },
         {
           image: "/hands-puzzle.svg",
+          alt: "Illustration of hands on puzzle",
           title: "Flexible",
           description: "Short-term, long-term, or somewhere in between",
         },
         {
-          image: "src/assets/check_badge.svg",
+          image: "/src/assets/check_badge.svg",
+          alt: "Illustration of check badge",
           title: "Skilled across levels",
           description: "From promising juniors to proven engineering leads",
         },
