@@ -1,6 +1,8 @@
 ---
 import { getImage } from "astro:assets";
 import crocoderLogo from "../assets/crocoder-logo.png";
+import Menu from "./Menu.astro";
+import MenuItem from "./MenuItem.astro";
 
 const optimizedLogo = await getImage({
   src: crocoderLogo,
@@ -31,9 +33,8 @@ const optimizedLogo = await getImage({
       md:px-[15px]
       md:rounded-l-[3rem]
       md:rounded-r-lg
-      md:overflow-hidden
       relative
-      md:w-[680px]"
+      md:w-[780px]"
     data-navhidden="false"
   >
     <a
@@ -98,6 +99,13 @@ const optimizedLogo = await getImage({
           Blog
         </a>
       </li>
+      <li id="case-study" data-navhidden="true" class="m-2">
+        <Menu title={"Case Studies"}>
+          <MenuItem><a href="/blog/how-we-rebuilt-a-legacy-ui-with-zero-downtime">Legacy UI</a></MenuItem>
+          <MenuItem><a href="/blog/using-lago-to-create-a-flexible-billing-system">Billing System</a></MenuItem>
+          <MenuItem><a href="/blog/migrating-an-enterprise-app-from-angularjs-to-react">Frontend Migration</a></MenuItem>
+        </Menu>
+      </li>
       <li id="book-a-call-container" class="ml-auto pr-2">
         <a
           data-navhidden="true"
@@ -137,6 +145,12 @@ const optimizedLogo = await getImage({
     >
       Blog
     </a>
+    <div class="whitespace-nowrap flex flex-col gap-3 font-medium text-2xl md:text-lg text-[#E8E8E8] hover:text-white min-h-10 items-center">
+      Case Studies
+        <a class="text-xl" href="/blog/how-we-rebuilt-a-legacy-ui-with-zero-downtime">Legacy UI</a>
+        <a class="text-xl" href="/blog/using-lago-to-create-a-flexible-billing-system">Billing System</a>
+        <a class="text-xl" href="/blog/migrating-an-enterprise-app-from-angularjs-to-react">Frontend Migration</a>
+    </div>
     <a
       data-navhidden="true"
       id="mobile-book-a-call-action"
@@ -170,13 +184,14 @@ const optimizedLogo = await getImage({
   let mm = gsap.matchMedia();
 
   const NAV_SHRINK_WIDTH = "377px";
-  const NAV_EXPAND_WIDTH = "680px";
+  const NAV_EXPAND_WIDTH = "780px";
   const FRAME_DURATION = 0.425;
 
   const navBar = document.getElementById("nav-bar");
   const logoElem = document.getElementById("logo");
   const forCtoElem = document.getElementById("for-ctos");
   const blogElem = document.getElementById("blog");
+  const caseStudyElem = document.getElementById("case-study");
   const bookACallAction = document.getElementById("book-a-call-action");
   const containerElement = document.getElementById("book-a-call-container");
   const mobileBookACallAction = document.getElementById(
@@ -190,12 +205,11 @@ const optimizedLogo = await getImage({
   mm.add("(width >= 768px)", () => {
     if (!navBar || !bookACallAction) return;
 
-    const navHideItems = [forCtoElem, blogElem, logoElem];
+    const navHideItems = [forCtoElem, blogElem, logoElem, caseStudyElem];
 
     gsap.set(navBar, { width: NAV_EXPAND_WIDTH, overwrite: false });
     gsap.set(navHideItems, {
       autoAlpha: 1,
-      overflow: "hidden",
     });
     gsap.set(containerElement, { autoAlpha: 0 });
     gsap.set(bookACallAction, {
