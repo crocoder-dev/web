@@ -32,6 +32,10 @@ let content = staffAugmentation.find((v) => v.data.id === contentVariantID);
 if (!content) {
   content = staffAugmentation[0]
 }
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/*.svg"
+);
 ---
 
 <Section className="!p-0" contentClassName="md:max-w-screen">
@@ -101,7 +105,7 @@ if (!content) {
           content.data.main.ourEngineers.map((engineer) => (
             <div class="bg-white/10 p-5 rounded-2xl flex flex-col gap-5 min-w-[240px] lg:flex-1 lg:min-w-auto">
               <Image
-                src={engineer.image}
+                src={images[engineer.image]()}
                 alt={engineer.alt}
                 width={48}
                 height={48}
