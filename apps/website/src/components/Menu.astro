@@ -12,12 +12,12 @@ const { className, title } = Astro.props;
 
 <div class={classNames("relative group flex gap-2 items-center", className)}>
   <div class="hidden group-hover:grid z-10 absolute">
-    <div class="bg-[#3C3843E5] min-w-56 mt-[214px] p-4 gap-2.5 grid rounded-lg">
+    <div class="bg-[#3C3843E5] mt-[214px] p-4 gap-2.5 grid rounded-lg">
       <slot />
     </div>
   </div>
   <button
-    class="whitespace-nowrap font-medium text-2xl md:text-lg text-[#E8E8E8] hover:text-white"
+    class="whitespace-nowrap font-medium text-2xl md:text-lg text-light-gray hover:text-white"
   >
     {title}
   </button>
