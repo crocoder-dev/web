@@ -11,12 +11,14 @@ export interface Props {
   calLink?: string;
   eventType?: string;
   className?: string;
+  contentClassName?: string;
 }
 
 const {
   calLink = "team/crocoder/hello",
   eventType = "hello",
   className,
+  contentClassName,
 } = Astro.props;
 ---
 
@@ -25,7 +27,7 @@ const {
     "bg-secondary !pb-16 md:!pb-24 !pt-0 overflow-visible mt-[220px] xl:mt-[300px]",
     className,
   )}
-  contentClassName={`${grid_classes} items-center`}
+  contentClassName={classNames(`${grid_classes} items-center`, contentClassName)}
 >
   <div
     class="col-span-6 md:col-span-8 md:col-start-3 -translate-y-1/2 -mb-40 xl:col-span-6 xl:col-start-4 lg:-mb-60"

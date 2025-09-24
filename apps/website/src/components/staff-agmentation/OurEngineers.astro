@@ -1,79 +1,122 @@
 ---
-import { Image } from "astro:assets";
-import circleCheckIcon from "../../assets/circle-check-icon.svg";
-import crocoderIll16 from "../../assets/crocoder-ill-16-1.png";
+import { Picture } from "astro:assets";
+import team from "../../assets/staff-augmentation-team.jpg";
+import Pill from "../../components/Pill.astro";
 import Section from "../../components/Section.astro";
 import { grid_classes } from "../../components/_grid";
-import { getCollection, type CollectionEntry } from "astro:content";
-import type { MainContent } from "./MainContent.astro";
+import "../../styles/main.css";
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
 
-const staffContent = (await getCollection("staff_augmentation")) as {
+const contentVariantID = String(
+  Astro.url.searchParams.get("id") || "backfill-your-developer-gap",
+);
+
+const staffAugmentation = (await getCollection("staff_augmentation")) as {
   data: {
     id: string;
-    main: MainContent;
+    main: {
+      ourEngineers: {
+        image: string;
+        alt: string;
+        title: string;
+        description: string;
+      }[];
+    };
   };
 }[];
 
-const contentVariantId = String(
-  Astro.url.searchParams.get("id") || "backfill-your-developer-gap"
-);
-
-let content = staffContent.find((c) => c.data.id === contentVariantId);
+let content = staffAugmentation.find((v) => v.data.id === contentVariantID);
 
 if (!content) {
-  content = staffContent[0];
+  content = staffAugmentation[0];
 }
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/*.svg",
+);
 ---
 
-<!-- Engineers Section -->
-<Section className="!py-12 md:!py-20">
-  <div class={`${grid_classes} gap-8 md:gap-20`}>
-    <div class="col-span-6 md:col-span-12 lg:col-span-6">
-      <h2
-        class="text-[28px] leading-[32px] md:text-[54px] md:leading-[60px] tracking-tight font-medium mb-6 md:mb-12"
+<Section className="!p-0" contentClassName="md:max-w-screen">
+  <div
+    class="relative pt-49 pb-18 md:pb-24 min-[1920px]:pb-48 min-[1920px]:pt-98"
+  >
+    <Picture
+      src={team}
+      alt="Developers collaborating"
+      widths={[320, 480, 578, 640, 720, 800, 940, 1200, 1412, 1920]}
+      sizes="100vw"
+      format="avif"
+      loading="lazy"
+      class="absolute inset-0 w-full h-full object-cover object-top md:object-[50%_25%] -z-10 bg-[#424c6d]"
+    />
+    <div
+      class="absolute inset-0 -z-10"
+      style="background:linear-gradient(180deg,rgba(30, 26, 26, 0) 0%, #1E1A1A 100%)"
+    >
+      <!-- Overlay -->
+    </div>
+    <div class="mx-auto xl:px-0">
+      <div
+        class={`${grid_classes} md:max-w-[var(--max-width)] px-4 md:px-7 py-0 md:mx-auto relative z-[2] min-[1281px]:px-0`}
       >
-        <span class="text-secondary">Our </span><span class="text-[#607A1A]"
-          >Engineers</span
+        <div
+          class="row-start-1
+          col-start-1
+          col-span-6
+          md:col-span-10
+          md:col-start-2
+          text-white"
         >
-      </h2>
-
-      <div class="space-y-4 md:space-y-7">
+          <div class="flex flex-col items-center gap-2 md:gap-4 max-h-fit">
+            <Pill
+              className="text-[10px] min-[340px]:text-xs min-[390px]:text-sm sm:text-base px-2 py-1 min-[390px]:px-3 min-[390px]:py-1.5 sm:px-4 sm:py-2 max-h-[36px]"
+              >Why work with us</Pill
+            >
+            <h2
+              class="text-[18px] leading-[22px] min-[390px]:text-[24px] min-[390px]:leading-[28px] sm:text-[32px] sm:leading-[36px] md:text-[54px] md:leading-[59.4px] font-medium lg:text-[74px] lg:leading-[82px] tracking-tight text-center"
+            >
+              Our <span class="text-crocoder-orange">Engineers</span>
+            </h2>
+            <p
+              class="font-normal text-sm leading-5 min-[390px]:text-base min-[390px]:leading-6 sm:text-lg sm:leading-7 md:text-[22px] md:leading-8 tracking-normal lg:px-32 text-center"
+            >
+              Our software development services helped clients big and small
+              build solutions with a lasting impact.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bg-contrast">
+    <div
+      class={`${grid_classes}
+    md:max-w-[var(--max-width)]
+    pl-4 md:pl-7 pr-0 lg:pr-7 py-0
+    md:mx-auto
+    relative
+    min-[1281px]:px-0
+    `}
+    >
+      <div
+        class="col-span-6 md:col-span-12 flex gap-2 overflow-x-auto no-scrollbar pr-4 md:pr-7 lg:px-0 lg:overflow-hidden"
+      >
         {
-          content.data.main.ourEngineers.map((q) => (
-            <div class="flex gap-4 md:gap-7">
-              <div class="w-8 h-8 md:w-12 md:h-12 flex-shrink-0">
-                <Image
-                  src={circleCheckIcon}
-                  alt="Check icon"
-                  width={48}
-                  height={48}
-                  loading="lazy"
-                  class="w-full h-full"
-                />
-              </div>
-              <div>
-                <p class="text-[16px] leading-[24px] md:text-[22px] md:leading-8 font-semibold text-secondary">
-                  {q.title}
-                </p>
-                <p class="text-[16px] leading-[24px] md:text-[22px] md:leading-8 text-secondary">
-                  {q.description}
-                </p>
-              </div>
+          content.data.main.ourEngineers.map((c) => (
+            <div class="bg-white/10 p-5 rounded-2xl flex flex-col gap-5 min-w-[240px] lg:flex-1 lg:min-w-auto">
+              <Image
+                src={images[c.image]()}
+                alt={c.alt}
+                width={48}
+                height={48}
+              />
+              <h2 class="text-[22px] text-[#FFFFFF]">{c.title}</h2>
+              <p class="text-base leading-6 text-[#FFFFFF]">{c.description}</p>
             </div>
           ))
         }
       </div>
-    </div>
-
-    <div class="hidden lg:block col-span-6 lg:col-span-6">
-      <Image
-        src={crocoderIll16}
-        alt="CroCoder engineering team"
-        widths={[320, 480, 640, 720, 800, 940]}
-        sizes="calc(50vw - 28px)"
-        loading="lazy"
-        class="w-full h-auto"
-      />
     </div>
   </div>
 </Section>
