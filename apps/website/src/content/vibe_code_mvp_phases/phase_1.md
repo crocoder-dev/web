@@ -1,7 +1,7 @@
 ---
 image: "/src/assets/pic_phase_1.png"
 imageAlt: "Illustration of crocodile presenting analytics on a board"
-imageBgColor: "bg-[#A3A7B4]"
+imageBgColor: "bg-[#3D4EDE]"
 pill: "We finish your vibe-coded mvps"
 title: "You've built this far..."
 checks:
