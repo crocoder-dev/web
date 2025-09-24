@@ -10,6 +10,21 @@ const optimizedLogo = await getImage({
   height: 51,
   format: "webp",
 });
+
+const caseStudies = [
+  {
+    title: "Refactoring Legacy UI",
+    href: "/blog/how-we-rebuilt-a-legacy-ui-with-zero-downtime",
+  },
+  {
+    title: "Implementing billing system",
+    href: "/blog/using-lago-to-create-a-flexible-billing-system",
+  },
+  {
+    title: "Empowering Frontend Migration",
+    href: "/blog/migrating-an-enterprise-app-from-angularjs-to-react",
+  },
+];
 ---
 
 <header
@@ -85,7 +100,7 @@ const optimizedLogo = await getImage({
     <ul class="hidden items-center md:flex">
       <li id="for-ctos" data-navhidden="true" class="m-2">
         <a
-          class="whitespace-nowrap font-medium text-2xl md:text-lg text-[#E8E8E8] hover:text-white"
+          class="whitespace-nowrap font-medium text-2xl md:text-lg text-light-gray hover:text-white"
           href="/for-ctos"
         >
           For CTOs
@@ -93,7 +108,7 @@ const optimizedLogo = await getImage({
       </li>
       <li id="blog" data-navhidden="true" class="m-2">
         <a
-          class="whitespace-nowrap font-medium text-2xl md:text-lg text-[#E8E8E8] hover:text-white"
+          class="whitespace-nowrap font-medium text-2xl md:text-lg text-light-gray hover:text-white"
           href="/blog"
         >
           Blog
@@ -101,9 +116,13 @@ const optimizedLogo = await getImage({
       </li>
       <li id="case-study" data-navhidden="true" class="m-2">
         <Menu title={"Case Studies"}>
-          <MenuItem><a href="/blog/how-we-rebuilt-a-legacy-ui-with-zero-downtime">Legacy UI</a></MenuItem>
-          <MenuItem><a href="/blog/using-lago-to-create-a-flexible-billing-system">Billing System</a></MenuItem>
-          <MenuItem><a href="/blog/migrating-an-enterprise-app-from-angularjs-to-react">Frontend Migration</a></MenuItem>
+          {
+            caseStudies.map((item) => (
+              <MenuItem>
+                <a href={item.href}>{item.title}</a>
+              </MenuItem>
+            ))
+          }
         </Menu>
       </li>
       <li id="book-a-call-container" class="ml-auto pr-2">
@@ -131,25 +150,32 @@ const optimizedLogo = await getImage({
   </nav>
   <div
     id="mobile-list"
-    class="relative px-7 py-4 gap-5 bg-secondary hidden flex-col items-center h-full peer/menu-toggle"
+    class="relative px-7 py-4 gap-5 bg-secondary hidden flex-col h-full peer/menu-toggle text-left"
   >
     <a
-      class="whitespace-nowrap font-medium text-2xl md:text-lg text-[#E8E8E8] hover:text-white min-h-10"
+      class="whitespace-nowrap font-medium text-2xl md:text-lg text-light-gray hover:text-white min-h-10"
       href="/for-ctos"
     >
       For CTOs
     </a>
     <a
-      class="whitespace-nowrap font-medium text-2xl md:text-lg text-[#E8E8E8] hover:text-white min-h-10"
+      class="whitespace-nowrap font-medium text-2xl md:text-lg text-light-gray hover:text-white min-h-10"
       href="/blog"
     >
       Blog
     </a>
-    <div class="whitespace-nowrap flex flex-col gap-3 font-medium text-2xl md:text-lg text-[#E8E8E8] hover:text-white min-h-10 items-center">
-      Case Studies
-        <a class="text-xl" href="/blog/how-we-rebuilt-a-legacy-ui-with-zero-downtime">Legacy UI</a>
-        <a class="text-xl" href="/blog/using-lago-to-create-a-flexible-billing-system">Billing System</a>
-        <a class="text-xl" href="/blog/migrating-an-enterprise-app-from-angularjs-to-react">Frontend Migration</a>
+    <div
+      class="whitespace-nowrap flex flex-col gap-3 font-medium text-light-gray"
+    >
+      <span class="uppercase text-lg">Case Studies</span>
+
+      {
+        caseStudies.map((item) => (
+          <a class="text-xl hover:text-white text-wrap min-h-8" href={item.href}>
+            {item.title}
+          </a>
+        ))
+      }
     </div>
     <a
       data-navhidden="true"
@@ -166,7 +192,7 @@ const optimizedLogo = await getImage({
     </a>
     <a
       class="font-medium
-          w-full !h-[40px] items-center px-4 py-2 rounded-md
+          w-full !h-[40px] items-center px-4 py-2 rounded-md mb-5 md:mb-0
           text-base text-center whitespace-nowrap bg-crocoder-yellow text-contrast hover:opacity-90
           inline-block"
       href="/contact"
