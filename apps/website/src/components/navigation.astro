@@ -13,15 +13,15 @@ const optimizedLogo = await getImage({
 
 const caseStudies = [
   {
-    title: "Implementing billing system",
-    href: "/blog/using-lago-to-create-a-flexible-billing-system",
-  },
-  {
     title: "Refactoring Legacy UI",
     href: "/blog/how-we-rebuilt-a-legacy-ui-with-zero-downtime",
   },
   {
-    title: "Empovering Frontend Migrartion",
+    title: "Implementing billing system",
+    href: "/blog/using-lago-to-create-a-flexible-billing-system",
+  },
+  {
+    title: "Empowering Frontend Migration",
     href: "/blog/migrating-an-enterprise-app-from-angularjs-to-react",
   },
 ];
@@ -171,7 +171,7 @@ const caseStudies = [
 
       {
         caseStudies.map((item) => (
-          <a class="text-xl hover:text-white text-wrap" href={item.href}>
+          <a class="text-xl hover:text-white text-wrap min-h-8" href={item.href}>
             {item.title}
           </a>
         ))
