@@ -45,6 +45,8 @@ export async function POST(request: NextRequest) {
   };
   console.log("ENV", VERCEL_ENV);
   console.log("URL", VERCEL_URL);
+  console.log("URL", process.env.VERCEL_BRANCH_URL);
+  console.log("URL", process.env);
   return new Response(null, { status: 200 });
   if (request.headers.get("Content-Type") === "application/json") {
     try {
