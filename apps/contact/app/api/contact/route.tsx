@@ -43,11 +43,6 @@ export async function POST(request: NextRequest) {
     "Access-Control-Allow-Methods": "POST, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type",
   };
-  console.log("ENV", VERCEL_ENV);
-  console.log("URL", VERCEL_URL);
-  console.log("URL", process.env.VERCEL_BRANCH_URL);
-  console.log("URL", process.env);
-  return new Response(null, { status: 200 });
   if (request.headers.get("Content-Type") === "application/json") {
     try {
       const body = (await request.json()) as RequestBody;
@@ -78,26 +73,26 @@ export async function POST(request: NextRequest) {
         });
       }
 
-      // const referer = request.headers.get("referer");
-      // const origin = request.headers.get("origin");
-      // let source = "Unknown";
+      const referer = request.headers.get("referer");
+      const origin = request.headers.get("origin");
+      let source = "Unknown";
 
-      // if (referer && origin && referer.startsWith(origin)) {
-      //   source = referer.slice(origin.length);
-      // }
+      if (referer && origin && referer.startsWith(origin)) {
+        source = referer.slice(origin.length);
+      }
 
-      // const { id: notionPageId, url } = await createContact(
-      //   `Message from ${name} (${nanoid()})`,
-      //   email,
-      //   name,
-      //   message,
-      //   NOTION_DATABASE_ID || "",
-      //   source,
-      // );
+      const { id: notionPageId, url } = await createContact(
+        `Message from ${name} (${nanoid()})`,
+        email,
+        name,
+        message,
+        NOTION_DATABASE_ID || "",
+        source,
+      );
 
-      // if (notionPageId && url) {
-      //   await notifyContactCreated(name, email, "url");
-      // }
+      if (notionPageId && url) {
+        await notifyContactCreated(name, email, "url");
+      }
 
       /* await sendEmail({
         template: <ContactTemplate />,
