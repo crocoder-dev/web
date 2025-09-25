@@ -76,26 +76,26 @@ export async function POST(request: NextRequest) {
         });
       }
 
-      const referer = request.headers.get("referer");
-      const origin = request.headers.get("origin");
-      let source = "Unknown";
+      // const referer = request.headers.get("referer");
+      // const origin = request.headers.get("origin");
+      // let source = "Unknown";
 
-      if (referer && origin && referer.startsWith(origin)) {
-        source = referer.slice(origin.length);
-      }
+      // if (referer && origin && referer.startsWith(origin)) {
+      //   source = referer.slice(origin.length);
+      // }
 
-      const { id: notionPageId, url } = await createContact(
-        `Message from ${name} (${nanoid()})`,
-        email,
-        name,
-        message,
-        NOTION_DATABASE_ID || "",
-        source,
-      );
+      // const { id: notionPageId, url } = await createContact(
+      //   `Message from ${name} (${nanoid()})`,
+      //   email,
+      //   name,
+      //   message,
+      //   NOTION_DATABASE_ID || "",
+      //   source,
+      // );
 
-      if (notionPageId && url) {
-        await notifyContactCreated(name, email, "url");
-      }
+      // if (notionPageId && url) {
+      //   await notifyContactCreated(name, email, "url");
+      // }
 
       /* await sendEmail({
         template: <ContactTemplate />,
