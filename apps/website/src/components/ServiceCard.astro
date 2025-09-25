@@ -23,16 +23,15 @@ interface Props {
     href: string;
     text: string;
     title?: string;
+    image?: string;
   };
 }
 
 const { title, subtitles, content, styles, img, classNames, link } =
   Astro.props;
 
-const images = import.meta.glob("../assets/*.*");
-const src = images[`../assets${img.path}`] as any as () => Promise<{
-  default: ImageMetadata;
-}>;
+const images = import.meta.glob<{ default: ImageMetadata }>("../assets/*.*");
+const src = images[`../assets${img.path}`];
 
 const image = await src();
 ---
@@ -50,7 +49,7 @@ const image = await src();
     h-[710px]
     overflow-hidden
     `,
-    styles,
+    styles
   )}
 >
   <section
@@ -70,7 +69,7 @@ const image = await src();
       lg:grid-cols-2
       backdrop-blur-[15px]
       `,
-      classNames,
+      classNames
     )}
   >
     <div
@@ -96,11 +95,12 @@ const image = await src();
         />
         <div>
           {
-            link?.title ? (
+            link?.title && link.image ? (
               <BlogLink
                 href={link.href}
                 title={link.title}
                 linkText={link.text}
+                image={link.image}
               />
             ) : (
               <CTA id="contact-cta" href={link.href}>

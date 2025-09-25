@@ -1,13 +1,15 @@
 ---
+import classnames from "classnames";
 interface Props {
   href: string;
   text: string;
+  classNames?: string;
 }
 
-const { href, text } = Astro.props;
+const { href, text, classNames } = Astro.props;
 ---
 
-<div class="flex gap-2 items-center">
+<div class={classnames("flex gap-2 items-center", classNames)}>
   <a
     class="text-contrast underline underline-offset-2 text-sm sm:text-base"
     href={href}

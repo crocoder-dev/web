@@ -14,6 +14,7 @@ link:
   href: "/blog/migrating-an-enterprise-app-from-angularjs-to-react"
   text: "See case study"
   title: "Migrating an Enterprise App from AngularJS to React"
+  image: "from-angular-to-react.png"
 ---
 
 Help your team keep up with industry demands through dedicated mentorship and hands-on support. We offer technical coaching, on-the-job pairing, and structured growth plans to identify and close skill gaps so your developers become more effective and confident with modern technologies and practices.
