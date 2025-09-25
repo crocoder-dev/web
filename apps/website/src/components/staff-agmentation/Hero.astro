@@ -3,6 +3,7 @@ import { Picture } from "astro:assets";
 import { getCollection } from "astro:content";
 import classnames from "classnames";
 import hero from "../../assets/mobile-staff-hero.svg";
+import heroWide from "../../assets/wide-staff-hero.svg";
 import Pill from "../../components/Pill.astro";
 import Section from "../../components/Section.astro";
 import { grid_classes } from "../../components/_grid";
@@ -15,7 +16,7 @@ const staff = (await getCollection("staff_members")) as {
 }[];
 
 const contentVariantID = String(
-  Astro.url.searchParams.get("id") || "backfill-your-developer-gap",
+  Astro.url.searchParams.get("id") || "backfill-your-developer-gap"
 );
 
 const staffContent = (await getCollection("staff_augmentation")) as {
@@ -43,31 +44,18 @@ if (!content) {
 >
   <div
     class={classnames(
-      "mx-auto xl:px-0 bg-[#FFF1E1] rounded-b-4xl md:rounded-b-[96px] relative overflow-hidden",
+      "mx-auto xl:px-0 bg-[#FFF1E1] rounded-b-4xl md:rounded-b-[96px] relative overflow-hidden"
     )}
   >
-    <!-- Fills the empty left gap on wide screens.
-     Simulates `background-repeat`, because we can’t use
-     an SVG as background-image in combination with background-repeat
-     because it gets blurry. -->
     <Picture
       src={hero}
       alt=""
-      class="w-[1400px] h-full absolute top-0 -translate-x-full left-[calc(50%-800px)] z-[1] bg-[#FFF1E1] hidden min-[1600px]:block"
-    />
-    <!-- Fills the empty right gap on wide screens.
-     Simulates `background-repeat`, because we can’t use
-     an SVG as background-image in combination with background-repeat
-     because it gets blurry. -->
-    <Picture
-      src={hero}
-      alt=""
-      class="w-[1400px] h-full absolute top-0 left-[calc((50%-600px)+1400px)] z-[1] bg-[#FFF1E1] hidden min-[1600px]:block"
+      class="xl:min-w-[1400px] h-full absolute top-0 left-1/2 -translate-x-1/2 z-[1] bg-[#FFF1E1] min-[1600px]:hidden"
     />
     <Picture
-      src={hero}
+      src={heroWide}
       alt=""
-      class="w-[1400px] h-full absolute top-0 left-1/2 -translate-x-1/2 z-[1] bg-[#FFF1E1]"
+      class="h-full absolute top-0 left-0 z-[1] bg-[#FFF1E1] hidden min-[1600px]:block"
     />
     <div
       class={`${grid_classes} md:max-w-[var(--max-width)] px-4 md:px-7 !pt-[75px] md:mx-auto relative z-[2]`}
