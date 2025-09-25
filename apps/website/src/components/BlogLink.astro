@@ -1,16 +1,40 @@
 ---
+import { Image } from "astro:assets";
 import ExternalLink from "./ExternalLink.astro";
 
 interface Props {
   href: string;
   linkText: string;
   title: string;
+  image: string;
 }
 
-const { href, linkText, title } = Astro.props;
+const { href, linkText, title, image } = Astro.props;
+
+const images = import.meta.glob<{ default: ImageMetadata }>("/src/assets/*.*");
+
+const linkImageSrc = await images[`/src/assets/${image || ""}`]();
 ---
 
-<div class="bg-white p-4 rounded-md gap-2 grid md:w-[65%]">
-  <span class="text-contrast text-sm sm:text-base font-semibold">{title}</span>
-  <ExternalLink href={href} text={linkText} />
+<div
+  class="bg-white p-4 rounded-md gap-x-4 gap-y-2.5 grid w-full max-w-[390px]"
+>
+  <Image
+    src={linkImageSrc.default}
+    alt={title}
+    width={80}
+    height={80}
+    class="col-span-1 row-span-2 aspect-square w-[80px] rounded-lg object-cover"
+    widths={[160, 320]}
+    sizes={"160px"}
+  />
+  <span
+    class="text-contrast text-sm sm:text-base font-semibold col-span-1 row-span-1 col-start-2"
+    >{title}</span
+  >
+  <ExternalLink
+    href={href}
+    text={linkText}
+    classNames="col-span-1 row-span-1 col-start-2"
+  />
 </div>
