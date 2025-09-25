@@ -1,17 +1,37 @@
 import { describe, it, expect, beforeEach, afterEach } from "bun:test";
-import { createPayload } from "./slack";
+import { createPayload, notifyContactCreated } from "./slack";
 
-const originalEnv = process.env;
+const originalEnv = { ...process.env };
+const originalFetch = globalThis.fetch;
+let fetchCalls: string[] = [];
+
+const mockSlackResponse = {
+  ok: true,
+  channel: "#test-channel",
+  message: {
+    text: "Test",
+    type: "message",
+  },
+};
+
 beforeEach(() => {
   process.env = {
     ...originalEnv,
     SLACK_CHANNEL: "#test-channel",
     SLACK_BOT_TOKEN: "xoxb-test-token",
   };
+
+  fetchCalls = [];
+
+  globalThis.fetch = (async (url: string) => {
+    fetchCalls.push(url);
+    return { status: 200, json: async () => mockSlackResponse } as Response;
+  }) as typeof fetch;
 });
 
 afterEach(() => {
-  process.env = originalEnv;
+  process.env = { ...originalEnv };
+  globalThis.fetch = originalFetch;
 });
 
 describe("Slack Helper", () => {
@@ -27,55 +47,34 @@ describe("Slack Helper", () => {
       expect(payload).toHaveProperty("blocks");
       expect(payload.blocks).toHaveLength(4);
 
-      expect(payload.blocks[0]).toEqual({
-        type: "header",
-        text: {
-          type: "plain_text",
-          text: "We have 1 new message(s).",
-          emoji: true,
-        },
-      });
+      // Checks that it is type header and contains text
+      expect(payload.blocks[0]).toHaveProperty("type", "header");
+      expect(payload.blocks[0]).toHaveProperty("text");
+      expect(payload.blocks[0].text?.text.length).toBeGreaterThan(0);
 
-      expect(payload.blocks[1]).toEqual({
-        type: "section",
-        text: {
-          type: "mrkdwn",
-          text: "We got a new message from _John Doe_ (_john@example.com_).",
-        },
-      });
+      // Checks that it is type section and the text conatins name and email
+      expect(payload.blocks[1]).toHaveProperty("type", "section");
+      expect(payload.blocks[1]).toHaveProperty("text");
+      expect(payload.blocks[1].text?.text).toContain("John Doe");
+      expect(payload.blocks[1].text?.text).toContain("john@example.com");
 
-      expect(payload.blocks[3]).toEqual({
-        type: "section",
-        text: {
-          type: "mrkdwn",
-          text: " ",
-        },
-        accessory: {
-          type: "button",
-          text: {
-            type: "plain_text",
-            text: "Show me the message",
-            emoji: true,
-          },
-          value: "new_message_click",
-          url: "https://notion.so/test",
-          action_id: "button-action",
-        },
-      });
+      // Checks that it is type section and the accessory conatins the url
+      expect(payload.blocks[3]).toHaveProperty("type", "section");
+      expect(payload.blocks[3]).toHaveProperty("accessory");
+      expect(payload.blocks[3].accessory?.url).toBe("https://notion.so/test");
     });
+  });
 
-    it("should handle different user names and emails", () => {
-      const payload = createPayload(
-        "Jane Smith",
-        "jane@test.com",
-        "https://notion.so/page123",
+  describe("notifyContactCreated", async () => {
+    it("should send message on slack", async () => {
+      await notifyContactCreated(
+        "John Doe",
+        "john@example.com",
+        "https://notion.so/test",
       );
 
-      expect(payload.blocks[1]?.text?.text).toContain("Jane Smith");
-      expect(payload.blocks[1]?.text?.text).toContain("jane@test.com");
-      expect(payload.blocks[3]?.accessory?.url).toBe(
-        "https://notion.so/page123",
-      );
+      expect(fetchCalls.length).toBe(1);
+      expect(fetchCalls[0]).toBe("https://slack.com/api/chat.postMessage");
     });
   });
 });

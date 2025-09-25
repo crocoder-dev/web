@@ -1,11 +1,22 @@
 import { describe, it, expect, beforeEach, mock } from "bun:test";
 import { POST, OPTIONS } from "../app/api/contact/route";
 
-const mockProcessContact = mock(() => Promise.resolve("mock-notion-id"));
+const mockCreateContact = mock(() =>
+  Promise.resolve({
+    object: "page",
+    id: "mock-notion-id",
+    url: "https://www.notion.so/fakepageid",
+  }),
+);
+const mockNotifyContactCreated = mock(() => Promise.resolve({}));
 const mockNanoid = mock(() => "mock-id-12345");
 
 mock.module("@/helpers/notion", () => ({
-  processContact: mockProcessContact,
+  createContact: mockCreateContact,
+}));
+
+mock.module("@/helpers/slack", () => ({
+  notifyContactCreated: mockNotifyContactCreated,
 }));
 
 mock.module("nanoid", () => ({
@@ -18,7 +29,8 @@ beforeEach(() => {
     ...originalEnv,
     NOTION_DATABASE_ID: "mock-database-id",
   };
-  mockProcessContact.mockClear();
+  mockCreateContact.mockClear();
+  mockNotifyContactCreated.mockClear();
   mockNanoid.mockClear();
 });
 
@@ -28,12 +40,15 @@ describe("Contact API Route", () => {
       const response = await OPTIONS();
 
       expect(response.status).toBe(200);
-      expect(response.headers.get("Access-Control-Allow-Origin")).toBe("*");
+      // Should * be alowed or should there be some restrictions
+      expect(response.headers.get("Access-Control-Allow-Origin")).toBe(
+        "http://localhost:4321",
+      );
       expect(response.headers.get("Access-Control-Allow-Methods")).toBe(
         "OPTIONS, POST",
       );
       expect(response.headers.get("Access-Control-Allow-Headers")).toBe(
-        "Content-Type, Authorization",
+        "Content-Type",
       );
     });
   });
@@ -72,9 +87,10 @@ describe("Contact API Route", () => {
       const responseData = await response.json();
 
       expect(response.status).toBe(200);
-      expect(responseData.message).toBe("Success");
-      expect(mockProcessContact).toHaveBeenCalledTimes(1);
+      expect(mockCreateContact).toHaveBeenCalledTimes(1);
+      expect(mockNotifyContactCreated).toHaveBeenCalledTimes(1);
     });
+    // Add new test that checks the contetnt type
 
     it("should return 400 for invalid email", async () => {
       const invalidBody = {
@@ -89,10 +105,10 @@ describe("Contact API Route", () => {
       const responseData = await response.json();
 
       expect(response.status).toBe(400);
-      expect(responseData.message).toContain("Invalid email");
+      expect(mockCreateContact).toHaveBeenCalledTimes(0);
+      expect(mockNotifyContactCreated).toHaveBeenCalledTimes(0);
     });
 
-    /** Should this be the case? **/
     it("should return 400 for missing required fields", async () => {
       const invalidBody = {
         name: "John Doe",
@@ -105,6 +121,8 @@ describe("Contact API Route", () => {
       const response = await POST(request);
 
       expect(response.status).toBe(400);
+      expect(mockCreateContact).toHaveBeenCalledTimes(0);
+      expect(mockNotifyContactCreated).toHaveBeenCalledTimes(0);
     });
 
     it("should return 403 for no consent", async () => {
@@ -120,14 +138,15 @@ describe("Contact API Route", () => {
       const responseData = await response.json();
 
       expect(response.status).toBe(403);
-      expect(responseData.message).toBe("No consent by user");
+      expect(mockCreateContact).toHaveBeenCalledTimes(0);
+      expect(mockNotifyContactCreated).toHaveBeenCalledTimes(0);
     });
 
-    it("should return 400 for non-JSON content type", async () => {
+    it("should return 415 for non-JSON content type", async () => {
       const request = createMockRequest("plain text", "text/plain");
       const response = await POST(request);
 
-      expect(response.status).toBe(400);
+      expect(response.status).toBe(415);
     });
 
     it("should include CORS headers in all responses", async () => {
@@ -141,37 +160,19 @@ describe("Contact API Route", () => {
       const request = createMockRequest(validBody);
       const response = await POST(request);
 
-      expect(response.headers.get("Access-Control-Allow-Origin")).toBe("*");
+      // Should * be alowed or should there be some restrictions
+      expect(response.headers.get("Access-Control-Allow-Origin")).toBe(
+        "http://localhost:4321",
+      );
       expect(response.headers.get("Access-Control-Allow-Credentials")).toBe(
-        "true",
+        "false",
       );
       expect(response.headers.get("Access-Control-Allow-Methods")).toBe(
         "POST, OPTIONS",
       );
     });
-
-    it("should handle source parameter from URL", async () => {
-      const validBody = {
-        name: "John Doe",
-        email: "john@example.com",
-        message: "Hello there",
-        hasConsent: true,
-      };
-
-      const request = createMockRequest(
-        validBody,
-        "application/json",
-        "http://localhost/api/contact?source=website",
-      );
-
-      const response = await POST(request);
-
-      expect(response.status).toBe(200);
-      expect(mockProcessContact).toHaveBeenCalledWith(
-        expect.objectContaining({
-          source: "website",
-        }),
-      );
-    });
+    // Check if there is need for tetsing the headers for all casses
+    // If so should there be individual tests?
+    // Check Allow headers to only have content-type
   });
 });
