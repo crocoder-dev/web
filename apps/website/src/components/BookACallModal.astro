@@ -1,0 +1,36 @@
+---
+import CalcomEmbedInline from "./CalcomEmbedInline.astro";
+import Modal from "./Modal.astro";
+import Pill from "./Pill.astro";
+
+export interface Props {
+  calLink?: string;
+  eventType?: string;
+  className?: string;
+}
+
+const {
+  calLink = "team/crocoder/hello",
+  eventType = "hello",
+  className,
+} = Astro.props;
+---
+
+<Modal id="book-a-call-modal" classNames="w-[calc(100%-16px)] max-w-[1073px]">
+  <main class="bg-white" slot="main">
+    <Pill>Book your call today</Pill>
+    <h2 class="text-4xl font-medium">
+      Let's Build <span class="text-crocoder-green">Together</span>
+    </h2>
+    <p class="text-secondary text-base">
+      Tell us what you're working on — we'll match you with our engineers who
+      can ramp up quickly, integrate seamlessly, and bring real product impact.
+    </p>
+    <CalcomEmbedInline
+      calLink={calLink}
+      eventType={eventType}
+      elementOrSelector="#book-a-call"
+      hideEventTypeDetails={false}
+    />
+  </main>
+</Modal>

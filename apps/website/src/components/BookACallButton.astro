@@ -1,0 +1,49 @@
+---
+import { Image } from "astro:assets";
+import classNames from "classnames";
+import meetingImage from "../assets/meeting-croc.png";
+import CalcomEmbedInline from "../components/CalcomEmbedInline.astro";
+import { grid_classes } from "./_grid";
+import Pill from "./Pill.astro";
+import Section from "./Section.astro";
+import { getImage } from "astro:assets";
+import crocoderLogo from "../assets/crocoder-logo.png";
+import ArrowTopRight from "./icons/ArrowTopRight.astro";
+
+const optimizedLogo = await getImage({
+  src: crocoderLogo,
+  width: 63,
+  height: 51,
+  format: "webp",
+});
+
+export interface Props {
+  calLink?: string;
+  eventType?: string;
+  className?: string;
+}
+
+const {
+  calLink = "team/crocoder/hello",
+  eventType = "hello",
+  className,
+} = Astro.props;
+---
+
+<button
+  class="rounded-full bg-periwinkle p-4 pr-8 text-white flex gap-4 items-center fixed bottom-7 right-7 z-20"
+>
+  <img
+    src={optimizedLogo.src}
+    alt="Crocoder Crocodile Logo"
+    class="h-[51px] w-auto"
+    loading="eager"
+  />
+  <span class="flex gap-6 text-xl items-center font-medium">
+    Book a call <ArrowTopRight classNames="w-6 h-6" />
+  </span>
+</button>
+
+<script>
+
+</script>
