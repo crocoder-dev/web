@@ -13,7 +13,7 @@ type Props = {
 const { name, imagePath, role, idx } = Astro.props;
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/assets/staff/*.{jpg, png}",
+  "/src/assets/staff/*.{jpg, png}"
 );
 ---
 
@@ -29,7 +29,14 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
       "rotate-z-[15deg]": idx === 2,
     })}
   >
-    <Image width={230} height={230} src={images[imagePath]()} alt="" />
+    <Image
+      width={230}
+      height={230}
+      src={images[imagePath]()}
+      alt=""
+      widths={[320, 640]}
+      sizes={"320px"}
+    />
   </div>
   <div
     class={classnames("absolute w-full h-full top-0 left-0", {
