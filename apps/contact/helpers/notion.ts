@@ -116,7 +116,6 @@ export const createContact = async (
   source: string,
 ) => {
   if (!id || !email || !name || !databaseID) {
-    console.log(id, email, name, databaseID);
     throw {
       body: {
         message: "Missing data in process contact event",
