@@ -8,11 +8,12 @@ import * as formContent from "../../content/contact/get-your-plan-form.md";
 <div class="col-span-6 lg:col-span-5 lg:col-start-2 md:row-start-2">
   <form
     id="get-your-plan-form"
-    class="group/contact-us mx-auto flex-col gap-2"
+    class="group/contact-us mx-auto bg-white rounded-xl flex-col py-1 gap-2 px-7"
     novalidate
   >
     <Field
       isTextArea={false}
+      classNames=""
       onDark
       inputProps={{
         name: "form-full-name",
@@ -60,7 +61,7 @@ import * as formContent from "../../content/contact/get-your-plan-form.md";
           set:html={formContent.frontmatter.consent}
           id="form-consent-text"
           for="form-consent"
-          class="text-neutral-50 [&>em]:not-italic [&>em]:font-semibold cursor-pointer"
+          class="text-[#3C3843] [&>em]:not-italic [&>em]:font-semibold cursor-pointer"
         />
       </div>
       <button

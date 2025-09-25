@@ -17,7 +17,7 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
 <base-contact-form data-id={formId} class={classnames(classNames)}>
   <form
     class={classnames(
-      "group/contact-us flex flex-col gap-2 relative",
+      "group/contact-us flex flex-col gap-2 bg-white rounded-xl px-7 relative",
       formClassNames,
     )}
     id={formId}
@@ -104,8 +104,8 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
           class={classnames(
             "[&>em]:not-italic [&_b]:text-[#67a807] [&>em]:font-semibold cursor-pointer text-sm sm:text-base",
             {
-              "text-secondary": !onDark,
-              "text-neutral-50": onDark,
+              "text-neutral": !onDark,
+              "text-secondary": onDark,
             },
           )}
         />
