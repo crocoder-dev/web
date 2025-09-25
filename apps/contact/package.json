@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "bun test",
+    "test": "bun test helpers/ && bun test tests/",
     "emails": "email dev --dir email-templates"
   },
   "dependencies": {

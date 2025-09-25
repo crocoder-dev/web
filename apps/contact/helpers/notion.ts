@@ -1,9 +1,8 @@
 import { Client, isFullPage } from "@notionhq/client";
-import { notifyContactCreated } from "./slack";
 
 const { NOTION_TOKEN, MENTION_EMAILS, MENTION_IDS } = process.env;
 
-const notion = new Client({ auth: NOTION_TOKEN });
+export const notion = new Client({ auth: NOTION_TOKEN });
 
 const mentionPerson = ({ id }: { id: string }) => [
   {
@@ -40,7 +39,7 @@ const mentionPeople = () => {
   return getMentions().flatMap(mentionPerson);
 };
 
-const createContactObject = (
+export const createContactObject = (
   id: string,
   email: string,
   name: string,
@@ -108,7 +107,7 @@ const createContactObject = (
   ],
 });
 
-const createContact = async (
+export const createContact = async (
   id: string,
   email: string,
   name: string,
@@ -116,6 +115,15 @@ const createContact = async (
   databaseID: string,
   source: string,
 ) => {
+  if (!id || !email || !name || !databaseID) {
+    console.log(id, email, name, databaseID);
+    throw {
+      body: {
+        message: "Missing data in process contact event",
+      },
+    };
+  }
+
   const response = await notion.pages.create(
     createContactObject(id, email, name, content, databaseID, source),
   );
@@ -131,36 +139,4 @@ const createContact = async (
       message: "Failed to create notion page",
     },
   };
-};
-
-export const processContact = async (event: {
-  id: string;
-  email: string;
-  name: string;
-  message: string;
-  databaseID: string;
-  source: string;
-}) => {
-  const { id, email, name, message, databaseID, source } = event;
-
-  if (!id || !email || !name || !databaseID) {
-    console.log({ event });
-    throw {
-      body: {
-        message: "Missing data in process contact event",
-      },
-    };
-  }
-
-  const { id: notionPageID, url } = await createContact(
-    `Message from ${name} (${id})`,
-    email,
-    name,
-    message,
-    databaseID,
-    source,
-  );
-
-  await notifyContactCreated(name, email, url);
-  return notionPageID;
 };

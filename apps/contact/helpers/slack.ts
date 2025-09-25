@@ -1,4 +1,4 @@
-const { SLACK_CHANNEL, SLACK_BOT_TOKEN, IS_OFFLINE } = process.env;
+const { SLACK_CHANNEL, SLACK_BOT_TOKEN } = process.env;
 
 export const createPayload = (name: string, email: string, url: string) => ({
   channel: SLACK_CHANNEL,
@@ -50,24 +50,18 @@ export const notifyContactCreated = async (
   const payload = createPayload(name, email, url);
   const payloadStringify = JSON.stringify(payload);
 
-  if (IS_OFFLINE) {
-    console.log(payload);
-  } else {
-    const result = await fetch("https://slack.com/api/chat.postMessage", {
-      method: "POST",
-      body: payloadStringify,
-      headers: {
-        "Content-Type": "application/json; charset=utf-8",
-        "Content-Length": payloadStringify.length.toString(),
-        Authorization: `Bearer ${SLACK_BOT_TOKEN}`,
-        Accept: "application/json",
-      },
-    });
-    if (result.status !== 200) {
-      throw {
-        body: "Could not send notification message to Slack",
-        statusCode: result.status,
-      };
-    }
+  const result = await fetch("https://slack.com/api/chat.postMessage", {
+    method: "POST",
+    body: payloadStringify,
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": payloadStringify.length.toString(),
+      Authorization: `Bearer ${SLACK_BOT_TOKEN}`,
+      Accept: "application/json",
+    },
+  });
+  const realResponse = await result.json();
+  if (result.status !== 200 || !realResponse.ok) {
+    console.error("Could not send notification message to Slack");
   }
 };

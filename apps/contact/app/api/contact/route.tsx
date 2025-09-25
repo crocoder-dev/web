@@ -1,6 +1,7 @@
 //import { ContactTemplate } from "@/email-templates/contact";
 //import { sendEmail } from "@/helpers/email";
-import { processContact } from "@/helpers/notion";
+import { createContact } from "@/helpers/notion";
+import { notifyContactCreated } from "@/helpers/slack";
 import { nanoid } from "nanoid";
 import { NextRequest } from "next/server";
 import z from "zod";
@@ -16,31 +17,34 @@ const bodyValidationSchema = z.object({
 
 type RequestBody = z.infer<typeof bodyValidationSchema>;
 
-const { NOTION_DATABASE_ID } = process.env;
+const { NOTION_DATABASE_ID, VERCEL_ENV, VERCEL_URL } = process.env;
 
-const allowRequest = async (request: Request & { ip?: string }) => {
-  return { success: true, limit: 1, reset: Date.now() + 30000, remaining: 1 };
-};
+const allowOrigin = !VERCEL_ENV
+  ? "http://localhost:4321"
+  : VERCEL_ENV === "previev" || VERCEL_ENV === "development"
+    ? VERCEL_URL || ""
+    : "https://crocoder.dev";
 
 export async function OPTIONS() {
   return new Response(null, {
     status: 200,
     headers: {
-      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Origin": allowOrigin,
       "Access-Control-Allow-Methods": "OPTIONS, POST",
-      "Access-Control-Allow-Headers": "Content-Type, Authorization",
+      "Access-Control-Allow-Headers": "Content-Type",
     },
   });
 }
 
 export async function POST(request: NextRequest) {
   const corsHeaders = {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Credentials": "true",
+    "Access-Control-Allow-Origin": allowOrigin,
+    "Access-Control-Allow-Credentials": "false",
     "Access-Control-Allow-Methods": "POST, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type, Authorization",
+    "Access-Control-Allow-Headers": "Content-Type",
   };
-
+  console.log("ENV", VERCEL_ENV);
+  console.log("URL", VERCEL_URL);
   if (request.headers.get("Content-Type") === "application/json") {
     try {
       const body = (await request.json()) as RequestBody;
@@ -71,30 +75,26 @@ export async function POST(request: NextRequest) {
         });
       }
 
-      const { success, limit, reset, remaining } = await allowRequest(request);
+      const referer = request.headers.get("referer");
+      const origin = request.headers.get("origin");
+      let source = "Unknown";
 
-      if (!success) {
-        return new Response(
-          JSON.stringify({
-            message: "Too many requests. Please try again in a minute",
-          }),
-          {
-            status: 429,
-            headers: {
-              ...corsHeaders,
-            },
-          },
-        );
+      if (referer && origin && referer.startsWith(origin)) {
+        source = referer.slice(origin.length);
       }
 
-      await processContact({
-        id: nanoid(),
+      const { id: notionPageId, url } = await createContact(
+        `Message from ${name} (${nanoid()})`,
         email,
         name,
         message,
-        databaseID: NOTION_DATABASE_ID || "",
-        source: request.nextUrl.searchParams.get("source") || "Unknown",
-      });
+        NOTION_DATABASE_ID || "",
+        source,
+      );
+
+      if (notionPageId && url) {
+        await notifyContactCreated(name, email, "url");
+      }
 
       /* await sendEmail({
         template: <ContactTemplate />,
@@ -109,9 +109,6 @@ export async function POST(request: NextRequest) {
           status: 200,
           headers: {
             ...corsHeaders,
-            "X-RateLimit-Limit": limit.toString(),
-            "X-RateLimit-Remaining": remaining.toString(),
-            "X-RateLimit-Reset": reset.toString(),
           },
         },
       );
@@ -131,5 +128,5 @@ export async function POST(request: NextRequest) {
     }
   }
 
-  return new Response(null, { status: 400, headers: corsHeaders });
+  return new Response(null, { status: 415, headers: corsHeaders });
 }
