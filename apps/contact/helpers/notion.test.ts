@@ -1,16 +1,13 @@
-import { describe, it, expect, beforeEach, afterEach } from "bun:test";
+import { describe, it, expect, beforeEach, afterEach, vi } from "bun:test";
 import { createContactObject, createContact, notion } from "./notion";
 
 let callCount = 0;
 
-notion.pages.create = async (args: any) => {
-  callCount++;
-  return {
-    object: "page",
-    id: "fake-page-id",
-    url: "https://www.notion.so/fakepageid",
-  };
-};
+const mock = vi.spyOn(notion.pages, "create").mockResolvedValue({
+  object: "page",
+  id: "fake-page-id",
+  url: "https://www.notion.so/fakepageid",
+});
 
 const originalEnv = process.env;
 beforeEach(() => {
@@ -24,18 +21,27 @@ beforeEach(() => {
 
 afterEach(() => {
   process.env = originalEnv;
+  callCount = 0;
 });
 
 describe("Notion Helper", () => {
+  const validContactData = {
+    id: "test-id-123",
+    email: "john@example.com",
+    name: "John Doe",
+    content: "Test message",
+    databaseID: "mock-database-id",
+    source: "website",
+  };
   describe("createContactObject", () => {
     it("should create correct Notion payload structure", () => {
       const payload = createContactObject(
-        "test-id-123",
-        "john@example.com",
-        "John Doe",
-        "Test message",
-        "mock-database-id",
-        "website",
+        validContactData.id,
+        validContactData.email,
+        validContactData.name,
+        validContactData.content,
+        validContactData.databaseID,
+        validContactData.source,
       );
 
       expect(payload).toHaveProperty("parent");
@@ -60,15 +66,6 @@ describe("Notion Helper", () => {
   });
 
   describe("createContact", () => {
-    const validContactData = {
-      id: "test-id-123",
-      email: "john@example.com",
-      name: "John Doe",
-      content: "Test message",
-      databaseID: "mock-database-id",
-      source: "website",
-    };
-
     it("should validate required fields", () => {
       const requiredFields = ["id", "email", "name", "databaseID"];
       requiredFields.forEach((field) => {
@@ -77,19 +74,19 @@ describe("Notion Helper", () => {
       });
     });
 
-    it("should process contact data structure correctly", async () => {
+    it("should create Notion page", async () => {
       const response = await createContact(
-        "test-id-123",
-        "john@example.com",
-        "John Doe",
-        "Test message",
-        "mock-database-id",
-        "website",
+        validContactData.id,
+        validContactData.email,
+        validContactData.name,
+        validContactData.content,
+        validContactData.databaseID,
+        validContactData.source,
       );
 
       expect(response.id).toBe("fake-page-id");
       expect(response.url).toContain("www.notion.so");
-      expect(callCount).toBe(1);
+      expect(mock).toHaveBeenCalledTimes(1);
     });
   });
 });
