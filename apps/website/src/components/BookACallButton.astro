@@ -1,42 +1,26 @@
 ---
 import { Image } from "astro:assets";
-import classNames from "classnames";
-import meetingImage from "../assets/meeting-croc.png";
-import CalcomEmbedInline from "../components/CalcomEmbedInline.astro";
-import { grid_classes } from "./_grid";
-import Pill from "./Pill.astro";
-import Section from "./Section.astro";
-import { getImage } from "astro:assets";
 import crocoderLogo from "../assets/crocoder-logo.png";
+import BookACallModal from "./BookACallModal.astro";
 import ArrowTopRight from "./icons/ArrowTopRight.astro";
 
-const optimizedLogo = await getImage({
-  src: crocoderLogo,
-  width: 63,
-  height: 51,
-  format: "webp",
-});
-
 export interface Props {
-  calLink?: string;
-  eventType?: string;
-  className?: string;
+  calLink: string;
+  eventType: string;
 }
-
-const {
-  calLink = "team/crocoder/hello",
-  eventType = "hello",
-  className,
-} = Astro.props;
 ---
 
+<BookACallModal {...Astro.props} modalId="book-a-call-modal" />
 <button
-  class="rounded-full bg-periwinkle p-4 pr-8 text-white flex gap-4 items-center fixed bottom-7 right-7 z-20"
+  id="book-a-call-modal-button"
+  class="rounded-full bg-periwinkle p-4 pr-8 text-white flex gap-4 items-center fixed bottom-4 right-4 md:bottom-7 md:right-7 z-20 cursor-pointer"
 >
-  <img
-    src={optimizedLogo.src}
+  <Image
+    src={crocoderLogo}
     alt="Crocoder Crocodile Logo"
     class="h-[51px] w-auto"
+    widths={[160, 320]}
+    sizes={"160px"}
     loading="eager"
   />
   <span class="flex gap-6 text-xl items-center font-medium">
@@ -45,5 +29,12 @@ const {
 </button>
 
 <script>
+  const modalButton = document.getElementById("book-a-call-modal-button");
+  const modal = document.getElementById(
+    "book-a-call-modal"
+  ) as HTMLDialogElement;
 
+  modalButton?.addEventListener("click", () => {
+    modal.showModal();
+  });
 </script>

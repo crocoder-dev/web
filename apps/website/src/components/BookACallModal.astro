@@ -1,36 +1,151 @@
 ---
-import CalcomEmbedInline from "./CalcomEmbedInline.astro";
 import Modal from "./Modal.astro";
 import Pill from "./Pill.astro";
 
 export interface Props {
-  calLink?: string;
-  eventType?: string;
-  className?: string;
+  calLink: string;
+  eventType: string;
+  modalId: string;
 }
 
-const {
-  calLink = "team/crocoder/hello",
-  eventType = "hello",
-  className,
-} = Astro.props;
+const { calLink, eventType, modalId } = Astro.props;
 ---
 
-<Modal id="book-a-call-modal" classNames="w-[calc(100%-16px)] max-w-[1073px]">
-  <main class="bg-white" slot="main">
-    <Pill>Book your call today</Pill>
-    <h2 class="text-4xl font-medium">
-      Let's Build <span class="text-crocoder-green">Together</span>
-    </h2>
-    <p class="text-secondary text-base">
-      Tell us what you're working on — we'll match you with our engineers who
-      can ramp up quickly, integrate seamlessly, and bring real product impact.
-    </p>
-    <CalcomEmbedInline
-      calLink={calLink}
-      eventType={eventType}
-      elementOrSelector="#book-a-call"
-      hideEventTypeDetails={false}
-    />
-  </main>
+<Modal
+  id={modalId}
+  classNames="w-[1017px] max-w-[calc(100%-16px)] p-7 max-h-[calc(100vh-64px)]"
+>
+  <section class="bg-white" slot="main">
+    <header class="flex flex-col gap-4 items-center mb-8">
+      <Pill>Book your call today</Pill>
+      <h2 class="text-4xl font-medium">
+        Let's Build <span class="text-crocoder-green">Together</span>
+      </h2>
+      <p class="text-secondary text-base max-w-[700px] text-center">
+        Tell us what you're working on — we'll match you with our engineers who
+        can ramp up quickly, integrate seamlessly, and bring real product
+        impact.
+      </p>
+    </header>
+    <!-- This element is used for calcom to append iframe to it when loaded -->
+    <div id="book-a-call-calendar-wrapper"></div>
+  </section>
 </Modal>
+<script
+  type="text/javascript"
+  is:inline
+  define:vars={{
+    calLink,
+    layout: "month_view",
+    elementOrSelector: "#book-a-call-calendar-wrapper",
+    hideEventTypeDetails: false,
+    eventType,
+    modalId,
+  }}
+>
+  const modal = document.getElementById(modalId);
+
+  const loadCalEmbed = () => {
+    (function (C, A, L) {
+      let p = function (a, ar) {
+        a.q.push(ar);
+      };
+      let d = C.document;
+      C.Cal =
+        C.Cal ||
+        function () {
+          let cal = C.Cal;
+          let ar = arguments;
+          if (!cal.loaded) {
+            cal.ns = {};
+            cal.q = cal.q || [];
+            d.head.appendChild(d.createElement("script")).src = A;
+            cal.loaded = true;
+          }
+          if (ar[0] === L) {
+            const api = function () {
+              p(api, arguments);
+            };
+            const namespace = ar[1];
+            api.q = api.q || [];
+            if (typeof namespace === "string") {
+              cal.ns[namespace] = cal.ns[namespace] || api;
+              p(cal.ns[namespace], ar);
+              p(cal, ["initNamespace", namespace]);
+            } else p(cal, ar);
+            return;
+          }
+          p(cal, ar);
+        };
+    })(window, "https://app.cal.com/embed/embed.js", "init");
+    Cal("init", eventType, { origin: "https://cal.com" });
+
+    Cal.ns[eventType]("inline", {
+      elementOrSelector,
+      config: { layout, theme: "light" },
+      calLink,
+    });
+
+    Cal.ns[eventType]("ui", {
+      styles: {
+        body: {
+          background: "transparent",
+        },
+        branding: {
+          brandColor: "#FEB534",
+          lightColor: "#494545",
+          lighterColor: "#4c4848",
+          lightestColor: "#7c7777",
+          highlightColor: "#1E1A1A",
+          medianColor: "#1E1A1A",
+        },
+        enabledDateButton: {
+          backgroundColor: "rgba(254, 181, 52, 0.65)", //"rgba(254, 181, 52, 0.40)",
+        },
+        disabledDateButton: {
+          backgroundColor: "rgba(232,232,232,0.30)",
+        },
+      },
+      hideEventTypeDetails,
+      layout,
+    });
+
+    Cal.ns[eventType]("on", {
+      action: "bookingSuccessful",
+      callback: (e) => {
+        const { data, type, namespace } = e.detail;
+        console.log("Booking successful:", { data, type, namespace });
+        window.location.href = "/contact/success?src=calcom";
+      },
+    });
+
+    Cal("on", {
+      action: "bookingSuccessful",
+      callback: (e) => {
+        const { data, type, namespace } = e.detail;
+        console.log("Global booking successful:", { data, type, namespace });
+        window.location.href = "/contact/success?src=calcom";
+      },
+    });
+  };
+
+  modal.addEventListener("click", (e) => {
+    if (!e.currentTarget) return;
+
+    const dialogElem = e.currentTarget;
+
+    if (e.target === dialogElem) {
+      dialogElem.close();
+    }
+  });
+
+  modal.addEventListener("beforetoggle", (e) => {
+    const calendarWrapper = e.currentTarget.querySelector(
+      "#book-a-call-calendar-wrapper"
+    );
+    /* Avoid loading calcom embed if already exists */
+    if (calendarWrapper.children?.length) return;
+
+    loadCalEmbed();
+  });
+</script>
