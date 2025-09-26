@@ -4,6 +4,7 @@ import classnames from "classnames";
 import BlogLink from "./BlogLink.astro";
 import CTA from "./CTA.astro";
 import IconSubtitle from "./IconSubtitle.astro";
+import ArrowTopRight from "./icons/ArrowTopRight.astro";
 
 interface Props {
   idx: number;
@@ -105,11 +106,9 @@ const image = await src();
             ) : (
               <CTA id="contact-cta" href={link.href}>
                 {link.text}
-                <img
-                  src={"arrow-top-right.svg"}
-                  alt="Arrow Top Right"
-                  role="presentation"
-                  class="hidden min-[330px]:block h-3 w-3 sm:h-4 sm:w-4"
+                <ArrowTopRight
+                  classNames="hidden min-[330px]:block h-3 w-3 sm:h-4 sm:w-4"
+                  stroke="#1E1A1A"
                 />
               </CTA>
             )

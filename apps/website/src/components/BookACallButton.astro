@@ -1,0 +1,40 @@
+---
+import { Image } from "astro:assets";
+import crocoderLogo from "../assets/crocoder-logo.png";
+import BookACallModal from "./BookACallModal.astro";
+import ArrowTopRight from "./icons/ArrowTopRight.astro";
+
+export interface Props {
+  calLink: string;
+  eventType: string;
+}
+---
+
+<BookACallModal {...Astro.props} modalId="book-a-call-modal" />
+<button
+  id="book-a-call-modal-button"
+  class="rounded-full bg-periwinkle p-4 pr-8 text-white flex gap-4 items-center fixed bottom-4 right-4 md:bottom-7 md:right-7 z-20 cursor-pointer"
+>
+  <Image
+    src={crocoderLogo}
+    alt="Crocoder Crocodile Logo"
+    class="h-[51px] w-auto"
+    widths={[160, 320]}
+    sizes={"160px"}
+    loading="eager"
+  />
+  <span class="flex gap-6 text-xl items-center font-medium">
+    Book a call <ArrowTopRight classNames="w-6 h-6" />
+  </span>
+</button>
+
+<script>
+  const modalButton = document.getElementById("book-a-call-modal-button");
+  const modal = document.getElementById(
+    "book-a-call-modal"
+  ) as HTMLDialogElement;
+
+  modalButton?.addEventListener("click", () => {
+    modal.showModal();
+  });
+</script>
