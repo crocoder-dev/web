@@ -24,6 +24,12 @@
     },
     "types": ["jest", "node"]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "jest.setup.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "../../tests/jest.setup.ts"
+, "../apps/contact/jest.setup.ts", "../apps/contact/jest.config.ts"  ],
   "exclude": ["node_modules"]
 }
