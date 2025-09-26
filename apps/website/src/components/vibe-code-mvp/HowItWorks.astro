@@ -5,6 +5,7 @@ import classnames from "classnames";
 import nextLogo from "../../assets/nextjs_logo.png";
 import nodeLogo from "../../assets/node_logo.png";
 import reactLogo from "../../assets/react_logo.png";
+import goLogo from "../../assets/go_logo.png";
 import Pill from "../Pill.astro";
 import Section from "../Section.astro";
 import { grid_classes } from "../_grid";
@@ -22,7 +23,7 @@ const steps = (await getCollection("vibe_code_mvp_how_it_works")) as {
 }[];
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/assets/*.svg"
+  "/src/assets/*.svg",
 );
 ---
 
@@ -30,7 +31,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
   className="!py-18 md:!py-31 overflow-unset !px-0"
   contentClassName={classnames(
     grid_classes,
-    "!gap-y-7 items-start pl-4 md:pl-7 lg:px-7 xl:px-0"
+    "!gap-y-7 items-start pl-4 md:pl-7 lg:px-7 xl:px-0",
   )}
 >
   <div class="col-span-6 md:col-span-12 lg:col-span-6 lg:sticky lg:top-24">
@@ -65,7 +66,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
     </div>
     <div class="mt-12">
       <p class="text-[22px] leading-8">We're experts in:</p>
-      <div class="flex gap-x-7 gap-y-4 flex-wrap items-center">
+      <div class="flex gap-x-6 flex-wrap items-center">
         <Image
           src={nodeLogo}
           alt="Node JS logo"
@@ -87,6 +88,14 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
           height={41}
           loading={"lazy"}
         />
+        <Image
+          src={goLogo}
+          alt="Golang logo"
+          width={100}
+          height={41}
+          loading={"lazy"}
+        />
+        <span class="italic text-gray-600 text-[18px]">and more…</span>
       </div>
     </div>
   </div>
