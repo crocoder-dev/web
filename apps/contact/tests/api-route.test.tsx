@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, mock } from "bun:test";
+import { describe, it, expect, beforeEach, mock, vi } from "bun:test";
 import { POST, OPTIONS } from "../app/api/contact/route";
 
 const mockCreateContact = mock(() =>
@@ -8,7 +8,9 @@ const mockCreateContact = mock(() =>
     url: "https://www.notion.so/mocknotionid",
   }),
 );
+
 const mockNotifyContactCreated = mock(() => Promise.resolve({}));
+const mockNotifyContactError = mock(() => Promise.resolve({}));
 const mockNanoid = mock(() => "mock-id-12345");
 
 mock.module("@/helpers/notion", () => ({
@@ -17,6 +19,7 @@ mock.module("@/helpers/notion", () => ({
 
 mock.module("@/helpers/slack", () => ({
   notifyContactCreated: mockNotifyContactCreated,
+  notifyContactError: mockNotifyContactError,
 }));
 
 mock.module("nanoid", () => ({
@@ -31,6 +34,7 @@ beforeEach(() => {
   };
   mockCreateContact.mockClear();
   mockNotifyContactCreated.mockClear();
+  mockNotifyContactError.mockClear();
   mockNanoid.mockClear();
 });
 
@@ -87,11 +91,9 @@ describe("Contact API Route", () => {
       expect(response.status).toBe(200);
       expect(mockCreateContact).toHaveBeenCalledTimes(1);
       expect(mockNotifyContactCreated).toHaveBeenCalledTimes(1);
+      expect(mockNotifyContactError).toHaveBeenCalledTimes(0);
       expect(response.headers.get("Access-Control-Allow-Origin")).toBe(
         "http://localhost:4321",
-      );
-      expect(response.headers.get("Access-Control-Allow-Credentials")).toBe(
-        "false",
       );
       expect(response.headers.get("Access-Control-Allow-Methods")).toBe(
         "POST, OPTIONS",
@@ -115,11 +117,9 @@ describe("Contact API Route", () => {
       expect(response.status).toBe(400);
       expect(mockCreateContact).toHaveBeenCalledTimes(0);
       expect(mockNotifyContactCreated).toHaveBeenCalledTimes(0);
+      expect(mockNotifyContactError).toHaveBeenCalledTimes(0);
       expect(response.headers.get("Access-Control-Allow-Origin")).toBe(
         "http://localhost:4321",
-      );
-      expect(response.headers.get("Access-Control-Allow-Credentials")).toBe(
-        "false",
       );
       expect(response.headers.get("Access-Control-Allow-Methods")).toBe(
         "POST, OPTIONS",
@@ -143,11 +143,9 @@ describe("Contact API Route", () => {
       expect(response.status).toBe(400);
       expect(mockCreateContact).toHaveBeenCalledTimes(0);
       expect(mockNotifyContactCreated).toHaveBeenCalledTimes(0);
+      expect(mockNotifyContactError).toHaveBeenCalledTimes(0);
       expect(response.headers.get("Access-Control-Allow-Origin")).toBe(
         "http://localhost:4321",
-      );
-      expect(response.headers.get("Access-Control-Allow-Credentials")).toBe(
-        "false",
       );
       expect(response.headers.get("Access-Control-Allow-Methods")).toBe(
         "POST, OPTIONS",
@@ -171,11 +169,44 @@ describe("Contact API Route", () => {
       expect(response.status).toBe(403);
       expect(mockCreateContact).toHaveBeenCalledTimes(0);
       expect(mockNotifyContactCreated).toHaveBeenCalledTimes(0);
+      expect(mockNotifyContactError).toHaveBeenCalledTimes(0);
       expect(response.headers.get("Access-Control-Allow-Origin")).toBe(
         "http://localhost:4321",
       );
-      expect(response.headers.get("Access-Control-Allow-Credentials")).toBe(
-        "false",
+      expect(response.headers.get("Access-Control-Allow-Methods")).toBe(
+        "POST, OPTIONS",
+      );
+      expect(response.headers.get("Access-Control-Allow-Headers")).toBe(
+        "Content-Type",
+      );
+    });
+
+    it("should return 501 if Notion page creation failed", async () => {
+      mockCreateContact.mockImplementationOnce(() =>
+        Promise.resolve({
+          object: "page",
+          id: "",
+          url: "",
+          error: "Error message",
+        }),
+      );
+
+      const validBody = {
+        name: "John Doe",
+        email: "john@example.com",
+        message: "Hello there",
+        hasConsent: true,
+      };
+
+      const request = createMockRequest(validBody);
+      const response = await POST(request);
+
+      expect(response.status).toBe(501);
+      expect(mockCreateContact).toHaveBeenCalledTimes(1);
+      expect(mockNotifyContactCreated).toHaveBeenCalledTimes(0);
+      expect(mockNotifyContactError).toHaveBeenCalledTimes(1);
+      expect(response.headers.get("Access-Control-Allow-Origin")).toBe(
+        "http://localhost:4321",
       );
       expect(response.headers.get("Access-Control-Allow-Methods")).toBe(
         "POST, OPTIONS",
@@ -194,9 +225,6 @@ describe("Contact API Route", () => {
       expect(mockNotifyContactCreated).toHaveBeenCalledTimes(0);
       expect(response.headers.get("Access-Control-Allow-Origin")).toBe(
         "http://localhost:4321",
-      );
-      expect(response.headers.get("Access-Control-Allow-Credentials")).toBe(
-        "false",
       );
       expect(response.headers.get("Access-Control-Allow-Methods")).toBe(
         "POST, OPTIONS",

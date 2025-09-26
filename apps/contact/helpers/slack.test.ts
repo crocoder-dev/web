@@ -1,5 +1,9 @@
 import { describe, it, expect, beforeEach, afterEach } from "bun:test";
-import { createPayload, notifyContactCreated } from "./slack";
+import {
+  createPayload,
+  notifyContactCreated,
+  notifyContactError,
+} from "./slack";
 
 const originalEnv = { ...process.env };
 const originalFetch = globalThis.fetch;
@@ -76,6 +80,19 @@ describe("Slack Helper", () => {
         validContactData.name,
         validContactData.email,
         validContactData.url,
+      );
+
+      expect(fetchCalls.length).toBe(1);
+      expect(fetchCalls[0]).toBe("https://slack.com/api/chat.postMessage");
+    });
+  });
+
+  describe("notifyContactError", async () => {
+    it("should send error message on slack", async () => {
+      await notifyContactError(
+        validContactData.name,
+        validContactData.email,
+        "Message",
       );
 
       expect(fetchCalls.length).toBe(1);
