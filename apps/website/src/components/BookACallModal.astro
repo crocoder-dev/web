@@ -1,4 +1,5 @@
 ---
+import CloseCrossX from "./icons/CloseCrossX.astro";
 import Modal from "./Modal.astro";
 import Pill from "./Pill.astro";
 
@@ -13,10 +14,15 @@ const { calLink, eventType, modalId } = Astro.props;
 
 <Modal
   id={modalId}
-  classNames="w-[1017px] max-w-[calc(100%-16px)] p-7 max-h-[calc(100vh-64px)]"
+  classNames="w-[1017px] max-w-[calc(100%-16px)] max-h-[calc(100vh-64px)]"
 >
-  <section class="bg-white" slot="main">
-    <header class="flex flex-col gap-4 items-center mb-8">
+  <section class="p-7" slot="main">
+    <header class="flex flex-col gap-4 items-center mb-8 relative">
+      <button id="close-modal" class="absolute -top-3 -right-3 cursor-pointer"
+        ><span class="relative z-[-1]">
+          <CloseCrossX />
+        </span>
+      </button>
       <Pill>Book your call today</Pill>
       <h2 class="text-4xl font-medium">
         Let's Build <span class="text-crocoder-green">Together</span>
@@ -134,7 +140,7 @@ const { calLink, eventType, modalId } = Astro.props;
 
     const dialogElem = e.currentTarget;
 
-    if (e.target === dialogElem) {
+    if (e.target === dialogElem || e.target.id === "close-modal") {
       dialogElem.close();
     }
   });
