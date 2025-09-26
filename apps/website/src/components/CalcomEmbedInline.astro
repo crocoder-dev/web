@@ -3,8 +3,9 @@ export interface Props {
   calLink: string;
   eventType: string;
   layout?: "month_view" | "week_view" | "column_view";
-  elementOrSelector: string;
+  elementOrSelector: `#${string}`;
   hideEventTypeDetails?: boolean;
+  deferLoad?: boolean;
 }
 
 const {
@@ -13,6 +14,7 @@ const {
   layout = "month_view",
   elementOrSelector,
   hideEventTypeDetails = false,
+  deferLoad = false,
 } = Astro.props;
 ---
 
@@ -25,8 +27,8 @@ const {
     elementOrSelector,
     hideEventTypeDetails,
     eventType,
+    deferLoad,
   }}
-  async
 >
   const loadCalEmbed = () => {
     (function (C, A, L) {
@@ -111,10 +113,36 @@ const {
       },
     });
   };
+  if (deferLoad) {
+    const calcomWrapper = document.getElementById(
+      elementOrSelector.substring(1)
+    );
 
-  if ("requestIdleCallback" in window) {
+    const handleLoadEmbed = (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          loadCalEmbed();
+          observer.unobserve(calcomWrapper);
+        }
+      });
+    };
+
+    const opts = {
+      rootMargin: "1000px 0px",
+    };
+
+    const observer = new IntersectionObserver(handleLoadEmbed, opts);
+
+    observer.observe(calcomWrapper);
+  }
+
+  const isRicSupported = "requestIdleCallback" in window;
+
+  if (!deferLoad && isRicSupported) {
     requestIdleCallback(loadCalEmbed);
-  } else {
+  }
+
+  if (!deferLoad && !isRicSupported) {
     window.addEventListener("load", loadCalEmbed);
   }
 </script>
