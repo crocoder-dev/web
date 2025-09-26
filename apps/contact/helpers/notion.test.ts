@@ -1,8 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from "bun:test";
 import { createContactObject, createContact, notion } from "./notion";
 
-let callCount = 0;
-
 const mock = vi.spyOn(notion.pages, "create").mockResolvedValue({
   object: "page",
   id: "fake-page-id",
@@ -21,7 +19,7 @@ beforeEach(() => {
 
 afterEach(() => {
   process.env = originalEnv;
-  callCount = 0;
+  vi.clearAllMocks();
 });
 
 describe("Notion Helper", () => {
@@ -74,7 +72,7 @@ describe("Notion Helper", () => {
       });
     });
 
-    it("should create Notion page", async () => {
+    it("should create Notion page and return id and url", async () => {
       const response = await createContact(
         validContactData.id,
         validContactData.email,
@@ -86,6 +84,37 @@ describe("Notion Helper", () => {
 
       expect(response.id).toBe("fake-page-id");
       expect(response.url).toContain("www.notion.so");
+      expect(response.error).toBe(undefined);
+      expect(mock).toHaveBeenCalledTimes(1);
+    });
+
+    it("should return error message if data is missing", async () => {
+      const response = await createContact("", "", "", "", "", "");
+
+      expect(response.id).toBe(undefined);
+      expect(response.url).toBe(undefined);
+      expect(response.error?.length).toBeGreaterThan(0);
+      expect(mock).toHaveBeenCalledTimes(0);
+    });
+
+    it("should return error message if page was not created", async () => {
+      const mock = vi.spyOn(notion.pages, "create").mockResolvedValueOnce({
+        object: "page",
+        id: "",
+        url: "",
+      });
+      const response = await createContact(
+        validContactData.id,
+        validContactData.email,
+        validContactData.name,
+        validContactData.content,
+        validContactData.databaseID,
+        validContactData.source,
+      );
+
+      expect(response.id).toBe(undefined);
+      expect(response.url).toBe(undefined);
+      expect(response.error?.length).toBeGreaterThan(0);
       expect(mock).toHaveBeenCalledTimes(1);
     });
   });
