@@ -35,12 +35,17 @@ afterEach(() => {
 });
 
 describe("Slack Helper", () => {
+  const validContactData = {
+    name: "John Doe",
+    email: "john@example.com",
+    url: "https://notion.so/test",
+  };
   describe("createPayload", () => {
     it("should create correct Slack payload structure", () => {
       const payload = createPayload(
-        "John Doe",
-        "john@example.com",
-        "https://notion.so/test",
+        validContactData.name,
+        validContactData.email,
+        validContactData.url,
       );
 
       expect(payload).toHaveProperty("channel");
@@ -68,9 +73,9 @@ describe("Slack Helper", () => {
   describe("notifyContactCreated", async () => {
     it("should send message on slack", async () => {
       await notifyContactCreated(
-        "John Doe",
-        "john@example.com",
-        "https://notion.so/test",
+        validContactData.name,
+        validContactData.email,
+        validContactData.url,
       );
 
       expect(fetchCalls.length).toBe(1);

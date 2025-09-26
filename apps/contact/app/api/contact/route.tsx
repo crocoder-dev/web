@@ -17,13 +17,11 @@ const bodyValidationSchema = z.object({
 
 type RequestBody = z.infer<typeof bodyValidationSchema>;
 
-const { NOTION_DATABASE_ID, VERCEL_ENV, VERCEL_URL } = process.env;
+const { NOTION_DATABASE_ID, VERCEL_ENV } = process.env;
 
 const allowOrigin = !VERCEL_ENV
   ? "http://localhost:4321"
-  : VERCEL_ENV === "previev" || VERCEL_ENV === "development"
-    ? VERCEL_URL || ""
-    : "https://crocoder.dev";
+  : "https://crocoder.dev";
 
 export async function OPTIONS() {
   return new Response(null, {
