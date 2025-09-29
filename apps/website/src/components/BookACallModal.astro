@@ -17,17 +17,17 @@ const { calLink, eventType, modalId } = Astro.props;
   classNames="w-[1017px] max-w-[calc(100%-16px)] max-h-[calc(100vh-64px)]"
 >
   <section class="p-7" slot="main">
-    <header class="flex flex-col gap-4 items-center mb-8 relative">
+    <header class="flex flex-col gap-4 sm:items-center mb-8 relative">
       <button id="close-modal" class="absolute -top-3 -right-3 cursor-pointer"
         ><span class="relative z-[-1]">
           <CloseCrossX />
         </span>
       </button>
-      <Pill>Book your call today</Pill>
+      <Pill className="max-[350px]:text-sm">Book your call today</Pill>
       <h2 class="text-4xl font-medium">
         Let's Build <span class="text-crocoder-green">Together</span>
       </h2>
-      <p class="text-secondary text-base max-w-[700px] text-center">
+      <p class="text-secondary text-base max-w-[700px] sm:text-center">
         Tell us what you're working on — we'll match you with our engineers who
         can ramp up quickly, integrate seamlessly, and bring real product
         impact.
