@@ -7,6 +7,10 @@ import { grid_classes } from "../../components/_grid";
 import StaffMember from "../../components/staff-agmentation/StaffMember.astro";
 import "../../styles/main.css";
 import Calendar from "../icons/Calendar.astro";
+import heroMobile from "../../assets/mobile-staff-hero.svg";
+import heroDesktop from "../../assets/desktop-staff-hero.svg";
+import heroWide from "../../assets/wide-staff-hero.svg";
+import { Picture } from "astro:assets";
 
 const staff = (await getCollection("staff_members")) as {
   data: { name: string; image: string; role: string };
@@ -41,9 +45,25 @@ if (!content) {
 >
   <div
     class={classnames(
-      "mx-auto xl:px-0 bg-[#FFF1E1] rounded-b-4xl md:rounded-b-[96px] relative overflow-hidden bg-staff-hero-mobile md:bg-staff-hero-desktop lg:bg-staff-hero-wide lg:bg-center bg-cover min-[1920px]:bg-size-[1920px] bg-no-repeat"
+      "mx-auto xl:px-0 bg-[#FFF1E1] rounded-b-4xl md:rounded-b-[96px] relative overflow-hidden"
     )}
   >
+    <Picture
+      src={heroMobile}
+      alt=""
+      class="min-md:hidden min-w-[850px] xl:min-w-[1400px] h-full absolute top-0 z-[1] bg-[#FFF1E1]"
+    />
+
+    <Picture
+      src={heroDesktop}
+      alt=""
+      class="hidden md:block lg:hidden min-w-5xl h-full absolute top-0 z-[1] bg-[#FFF1E1]"
+    />
+    <Picture
+      src={heroWide}
+      alt=""
+      class="hidden min-lg:block min-w-[1600px] h-full absolute top-0 left-1/2 -translate-x-1/2 z-[1] bg-[#FFF1E1]"
+    />
     <div
       class={`${grid_classes} md:max-w-[var(--max-width)] px-4 md:px-7 !pt-[75px] md:mx-auto relative z-[2]`}
     >
