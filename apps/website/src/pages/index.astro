@@ -1,4 +1,5 @@
 ---
+import BookACallButton from "../components/BookACallButton.astro";
 import BookACallForm from "../components/BookACallForm.astro";
 import Clients from "../components/Clients.astro";
 import Footer from "../components/footer.astro";
@@ -14,17 +15,18 @@ const { ogImage = "https://www.crocoder.dev/homepage-metadata-img.png" } =
   Astro.props;
 ---
 
-<Base className="bg-white" ogImage={ogImage}>
+<Base className="bg-white relative" ogImage={ogImage}>
   <Navigation />
   <Hero />
   <Clients />
   <Values />
   <Testimonial />
   <Services />
-  <BookACallForm>
+  <BookACallForm deferLoad>
     <span slot="title">
       Build Your Business <span class="text-crocoder-yellow"> With Us </span>
     </span>
   </BookACallForm>
+  <BookACallButton calLink="team/crocoder/hello" eventType="book-modal" />
   <Footer />
 </Base>
