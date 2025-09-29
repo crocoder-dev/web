@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, mock, vi } from "bun:test";
+import { describe, it, expect, beforeEach, mock } from "bun:test";
 import { POST, OPTIONS } from "../app/api/contact/route";
 
 const mockCreateContact = mock(() =>
@@ -69,10 +69,6 @@ describe("Contact API Route", () => {
         },
         body: contentType === "application/json" ? JSON.stringify(body) : body,
       });
-
-      (request as any).nextUrl = {
-        searchParams: new URLSearchParams(new URL(url).search),
-      };
 
       return request as any;
     };
