@@ -72,9 +72,9 @@ module.exports = {
         secondary: "var(--font-secondary)",
       },
       backgroundImage: {
-        "staff-hero-mobile": "url('./src/assets/mobile-staff-hero.svg')",
-        "staff-hero-desktop": "url('./src/assets/desktop-staff-hero.svg')",
-        "staff-hero-wide": "url('./src/assets/wide-staff-hero.svg')",
+        "staff-hero-mobile": "url('/mobile-staff-hero.svg')",
+        "staff-hero-desktop": "url('/desktop-staff-hero.svg')",
+        "staff-hero-wide": "url('/wide-staff-hero.svg')",
       },
     },
   },
