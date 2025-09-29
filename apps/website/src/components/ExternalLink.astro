@@ -1,5 +1,7 @@
 ---
 import classnames from "classnames";
+import ArrowTopRight from "./icons/ArrowTopRight.astro";
+
 interface Props {
   href: string;
   text: string;
@@ -16,10 +18,5 @@ const { href, text, classNames } = Astro.props;
   >
     {text}
   </a>
-  <img
-    src={"arrow-top-right.svg"}
-    alt="Arrow Top Right"
-    role="presentation"
-    class="h-3 w-3 sm:h-4 sm:w-4"
-  />
+  <ArrowTopRight classNames="h-3 w-3 sm:h-4 sm:w-4" stroke="#1E1A1A" />
 </div>

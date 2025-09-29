@@ -1,35 +1,56 @@
 ---
+import CloseCrossX from "./icons/CloseCrossX.astro";
+import Modal from "./Modal.astro";
+import Pill from "./Pill.astro";
+
 export interface Props {
   calLink: string;
   eventType: string;
-  layout?: "month_view" | "week_view" | "column_view";
-  elementOrSelector: `#${string}`;
-  hideEventTypeDetails?: boolean;
-  deferLoad?: boolean;
+  modalId: string;
 }
 
-const {
-  calLink,
-  eventType,
-  layout = "month_view",
-  elementOrSelector,
-  hideEventTypeDetails = false,
-  deferLoad = false,
-} = Astro.props;
+const { calLink, eventType, modalId } = Astro.props;
 ---
 
+<Modal
+  id={modalId}
+  classNames="w-[1017px] max-w-[calc(100%-16px)] max-h-[calc(100vh-64px)]"
+>
+  <section class="p-7" slot="main">
+    <header class="flex flex-col gap-4 sm:items-center mb-8 relative">
+      <button id="close-modal" class="absolute -top-3 -right-3 cursor-pointer"
+        ><span class="relative z-[-1]">
+          <CloseCrossX />
+        </span>
+      </button>
+      <Pill className="max-[350px]:text-sm">Book your call today</Pill>
+      <h2 class="text-4xl font-medium">
+        Let's Build <span class="text-crocoder-green">Together</span>
+      </h2>
+      <p class="text-secondary text-base max-w-[700px] sm:text-center">
+        Tell us what you're working on — we'll match you with our engineers who
+        can ramp up quickly, integrate seamlessly, and bring real product
+        impact.
+      </p>
+    </header>
+    <!-- This element is used for calcom to append iframe to it when loaded -->
+    <div id="book-a-call-calendar-wrapper" class="min-h-[460px]"></div>
+  </section>
+</Modal>
 <script
   type="text/javascript"
   is:inline
   define:vars={{
     calLink,
-    layout,
-    elementOrSelector,
-    hideEventTypeDetails,
+    layout: "month_view",
+    elementOrSelector: "#book-a-call-calendar-wrapper",
+    hideEventTypeDetails: false,
     eventType,
-    deferLoad,
+    modalId,
   }}
 >
+  const modal = document.getElementById(modalId);
+
   const loadCalEmbed = () => {
     (function (C, A, L) {
       let p = function (a, ar) {
@@ -113,36 +134,24 @@ const {
       },
     });
   };
-  if (deferLoad) {
-    const calcomWrapper = document.getElementById(
-      elementOrSelector.substring(1)
+
+  modal.addEventListener("click", (e) => {
+    if (!e.currentTarget) return;
+
+    const dialogElem = e.currentTarget;
+
+    if (e.target === dialogElem || e.target.id === "close-modal") {
+      dialogElem.close();
+    }
+  });
+
+  modal.addEventListener("beforetoggle", (e) => {
+    const calendarWrapper = e.currentTarget.querySelector(
+      "#book-a-call-calendar-wrapper"
     );
+    /* Avoid loading calcom embed if already exists */
+    if (calendarWrapper.children?.length) return;
 
-    const handleLoadEmbed = (entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          loadCalEmbed();
-          observer.unobserve(calcomWrapper);
-        }
-      });
-    };
-
-    const opts = {
-      rootMargin: "1000px 0px",
-    };
-
-    const observer = new IntersectionObserver(handleLoadEmbed, opts);
-
-    observer.observe(calcomWrapper);
-  }
-
-  const isRicSupported = "requestIdleCallback" in window;
-
-  if (!deferLoad && isRicSupported) {
-    requestIdleCallback(loadCalEmbed);
-  }
-
-  if (!deferLoad && !isRicSupported) {
-    window.addEventListener("load", loadCalEmbed);
-  }
+    loadCalEmbed();
+  });
 </script>
