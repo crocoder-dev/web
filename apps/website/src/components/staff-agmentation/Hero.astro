@@ -1,9 +1,6 @@
 ---
-import { Picture } from "astro:assets";
 import { getCollection } from "astro:content";
 import classnames from "classnames";
-import hero from "../../assets/mobile-staff-hero.svg";
-import heroWide from "../../assets/wide-staff-hero.svg";
 import Pill from "../../components/Pill.astro";
 import Section from "../../components/Section.astro";
 import { grid_classes } from "../../components/_grid";
@@ -44,19 +41,9 @@ if (!content) {
 >
   <div
     class={classnames(
-      "mx-auto xl:px-0 bg-[#FFF1E1] rounded-b-4xl md:rounded-b-[96px] relative overflow-hidden"
+      "mx-auto xl:px-0 bg-[#FFF1E1] rounded-b-4xl md:rounded-b-[96px] relative overflow-hidden bg-staff-hero-mobile md:bg-staff-hero-desktop lg:bg-staff-hero-wide lg:bg-center bg-cover min-[1920px]:bg-size-[1920px] bg-no-repeat"
     )}
   >
-    <Picture
-      src={hero}
-      alt=""
-      class="xl:min-w-[1400px] h-full absolute top-0 left-1/2 -translate-x-1/2 z-[1] bg-[#FFF1E1] min-[1600px]:hidden"
-    />
-    <Picture
-      src={heroWide}
-      alt=""
-      class="h-full absolute top-0 left-0 z-[1] bg-[#FFF1E1] hidden min-[1600px]:block"
-    />
     <div
       class={`${grid_classes} md:max-w-[var(--max-width)] px-4 md:px-7 !pt-[75px] md:mx-auto relative z-[2]`}
     >

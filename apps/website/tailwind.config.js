@@ -70,6 +70,11 @@ module.exports = {
         primary: "var(--font-primary)",
         secondary: "var(--font-secondary)",
       },
+      backgroundImage: {
+        "staff-hero-mobile": "url('./src/assets/mobile-staff-hero.svg')",
+        "staff-hero-desktop": "url('./src/assets/desktop-staff-hero.svg')",
+        "staff-hero-wide": "url('./src/assets/wide-staff-hero.svg')",
+      },
     },
   },
   plugins: [
