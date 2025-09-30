@@ -39,7 +39,7 @@ const mentionPeople = () => {
   return getMentions().flatMap(mentionPerson);
 };
 
-export const createContactObject = (
+const createContactObject = (
   id: string,
   email: string,
   name: string,
@@ -114,7 +114,7 @@ export const createContact = async (
   content: string,
   databaseID: string,
   source: string,
-) => {
+): Promise<{ url: string } | { error: string }> => {
   if (!id || !email || !name || !databaseID) {
     return {
       error: "Missing data in process contact event",
@@ -129,24 +129,23 @@ export const createContact = async (
     // isFullPage checks if the response is type PageObjectResponse => contains url
     if (response.id && isFullPage(response)) {
       return {
-        id: response.id,
         url: response.url,
       };
-    } else if (response.id && !isFullPage(response)) {
+    }
+    if (response.id && !isFullPage(response)) {
       // Notion allows navigation to the created page using only the id without '-'
       // https://dev.to/adamcoster/change-a-url-without-breaking-existing-links-4m0d
       const cleanId = response.id.replace(/-/g, "");
       const pageUrl = `https://www.notion.so/${cleanId}`;
       return {
-        id: response.id,
         url: pageUrl,
       };
-    } else {
-      return {
-        error: "Failed to create notion page",
-      };
     }
-  } catch (e) {
+    return {
+      error: "Failed to create notion page",
+    };
+  } catch (error) {
+    console.error("Notion hepler", error);
     return {
       error: "Failed to create notion page",
     };

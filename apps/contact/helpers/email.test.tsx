@@ -1,7 +1,6 @@
 import { expect, describe, it, mock, beforeEach, afterEach } from "bun:test";
 
 const mockSendMail = mock(() => {
-  console.log("SENDING");
   return Promise.resolve({});
 });
 
