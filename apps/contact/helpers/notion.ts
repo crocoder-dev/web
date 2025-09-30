@@ -1,5 +1,5 @@
 import { Client, isFullPage } from "@notionhq/client";
-import { notifyContactCreated } from "./slack";
+import { notifyContactError, notifyContactCreated } from "./slack";
 
 const { NOTION_TOKEN, MENTION_EMAILS, MENTION_IDS } = process.env;
 
@@ -116,21 +116,36 @@ const createContact = async (
   databaseID: string,
   source: string,
 ) => {
-  const response = await notion.pages.create(
-    createContactObject(id, email, name, content, databaseID, source),
-  );
+  try {
+    const response = await notion.pages.create(
+      createContactObject(id, email, name, content, databaseID, source),
+    );
 
-  if (response.id && isFullPage(response)) {
+    // isFullPage checks if the response is type PageObjectResponse => contains url
+    if (response.id && isFullPage(response)) {
+      return {
+        id: response.id,
+        url: response.url,
+      };
+      // In case the page is created but the response is type PartialPageObjectResponse => doesn't contain url
+    } else if (response.id && !isFullPage(response)) {
+      // Notion allows navigation to the created page using only the id without '-'
+      // https://dev.to/adamcoster/change-a-url-without-breaking-existing-links-4m0d
+      const cleanId = response.id.replace(/-/g, "");
+      const pageUrl = `https://www.notion.so/${cleanId}`;
+      return {
+        id: response.id,
+        url: pageUrl,
+      };
+    }
     return {
-      id: response.id,
-      url: response.url,
+      error: "Failed to create notion page",
+    };
+  } catch (e) {
+    return {
+      error: "Failed to create notion page",
     };
   }
-  throw {
-    body: {
-      message: "Failed to create notion page",
-    },
-  };
 };
 
 export const processContact = async (event: {
@@ -152,7 +167,11 @@ export const processContact = async (event: {
     };
   }
 
-  const { id: notionPageID, url } = await createContact(
+  const {
+    id: notionPageID,
+    url,
+    error: errorMessage,
+  } = await createContact(
     `Message from ${name} (${id})`,
     email,
     name,
@@ -161,6 +180,17 @@ export const processContact = async (event: {
     source,
   );
 
-  await notifyContactCreated(name, email, url);
+  if (errorMessage) {
+    await notifyContactError(name, email, message);
+    throw {
+      body: {
+        message: errorMessage,
+      },
+    };
+  }
+
+  if (url) {
+    await notifyContactCreated(name, email, url);
+  }
   return notionPageID;
 };
