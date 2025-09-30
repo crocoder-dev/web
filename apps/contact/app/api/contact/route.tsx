@@ -78,15 +78,11 @@ export async function POST(request: NextRequest) {
     const origin = request.headers.get("origin");
     let source = "Unknown";
 
-    if (referer && origin && referer.startsWith(origin)) {
+    if (referer && origin) {
       source = referer.slice(origin.length);
     }
 
-    const {
-      id: notionPageId,
-      url,
-      error: errorMessage,
-    } = await createContact(
+    const response = await createContact(
       `Message from ${name} (${nanoid()})`,
       email,
       name,
@@ -95,16 +91,18 @@ export async function POST(request: NextRequest) {
       source,
     );
 
-    if (notionPageId && url) {
-      await notifyContactCreated(name, email, url);
-    } else if (errorMessage) {
+    if ("error" in response) {
       await notifyContactError(name, email, message);
-      throw {
-        body: {
-          message: errorMessage,
+
+      return new Response(JSON.stringify({ message: response.error }), {
+        status: 500,
+        headers: {
+          ...corsHeaders,
         },
-      };
+      });
     }
+
+    await notifyContactCreated(name, email, response.url || "");
 
     /* await sendEmail({
         template: <ContactTemplate />,
@@ -125,9 +123,8 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error("Error - api/contacts", error);
 
-    const statusCode = (error as any).statusCode || 501;
-    const message =
-      (error as any)?.body?.message || "Issue while processing request";
+    const statusCode = 500;
+    const message = "Issue while processing request";
 
     return new Response(JSON.stringify({ message }), {
       status: statusCode,

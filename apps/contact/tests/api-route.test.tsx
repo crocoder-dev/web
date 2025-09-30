@@ -177,7 +177,7 @@ describe("Contact API Route", () => {
       );
     });
 
-    it("should return 501 if Notion page creation failed", async () => {
+    it("should return 500 if Notion page creation failed", async () => {
       mockCreateContact.mockImplementationOnce(() =>
         Promise.resolve({
           object: "page",
@@ -197,7 +197,7 @@ describe("Contact API Route", () => {
       const request = createMockRequest(validBody);
       const response = await POST(request);
 
-      expect(response.status).toBe(501);
+      expect(response.status).toBe(500);
       expect(mockCreateContact).toHaveBeenCalledTimes(1);
       expect(mockNotifyContactCreated).toHaveBeenCalledTimes(0);
       expect(mockNotifyContactError).toHaveBeenCalledTimes(1);
@@ -229,6 +229,5 @@ describe("Contact API Route", () => {
         "Content-Type",
       );
     });
-    // Check Allow headers to only have content-type
   });
 });

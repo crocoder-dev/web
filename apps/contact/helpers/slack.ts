@@ -1,6 +1,6 @@
 const { SLACK_CHANNEL, SLACK_BOT_TOKEN } = process.env;
 
-export const createPayload = (name: string, email: string, url: string) => ({
+const createPayload = (name: string, email: string, url: string) => ({
   channel: SLACK_CHANNEL,
   blocks: [
     {
@@ -42,11 +42,7 @@ export const createPayload = (name: string, email: string, url: string) => ({
   ],
 });
 
-export const createErrorPayload = (
-  name: string,
-  email: string,
-  content: string,
-) => ({
+const createErrorPayload = (name: string, email: string, content: string) => ({
   channel: SLACK_CHANNEL,
   blocks: [
     {
