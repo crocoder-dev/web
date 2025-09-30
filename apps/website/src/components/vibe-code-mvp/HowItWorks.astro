@@ -28,13 +28,13 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 ---
 
 <Section
-  className="!py-18 md:!py-31 overflow-unset !px-0"
+  className="!py-18 md:!py-31 overflow-unset !px-0 "
   contentClassName={classnames(
     grid_classes,
-    "!gap-y-7 items-start pl-4 md:pl-7 lg:px-7 xl:px-0",
+    "!gap-y-7 items-start pl-4.5 md:pl-7 lg:px-7",
   )}
 >
-  <div class="col-span-6 md:col-span-12 lg:col-span-6 lg:sticky lg:top-24">
+  <div class="col-span-6 md:col-span-12 lg:col-span-6 lg:sticky">
     <div class="flex flex-col gap-4">
       <Pill
         className="text-sm sm:text-base md:text-lg px-2 py-1 min-[390px]:px-3 min-[390px]:py-1.5 sm:px-4 sm:py-2 max-h-[36px]"
@@ -104,8 +104,11 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
       flex
       gap-4
       pr-4
-      overflow-x-auto
+      max-lg:overflow-x-auto
       no-scrollbar
+      max-lg:snap-x
+      max-lg:snap-mandatory
+      scroll-smooth
       md:col-span-12
       md:pr-7
       lg:col-span-6
@@ -113,14 +116,18 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
       lg:flex-col
       lg:gap-8
       lg:pr-0
-      lg:overflow-x-auto"
+      lg:overflow-y-auto
+      lg:snap-mandatory
+      lg:scroll-smooth
+      lg:snap-y
+      lg:h-[400px]"
   >
     {
       steps.map((s, idx) => (
         <div
           class={classnames(
-            "p-8 md:p-12 rounded-2xl text-white flex flex-col gap-5 min-w-[calc(100%-32px)]",
-            s.data.bgColor
+            "snap-center p-8 md:p-12 rounded-2xl text-white flex flex-col gap-5 min-w-[calc(100%-32px)] lg:snap-start",
+            s.data.bgColor,
           )}
         >
           <Image
