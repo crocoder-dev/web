@@ -178,7 +178,11 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
         const errorSpan = form?.querySelector(`#error-text-value-${input.id}`);
         const placeholderSpan = form?.querySelector(`#label-value-${input.id}`);
 
-        placeholderSpan?.classList.add("hidden");
+        placeholderSpan?.classList.add(
+          "-translate-y-[37px]",
+          "-translate-x-[17px]",
+          "absolute",
+        );
         errorSpan?.classList.add("!inline", "text-red-500");
         if (errorSpan) errorSpan.textContent = errorMessage;
       };
@@ -213,11 +217,15 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
         form?.querySelector<HTMLInputElement>("#form-full-name");
       const consentInput =
         form?.querySelector<HTMLInputElement>("#form-consent");
+      const consentLabel =
+        form?.querySelector<HTMLLabelElement>("#form-consent-text");
 
       if (form && nameInput && emailInput && messageInput && consentInput) {
         form.addEventListener("click", (e) => {
           if (!(e.currentTarget instanceof HTMLFormElement)) return;
-          const isInputTarget = e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement;
+          const isInputTarget =
+            e.target instanceof HTMLInputElement ||
+            e.target instanceof HTMLTextAreaElement;
           if (isInputTarget && e.target.type !== "checkbox") {
             const errorSpan = e.currentTarget.querySelector(
               `#error-text-value-${e.target.id}`,
@@ -225,11 +233,19 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
             const placeholderSpan = e.currentTarget.querySelector(
               `#label-value-${e.target.id}`,
             );
-            placeholderSpan?.classList.remove("hidden");
+            placeholderSpan?.classList.remove(
+              "-translate-y-[37px]",
+              "-translate-x-[17px]",
+              "absolute",
+            );
             errorSpan?.classList.remove("!inline", "text-red-500");
           }
           if (isInputTarget && e.target.type === "checkbox") {
             consentInput.classList.replace("border-red-600", "border-gray-300");
+            consentLabel?.classList.replace(
+              "text-red-600",
+              "[&_b]:text-[#67a807]",
+            );
             consentInput.classList.remove("border-2");
           }
         });
@@ -284,6 +300,10 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
                 "border-gray-300",
                 "border-red-600",
               );
+
+              consentLabel?.classList.remove("text-secondary", "text-neutral-50", "[&_b]:text-[#67a807]");
+              consentLabel?.classList.add("text-red-600");
+
               consentInput?.classList.add("border-2");
             }
             return;

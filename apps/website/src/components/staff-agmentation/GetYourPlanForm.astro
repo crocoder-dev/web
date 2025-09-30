@@ -5,7 +5,9 @@ import "../../styles/loader.css";
 import * as formContent from "../../content/contact/get-your-plan-form.md";
 ---
 
-<div class="col-span-6 lg:col-span-6 lg:col-start-1 md:row-start-2 xl:col-start-2 xl:col-span-5">
+<div
+  class="col-span-6 lg:col-span-6 lg:col-start-1 md:row-start-2 xl:col-start-2 xl:col-span-5"
+>
   <form
     id="get-your-plan-form"
     class="group/contact-us mx-auto bg-white rounded-xl flex-col py-7 gap-2 px-7"
@@ -59,7 +61,8 @@ import * as formContent from "../../content/contact/get-your-plan-form.md";
           set:html={formContent.frontmatter.consent}
           id="form-consent-text"
           for="form-consent"
-          class="text-[#3C3843] [&>em]:not-italic [&>em]:font-semibold cursor-pointer"
+          class="[&>em]:not-italic [&_b]:text-[#67a807] [&>em]:font-semibold cursor-pointer text-sm sm:text-base"
+          ,
         />
       </div>
       <button
@@ -139,7 +142,11 @@ import * as formContent from "../../content/contact/get-your-plan-form.md";
         const errorSpan = form?.querySelector(`#error-text-value-${input.id}`);
         const placeholderSpan = form?.querySelector(`#label-value-${input.id}`);
 
-        placeholderSpan?.classList.add("hidden");
+        placeholderSpan?.classList.add(
+          "-translate-y-[37px]",
+          "-translate-x-[17px]",
+          "absolute",
+        );
         errorSpan?.classList.add("!inline", "text-red-500");
         if (errorSpan) errorSpan.textContent = errorMessage;
       };
@@ -166,6 +173,8 @@ import * as formContent from "../../content/contact/get-your-plan-form.md";
         form?.querySelector<HTMLInputElement>("#form-full-name");
       const consentInput =
         form?.querySelector<HTMLInputElement>("#form-consent");
+      const consentLabel =
+        form?.querySelector<HTMLLabelElement>("#form-consent-text");
 
       if (form && emailInput && nameInput && consentInput) {
         form.addEventListener("click", (e) => {
@@ -178,11 +187,19 @@ import * as formContent from "../../content/contact/get-your-plan-form.md";
             const placeholderSpan = e.currentTarget.querySelector(
               `#label-value-${e.target.id}`,
             );
-            placeholderSpan?.classList.remove("hidden");
+            placeholderSpan?.classList.remove(
+              "-translate-y-[37px]",
+              "-translate-x-[17px]",
+              "absolute",
+            );
             errorSpan?.classList.remove("!inline", "text-red-500");
           }
           if (isInputTarget && e.target.type === "checkbox") {
             consentInput.classList.replace("border-red-600", "border-gray-300");
+            consentLabel?.classList.replace(
+              "text-red-600",
+              "[&_b]:text-[#67a807]",
+            );
             consentInput.classList.remove("border-2");
           }
         });
@@ -228,6 +245,10 @@ import * as formContent from "../../content/contact/get-your-plan-form.md";
               consentInput?.classList.replace(
                 "border-gray-300",
                 "border-red-600",
+              );
+              consentLabel?.classList.replace(
+                "[&_b]:text-[#67a807]",
+                "text-red-600",
               );
               consentInput?.classList.add("border-2");
             }
