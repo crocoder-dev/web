@@ -122,7 +122,7 @@ const fieldId = isTextArea ? props.textAreaProps.id : props.inputProps.id
       },
     )}
   >
-    <span id=`label-value-${fieldId}` class="transition-transform">{label}</span>
+    <span id=`label-value-${fieldId}`>{label}</span>
     <span id=`error-text-value-${fieldId}` class="truncate text-ellipsis">{errorText || "Invalid field"}</span>
   </label>
   <div
