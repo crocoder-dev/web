@@ -6,9 +6,12 @@ import Footer from "../components/footer.astro";
 import Navigation from "../components/navigation.astro";
 import Base from "../layouts/base.astro";
 import "../styles/main.css";
+
+const { ogImage = "https://www.crocoder.dev/contact-us-metadata-img.png" } =
+  Astro.props;
 ---
 
-<Base className="bg-white">
+<Base className="bg-white" ogImage={ogImage}>
   <Navigation />
   <Hero />
   <Clients />
