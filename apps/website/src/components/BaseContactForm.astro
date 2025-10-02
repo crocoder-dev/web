@@ -329,6 +329,7 @@ const { onDark, classNames, formId, formClassNames } = Astro.props;
                 message,
                 hasConsent: consent ? true : false,
               }),
+              referrerPolicy: "no-referrer-when-downgrade",
             });
 
             if (response.status !== 200 && notificationElem) {
