@@ -1,12 +1,12 @@
 ---
+import { Picture } from "astro:assets";
 import { getCollection } from "astro:content";
-import Section from "../Section.astro";
 import classnames from "classnames";
 import Pill from "../Pill.astro";
+import Section from "../Section.astro";
+import { grid_classes } from "../_grid";
 import CircleCheck from "../icons/CircleCheck.astro";
 import CircleX from "../icons/CircleX.astro";
-import { grid_classes } from "../_grid";
-import { Picture } from "astro:assets";
 
 const phases = (await getCollection("vibe_code_mvp_phases")) as {
   data: {
@@ -22,7 +22,7 @@ const phases = (await getCollection("vibe_code_mvp_phases")) as {
 }[];
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/assets/*.png"
+  "/src/assets/*.png",
 );
 
 const listItemClasses = "flex items-center gap-2.5 text-[22px] leading-8";
@@ -33,7 +33,7 @@ const listItemClasses = "flex items-center gap-2.5 text-[22px] leading-8";
   contentClassName={classnames(grid_classes, "!gap-y-7 items-start")}
   idx="work-with-us"
 >
-  <div class="col-span-6 sticky">
+  <div class="col-span-6 sticky top-31">
     <div class="relative h-[700px]">
       {
         phases.map((p, idx) => (
@@ -56,7 +56,7 @@ const listItemClasses = "flex items-center gap-2.5 text-[22px] leading-8";
               p.data.imageBgColor,
               {
                 "opacity-100": !idx,
-              }
+              },
             )}
           >
             <Picture
@@ -74,12 +74,12 @@ const listItemClasses = "flex items-center gap-2.5 text-[22px] leading-8";
       }
     </div>
   </div>
-  <div class="col-span-6 col-start-7 flex flex-col gap-8 snap-mandatory snap-y overflow-y-auto h-[700px] no-scrollbar">
+  <div class="col-span-6 col-start-7 flex flex-col gap-8">
     {
       phases.map((p, idx) => (
         <div
           data-index={idx}
-          class="phase snap-start flex flex-col justify-center px-[80px] min-h-[700px]"
+          class="phase flex flex-col justify-center px-[80px] min-h-[700px]"
         >
           <Pill className="text-sm sm:text-base px-4 py-2 mb-4">
             {p.data.pill}

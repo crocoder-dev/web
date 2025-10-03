@@ -1,12 +1,11 @@
 ---
-import { Picture } from "astro:assets";
+import { Image, Picture } from "astro:assets";
+import { getCollection } from "astro:content";
 import team from "../../assets/team.jpg";
 import Pill from "../../components/Pill.astro";
 import Section from "../../components/Section.astro";
 import { grid_classes } from "../../components/_grid";
 import "../../styles/main.css";
-import { getCollection } from "astro:content";
-import { Image } from "astro:assets";
 
 const reasons = (await getCollection("vibe_code_mvp_why_work_with_us")) as {
   data: {
@@ -17,7 +16,7 @@ const reasons = (await getCollection("vibe_code_mvp_why_work_with_us")) as {
 }[];
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/assets/*.svg"
+  "/src/assets/*.svg",
 );
 ---
 
@@ -85,11 +84,11 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
     `}
     >
       <div
-        class="col-span-6 md:col-span-12 flex gap-2 overflow-x-auto no-scrollbar pr-4 md:pr-7 lg:px-0 lg:overflow-hidden"
+        class="col-span-6 md:col-span-12 flex gap-2 overflow-x-auto no-scrollbar pr-4 md:pr-7 lg:px-0 lg:overflow-hidden snap-mandatory snap-x"
       >
         {
           reasons.map((r) => (
-            <div class="bg-white/10 p-5 rounded-2xl flex flex-col gap-5 min-w-[240px] lg:flex-1 lg:min-w-auto">
+            <div class="bg-white/10 p-5 rounded-2xl flex flex-col gap-5 min-w-[240px] lg:flex-1 lg:min-w-auto snap-center">
               <Image
                 src={images[r.data.image]()}
                 alt={r.data.imageAlt}
