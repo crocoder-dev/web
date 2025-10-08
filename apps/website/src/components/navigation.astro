@@ -25,6 +25,9 @@ const caseStudies = [
     href: "/blog/migrating-an-enterprise-app-from-angularjs-to-react",
   },
 ];
+
+const isBlogPage = Astro.url.pathname.startsWith("/blog");
+const href = isBlogPage ? "/#book-a-call-section" : "#book-a-call-section";
 ---
 
 <header
@@ -130,7 +133,7 @@ const caseStudies = [
           data-navhidden="true"
           id="book-a-call-action"
           class="invisible w-fit font-medium h-[39px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-[#545664] text-[#ffffff] hover:opacity-90"
-          href={"#book-a-call-section"}
+          href={href}
         >
           Book a call
         </a>
@@ -186,7 +189,7 @@ const caseStudies = [
             text-base text-center
             whitespace-nowrap
              bg-[#545664] text-[#ffffff] hover:opacity-90"
-      href={"#book-a-call-section"}
+      href={href}
     >
       Book a call
     </a>
