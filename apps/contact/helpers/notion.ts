@@ -141,6 +141,7 @@ export const createContact = async (
         url: pageUrl,
       };
     }
+    console.error("Notion hepler => Failed to create notion page");
     return {
       error: "Failed to create notion page",
     };

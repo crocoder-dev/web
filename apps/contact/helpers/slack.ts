@@ -75,19 +75,23 @@ export const notifyContactCreated = async (
   const payload = createPayload(name, email, url);
   const payloadStringify = JSON.stringify(payload);
 
-  const result = await fetch("https://slack.com/api/chat.postMessage", {
-    method: "POST",
-    body: payloadStringify,
-    headers: {
-      "Content-Type": "application/json; charset=utf-8",
-      "Content-Length": payloadStringify.length.toString(),
-      Authorization: `Bearer ${SLACK_BOT_TOKEN}`,
-      Accept: "application/json",
-    },
-  });
-  const realResponse = await result.json();
-  if (result.status !== 200 || !realResponse.ok) {
-    console.error("Could not send notification message to Slack");
+  try {
+    const result = await fetch("https://slack.com/api/chat.postMessage", {
+      method: "POST",
+      body: payloadStringify,
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": payloadStringify.length.toString(),
+        Authorization: `Bearer ${SLACK_BOT_TOKEN}`,
+        Accept: "application/json",
+      },
+    });
+    const realResponse = await result.json();
+    if (result.status !== 200 || !realResponse.ok) {
+      console.error("Could not send notification message to Slack");
+    }
+  } catch (error) {
+    console.error("Could not send notification message to Slack", error);
   }
 };
 
@@ -99,18 +103,22 @@ export const notifyContactError = async (
   const payload = createErrorPayload(name, email, content);
   const payloadStringify = JSON.stringify(payload);
 
-  const result = await fetch("https://slack.com/api/chat.postMessage", {
-    method: "POST",
-    body: payloadStringify,
-    headers: {
-      "Content-Type": "application/json; charset=utf-8",
-      "Content-Length": payloadStringify.length.toString(),
-      Authorization: `Bearer ${SLACK_BOT_TOKEN}`,
-      Accept: "application/json",
-    },
-  });
-  const realResponse = await result.json();
-  if (result.status !== 200 || !realResponse.ok) {
-    console.error("Could not send notification message to Slack");
+  try {
+    const result = await fetch("https://slack.com/api/chat.postMessage", {
+      method: "POST",
+      body: payloadStringify,
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": payloadStringify.length.toString(),
+        Authorization: `Bearer ${SLACK_BOT_TOKEN}`,
+        Accept: "application/json",
+      },
+    });
+    const realResponse = await result.json();
+    if (result.status !== 200 || !realResponse.ok) {
+      console.error("Could not send notification message to Slack");
+    }
+  } catch (error) {
+    console.error("Could not send notification message to Slack", error);
   }
 };

@@ -43,7 +43,7 @@ describe("Slack Helper", () => {
     email: "john@example.com",
     url: "https://notion.so/test",
   };
-  const errorMessage = "Error message";
+  const userMessage = "Test message";
   describe("notifyContactCreated", async () => {
     it("should send message on slack", async () => {
       await notifyContactCreated(
@@ -57,7 +57,7 @@ describe("Slack Helper", () => {
       expect(fetchCalls[0].init.body).toContain(validContactData.name);
       expect(fetchCalls[0].init.body).toContain(validContactData.email);
       expect(fetchCalls[0].init.body).toContain(validContactData.url);
-      expect(fetchCalls[0].init.body).not.toContain(errorMessage);
+      expect(fetchCalls[0].init.body).not.toContain(userMessage);
     });
   });
 
@@ -66,7 +66,7 @@ describe("Slack Helper", () => {
       await notifyContactError(
         validContactData.name,
         validContactData.email,
-        errorMessage,
+        userMessage,
       );
 
       expect(fetchCalls.length).toBe(1);
@@ -74,7 +74,7 @@ describe("Slack Helper", () => {
       expect(fetchCalls[0].init.body).toContain(validContactData.name);
       expect(fetchCalls[0].init.body).toContain(validContactData.email);
       expect(fetchCalls[0].init.body).not.toContain(validContactData.url);
-      expect(fetchCalls[0].init.body).toContain(errorMessage);
+      expect(fetchCalls[0].init.body).toContain(userMessage);
     });
   });
 });
