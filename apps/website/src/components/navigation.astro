@@ -4,6 +4,8 @@ import crocoderLogo from "../assets/crocoder-logo.png";
 import Menu from "./Menu.astro";
 import MenuItem from "./MenuItem.astro";
 
+const { position } = Astro.props;
+
 const optimizedLogo = await getImage({
   src: crocoderLogo,
   width: 63,
@@ -25,15 +27,19 @@ const caseStudies = [
     href: "/blog/migrating-an-enterprise-app-from-angularjs-to-react",
   },
 ];
+
+const isBlogPage = Astro.url.pathname.startsWith("/blog");
+
+const href = "#book-a-call-section";
 ---
 
 <header
-  class="fixed m-auto
-    top-0
-    md:mx-2
-    md:top-1
-    z-50
-    w-full flex flex-col"
+  class={`${position ?? "fixed"} m-auto
+  top-0
+  md:mx-2
+  ${isBlogPage ? "md:mt-1" : "md:top-1"}
+  z-50
+  w-full flex flex-col`}
 >
   <nav
     id="nav-bar"
@@ -130,7 +136,7 @@ const caseStudies = [
           data-navhidden="true"
           id="book-a-call-action"
           class="invisible w-fit font-medium h-[39px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-[#545664] text-[#ffffff] hover:opacity-90"
-          href={"#book-a-call-section"}
+          href={href}
         >
           Book a call
         </a>
@@ -171,7 +177,10 @@ const caseStudies = [
 
       {
         caseStudies.map((item) => (
-          <a class="text-xl hover:text-white text-wrap min-h-8" href={item.href}>
+          <a
+            class="text-xl hover:text-white text-wrap min-h-8"
+            href={item.href}
+          >
             {item.title}
           </a>
         ))
@@ -186,7 +195,7 @@ const caseStudies = [
             text-base text-center
             whitespace-nowrap
              bg-[#545664] text-[#ffffff] hover:opacity-90"
-      href={"#book-a-call-section"}
+      href={href}
     >
       Book a call
     </a>
@@ -228,6 +237,8 @@ const caseStudies = [
   const mobileList = document.getElementById("mobile-list");
   const navMenuToggle = document.getElementById("nav-menu-toggle");
 
+  const isBlogPage = window.location.pathname.startsWith("/blog");
+
   mm.add("(width >= 768px)", () => {
     if (!navBar || !bookACallAction) return;
 
@@ -243,6 +254,8 @@ const caseStudies = [
       overflow: "hidden",
       display: "none",
     });
+
+    if (isBlogPage) return;
 
     const tl = gsap.timeline({
       paused: true,
