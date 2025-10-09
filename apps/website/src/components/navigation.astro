@@ -131,16 +131,20 @@ const href = "#book-a-call-section";
           }
         </Menu>
       </li>
-      <li id="book-a-call-container" class="ml-auto pr-2">
-        <a
-          data-navhidden="true"
-          id="book-a-call-action"
-          class="invisible w-fit font-medium h-[39px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-[#545664] text-[#ffffff] hover:opacity-90"
-          href={href}
-        >
-          Book a call
-        </a>
-      </li>
+      {
+        !isBlogPage && (
+          <li id="book-a-call-container" class="ml-auto pr-2">
+            <a
+              data-navhidden="true"
+              id="book-a-call-action"
+              class="invisible w-fit font-medium h-[39px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-[#545664] text-[#ffffff] hover:opacity-90"
+              href={href}
+            >
+              Book a call
+            </a>
+          </li>
+        )
+      }
     </ul>
     <div class="hidden md:inline-block">
       <a
@@ -186,19 +190,23 @@ const href = "#book-a-call-section";
         ))
       }
     </div>
-    <a
-      data-navhidden="true"
-      id="mobile-book-a-call-action"
-      class="w-full
-            font-medium h-[40px]
-            items-center px-4 py-2 rounded-md
-            text-base text-center
-            whitespace-nowrap
-             bg-[#545664] text-[#ffffff] hover:opacity-90"
-      href={href}
-    >
-      Book a call
-    </a>
+    {
+      !isBlogPage && (
+        <a
+          data-navhidden="true"
+          id="mobile-book-a-call-action"
+          class="w-full
+      font-medium h-[40px]
+      items-center px-4 py-2 rounded-md
+      text-base text-center
+      whitespace-nowrap
+      bg-[#545664] text-[#ffffff] hover:opacity-90"
+          href={href}
+        >
+          Book a call
+        </a>
+      )
+    }
     <a
       class="font-medium
           w-full !h-[40px] items-center px-4 py-2 rounded-md mb-5 md:mb-0
@@ -239,8 +247,10 @@ const href = "#book-a-call-section";
 
   const isBlogPage = window.location.pathname.startsWith("/blog");
 
+  const hasBookACall = !!bookACallAction && !!containerElement;
+
   mm.add("(width >= 768px)", () => {
-    if (!navBar || !bookACallAction) return;
+    if (!navBar) return;
 
     const navHideItems = [forCtoElem, blogElem, logoElem, caseStudyElem];
 
@@ -248,12 +258,15 @@ const href = "#book-a-call-section";
     gsap.set(navHideItems, {
       autoAlpha: 1,
     });
-    gsap.set(containerElement, { autoAlpha: 0 });
-    gsap.set(bookACallAction, {
-      autoAlpha: 0,
-      overflow: "hidden",
-      display: "none",
-    });
+
+    if (hasBookACall) {
+      gsap.set(containerElement, { autoAlpha: 0 });
+      gsap.set(bookACallAction, {
+        autoAlpha: 0,
+        overflow: "hidden",
+        display: "none",
+      });
+    }
 
     if (isBlogPage) return;
 
@@ -305,13 +318,7 @@ const href = "#book-a-call-section";
   });
 
   mm.add("(width < 768px)", () => {
-    if (
-      !navMenuToggle ||
-      !mobileList ||
-      !mobileContact ||
-      !mobileBookACallAction
-    )
-      return;
+    if (!navMenuToggle || !mobileList || !mobileContact) return;
 
     gsap.set(mobileList, {
       height: 0,
@@ -346,13 +353,19 @@ const href = "#book-a-call-section";
       tlBurger.reverse();
       navMenuToggle.setAttribute("aria-expanded", "false");
     };
-
-    mobileBookACallAction.addEventListener("click", handleBookACallClick);
+    if (mobileBookACallAction) {
+      mobileBookACallAction.addEventListener("click", handleBookACallClick);
+    }
     navMenuToggle.addEventListener("click", handleBurgerClick);
 
     return () => {
       navMenuToggle.removeEventListener("click", handleBurgerClick);
-      mobileBookACallAction.removeEventListener("click", handleBookACallClick);
+      if (mobileBookACallAction) {
+        mobileBookACallAction.removeEventListener(
+          "click",
+          handleBookACallClick,
+        );
+      }
 
       gsap.killTweensOf([
         mobileList,
