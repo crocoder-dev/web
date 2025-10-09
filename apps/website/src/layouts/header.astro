@@ -1,6 +1,8 @@
 ---
 import { getImage } from "astro:assets";
 import crocoderLogo from "../assets/crocoder-logo.png";
+import Menu from "../components/Menu.astro";
+import MenuItem from "../components/MenuItem.astro";
 
 const optimizedLogo = await getImage({
   src: crocoderLogo,
@@ -8,130 +10,241 @@ const optimizedLogo = await getImage({
   height: 51,
   format: "webp",
 });
+
+const caseStudies = [
+  {
+    title: "Refactoring Legacy UI",
+    href: "/blog/how-we-rebuilt-a-legacy-ui-with-zero-downtime",
+  },
+  {
+    title: "Implementing billing system",
+    href: "/blog/using-lago-to-create-a-flexible-billing-system",
+  },
+  {
+    title: "Empowering Frontend Migration",
+    href: "/blog/migrating-an-enterprise-app-from-angularjs-to-react",
+  },
+];
 ---
 
 <header
   class="m-auto
-    mx:0
     top-0
     md:mx-2
     md:mt-1
-    md:[&_[data-navhidden]]:duration-700
-    md:[&_[data-navhidden]]:!overflow-hidden
-    md:[&_[data-navhidden]]:ease-in-out
-    md:[&_[data-navhidden='false']]:w-0
-    md:[&_[data-navhidden='false']]:px-0
-    md:[&_[data-navhidden='false']]:mx-0
-    md:[&_[data-navhidden='']]:max-w-48
-    z-50"
+    z-50
+    w-full flex flex-col"
 >
   <nav
-    class="bg-[#3C3843E5]
-      md:w-fit
-      mx-auto
-      flex
-      items-center
+    id="nav-bar"
+    class="inline-flex
+      w-full
       justify-between
+      items-center
+      bg-[#3C3843E5]
+      mx-auto
       py-[10px]
       px-7
       md:px-[15px]
       md:rounded-l-[3rem]
       md:rounded-r-lg
-      md:overflow-hidden
       relative
-      gap-24
-      md:has-[img[data-navhidden='false']]:gap-7
-      max-md:has-[input:checked]:bg-secondary"
+      md:w-[780px]"
+    data-navhidden="false"
   >
-    <a class="sm:flex sm:items-center" href="/" aria-label="Crocoder Logo">
+    <a
+      class="sm:flex sm:items-center flex-none"
+      href="/"
+      aria-label="Crocoder Logo"
+    >
       <img
         src={optimizedLogo.src}
         alt="Crocoder Crocodile Logo"
-        width="63"
-        height="51"
         class="h-[51px] w-auto"
         loading="eager"
       />
       <img
-        width={153}
-        height={24}
+        id="logo"
         alt="Crocoder Text Logo"
         src="/images/crocoder-text.svg"
-        class="pl-[14px] hidden h-6 w-auto md:block
-          md:[&[data-navhidden='false']]:opacity-0
-          md:[&[data-navhidden='']]:opacity-100"
-        data-navhidden
+        class="pl-[14px] h-6 w-[154px] hidden md:flex"
+        data-navhidden="false"
       />
     </a>
-    <input
-      id="nav-menu-toggle"
-      type="checkbox"
-      readonly
-      class="hidden peer/menu-toggle"
-    />
-    <label
-      for="nav-menu-toggle"
-      class="md:hidden
-      flex
-      flex-col
-      gap-1.5
-      peer-checked/menu-toggle:[&>*:nth-child(1)]:rotate-45
-      peer-checked/menu-toggle:[&>*:nth-child(1)]:translate-y-2
-      peer-checked/menu-toggle:[&>*:nth-child(2)]:opacity-0
-      peer-checked/menu-toggle:[&>*:nth-child(2)]:-translate-x-full
-      peer-checked/menu-toggle:[&>*:nth-child(3)]:-translate-y-2
-      peer-checked/menu-toggle:[&>*:nth-child(3)]:-rotate-45"
+    <ul
+      id="mobile-contact"
+      class="flex 2max-md:flex max-md:ml-auto max-md:mr-4 md:hidden"
     >
-      <span class="h-0.5 w-6 bg-neutral-50 transition-transform duration-200"
-      ></span>
-      <span
-        class="h-0.5 w-6 bg-neutral-50 transition-[transform_opacity] duration-350"
-      ></span>
-      <span class="h-0.5 w-6 bg-neutral-50 transition-transform duration-200"
-      ></span>
-    </label>
+      <li>
+        <a
+          class="flex font-medium w-fit h-[45px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-crocoder-yellow text-contrast hover:opacity-90"
+          href="/contact"
+        >
+          Contact us
+        </a>
+      </li>
+    </ul>
 
-    <div
-      class="max-md:absolute max-md:hidden max-md:peer-checked/menu-toggle:flex max-md:flex-col max-md:gap-4 max-md:top-[71px] max-md:w-full max-md:py-7 bg-[#3c3843] max-md:h-[calc(100vh-71px)] max-md:right-0 md:bg-transparent md:flex md:items-center"
+    <button
+      id="nav-menu-toggle"
+      aria-expanded="false"
+      aria-controls="mobile-list"
+      aria-label="Toggle menu"
+      class="md:hidden flex flex-col gap-1.5"
     >
-      <ul
-        data-navhidden
-        class="flex flex-col md:flex-row gap-4 mx-7 md:mx-0 md:w-auto relative md:mr-24"
+      <span id="top-line" class="h-0.5 w-6 bg-neutral-50 line line1"></span>
+      <span id="middle-line" class="h-0.5 w-6 bg-neutral-50 line line2"></span>
+      <span id="bottom-line" class="h-0.5 w-6 bg-neutral-50 line line3"></span>
+    </button>
+
+    <ul class="hidden items-center md:flex">
+      <li id="for-ctos" data-navhidden="true" class="m-2">
+        <a
+          class="whitespace-nowrap font-medium text-2xl md:text-lg text-light-gray hover:text-white"
+          href="/for-ctos"
+        >
+          For CTOs
+        </a>
+      </li>
+      <li id="blog" data-navhidden="true" class="m-2">
+        <a
+          class="whitespace-nowrap font-medium text-2xl md:text-lg text-light-gray hover:text-white"
+          href="/blog"
+        >
+          Blog
+        </a>
+      </li>
+      <li id="case-study" data-navhidden="true" class="m-2">
+        <Menu title={"Case Studies"}>
+          {
+            caseStudies.map((item) => (
+              <MenuItem>
+                <a href={item.href}>{item.title}</a>
+              </MenuItem>
+            ))
+          }
+        </Menu>
+      </li>
+    </ul>
+    <div class="hidden md:inline-block">
+      <a
+        class="font-medium
+          w-fit !h-[39px] items-center px-4 py-2 rounded-md
+          text-base text-center whitespace-nowrap bg-crocoder-yellow text-contrast hover:opacity-90
+          inline-block"
+        href="/contact"
       >
-        <li>
-          <a
-            class="font-medium text-2xl md:text-lg text-light-gray hover:text-white"
-            href="/for-ctos"
-          >
-            For CTOs
-          </a>
-        </li>
-        <li>
-          <a
-            class="font-medium text-2xl md:text-lg text-light-gray hover:text-white"
-            href="/blog"
-          >
-            Blog
-          </a>
-        </li>
-      </ul>
-      <ul class="flex md:ml-0 md:mx-0">
-        <li>
-          <a
-            id="book-a-call-action"
-            class="flex max-sm:ml-7 mr-4 w-fit font-medium h-[45px] items-center px-4 py-2 rounded-md text-base text-center whitespace-nowrap bg-crocoder-yellow text-contrast hover:opacity-90
-          md:[&[data-navhidden='false']]:opacity-0
-          md:[&[data-navhidden='']]:opacity-100
-          md:[&[data-navhidden='']]:delay-100
-          md:[&[data-navhidden='false']]:!w-0
-          md:[&[data-navhidden='false']]:overflow-hidden
-            md:[&[data-navhidden='false']]:!px-0"
-            href="/contact"
-          >
-            Contact us
-          </a>
-        </li>
-      </ul>
+        Contact us
+      </a>
     </div>
   </nav>
+  <div
+    id="mobile-list"
+    class="relative px-7 py-4 gap-5 bg-secondary hidden flex-col h-full peer/menu-toggle text-left"
+  >
+    <a
+      class="whitespace-nowrap font-medium text-2xl md:text-lg text-light-gray hover:text-white min-h-10"
+      href="/for-ctos"
+    >
+      For CTOs
+    </a>
+    <a
+      class="whitespace-nowrap font-medium text-2xl md:text-lg text-light-gray hover:text-white min-h-10"
+      href="/blog"
+    >
+      Blog
+    </a>
+    <div
+      class="whitespace-nowrap flex flex-col gap-3 font-medium text-light-gray"
+    >
+      <span class="uppercase text-lg">Case Studies</span>
+
+      {
+        caseStudies.map((item) => (
+          <a
+            class="text-xl hover:text-white text-wrap min-h-8"
+            href={item.href}
+          >
+            {item.title}
+          </a>
+        ))
+      }
+    </div>
+    <a
+      class="font-medium
+          w-full !h-[40px] items-center px-4 py-2 rounded-md mb-5 md:mb-0
+          text-base text-center whitespace-nowrap bg-crocoder-yellow text-contrast hover:opacity-90
+          inline-block"
+      href="/contact"
+    >
+      Contact us
+    </a>
+  </div>
 </header>
+
+<script>
+  import { gsap } from "gsap";
+  let mm = gsap.matchMedia();
+
+  const navMenuToggle = document.getElementById("nav-menu-toggle");
+  const navBar = document.getElementById("nav-bar");
+  const mobileList = document.getElementById("mobile-list");
+  const mobileContact = document.getElementById("mobile-contact");
+
+  mm.add("(width < 768px)", () => {
+    if (
+      !navMenuToggle ||
+      !mobileList ||
+      !mobileContact
+    )
+      return;
+
+    gsap.set(mobileList, {
+      height: 0,
+      autoAlpha: 0,
+      display: "flex",
+      overflow: "hidden",
+    });
+    gsap.set(mobileContact, { autoAlpha: 1 });
+
+    const tlBurger = gsap.timeline({
+      paused: true,
+      defaults: { duration: 0.3, ease: "power2.inOut" },
+    });
+
+    tlBurger
+      .to("#top-line", { rotation: 45, x: 0, y: 10 }, 0)
+      .to("#middle-line", { autoAlpha: 0 }, 0)
+      .to("#bottom-line", { rotation: -45, x: 0, y: -6 }, 0)
+      .to(navBar, { backgroundColor: "#3c3843" }, 0)
+      .to(mobileList, { height: "auto", autoAlpha: 1, duration: 0.4 }, 0)
+      .to(mobileContact, { autoAlpha: 0 }, 0);
+
+    const handleBurgerClick = () => {
+      const expanded = navMenuToggle.getAttribute("aria-expanded") === "true";
+      navMenuToggle.setAttribute("aria-expanded", String(!expanded));
+
+      if (expanded) tlBurger.reverse();
+      else tlBurger.play();
+    };
+
+    const handleBookACallClick = () => {
+      tlBurger.reverse();
+      navMenuToggle.setAttribute("aria-expanded", "false");
+    };
+
+    navMenuToggle.addEventListener("click", handleBurgerClick);
+
+    return () => {
+      navMenuToggle.removeEventListener("click", handleBurgerClick);
+
+      gsap.killTweensOf([
+        mobileList,
+        mobileContact,
+        "#top-line",
+        "#middle-line",
+        "#bottom-line",
+      ]);
+    };
+  });
+</script>
