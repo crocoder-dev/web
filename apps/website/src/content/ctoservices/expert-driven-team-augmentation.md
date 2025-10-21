@@ -1,7 +1,7 @@
 ---
 idx: 2
 image: "/pic-people-collaborating-1.png"
-iconFirst: "/src/assets/hands-puzzle.svg"
+iconFirst: "/hands-puzzle.svg"
 iconSecond: "/performance-increase.svg"
 sectionTitle: "Expert-driven Team Augmentation"
 titleFirst: "Seamless integration"
