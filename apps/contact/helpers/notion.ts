@@ -1,9 +1,8 @@
 import { Client, isFullPage } from "@notionhq/client";
-import { notifyContactCreated } from "./slack";
 
 const { NOTION_TOKEN, MENTION_EMAILS, MENTION_IDS } = process.env;
 
-const notion = new Client({ auth: NOTION_TOKEN });
+export const notion = new Client({ auth: NOTION_TOKEN });
 
 const mentionPerson = ({ id }: { id: string }) => [
   {
@@ -108,59 +107,48 @@ const createContactObject = (
   ],
 });
 
-const createContact = async (
+export const createContact = async (
   id: string,
   email: string,
   name: string,
   content: string,
   databaseID: string,
   source: string,
-) => {
-  const response = await notion.pages.create(
-    createContactObject(id, email, name, content, databaseID, source),
-  );
-
-  if (response.id && isFullPage(response)) {
-    return {
-      id: response.id,
-      url: response.url,
-    };
-  }
-  throw {
-    body: {
-      message: "Failed to create notion page",
-    },
-  };
-};
-
-export const processContact = async (event: {
-  id: string;
-  email: string;
-  name: string;
-  message: string;
-  databaseID: string;
-  source: string;
-}) => {
-  const { id, email, name, message, databaseID, source } = event;
-
+): Promise<{ url: string } | { error: string }> => {
   if (!id || !email || !name || !databaseID) {
-    console.log({ event });
-    throw {
-      body: {
-        message: "Missing data in process contact event",
-      },
+    return {
+      error: "Missing data in process contact event",
     };
   }
 
-  const { id: notionPageID, url } = await createContact(
-    `Message from ${name} (${id})`,
-    email,
-    name,
-    message,
-    databaseID,
-    source,
-  );
+  try {
+    const response = await notion.pages.create(
+      createContactObject(id, email, name, content, databaseID, source),
+    );
 
-  await notifyContactCreated(name, email, url);
-  return notionPageID;
+    // isFullPage checks if the response is type PageObjectResponse => contains url
+    if (response.id && isFullPage(response)) {
+      return {
+        url: response.url,
+      };
+    }
+    if (response.id && !isFullPage(response)) {
+      // Notion allows navigation to the created page using only the id without '-'
+      // https://dev.to/adamcoster/change-a-url-without-breaking-existing-links-4m0d
+      const cleanId = response.id.replace(/-/g, "");
+      const pageUrl = `https://www.notion.so/${cleanId}`;
+      return {
+        url: pageUrl,
+      };
+    }
+    console.error("Notion hepler => Failed to create notion page");
+    return {
+      error: "Failed to create notion page",
+    };
+  } catch (error) {
+    console.error("Notion hepler", error);
+    return {
+      error: "Failed to create notion page",
+    };
+  }
 };

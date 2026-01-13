@@ -1,6 +1,7 @@
 //import { ContactTemplate } from "@/email-templates/contact";
 //import { sendEmail } from "@/helpers/email";
-import { processContact } from "@/helpers/notion";
+import { createContact } from "@/helpers/notion";
+import { notifyContactCreated, notifyContactError } from "@/helpers/slack";
 import { nanoid } from "nanoid";
 import { NextRequest } from "next/server";
 import z from "zod";
@@ -16,120 +17,120 @@ const bodyValidationSchema = z.object({
 
 type RequestBody = z.infer<typeof bodyValidationSchema>;
 
-const { NOTION_DATABASE_ID } = process.env;
+const { NOTION_DATABASE_ID, VERCEL_ENV } = process.env;
 
-const allowRequest = async (request: Request & { ip?: string }) => {
-  return { success: true, limit: 1, reset: Date.now() + 30000, remaining: 1 };
-};
+const allowOrigin = !VERCEL_ENV
+  ? "http://localhost:4321"
+  : "https://crocoder.dev";
 
 export async function OPTIONS() {
   return new Response(null, {
     status: 200,
     headers: {
-      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Origin": allowOrigin,
       "Access-Control-Allow-Methods": "OPTIONS, POST",
-      "Access-Control-Allow-Headers": "Content-Type, Authorization",
+      "Access-Control-Allow-Headers": "Content-Type",
     },
   });
 }
 
 export async function POST(request: NextRequest) {
   const corsHeaders = {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Credentials": "true",
+    "Access-Control-Allow-Origin": allowOrigin,
     "Access-Control-Allow-Methods": "POST, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type, Authorization",
+    "Access-Control-Allow-Headers": "Content-Type",
   };
 
-  if (request.headers.get("Content-Type") === "application/json") {
-    try {
-      const body = (await request.json()) as RequestBody;
-      const bodyValidationResult = bodyValidationSchema.safeParse(body);
+  if (request.headers.get("Content-Type") !== "application/json") {
+    return new Response(null, { status: 415, headers: corsHeaders });
+  }
 
-      if (!body || bodyValidationResult.error) {
-        return new Response(
-          JSON.stringify({
-            message: bodyValidationResult.error?.message || "No body was found",
-          }),
-          {
-            status: 400,
-            headers: {
-              ...corsHeaders,
-            },
-          },
-        );
-      }
+  try {
+    const body = (await request.json()) as RequestBody;
+    const bodyValidationResult = bodyValidationSchema.safeParse(body);
 
-      const { name, email, message, hasConsent } = body;
-
-      if (!hasConsent) {
-        return new Response(JSON.stringify({ message: "No consent by user" }), {
-          status: 403,
-          headers: {
-            ...corsHeaders,
-          },
-        });
-      }
-
-      const { success, limit, reset, remaining } = await allowRequest(request);
-
-      if (!success) {
-        return new Response(
-          JSON.stringify({
-            message: "Too many requests. Please try again in a minute",
-          }),
-          {
-            status: 429,
-            headers: {
-              ...corsHeaders,
-            },
-          },
-        );
-      }
-
-      await processContact({
-        id: nanoid(),
-        email,
-        name,
-        message,
-        databaseID: NOTION_DATABASE_ID || "",
-        source: request.nextUrl.searchParams.get("source") || "Unknown",
-      });
-
-      /* await sendEmail({
-        template: <ContactTemplate />,
-        options: { to: email, subject: "Thank you for contacting us!" },
-      }); */
-
+    if (!body || bodyValidationResult.error) {
       return new Response(
         JSON.stringify({
-          message: "Success",
+          message: bodyValidationResult.error?.message || "No body was found",
         }),
         {
-          status: 200,
+          status: 400,
           headers: {
             ...corsHeaders,
-            "X-RateLimit-Limit": limit.toString(),
-            "X-RateLimit-Remaining": remaining.toString(),
-            "X-RateLimit-Reset": reset.toString(),
           },
         },
       );
-    } catch (error) {
-      console.error("Error - api/contacts", error);
+    }
 
-      const statusCode = (error as any).statusCode || 501;
-      const message =
-        (error as any)?.body?.message || "Issue while processing request";
+    const { name, email, message, hasConsent } = body;
 
-      return new Response(JSON.stringify({ message }), {
-        status: statusCode,
+    if (!hasConsent) {
+      return new Response(JSON.stringify({ message: "No consent by user" }), {
+        status: 403,
         headers: {
           ...corsHeaders,
         },
       });
     }
-  }
 
-  return new Response(null, { status: 400, headers: corsHeaders });
+    const referer = request.headers.get("referer");
+    const origin = request.headers.get("origin");
+    let source = "Unknown";
+
+    if (referer && origin) {
+      source = referer.slice(origin.length);
+    }
+
+    const response = await createContact(
+      `Message from ${name} (${nanoid()})`,
+      email,
+      name,
+      message,
+      NOTION_DATABASE_ID || "",
+      source,
+    );
+
+    if ("error" in response) {
+      await notifyContactError(name, email, message);
+
+      return new Response(JSON.stringify({ message: response.error }), {
+        status: 500,
+        headers: {
+          ...corsHeaders,
+        },
+      });
+    }
+
+    await notifyContactCreated(name, email, response.url || "");
+
+    /* await sendEmail({
+        template: <ContactTemplate />,
+        options: { to: email, subject: "Thank you for contacting us!" },
+      }); */
+
+    return new Response(
+      JSON.stringify({
+        message: "Success",
+      }),
+      {
+        status: 200,
+        headers: {
+          ...corsHeaders,
+        },
+      },
+    );
+  } catch (error) {
+    console.error("Error - api/contacts", error);
+
+    const statusCode = 500;
+    const message = "Issue while processing request";
+
+    return new Response(JSON.stringify({ message }), {
+      status: statusCode,
+      headers: {
+        ...corsHeaders,
+      },
+    });
+  }
 }

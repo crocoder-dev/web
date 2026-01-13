@@ -1,4 +1,4 @@
-import { processContact } from "@/helpers/notion";
+import { createContact } from "@/helpers/notion";
 import { nanoid } from "nanoid";
 import { NextRequest } from "next/server";
 import z from "zod";
@@ -99,14 +99,14 @@ export async function POST(request: NextRequest) {
         );
       }
 
-      await processContact({
-        id: nanoid(),
+      await createContact(
+        nanoid(),
         email,
         name,
-        message: message || "",
-        databaseID: NOTION_GET_PLAN_DATABASE_ID || "",
-        source: request.nextUrl.searchParams.get("source") || "Unknown",
-      });
+        message || "",
+        NOTION_GET_PLAN_DATABASE_ID || "",
+        request.nextUrl.searchParams.get("source") || "Unknown",
+      );
 
       return new Response(
         JSON.stringify({
