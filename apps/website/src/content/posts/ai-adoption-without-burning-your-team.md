@@ -1,14 +1,14 @@
 ---
 title: "Adopt AI without burning your team"
 description: "Practical guidance for CTOs to adopt AI tools without hurting quality or morale, covering team dynamics, standards, and safe ways to start."
-createdAt: 1769477952547
-updatedAt: 1769477952547
+createdAt: 1769602029014
+updatedAt: 1769602029014
 authors: ["david"]
 category: "AI"
 editors: ["velimir"]
 draft: false
 abstract: "AI adoption is not an IDE preference. It changes how engineering work gets done. This piece helps CTOs set expectations, protect quality, and reduce resistance. It starts with low-risk use cases, shows how to build social proof, and keeps juniors learning while the team ships faster. The goal is sustainable velocity without burnout or morale damage."
-image: "/images/agi-is-nowhere-near-llms-do-not-reason.png"
+image: "/images/ai-adoption-without-burning-your-team.png"
 ---
 
 If you're a CTO trying (and failing) to get your engineering team to adopt AI, this article is for you.
@@ -17,7 +17,7 @@ If you have spent any time on X, LinkedIn, conferences, or talking to peers, you
 
 In practice many aren't, uhm, most aren't. Some teams are dabbling in ways that just aren't productive.
 
-If that's your team, I feel your concern, velocity gaps do compound. Teams that figure this out early ship faster and take on projects others won't even think to start.
+If that's your team, I feel your concern. Velocity gaps do compound. Teams that figure this out early ship faster and take on projects others won't even think to start.
 
 But beware, AI adoption creates a split in your team. Some engineers are eager adopters. Others quietly or quite loudly resist the change. The reasons are consistent between orgs and teams: fear of quality loss, more cleanup work, and a sense that the coding craft is eroding.
 
@@ -45,7 +45,7 @@ The biggest mistake that you can make here is to treat this like an IDE preferen
 
 As a CTO, you set direction. AI adoption should not be a committee vote, but direction without empathy will turn this into a compliance theater.
 
-Start by acknowledging the tradeoffs openly. More code reviews and QA will be required. Bad prompting will produce bad code faster than a single dev could write, and AI has changed how the craft looks like.
+Start by acknowledging the tradeoffs openly. More code reviews and QA will be required. Bad prompting will produce bad code faster than a single dev could write, and AI has changed how the craft looks.
 
 If quality is the concern, address it systemically. Invest in standards, quality assurance, and review practices. Build internal tooling that defines what "good" means for your codebase. Be really clear that prompting, scoping, and evaluation are all new skills that should be learned.
 
@@ -60,13 +60,13 @@ You should start by encouraging AI use in the parts of the job people already di
 - repetitive refactors
 - boilerplate tests
 
-Give clear permission to use AI here. Call it cheating if you want. The risk for introducing AI in these four areas is quite low, and most engineers will be open to it.
+Give clear permission to use AI here. Call it cheating if you want. The risk of introducing AI in these four areas is quite low, and most engineers will be open to it.
 
 ## Reframe the value
 
 Once the pain and frustration drop to an acceptable degree, talk about what changes with AI adoption.
 
-You don't delegate reasoning to AI, it actually clears the way so you can do more problem-solving. Exploration becomes real cheap. You can try multiple architectures and approaches, iterate, and prototype without having to manually write code. Doing multiple PoCs for a big change became a norm.
+You don't delegate reasoning to AI, it actually clears the way so you can do more problem-solving. Exploration becomes real cheap. You can try multiple architectures and approaches, iterate, and prototype without having to manually write code. Doing multiple PoCs for a big change became the norm.
 
 For engineers who care about impact, faster shipping means more cycles of building things that help users. That motivates engineers across seniority levels.
 
@@ -76,13 +76,13 @@ AI adoption impacts junior engineers the most. AI can accelerate learning or sho
 
 Juniors still need to learn fundamentals. You should be really clear that AI should not replace their thought process but shift where most of the effort is spent.
 
-Set expectations clearly: use AI as an assistant, a tool. There should be a human that reasons about the code AI produces. Review their work closely and ask them to explain outputs. Make learning their explicit goal.
+Set expectations clearly: use AI as an assistant, a tool. There should be a human who reasons about the code AI produces. Review their work closely and ask them to explain outputs. Make learning the explicit goal.
 
 ## Use social proof
 
 Mandates rarely create adoption. Pick a curious senior engineer. Give them access to different AI models and protected time on a low-stakes project. Let them share what worked and what didn't. One internal success story does more than any policy doc or any all-hands meeting.
 
-Adoption spreads the best through proximity.
+Adoption spreads best through proximity.
 
 ## Create space to try
 
@@ -100,6 +100,6 @@ Across teams, enthusiasm levels vary. What's consistent is the shift in work: mo
 
 **Clarity and taste matter more now than ever before.**
 
-AI is an expertise force multiplicator, and poor inputs still yield poor outputs, just faster.
+AI is an expertise force multiplier, and poor inputs still yield poor outputs, just faster.
 
 As a CTO, your goal shouldn't be to turn everyone into an AI evangelist. Set direction, protect quality, and create conditions for your team to discover the benefits for themselves. They don't need to love it overnight. They need to see the work they care about isn't being erased, just rebalanced.
