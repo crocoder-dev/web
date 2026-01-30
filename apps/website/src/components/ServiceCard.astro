@@ -20,15 +20,15 @@ interface Props {
     alt?: string;
   };
   classNames?: string | string[];
-  link: {
+  links: Array<{
     href: string;
     text: string;
     title?: string;
     image?: string;
-  };
+  }>;
 }
 
-const { title, subtitles, content, styles, img, classNames, link } =
+const { title, subtitles, content, styles, img, classNames, links } =
   Astro.props;
 
 const images = import.meta.glob<{ default: ImageMetadata }>("../assets/*.*");
@@ -94,8 +94,8 @@ const image = await src();
           class="[&_p]:text-sm [&_p]:leading-[26px] sm:[&_p]:text-base md:[&_p]:text-[20px] md:[&_p]:font-normal md:[&_p]:leading-8 text-left"
           set:html={content.html}
         />
-        <div>
-          {
+        <div class="flex flex-col gap-4 lg:flex-col md:flex-row">
+          {links.map(link => (
             link?.title && link.image ? (
               <BlogLink
                 href={link.href}
@@ -112,6 +112,7 @@ const image = await src();
                 />
               </CTA>
             )
+          ))
           }
         </div>
       </div>

@@ -10,11 +10,15 @@ imgAlt: "Team of developers collaborating and learning together"
 idx: 4
 iconPath: "/management.svg"
 bgColor: "bg-[#1E1A1AE5]/[0.9]"
-link:
-  href: "/blog/migrating-an-enterprise-app-from-angularjs-to-react"
-  text: "See case study"
-  title: "Migrating an Enterprise App from AngularJS to React"
-  image: "from-angular-to-react.png"
+links:
+  - href: "/blog/migrating-an-enterprise-app-from-angularjs-to-react"
+    text: "See case study"
+    title: "Migrating an Enterprise App from AngularJS to React"
+    image: "from-angular-to-react.png"
+  - href: "/blog/ai-adoption-without-burning-your-team"
+    text: "See case study"
+    title: "Adopt AI without burning your team"
+    image: "ai-adoption-without-burning-your-team.png"
 ---
 
 Help your team keep up with industry demands through dedicated mentorship and hands-on support. We offer technical coaching, on-the-job pairing, and structured growth plans to identify and close skill gaps so your developers become more effective and confident with modern technologies and practices.
