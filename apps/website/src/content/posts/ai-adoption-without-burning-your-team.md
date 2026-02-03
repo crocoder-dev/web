@@ -13,7 +13,7 @@ image: "/images/ai-adoption-without-burning-your-team.png"
 
 If you're a CTO trying (and failing) to get your engineering team to adopt AI, this article is for you.
 
-If you have spent any time on X, LinkedIn, conferences, or talking to peers, you have heard that every team ships at lightning speed with Claude Code, OpenCode, or Cursor.
+If you have spent any time on X, LinkedIn, conferences, or talking to peers, you have heard that every team ships at lightning speed with [Claude Code](https://claude.com/product/claude-code), [OpenCode](https://opencode.ai/), or [Cursor](https://cursor.com/).
 
 In practice many aren't, uhm, most aren't. Some teams are dabbling in ways that just aren't productive.
 
@@ -35,7 +35,7 @@ Teams spend less time on raw implementation and more time on:
 - system design & architecture
 - code review & QA
 
-That shift is real, every engineer feels it, and some love it, others not so much. You shouldn't ignore this, as it will backfire.
+That shift is real, every engineer feels it, and some love it, others not so much. You shouldn't ignore this reality, as it will backfire.
 
 Set expectations for the timeline. Tools like Claude Code / OpenCode are less than a year old, and many senior engineers formed their instincts in different environments, IDEs, and processes. Being skeptical about such a monumental change makes total sense.
 
@@ -43,7 +43,7 @@ The biggest mistake that you can make here is to treat this like an IDE preferen
 
 ## You can hold the line and still lead with empathy
 
-As a CTO, you set direction. AI adoption should not be a committee vote, but direction without empathy will turn this into a compliance theater.
+As a CTO, you set direction. AI adoption should not be a committee vote, but direction without empathy will turn this into a [compliance theater](https://www.crocoder.dev/blog/turning-metrics-into-direction-for-your-team#some-targets-go-wrong).
 
 Start by acknowledging the tradeoffs openly. More code reviews and QA will be required. Bad prompting will produce bad code faster than a single dev could write, and AI has changed how the craft looks.
 
@@ -51,7 +51,7 @@ If quality is the concern, address it systemically. Invest in standards, quality
 
 ## Remove pain before you sell upside
 
-Most resistance you will find is defensive. Engineers avoid pain more than they chase novelty.
+Most resistance you will find is purely defensive. Engineers like to avoid pain more than they like to chase novelty.
 
 You should start by encouraging AI use in the parts of the job people already dislike:
 
@@ -88,18 +88,19 @@ Adoption spreads best through proximity.
 
 Truthfully, most teams are already overloaded. Telling engineers to "experiment with AI" doesn't bring any results. If you want this to stick, clear time. A full day or a disposable project. It's quite expensive, but stagnation costs more.
 
-## Resistance turns to refusal
+## Resistance will turns to refusal
 
 Sometimes, even with time and support, someone will refuse to engage. You should have a direct conversation about fit. The efficiency gains are real and compounding. Refusing AI tooling is closer to rejecting version control than disliking a formatter.
 
 Going through retraining and learning something new was always part of the software engineering job. Indefinite refusal has steep costs.
 
-## The craft is still there.
+## The craft is still there
 
 Across teams, enthusiasm levels vary. What's consistent is the shift in work: more intent and judgment.
 
 **Clarity and taste matter more now than ever before.**
 
+If you have spent any time on X, LinkedIn, conferences, or talking to peers, you have heard that every team ships at lightning speed with Claude Code, OpenCode, or Cursor.
 AI is an expertise force multiplier, and poor inputs still yield poor outputs, just faster.
 
-As a CTO, your goal shouldn't be to turn everyone into an AI evangelist. Set direction, protect quality, and create conditions for your team to discover the benefits for themselves. They don't need to love it overnight. They need to see the work they care about isn't being erased, just rebalanced.
+As a CTO, your goal shouldn't be to turn everyone into an AI evangelist. Set direction, protect quality, and create conditions for your team to discover the benefits for themselves. They don't need to love it overnight. They need to see the work they care about isn't being erased, just changed.
