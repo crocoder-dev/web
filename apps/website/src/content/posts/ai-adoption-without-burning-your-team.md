@@ -1,8 +1,8 @@
 ---
 title: "Adopt AI without burning your team"
 description: "Practical guidance for CTOs to adopt AI tools without hurting quality or morale, covering team dynamics, standards, and safe ways to start."
-createdAt: 1769602029014
-updatedAt: 1769602029014
+createdAt: 1770224609641
+updatedAt: 1770224609641
 authors: ["david"]
 category: "AI"
 editors: ["velimir"]
