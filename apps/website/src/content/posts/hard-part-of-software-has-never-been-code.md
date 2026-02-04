@@ -6,7 +6,7 @@ updatedAt: 1770156760883
 authors: ["david"]
 category: "After Work Talks"
 editors: ["velimir"]
-abstract: "A long-form look at why the hardest part of software is not writing code but changing live systems without breaking the business. The essay explains how partial migrations, coexistence between old and new systems, and real-world constraints make "best practices" fail. It outlines practical questions leaders should ask about safety, rollback, and recovery, and argues that AI can accelerate code but not replace judgment."
+abstract: "A long-form look at why the hardest part of software is not writing code but changing live systems without breaking the business. The essay explains how partial migrations, coexistence between old and new systems, and real-world constraints make \"best practices\" fail. It outlines practical questions leaders should ask about safety, rollback, and recovery, and argues that AI can accelerate code but not replace judgment."
 image: "/images/gitops-is-it-the-right-choice-for-your-devops.png"
 draft: false
 ---
