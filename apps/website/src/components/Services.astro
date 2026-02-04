@@ -20,7 +20,7 @@ for (const service of servicesCollection) {
       alt: service.data.imgAlt,
     },
     background: service.data.bgColor,
-    link: service.data.link,
+    links: service.data.links,
   };
 }
 ---
@@ -52,7 +52,7 @@ for (const service of servicesCollection) {
               content={value.content}
               img={value.img}
               styles={classNames("will-change-transform", value.background)}
-              link={value.link}
+              links={value.links}
             />
           ))
         }
