@@ -6,11 +6,15 @@ function remark({
   detailsClass,
   summaryClass,
   iframeClass,
+  ctaClass,
+  ctaTitleClass,
 }: {
   titleClass: string;
   detailsClass: string;
   summaryClass: string;
   iframeClass: string;
+  ctaClass: string;
+  ctaTitleClass: string;
 }) {
   return () => {
     return (tree: Node) => {
@@ -86,7 +90,25 @@ function remark({
         if (!node.children || node.children.length !== 1) return;
         const textNode = node.children[0];
 
-        // non h title rule
+
+        if (textNode.type === "text" && textNode.value.startsWith("::cta ")) {
+          console.log("Found CTA:", textNode.value);
+          const ctaTitle = textNode.value.substring("::cta ".length);
+          const node = {
+            type: "html",
+            value: `<aside class="${ctaClass}"><span class="${ctaTitleClass}">${ctaTitle}</span>`,
+          };
+          parent.children.splice(index, 1, node);
+        }
+
+        if (textNode.type === "text" && textNode.value.startsWith("::endcta")) {
+          const node = {
+            type: "html",
+            value: `</aside>`,
+          };
+          parent.children.splice(index, 1, node);
+        }
+
         if (textNode.type === "text" && textNode.value.startsWith("::title ")) {
           const titleText = textNode.value.substring("::title ".length);
           const titleNode = {

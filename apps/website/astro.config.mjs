@@ -9,6 +9,8 @@ const classes = {
   summaryClass: "cursor-pointer font-bold text-[1.25rem]",
   detailsClass: "mt-[2.5rem]",
   iframeClass: "border-none w-full h-[360px] overflow-y-hidden",
+  ctaClass: "my-12 rounded-lg border-l-4 border-primary bg-primary/5 p-6",
+  ctaTitleClass: "text-xl font-semibold text-foreground mb-3",
 };
 
 const remarkPlugin = createRemarkPlugin(classes);
