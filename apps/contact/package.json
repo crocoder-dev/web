@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "emails": "email dev --dir email-templates"
+    "emails": "email dev --dir app/\\(email-templates\\)",
+    "test": "npx jest"
   },
   "dependencies": {
     "@aws-sdk/client-sesv2": "^3.888.0",
@@ -18,15 +19,21 @@
     "nodemailer": "^7.0.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "ts-node": "^10.9.2",
     "zod": "^4.0.17"
   },
   "devDependencies": {
     "@react-email/preview-server": "4.2.11",
+    "@types/jest": "^30.0.0",
     "@types/node": "^24",
     "@types/nodemailer": "^7.0.1",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "jest": "^30.1.1",
     "react-email": "4.2.11",
-    "typescript": "^5"
+    "ts-jest": "^29.4.1",
+    "typescript": "^5",
+    "undici": "^6.21.3",
+    "web-streams-polyfill": "^4.2.0"
   }
 }

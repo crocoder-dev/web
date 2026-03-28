@@ -5,9 +5,11 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,astro}\""
+    "format": "prettier --write \"**/*.{ts,tsx,astro}\"",
+    "test": "cd tests && npx playwright test"
   },
   "devDependencies": {
+    "@playwright/test": "^1.55.0",
     "turbo": "^2.5.6"
   },
   "engines": {
