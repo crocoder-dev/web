@@ -1,0 +1,51 @@
+---
+import BookACallForm from "../components/BookACallForm.astro";
+import Footer from "../components/footer.astro";
+import Navigation from "../components/navigation.astro";
+import Pill from "../components/Pill.astro";
+import Section from "../components/Section.astro";
+import MaturityAssessment from "../components/maturity-tool/MaturityAssessment";
+import Base from "../layouts/base.astro";
+import "../styles/main.css";
+
+const {
+  ogImage = "https://www.crocoder.dev/staff-augmentation-metadata-img.png",
+} = Astro.props;
+---
+
+<Base className="bg-white" ogImage={ogImage}>
+  <Navigation />
+
+  <Section className="!pt-[110px] bg-white md:!pt-[140px] !pb-8 md:!pb-12">
+    <div class="max-w-3xl mx-auto text-center flex flex-col items-center gap-5">
+      <Pill>Free self-assessment</Pill>
+      <h1 class="text-h1-sm sm:text-h1 font-medium tracking-tight text-dark">
+        How mature is your technical organization?
+      </h1>
+      <p class="text-text text-base md:text-lg leading-7">
+        Answer 40 questions across 8 dimensions — strategy, architecture, delivery,
+        reliability, security, developer experience, organization, and measurement —
+        and get a scored maturity profile with the single biggest constraint holding
+        your engineering org back. Takes about 15 minutes.
+      </p>
+    </div>
+  </Section>
+
+  <Section className="bg-white">
+    <div class="max-w-4xl mx-auto">
+      <MaturityAssessment client:load />
+    </div>
+  </Section>
+
+  <BookACallForm
+    calLink="team/crocoder/hello"
+    eventType="hello"
+    deferLoad
+  >
+    <span slot="title">
+      Ready to close the <span class="text-crocoder-yellow">gap?</span>
+    </span>
+  </BookACallForm>
+
+  <Footer />
+</Base>

@@ -1,0 +1,161 @@
+---
+import Post from "../../layouts/post.astro";
+import { getCollection } from "astro:content";
+import MaturityAssessment from "../../components/maturity-tool/MaturityAssessment";
+import { TOTAL_QUESTIONS } from "../../data/maturityAssessment";
+
+export async function getData() {
+  const authorCollection = await getCollection("authors");
+
+  const authorIds = ["david"];
+  const authors = authorCollection.filter((author) =>
+    authorIds.includes(author.slug),
+  );
+
+  const editorIds = ["velimir"];
+  const editors = authorCollection.filter((editor) =>
+    editorIds.includes(editor.slug),
+  );
+
+  return {
+    title: "How mature is your engineering organization?",
+    description:
+      "Most maturity models want to give you a single number. Real engineering organizations are extremely lopsided. The Organizational Technical Maturity Framework scores eight dimensions across five levels so you can find the constraint. Includes a free 15-minute self-assessment.",
+    category: "Engineering Leadership",
+    image: "/images/how-mature-is-your-engineering-organization.png",
+    createdAt: 1788307200000,
+    updatedAt: 1788307200000,
+    authors,
+    editors,
+    abstract:
+      'Ask how mature an engineering organization is and you usually get "pretty good." A more useful question is where you are strong, where you are weak, and which weakness is costing you most right now. The Organizational Technical Maturity Framework scores eight areas of an engineering organization on observable evidence: release history, incident reviews, ownership, CI pipelines, onboarding time. Each dimension moves through five levels, from Reactive to Adaptive. The point is not an average score but the binding constraint: if delivery, architecture, and developer experience are all Scalable and security is Reactive, your problem is the Reactive one. This article explains the model and embeds the 40-question self-assessment so you can score your own profile in about 15 minutes.',
+  };
+}
+
+export const data = await getData();
+
+const slug = "/how-mature-is-your-engineering-organization.astro";
+---
+
+<Post
+  title={data.title}
+  image={data.image}
+  createdAt={data.createdAt}
+  updatedAt={data.updatedAt}
+  description={data.description}
+  abstract={data.abstract}
+  author={data.authors[0]}
+  editor={data.editors[0]}
+  slug={slug}
+  category={data.category}
+>
+  <p>
+    Ask an engineer or engineering manager how mature their engineering
+    organization is and you will often get a fairly vague answer: "pretty good."
+    If you prod a bit more you start to hear about mountans of technical debt,
+    painful deployments, unclear ownership, weak security practices, or
+    production issues that depend on a few people knowing what to do. While none
+    of those things necessarily mean the organization is doing badly, they do
+    show why a general judgment of maturity is not particularly useful.
+  </p>
+
+  <p>
+    A better question is: Where are we strong, where are we weak, and which
+    weakness is costing us the most right now?
+  </p>
+
+  <p>
+    That is the purpose of the <strong
+      >Organizational Technical Maturity Framework</strong
+    >. It looks at eight areas of an engineering organization: technology
+    strategy, architecture, delivery, quality and reliability, security and
+    risk, developer experience, people and organization, and measurement and
+    learning. The goal is to score these areas based on evidence that can
+    actually be observed.
+  </p>
+
+  <p>
+    Each dimension moves through the same five levels: Reactive (L1), Repeatable
+    (L2), Managed (L3), Scalable (L4), and Adaptive (L5). At Reactive (L1),
+    important outcomes still depend heavily on specific people and their
+    individual knowledge. At Repeatable (L2), some standards and practices
+    exist, but they are not yet applied consistently across the organization. At
+    Managed (L3), ownership is clearer, important outcomes are measured, and
+    risks are handled deliberately rather than only after they become problems.
+    At Scalable (L4), the organization can grow without requiring the same
+    growth in coordination, handoffs, and operational overhead. At Adaptive
+    (L5), teams can respond to new evidence and change direction without needing
+    to redesign the organization around every new problem.
+  </p>
+
+  <p>
+    The overall progression is less about adopting more process or more tooling,
+    and more about moving from heroics toward proper systems. A mature
+    organization should not depend on the right person being available,
+    remembering the right thing, or manually holding the system together.
+  </p>
+
+  <h2>Maturity is not a single number</h2>
+
+  <p>
+    One of the main problems with maturity models is the temptation to reduce an
+    organization to a single score. Engineering organizations are rarely that
+    consistent, they are usually extremely lopsided.
+  </p>
+
+  <p>
+    A company can have Scalable (L4) delivery and still have Reactive (L1)
+    security. It can have Managed (L3) architecture while ownership remains
+    unclear. It can have sophisticated observability while incidents still take
+    too long to understand because nobody has clear responsibility for acting on
+    the signals. These differences are not exceptions to the model; they are
+    often the most useful part of the assessment.
+  </p>
+
+  <p>
+    If Delivery is L4, Architecture is L4, Developer Experience is L4, and
+    Security is L1, then the most important improvement is unlikely to be
+    another delivery optimization. The larger constraint is probably Security.
+    However, this should be evaluated in the context of the company rather than
+    in a vacuum. Some companies can function with certain areas at lower levels,
+    but if you want to scale, you will usually need to target L3 or higher.
+  </p>
+
+  <p>
+    This is why the useful outcome of the assessment is not the average score,
+    but the identification of the binding constraint: the part of the
+    engineering system that is currently limiting the organization more than
+    anything else. Faster CI will not solve unclear ownership. Increasing
+    deployment frequency will not achieve much if production reliability is
+    poor. A cleaner architecture will not fix an organization that struggles to
+    make decisions about what should be built.
+  </p>
+
+  <p>
+    It is entirely possible to improve engineering practices and still achieve
+    very little if the improvement is applied in the wrong place. The aim is
+    therefore to find the most important constraint, improve it, and measure
+    again. Once that constraint is removed, another weakness will usually become
+    more visible. That is not a failure of the model; it is how improvement
+    works in a complex organization.
+  </p>
+
+  <h2>Take the assessment</h2>
+
+  <p>
+    The assessment has {TOTAL_QUESTIONS} questions across the eight dimensions and
+    takes about 15 minutes. Try to answer based on how work happens during a normal
+    working week.
+  </p>
+
+  <div class="not-prose my-10">
+    <MaturityAssessment client:load />
+  </div>
+
+  <p>
+    Want to hear more about the framework, or unsure how to complete the
+    assessment? <a href="https://www.crocoder.dev/contact" target="_blank"
+      >Get in touch with us</a
+    >.
+  </p>
+</Post>
