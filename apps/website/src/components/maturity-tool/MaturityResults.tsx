@@ -58,29 +58,6 @@ export default function MaturityResults({ answers }: { answers: Answers }) {
     return results.reduce((min, r) => (r.score < min.score ? r : min));
   }, [results]);
 
-  const handleEmailResults = () => {
-    if (!weakestDimensionResult) return;
-    const lines = [
-      "Organizational Technical Maturity Assessment — Results",
-      "",
-      `Biggest constraint: ${weakestDimensionResult.dimension.title} (${weakestDimensionResult.score}/5, ${
-        levelForScore(weakestDimensionResult.score).name
-      })`,
-      "",
-      ...results.map(
-        (r) =>
-          `${r.dimension.title}: ${r.score}/5 (${levelForScore(r.score).name}) — constraint: ${
-            r.weakest.prompt
-          }`
-      ),
-      "",
-      `Full results: ${typeof window !== "undefined" ? window.location.href : ""}`,
-    ];
-    const subject = encodeURIComponent("My Technical Maturity Assessment results");
-    const body = encodeURIComponent(lines.join("\n"));
-    window.location.href = `mailto:?subject=${subject}&body=${body}`;
-  };
-
   return (
     <div className="flex flex-col gap-10">
       {weakestDimensionResult && (
@@ -94,8 +71,8 @@ export default function MaturityResults({ answers }: { answers: Answers }) {
           </h1>
           <p className="text-text text-base">
             Scoring {weakestDimensionResult.score}/5 (
-            {levelForScore(weakestDimensionResult.score).name}). Maturity isn't one number —
-            review the full profile below to see where to focus next.
+            {levelForScore(weakestDimensionResult.score).name}). Maturity isn't a single number.
+            Review the full profile below to see where to focus next.
           </p>
         </div>
       )}
@@ -149,13 +126,6 @@ export default function MaturityResults({ answers }: { answers: Answers }) {
         >
           Talk through these results
         </a>
-        <button
-          type="button"
-          onClick={handleEmailResults}
-          className="rounded-md px-6 py-3 text-center font-medium bg-white border border-border text-dark hover:border-primary whitespace-nowrap cursor-pointer"
-        >
-          Email me these results
-        </button>
         <a
           href="/technical-maturity-assessment"
           className="rounded-md px-6 py-3 text-center font-medium text-text hover:text-dark whitespace-nowrap"

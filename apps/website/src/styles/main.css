@@ -142,3 +142,25 @@ body:has(nav #nav-menu-toggle:checked) {
     margin-top: -5%;
   }
 }
+
+/* Maturity assessment: questions fade up in sequence when a dimension changes. */
+@keyframes maturity-question-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.maturity-question-enter {
+  animation: maturity-question-enter 260ms cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .maturity-question-enter {
+    animation: none;
+  }
+}
